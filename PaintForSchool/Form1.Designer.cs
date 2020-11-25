@@ -1,5 +1,4 @@
-﻿
-namespace PaintForSchool
+﻿namespace PaintForSchool
 {
     partial class Form1
     {
