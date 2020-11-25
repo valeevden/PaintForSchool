@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaintForSchool.Figures;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,12 +16,12 @@ namespace PaintForSchool
         Bitmap _mainBitmap; //Объект Bitmap используется для работы с изображениями, определяемыми данными пикселей
         Bitmap _tmpBitmap;
         Graphics _graphics; //класс с методами для рисования
-        Image _image; //
         Pen _pen; //класс с инструментами для рисования
-        PointF _pt1;
-        PointF _pt2;
-        bool _mouseUp;
-        bool _mouseDown;
+        Point _point1;
+        Point _point2;
+        bool _mouseUp = false;
+        bool _mouseDown = false;
+        IFigure _figure;
 
         public Form1()
         {
@@ -39,33 +40,37 @@ namespace PaintForSchool
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
+            _point1 = e.Location;
             _mouseDown = true;
-            _pt1 = e.Location;
-            _mouseUp = false;
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_mouseDown == true && _mouseUp == false)
+            if (_mouseDown)
             {
-                _tmpBitmap = new Bitmap(_mainBitmap); //конструктор временного битмапа на основе основного битмапа создаёт копию
+                _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                _pt2 = e.Location;
-                _graphics.DrawLine(_pen, _pt1, _pt2);
+
+                //_graphics.Clear(Color.White);
+                _graphics.DrawPolygon(_pen, _figure.GetPoints(_point1, e.Location));
                 pictureBox1.Image = _tmpBitmap;
                 GC.Collect();
+
+                //_tmpBitmap = new Bitmap(_mainBitmap); //конструктор временного битмапа на основе основного битмапа создаёт копию
+                //_graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                //_point2 = e.Location;
+                //_graphics.DrawLine(_pen, _point1, _point2);
+                //pictureBox1.Image = _tmpBitmap;
+                //GC.Collect();
             }
 
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            _mouseUp = true;
             _mouseDown = false;
-            _pt2 = e.Location;
             _mainBitmap = _tmpBitmap;
-            //_graphics.DrawLine(_pen, _pt1, _pt2);
-            //pictureBox1.Image = _mainBitmap;
+            //_point2 = e.Location;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -76,6 +81,27 @@ namespace PaintForSchool
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
             _graphics.Clear(Color.Transparent);
+        }
+
+        private void ClearAll_Click(object sender, EventArgs e)
+        {
+            _graphics.Clear(Color.White);
+            pictureBox1.Image = _mainBitmap;
+        }
+
+        private void Rectangle_2d_Click(object sender, EventArgs e)
+        {
+            _figure = new RectangleFigure();
+        }
+
+        private void Line2D_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void PenWidth_Scroll(object sender, ScrollEventArgs e)
+        {
+            _pen = new Pen(Color.Red, PenWidth.Value);
         }
     }
 }
