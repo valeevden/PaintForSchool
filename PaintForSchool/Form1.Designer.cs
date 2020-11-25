@@ -50,7 +50,7 @@
             this.button19 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
+            this.Line2D = new System.Windows.Forms.Button();
             this.PenWidth = new System.Windows.Forms.HScrollBar();
             this.button23 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -258,14 +258,15 @@
             this.button21.Text = "Simple Pen";
             this.button21.UseVisualStyleBackColor = true;
             // 
-            // button22
+            // Line2D
             // 
-            this.button22.Location = new System.Drawing.Point(179, 98);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(124, 48);
-            this.button22.TabIndex = 12;
-            this.button22.Text = "Simple Pen";
-            this.button22.UseVisualStyleBackColor = true;
+            this.Line2D.Location = new System.Drawing.Point(179, 98);
+            this.Line2D.Name = "Line2D";
+            this.Line2D.Size = new System.Drawing.Size(124, 48);
+            this.Line2D.TabIndex = 12;
+            this.Line2D.Text = "Line2D";
+            this.Line2D.UseVisualStyleBackColor = true;
+            this.Line2D.Click += new System.EventHandler(this.Line2D_Click);
             // 
             // PenWidth
             // 
@@ -277,6 +278,7 @@
             this.PenWidth.Size = new System.Drawing.Size(385, 17);
             this.PenWidth.TabIndex = 23;
             this.PenWidth.Value = 1;
+            this.PenWidth.Scroll += new System.Windows.Forms.ScrollEventHandler(this.PenWidth_Scroll);
             // 
             // button23
             // 
@@ -286,7 +288,7 @@
             this.button23.TabIndex = 24;
             this.button23.Text = "Clear ALL";
             this.button23.UseVisualStyleBackColor = true;
-            this.button23.Click += new System.EventHandler(this.button23_Click);
+            this.button23.Click += new System.EventHandler(this.ClearAll_Click);
             // 
             // Form1
             // 
@@ -305,7 +307,7 @@
             this.Controls.Add(this.button19);
             this.Controls.Add(this.button20);
             this.Controls.Add(this.button21);
-            this.Controls.Add(this.button22);
+            this.Controls.Add(this.Line2D);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
@@ -350,7 +352,7 @@
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button Line2D;
         private System.Windows.Forms.HScrollBar PenWidth;
         private System.Windows.Forms.Button button23;
     }
