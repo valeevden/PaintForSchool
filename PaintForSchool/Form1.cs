@@ -22,6 +22,7 @@ namespace PaintForSchool
         bool _mouseUp = false;
         bool _mouseDown = false;
         IFigure _figure;
+        Color _color = Color.Red;
 
         public Form1()
         {
@@ -99,9 +100,18 @@ namespace PaintForSchool
             
         }
 
-        private void PenWidth_Scroll(object sender, ScrollEventArgs e)
+        private void trackPenWidth_Scroll(object sender, EventArgs e)
         {
-            _pen = new Pen(Color.Red, PenWidth.Value);
+            _pen = new Pen(Color.Color, trackPenWidth.Value);
+        }
+
+        private void colorPalete_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                _color = colorDialog1.Color;
+                colorPalete.BackColor = colorDialog1.Color;
+            }
         }
     }
 }

@@ -51,9 +51,14 @@
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.Line2D = new System.Windows.Forms.Button();
-            this.PenWidth = new System.Windows.Forms.HScrollBar();
             this.button23 = new System.Windows.Forms.Button();
+            this.trackPenWidth = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.colorPalete = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackPenWidth)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -268,18 +273,6 @@
             this.Line2D.UseVisualStyleBackColor = true;
             this.Line2D.Click += new System.EventHandler(this.Line2D_Click);
             // 
-            // PenWidth
-            // 
-            this.PenWidth.LargeChange = 1;
-            this.PenWidth.Location = new System.Drawing.Point(683, 55);
-            this.PenWidth.Maximum = 20;
-            this.PenWidth.Minimum = 1;
-            this.PenWidth.Name = "PenWidth";
-            this.PenWidth.Size = new System.Drawing.Size(385, 17);
-            this.PenWidth.TabIndex = 23;
-            this.PenWidth.Value = 1;
-            this.PenWidth.Scroll += new System.Windows.Forms.ScrollEventHandler(this.PenWidth_Scroll);
-            // 
             // button23
             // 
             this.button23.Location = new System.Drawing.Point(63, 692);
@@ -290,13 +283,59 @@
             this.button23.UseVisualStyleBackColor = true;
             this.button23.Click += new System.EventHandler(this.ClearAll_Click);
             // 
+            // trackPenWidth
+            // 
+            this.trackPenWidth.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.trackPenWidth.Location = new System.Drawing.Point(824, 47);
+            this.trackPenWidth.Maximum = 30;
+            this.trackPenWidth.Minimum = 1;
+            this.trackPenWidth.Name = "trackPenWidth";
+            this.trackPenWidth.Size = new System.Drawing.Size(267, 45);
+            this.trackPenWidth.TabIndex = 25;
+            this.trackPenWidth.Value = 6;
+            this.trackPenWidth.Scroll += new System.EventHandler(this.trackPenWidth_Scroll);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(768, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(31, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Color";
+            // 
+            // colorPalete
+            // 
+            this.colorPalete.BackColor = System.Drawing.Color.Red;
+            this.colorPalete.Location = new System.Drawing.Point(758, 42);
+            this.colorPalete.Name = "colorPalete";
+            this.colorPalete.Size = new System.Drawing.Size(50, 50);
+            this.colorPalete.TabIndex = 27;
+            this.colorPalete.Click += new System.EventHandler(this.colorPalete_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(906, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Size";
+            // 
+            // colorDialog1
+            // 
+            this.colorDialog1.Color = System.Drawing.Color.Red;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1173, 799);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.colorPalete);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.trackPenWidth);
             this.Controls.Add(this.button23);
-            this.Controls.Add(this.PenWidth);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button14);
@@ -324,7 +363,9 @@
             this.Text = "RastPaint";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackPenWidth)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -353,8 +394,12 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button Line2D;
-        private System.Windows.Forms.HScrollBar PenWidth;
         private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.TrackBar trackPenWidth;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label colorPalete;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 
