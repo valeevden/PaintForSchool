@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;//для Brush
 
 namespace PaintForSchool
 {
@@ -17,11 +18,15 @@ namespace PaintForSchool
         Bitmap _tmpBitmap;
         Graphics _graphics; //класс с методами для рисования
         Pen _pen; //класс с инструментами для рисования
-        Point _point1;
+        Point _startPoint;
         Point _point2;
         bool _mouseUp = false;
         bool _mouseDown = false;
+        bool _brushOn = false;//включен ли Brush
+        Point _prePointBrush;//предыдущая точка для Brush
         IFigure _figure;
+        string whatButton; // Стринга для свитча, чтобы понимать какая кнопка нажата
+        GraphicsPath _path = new GraphicsPath(); //весь путь Brush
         Color _color = Color.Red;
 
         public Form1()
@@ -41,37 +46,53 @@ namespace PaintForSchool
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            _point1 = e.Location;
             _mouseDown = true;
+            _startPoint = e.Location;
+            _path.StartFigure();
+            _prePointBrush = e.Location;
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (_mouseDown)
             {
-                _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                switch (whatButton)
+                {
+                    case "Rectangle_2d":
+                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
+                        pictureBox1.Image = _tmpBitmap;
+                        GC.Collect();
+                        break;
 
-                //_graphics.Clear(Color.White);
-                _graphics.DrawPolygon(_pen, _figure.GetPoints(_point1, e.Location));
-                pictureBox1.Image = _tmpBitmap;
-                GC.Collect();
+                    case "Brush":
+                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                        _path.AddLine(_prePointBrush, e.Location);
+                        //_pen.LineJoin = LineJoin.Bevel; // Стиль объединения концов линий
+                        _graphics.DrawPath(_pen, _path);
+                        pictureBox1.Image = _tmpBitmap;
+                        GC.Collect();
+                        _prePointBrush = e.Location;
+                        break;
 
-                //_tmpBitmap = new Bitmap(_mainBitmap); //конструктор временного битмапа на основе основного битмапа создаёт копию
-                //_graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                //_point2 = e.Location;
-                //_graphics.DrawLine(_pen, _point1, _point2);
-                //pictureBox1.Image = _tmpBitmap;
-                //GC.Collect();
+                    default:
+                        break;
+                }
             }
-
+           
+        }
+        private void Brush_Click(object sender, EventArgs e)
+        {
+            _brushOn = true;
+            whatButton = "Brush";
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             _mouseDown = false;
             _mainBitmap = _tmpBitmap;
-            //_point2 = e.Location;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -86,13 +107,16 @@ namespace PaintForSchool
 
         private void ClearAll_Click(object sender, EventArgs e)
         {
+            _path.Reset(); // Обнуляем путь
             _graphics.Clear(Color.White);
             pictureBox1.Image = _mainBitmap;
+
         }
 
         private void Rectangle_2d_Click(object sender, EventArgs e)
         {
             _figure = new RectangleFigure();
+            whatButton = "Rectangle_2d";
         }
 
         private void Line2D_Click(object sender, EventArgs e)
