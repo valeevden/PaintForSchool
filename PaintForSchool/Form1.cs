@@ -15,19 +15,18 @@ namespace PaintForSchool
     public partial class Form1 : Form
     {
         Bitmap _mainBitmap; //Объект Bitmap используется для работы с изображениями, определяемыми данными пикселей
-        Bitmap _tmpBitmap;
+        Bitmap _tmpBitmap; 
         Graphics _graphics; //класс с методами для рисования
-        Pen _pen; //класс с инструментами для рисования
+        Pen _pen = new Pen(Color.Red, 6); //класс с инструментами для рисования. Дефолтный карандаш
+        Color _color;
         Point _startPoint;
         Point _point2;
         bool _mouseUp = false;
         bool _mouseDown = false;
-        bool _brushOn = false;//включен ли Brush
         Point _prePointBrush;//предыдущая точка для Brush
-        IFigure _figure;
-        string whatButton; // Стринга для свитча, чтобы понимать какая кнопка нажата
-        GraphicsPath _path = new GraphicsPath(); //весь путь Brush
-        Color _color = Color.Red;
+        IFigure _figure; // Объект интерфейса
+        string _selectedButton; // Стринга для свитча, чтобы понимать какая кнопка нажата
+        GraphicsPath _path;
 
         public Form1()
         {
@@ -39,7 +38,6 @@ namespace PaintForSchool
             _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             _graphics = Graphics.FromImage(_mainBitmap); //в экземпляр класса графикс кладётся ссылка на битмап
                                                          //теперь все действия которые делаются с помощью Графикс передаются в битмап
-            _pen = new Pen(Color.Red, 6);
             _mouseDown = false;
             //pictureBox1.Image = _mainBitmap; //в пикчербокс передаётся битмап, потому что ПБ ест только изображения
         }
@@ -48,6 +46,7 @@ namespace PaintForSchool
         {
             _mouseDown = true;
             _startPoint = e.Location;
+            _path = new GraphicsPath(); //весь путь Brush
             _path.StartFigure();
             _prePointBrush = e.Location;
         }
@@ -56,11 +55,12 @@ namespace PaintForSchool
         {
             if (_mouseDown)
             {
-                switch (whatButton)
+                switch (_selectedButton)
                 {
                     case "Rectangle_2d":
                         _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                         _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+
                         _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
                         pictureBox1.Image = _tmpBitmap;
                         GC.Collect();
@@ -82,11 +82,6 @@ namespace PaintForSchool
                 }
             }
            
-        }
-        private void Brush_Click(object sender, EventArgs e)
-        {
-            _brushOn = true;
-            whatButton = "Brush";
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -113,10 +108,14 @@ namespace PaintForSchool
 
         }
 
+        private void Brush_Click(object sender, EventArgs e)
+        {
+            _selectedButton = "Brush";
+        }
         private void Rectangle_2d_Click(object sender, EventArgs e)
         {
             _figure = new RectangleFigure();
-            whatButton = "Rectangle_2d";
+            _selectedButton = "Rectangle_2d";
         }
 
         private void Line2D_Click(object sender, EventArgs e)
@@ -126,7 +125,7 @@ namespace PaintForSchool
 
         private void trackPenWidth_Scroll(object sender, EventArgs e)
         {
-            _pen = new Pen(Color.Color, trackPenWidth.Value);
+            _pen = new Pen(colorDialog1.Color, trackPenWidth.Value);
         }
 
         private void colorPalete_Click(object sender, EventArgs e)
@@ -135,6 +134,7 @@ namespace PaintForSchool
             {
                 _color = colorDialog1.Color;
                 colorPalete.BackColor = colorDialog1.Color;
+                _pen = new Pen(colorDialog1.Color, 6);
             }
         }
     }
