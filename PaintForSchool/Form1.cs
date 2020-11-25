@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;//для Brush
 
 namespace PaintForSchool
 {
@@ -21,7 +22,11 @@ namespace PaintForSchool
         Point _point2;
         bool _mouseUp = false;
         bool _mouseDown = false;
+        bool _brushOn = false;//включен ли Brush
+        Point _prePointBrush;//предыдущая точка для Brush
         IFigure _figure;
+
+        GraphicsPath _path = new GraphicsPath(); //весь путь Brush
 
         public Form1()
         {
@@ -42,26 +47,36 @@ namespace PaintForSchool
         {
             _point1 = e.Location;
             _mouseDown = true;
+            _prePointBrush = e.Location;
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_mouseDown)
+            if ((_mouseDown)&&(_brushOn == false))
             {
                 _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                 _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
 
-                //_graphics.Clear(Color.White);
+                
                 _graphics.DrawPolygon(_pen, _figure.GetPoints(_point1, e.Location));
                 pictureBox1.Image = _tmpBitmap;
                 GC.Collect();
 
-                //_tmpBitmap = new Bitmap(_mainBitmap); //конструктор временного битмапа на основе основного битмапа создаёт копию
-                //_graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                //_point2 = e.Location;
-                //_graphics.DrawLine(_pen, _point1, _point2);
-                //pictureBox1.Image = _tmpBitmap;
-                //GC.Collect();
+                
+            }
+            else if ((_mouseDown) && (_brushOn))
+            {
+                _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+
+                _path.AddLine(_prePointBrush, e.Location);
+
+                _pen.LineJoin = LineJoin.Bevel;
+
+                _graphics.DrawPath(_pen, _path);
+                pictureBox1.Image = _tmpBitmap;
+                GC.Collect();
+                _prePointBrush = e.Location;
             }
 
         }
@@ -70,6 +85,7 @@ namespace PaintForSchool
         {
             _mouseDown = false;
             _mainBitmap = _tmpBitmap;
+
             //_point2 = e.Location;
         }
 
@@ -102,6 +118,13 @@ namespace PaintForSchool
         private void PenWidth_Scroll(object sender, ScrollEventArgs e)
         {
             _pen = new Pen(Color.Red, PenWidth.Value);
+        }
+
+        private void Brush_Click(object sender, EventArgs e)
+        {
+            _brushOn = true;
+            _path.StartFigure();
+
         }
     }
 }

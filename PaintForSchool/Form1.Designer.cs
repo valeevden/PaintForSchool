@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Brush = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.Rectangle_2d = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -68,14 +68,15 @@
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
-            // button1
+            // Brush
             // 
-            this.button1.Location = new System.Drawing.Point(49, 98);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 48);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Simple Pen";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Brush.Location = new System.Drawing.Point(49, 98);
+            this.Brush.Name = "Brush";
+            this.Brush.Size = new System.Drawing.Size(124, 48);
+            this.Brush.TabIndex = 1;
+            this.Brush.Text = "Brush (Pencil)";
+            this.Brush.UseVisualStyleBackColor = true;
+            this.Brush.Click += new System.EventHandler(this.Brush_Click);
             // 
             // button2
             // 
@@ -294,7 +295,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1173, 799);
+            this.ClientSize = new System.Drawing.Size(1173, 741);
             this.Controls.Add(this.button23);
             this.Controls.Add(this.PenWidth);
             this.Controls.Add(this.button12);
@@ -318,7 +319,7 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.Rectangle_2d);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Brush);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "RastPaint";
@@ -331,7 +332,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Brush;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button Rectangle_2d;
         private System.Windows.Forms.Button button4;
