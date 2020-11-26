@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PaintForSchool.Figures
 {
-   public interface IFigure //Интерфейс фигур
+    public interface IFigure //Интерфейс фигур
     {
         Point[] GetPoints(Point startPoint, Point endPoint);
 
