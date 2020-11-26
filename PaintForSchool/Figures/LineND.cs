@@ -9,7 +9,7 @@ namespace PaintForSchool.Figures
 {
     public class LineND : IFigure
     {
-        public Point[] GetPoints(Point startPoint, Point nPoint)
+        public Point[] GetPoints(Point startPoint, Point nPoint, int anglesNumber)
         {
             Point[] points = new Point[2];
             points[0] = startPoint;

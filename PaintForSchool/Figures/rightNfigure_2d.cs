@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PaintForSchool.Figures
 {
-    public class rightNfigure_2d : rightNfigure_2dAbstract
+    public class rightNfigure_2d : IFigure
     {
-        public  new Point[] GetPoints(int anglesNumber, Point startPoint, Point endPoint)
+        public Point[] GetPoints(Point startPoint, Point endPoint, int anglesNumber)
         {
             double externalRadius;
             double fullRoundInRad = 6.28319;

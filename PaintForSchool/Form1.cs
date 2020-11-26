@@ -104,7 +104,7 @@ namespace PaintForSchool
                         _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                         _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
 
-                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
+                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location, (int)_anglesNumber.Value));
                         pictureBox1.Image = _tmpBitmap;
                         GC.Collect();
                         break;
