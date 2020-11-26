@@ -20,8 +20,9 @@ namespace PaintForSchool
         Pen _pen = new Pen(Color.Red, 6); //класс с инструментами для рисования. Дефолтный карандаш
         Color _color;
         Point _startPoint;
-        Point _point2;
+        Point _pointN = new Point( -1, -1 );
         bool _mouseDown = false;
+        bool _doubleClick = false;
         Point _prePointBrush;//предыдущая точка для Brush
         IFigure _figure; // Объект интерфейса
         string _selectedButton; // Стринга для свитча, чтобы понимать какая кнопка нажата
@@ -46,12 +47,14 @@ namespace PaintForSchool
         {
             _mouseDown = true;
             _startPoint = e.Location;
+
             if (_selectedButton == "Brush")
             {
             _path = new GraphicsPath(); //весь путь Brush
             _path.StartFigure();
             _prePointBrush = e.Location;
             }
+
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -82,7 +85,7 @@ namespace PaintForSchool
                         _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                         _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
                         _path.AddLine(_prePointBrush, e.Location);
-                        _pen.LineJoin = LineJoin.Round; // Стиль объединения концов линий
+                        //_pen.LineJoin = LineJoin.Round; // Стиль объединения концов линий
                         _graphics.DrawPath(_pen, _path);
                         pictureBox1.Image = _tmpBitmap;
                         GC.Collect();
@@ -106,6 +109,24 @@ namespace PaintForSchool
                         GC.Collect();
                         break;
 
+                    case "LineND":
+                        
+                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                        //if (_pointN != new Point(-1, -1))
+                        //{
+                        //    _startPoint = _pointN;
+                        //}
+                        if (_pointN == new Point(-1, -1))
+                        {
+                            _pointN = e.Location; 
+                        }
+                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_pointN, e.Location));
+                        pictureBox1.Image = _tmpBitmap;
+                        
+                        GC.Collect();
+                        break;
+
                     default:
                         break;
                 }
@@ -117,13 +138,20 @@ namespace PaintForSchool
         {
             _mouseDown = false;
             _mainBitmap = _tmpBitmap;
+            _pointN = e.Location;
+            if (_doubleClick)
+            {
+                _pointN = new Point(-1, -1);
+                _doubleClick = false;
+            }
+
         }
 
 
 
         private void ClearAll_Click(object sender, EventArgs e)
         {
-            _path.Reset(); // Обнуляем путь
+            //_path.Reset(); // Обнуляем путь
             _graphics.Clear(Color.White);
             pictureBox1.Image = _mainBitmap;
 
@@ -145,6 +173,12 @@ namespace PaintForSchool
             _selectedButton = "Line2D";
         }
 
+        private void LineND_Click(object sender, EventArgs e)
+        {
+            _figure = new LineND();
+            _selectedButton = "LineND";
+        }
+
         private void trackPenWidth_Scroll(object sender, EventArgs e)
         {
             _pen = new Pen(colorDialog1.Color, trackPenWidth.Value);
@@ -164,6 +198,14 @@ namespace PaintForSchool
         {
             _figure = new CircleFigure();
             _selectedButton = "Circle_2d";
+        }
+
+        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            _doubleClick = true;
+            //_pointN = new Point(-1, -1);
+
+            
         }
 
         private void rightNfigure_2d_Click(object sender, EventArgs e)

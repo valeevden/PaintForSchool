@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Figures\Circle.cs" />
     <Compile Include="Figures\IFigure.cs" />
+    <Compile Include="Figures\LineND.cs" />
     <Compile Include="Figures\Line2D.cs" />
     <Compile Include="Figures\Rectangle.cs" />
     <Compile Include="Figures\rightNfigure_2d.cs" />
