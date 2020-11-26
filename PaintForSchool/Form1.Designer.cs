@@ -114,6 +114,7 @@
             // Circle_2d
             // 
             this.Circle_2d.Location = new System.Drawing.Point(49, 314);
+            this.Circle_2d.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Circle_2d.Name = "Circle_2d";
             this.Circle_2d.Size = new System.Drawing.Size(124, 48);
             this.Circle_2d.TabIndex = 5;
@@ -332,7 +333,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1173, 799);
+            this.ClientSize = new System.Drawing.Size(1111, 777);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.colorPalete);
             this.Controls.Add(this.label1);

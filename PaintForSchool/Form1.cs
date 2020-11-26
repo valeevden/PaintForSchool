@@ -21,7 +21,6 @@ namespace PaintForSchool
         Color _color;
         Point _startPoint;
         Point _point2;
-        bool _mouseUp = false;
         bool _mouseDown = false;
         Point _prePointBrush;//предыдущая точка для Brush
         IFigure _figure; // Объект интерфейса
@@ -83,11 +82,19 @@ namespace PaintForSchool
                         _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                         _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
                         _path.AddLine(_prePointBrush, e.Location);
-                        //_pen.LineJoin = LineJoin.Bevel; // Стиль объединения концов линий
+                        _pen.LineJoin = LineJoin.Round; // Стиль объединения концов линий
                         _graphics.DrawPath(_pen, _path);
                         pictureBox1.Image = _tmpBitmap;
                         GC.Collect();
                         _prePointBrush = e.Location;
+                        break;
+
+                    case "Line2D":
+                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
+                        pictureBox1.Image = _tmpBitmap;
+                        GC.Collect();
                         break;
 
                     default:
@@ -103,15 +110,7 @@ namespace PaintForSchool
             _mainBitmap = _tmpBitmap;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void pictureBox1_DoubleClick(object sender, EventArgs e)
-        {
-            _graphics.Clear(Color.Transparent);
-        }
 
         private void ClearAll_Click(object sender, EventArgs e)
         {
@@ -133,7 +132,8 @@ namespace PaintForSchool
 
         private void Line2D_Click(object sender, EventArgs e)
         {
-            
+            _figure = new Line2D();
+            _selectedButton = "Line2D";
         }
 
         private void trackPenWidth_Scroll(object sender, EventArgs e)
