@@ -27,7 +27,7 @@ namespace PaintForSchool
         IFigure _figure; // Объект интерфейса
         string _selectedButton; // Стринга для свитча, чтобы понимать какая кнопка нажата
         GraphicsPath _path;
-
+        
         public Form1()
         {
             InitializeComponent();
@@ -35,6 +35,7 @@ namespace PaintForSchool
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            _selectedButton = "Brush";
             _mainBitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             _graphics = Graphics.FromImage(_mainBitmap); //в экземпляр класса графикс кладётся ссылка на битмап
                                                          //теперь все действия которые делаются с помощью Графикс передаются в битмап
@@ -46,9 +47,12 @@ namespace PaintForSchool
         {
             _mouseDown = true;
             _startPoint = e.Location;
+            if (_selectedButton == "Brush")
+            {
             _path = new GraphicsPath(); //весь путь Brush
             _path.StartFigure();
             _prePointBrush = e.Location;
+            }
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -62,6 +66,15 @@ namespace PaintForSchool
                         _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
 
                         _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
+                        pictureBox1.Image = _tmpBitmap;
+                        GC.Collect();
+                        break;
+
+                    case "Circle_2d":
+                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+
+                        //_graphics.DrawEllipse(_pen, _startPoint, e.Location);
                         pictureBox1.Image = _tmpBitmap;
                         GC.Collect();
                         break;
@@ -134,8 +147,14 @@ namespace PaintForSchool
             {
                 _color = colorDialog1.Color;
                 colorPalete.BackColor = colorDialog1.Color;
-                _pen = new Pen(colorDialog1.Color, 6);
+                _pen = new Pen(colorDialog1.Color, trackPenWidth.Value);
             }
+        }
+
+        private void Circle_2d_Click(object sender, EventArgs e)
+        {
+            _figure = new CircleFigure();
+            _selectedButton = "Circle_2d";
         }
     }
 }
