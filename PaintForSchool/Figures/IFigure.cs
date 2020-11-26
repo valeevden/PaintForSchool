@@ -10,6 +10,6 @@ namespace PaintForSchool.Figures
    public interface IFigure //Интерфейс фигур
     {
         Point[] GetPoints(Point startPoint, Point endPoint);
-
+        //Point[] GetPoints(int anglesNumber, Point startPoint, Point endPoint);
     }
 }

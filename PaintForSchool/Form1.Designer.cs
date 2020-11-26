@@ -39,7 +39,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
+            this.rightNfigure_2d = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
@@ -114,7 +114,7 @@
             // Circle_2d
             // 
             this.Circle_2d.Location = new System.Drawing.Point(49, 314);
-            this.Circle_2d.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Circle_2d.Margin = new System.Windows.Forms.Padding(2);
             this.Circle_2d.Name = "Circle_2d";
             this.Circle_2d.Size = new System.Drawing.Size(124, 48);
             this.Circle_2d.TabIndex = 5;
@@ -167,14 +167,15 @@
             this.button10.Text = "Nfigure_Ndots";
             this.button10.UseVisualStyleBackColor = true;
             // 
-            // button11
+            // rightNfigure_2d
             // 
-            this.button11.Location = new System.Drawing.Point(49, 638);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(124, 48);
-            this.button11.TabIndex = 11;
-            this.button11.Text = "rightNfigure_2d";
-            this.button11.UseVisualStyleBackColor = true;
+            this.rightNfigure_2d.Location = new System.Drawing.Point(49, 638);
+            this.rightNfigure_2d.Name = "rightNfigure_2d";
+            this.rightNfigure_2d.Size = new System.Drawing.Size(124, 48);
+            this.rightNfigure_2d.TabIndex = 11;
+            this.rightNfigure_2d.Text = "rightNfigure_2d";
+            this.rightNfigure_2d.UseVisualStyleBackColor = true;
+            this.rightNfigure_2d.Click += new System.EventHandler(this.rightNfigure_2d_Click);
             // 
             // button12
             // 
@@ -333,7 +334,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1111, 777);
+            this.ClientSize = new System.Drawing.Size(1111, 741);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.colorPalete);
             this.Controls.Add(this.label1);
@@ -350,7 +351,7 @@
             this.Controls.Add(this.button20);
             this.Controls.Add(this.button21);
             this.Controls.Add(this.Line2D);
-            this.Controls.Add(this.button11);
+            this.Controls.Add(this.rightNfigure_2d);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
@@ -385,7 +386,7 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button rightNfigure_2d;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;

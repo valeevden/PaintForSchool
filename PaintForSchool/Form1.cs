@@ -97,6 +97,15 @@ namespace PaintForSchool
                         GC.Collect();
                         break;
 
+                    case "rightNfigure_2d":
+                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+
+                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
+                        pictureBox1.Image = _tmpBitmap;
+                        GC.Collect();
+                        break;
+
                     default:
                         break;
                 }
@@ -155,6 +164,12 @@ namespace PaintForSchool
         {
             _figure = new CircleFigure();
             _selectedButton = "Circle_2d";
+        }
+
+        private void rightNfigure_2d_Click(object sender, EventArgs e)
+        {
+            _selectedButton = "rightNfigure_2d";
+            _figure = new rightNfigure_2d();
         }
     }
 }
