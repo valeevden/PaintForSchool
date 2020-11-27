@@ -160,18 +160,34 @@ namespace PaintForSchool
         {
             _mouseDown = false;
             _mainBitmap = _tmpBitmap;
-            _pointN = e.Location;
-            if (_doubleClick)
-            {
+            //_pointN = e.Location;
+            //if (_doubleClick)
+            //{
                 if (_selectedButton == "LineND")
                 {
-                    _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp, _pointN)); 
-                    //нельзя положить это в дабл клик, потому что линия должна рисоваться по e.Location, который в дабл клике не вызвать
-                    pictureBox1.Image = _tmpBitmap;
+                    _pointN = e.Location;
+                    if (_doubleClick)
+                    {
+                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp, _pointN));
+                        //нельзя положить это в дабл клик, потому что линия должна рисоваться по e.Location, который в дабл клике не вызвать
+                        pictureBox1.Image = _tmpBitmap;
+                        _pointN = new Point(-1, -1);
+                        _doubleClick = false;
+                    }
                 }
-                _pointN = new Point(-1, -1);
-                _doubleClick = false;
-            }
+                else if (_selectedButton == "FigureND")
+                {
+                    _pointN = e.Location;
+                    if (_doubleClick)
+                    {
+                        _pointN = new Point(-1, -1);
+                        _doubleClick = false;
+                    }
+                }
+                //_pointN = new Point(-1, -1);
+                //_doubleClick = false;
+
+            //}
 
         }
 
@@ -179,6 +195,7 @@ namespace PaintForSchool
         {
             _graphics.Clear(Color.White);
             pictureBox1.Image = _mainBitmap;
+            _tmp = _tmp2;
         }
 
         private void Brush_Click(object sender, EventArgs e)
