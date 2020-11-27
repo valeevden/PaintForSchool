@@ -60,14 +60,9 @@ namespace PaintForSchool
             if (_mouseDown)
             {
                 _figure.secondPoint = e.Location;
-                        
-
-                       
-                        pictureBox1.Image = holst.DrawIt(_figure, _pen);
-                        GC.Collect();
-                
+                pictureBox1.Image = holst.DrawIt(_figure, _pen);
+                GC.Collect();
             }
-           
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -142,7 +137,7 @@ namespace PaintForSchool
 
         private void Square_Click(object sender, EventArgs e)
         {
-            //_figure = new SquareFigure();
+            _figure = new SquareFigure();
             _selectedButton = "Square";
         }
 

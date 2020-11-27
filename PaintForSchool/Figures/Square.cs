@@ -8,11 +8,15 @@ using System.Threading.Tasks;
 
 namespace PaintForSchool.Figures
 {
-    public class SquareFigure// : IFigure // Класс для квадратов по 2 точкам
+    public class SquareFigure : IFigure // Класс для квадратов по 2 точкам
     {
-        public Point[] GetPoints(Point startPoint, Point endPoint, int anglesNumber = 1)
+
+        public Point startPoint { get; set; }
+        public Point secondPoint { get; set; }
+        public int anglesNumber { get; set; }
+        public Point[] GetPoints()
         {
-            int a = endPoint.X - startPoint.X;
+            int a = secondPoint.X - startPoint.X;
            
             Point[] points = new Point[4];
             points[0] = startPoint;
@@ -20,6 +24,11 @@ namespace PaintForSchool.Figures
             points[2] = new Point(startPoint.X + a, startPoint.Y + a);
             points[3] = new Point(startPoint.X + a, startPoint.Y);
             return points;
+        }
+
+        public void DrawFigure(Pen pen, Graphics graphics)
+        {
+            graphics.DrawPolygon(pen, GetPoints());
         }
     }
 }
