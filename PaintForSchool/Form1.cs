@@ -143,6 +143,7 @@ namespace PaintForSchool
                             _tmp = e.Location;
                         }
                         _graphics.DrawPolygon(_pen, _figure.GetPoints(_pointN, e.Location));
+                        _tmp2 = e.Location;
                         pictureBox1.Image = _tmpBitmap;
                         GC.Collect();
                         break;
@@ -159,10 +160,13 @@ namespace PaintForSchool
             _mouseDown = false;
             _mainBitmap = _tmpBitmap;
             _pointN = e.Location;
-            _tmp2 = e.Location;
             if (_doubleClick)
             {
                 _pointN = new Point(-1, -1);
+                if (_selectedButton == "FigureND")
+                {
+                    _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp2, _tmp));
+                }
                 _doubleClick = false;
             }
 
@@ -238,10 +242,7 @@ namespace PaintForSchool
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
             _doubleClick = true;
-            if (_selectedButton == "FigureND")
-            {
-                _graphics.DrawPolygon(_pen, _figure.GetPoints(_pointN, _tmp));
-            }
+            
 
         }
 
