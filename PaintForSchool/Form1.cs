@@ -74,6 +74,7 @@ namespace PaintForSchool
         {
             _mouseDown = false;
             //_mainBitmap = _tmpBitmap;
+            holst.Save();
             _pointN = e.Location;
             if (_doubleClick)
             {

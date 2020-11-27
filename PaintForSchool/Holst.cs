@@ -29,5 +29,9 @@ namespace PaintForSchool
 
             return _tmpBitmap;
         }
+        public void Save()
+        {
+            _mainBitmap = _tmpBitmap;
+        }
     }
 }
