@@ -127,9 +127,10 @@ namespace PaintForSchool
                         _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
                         if (_pointN == new Point(-1, -1))
                         {
-                            _pointN = e.Location; 
+                            _pointN = e.Location;
                         }
                         _graphics.DrawPolygon(_pen, _figure.GetPoints(_pointN, e.Location));
+                        _tmp = e.Location;
                         pictureBox1.Image = _tmpBitmap;
                         GC.Collect();
                         break;
@@ -155,16 +156,20 @@ namespace PaintForSchool
            
         }
 
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e) //происходит после дабл клика
         {
             _mouseDown = false;
             _mainBitmap = _tmpBitmap;
             _pointN = e.Location;
-            
             if (_doubleClick)
             {
+                if (_selectedButton == "LineND")
+                {
+                    _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp, _pointN)); 
+                    //нельзя положить это в дабл клик, потому что линия должна рисоваться по e.Location, который в дабл клике не вызвать
+                    pictureBox1.Image = _tmpBitmap;
+                }
                 _pointN = new Point(-1, -1);
-                
                 _doubleClick = false;
             }
 
@@ -245,7 +250,10 @@ namespace PaintForSchool
             {
                 _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp2, _tmp));
                 pictureBox1.Image = _tmpBitmap;
+                
             }
+            
+
         }
 
         
