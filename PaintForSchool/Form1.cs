@@ -124,10 +124,7 @@ namespace PaintForSchool
                         
                         _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                         _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                        //if (_pointN != new Point(-1, -1))
-                        //{
-                        //    _startPoint = _pointN;
-                        //}
+                       
                         if (_pointN == new Point(-1, -1))
                         {
                             _pointN = e.Location; 
