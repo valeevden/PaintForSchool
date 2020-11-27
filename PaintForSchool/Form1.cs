@@ -21,6 +21,8 @@ namespace PaintForSchool
         Color _color;
         Point _startPoint;
         Point _pointN = new Point( -1, -1 );
+        Point _tmp;
+        Point _tmp2;
         bool _mouseDown = false;
         bool _doubleClick = false;
         Point _prePointBrush;//предыдущая точка для Brush
@@ -72,11 +74,31 @@ namespace PaintForSchool
                         GC.Collect();
                         break;
 
-                    case "Circle_2d":
+                    case "Square":
                         _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                         _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
 
-                        //_graphics.DrawEllipse(_pen, _startPoint, e.Location);
+                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
+                        pictureBox1.Image = _tmpBitmap;
+                        GC.Collect();
+                        break;
+
+                    case "Circle":
+                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+
+                        CircleFigure circle = new CircleFigure();
+                        _graphics.DrawEllipse(_pen, circle.MakeRectangle(_startPoint, e.Location));
+                        pictureBox1.Image = _tmpBitmap;
+                        GC.Collect();
+                        break;
+
+                    case "Ellipse":
+                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+
+                        EllipseFigure ellipse = new EllipseFigure();
+                        _graphics.DrawEllipse(_pen, ellipse.MakeRectangle(_startPoint, e.Location));
                         pictureBox1.Image = _tmpBitmap;
                         GC.Collect();
                         break;
@@ -101,20 +123,28 @@ namespace PaintForSchool
                         break;
 
                     case "LineND":
-                        
                         _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                         _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                        //if (_pointN != new Point(-1, -1))
-                        //{
-                        //    _startPoint = _pointN;
-                        //}
                         if (_pointN == new Point(-1, -1))
                         {
                             _pointN = e.Location; 
                         }
                         _graphics.DrawPolygon(_pen, _figure.GetPoints(_pointN, e.Location));
                         pictureBox1.Image = _tmpBitmap;
-                        
+                        GC.Collect();
+                        break;
+
+                    case "FigureND":
+                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                        if (_pointN == new Point(-1, -1))
+                        {
+                            _pointN = e.Location;
+                            _tmp = e.Location;
+                        }
+                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_pointN, e.Location));
+                        _tmp2 = e.Location;
+                        pictureBox1.Image = _tmpBitmap;
                         GC.Collect();
                         break;
 
@@ -130,22 +160,20 @@ namespace PaintForSchool
             _mouseDown = false;
             _mainBitmap = _tmpBitmap;
             _pointN = e.Location;
+            
             if (_doubleClick)
             {
                 _pointN = new Point(-1, -1);
+                
                 _doubleClick = false;
             }
 
         }
 
-
-
         private void ClearAll_Click(object sender, EventArgs e)
         {
-            //_path.Reset(); // Обнуляем путь
             _graphics.Clear(Color.White);
             pictureBox1.Image = _mainBitmap;
-
         }
 
         private void Brush_Click(object sender, EventArgs e)
@@ -170,6 +198,12 @@ namespace PaintForSchool
             _selectedButton = "LineND";
         }
 
+        private void FigureND_Click(object sender, EventArgs e)
+        {
+            _figure = new FigureND();
+            _selectedButton = "FigureND";
+        }
+
         private void trackPenWidth_Scroll(object sender, EventArgs e)
         {
             _pen = new Pen(colorDialog1.Color, trackPenWidth.Value);
@@ -185,18 +219,35 @@ namespace PaintForSchool
             }
         }
 
-        private void Circle_2d_Click(object sender, EventArgs e)
+        private void Circle_Click(object sender, EventArgs e)
         {
             _figure = new CircleFigure();
-            _selectedButton = "Circle_2d";
+            _selectedButton = "Circle";
+        }
+
+        private void Ellipse_Click(object sender, EventArgs e)
+        {
+            _figure = new EllipseFigure();
+            _selectedButton = "Ellipse";
+        }
+
+        private void Square_Click(object sender, EventArgs e)
+        {
+            _figure = new SquareFigure();
+            _selectedButton = "Square";
         }
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
             _doubleClick = true;
-            //_pointN = new Point(-1, -1);
 
-            
+            if (_selectedButton == "FigureND")
+            {
+                _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp2, _tmp));
+                pictureBox1.Image = _tmpBitmap;
+            }
         }
+
+        
     }
 }
