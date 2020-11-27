@@ -38,7 +38,7 @@ namespace PaintForSchool.Figures
 
         public void DrawFigure(Pen pen, Graphics graphics)
         {
-            graphics.DrawPolygon(pen, this.GetPoints());
+            graphics.DrawPolygon(pen, GetPoints());
         }
     }
 }

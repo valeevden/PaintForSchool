@@ -109,7 +109,7 @@
             // Square
             // 
             this.Square.Location = new System.Drawing.Point(49, 260);
-            this.Square.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Square.Margin = new System.Windows.Forms.Padding(2);
             this.Square.Name = "Square";
             this.Square.Size = new System.Drawing.Size(124, 48);
             this.Square.TabIndex = 4;
@@ -120,7 +120,7 @@
             // Circle_2d
             // 
             this.Circle_2d.Location = new System.Drawing.Point(49, 314);
-            this.Circle_2d.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.Circle_2d.Margin = new System.Windows.Forms.Padding(1);
             this.Circle_2d.Name = "Circle_2d";
             this.Circle_2d.Size = new System.Drawing.Size(124, 48);
             this.Circle_2d.TabIndex = 5;
@@ -131,7 +131,7 @@
             // Ellipse
             // 
             this.Ellipse.Location = new System.Drawing.Point(49, 368);
-            this.Ellipse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Ellipse.Margin = new System.Windows.Forms.Padding(2);
             this.Ellipse.Name = "Ellipse";
             this.Ellipse.Size = new System.Drawing.Size(124, 48);
             this.Ellipse.TabIndex = 6;
@@ -178,7 +178,7 @@
             // rightNfigure_2d
             // 
             this.rightNfigure_2d.Location = new System.Drawing.Point(49, 638);
-            this.rightNfigure_2d.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rightNfigure_2d.Margin = new System.Windows.Forms.Padding(2);
             this.rightNfigure_2d.Name = "rightNfigure_2d";
             this.rightNfigure_2d.Size = new System.Drawing.Size(124, 48);
             this.rightNfigure_2d.TabIndex = 11;
@@ -351,6 +351,7 @@
             0,
             0,
             0});
+            this._anglesNumber.ValueChanged += new System.EventHandler(this._anglesNumber_ValueChanged);
             // 
             // Form1
             // 

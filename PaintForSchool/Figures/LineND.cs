@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PaintForSchool.Figures
 {
-    public class LineND : IFigure
+    public class LineND //: IFigure
     {
         public Point[] GetPoints(Point startPoint, Point nPoint, int anglesNumber)
         {

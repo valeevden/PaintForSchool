@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PaintForSchool.Figures
 {
-    public class SquareFigure : IFigure // Класс для квадратов по 2 точкам
+    public class SquareFigure// : IFigure // Класс для квадратов по 2 точкам
     {
         public Point[] GetPoints(Point startPoint, Point endPoint, int anglesNumber = 1)
         {
