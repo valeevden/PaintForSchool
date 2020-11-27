@@ -61,95 +61,14 @@ namespace PaintForSchool
         {
             if (_mouseDown)
             {
-                switch (_selectedButton)
-                {
-                    case "Rectangle_2d":
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-
-                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
-                        pictureBox1.Image = _tmpBitmap;
-                        GC.Collect();
-                        break;
-
-                    case "Square":
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-
-                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
-                        pictureBox1.Image = _tmpBitmap;
-                        GC.Collect();
-                        break;
-
-                    case "Circle":
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-
-                        CircleFigure circle = new CircleFigure();
-                        _graphics.DrawEllipse(_pen, circle.MakeRectangle(_startPoint, e.Location));
-                        pictureBox1.Image = _tmpBitmap;
-                        GC.Collect();
-                        break;
-
-                    case "Ellipse":
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-
-                        EllipseFigure ellipse = new EllipseFigure();
-                        _graphics.DrawEllipse(_pen, ellipse.MakeRectangle(_startPoint, e.Location));
-                        pictureBox1.Image = _tmpBitmap;
-                        GC.Collect();
-                        break;
-
-                    case "Brush":
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                        _path.AddLine(_prePointBrush, e.Location);
-                        //_pen.LineJoin = LineJoin.Round; // Стиль объединения концов линий
-                        _graphics.DrawPath(_pen, _path);
-                        pictureBox1.Image = _tmpBitmap;
-                        GC.Collect();
-                        _prePointBrush = e.Location;
-                        break;
-
-                    case "Line2D":
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
-                        pictureBox1.Image = _tmpBitmap;
-                        GC.Collect();
-                        break;
-
-                    case "rightNfigure_2d":
+                
                         _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                         _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
 
                         _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location, (int)_anglesNumber.Value));
                         pictureBox1.Image = _tmpBitmap;
                         GC.Collect();
-                        break;
-
-                    case "LineND":
-                        
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                        //if (_pointN != new Point(-1, -1))
-                        //{
-                        //    _startPoint = _pointN;
-                        //}
-                        if (_pointN == new Point(-1, -1))
-                        {
-                            _pointN = e.Location; 
-                        }
-                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_pointN, e.Location));
-                        pictureBox1.Image = _tmpBitmap;
-                        
-                        GC.Collect();
-                        break;
-
-                    default:
-                        break;
-                }
+                
             }
            
         }
