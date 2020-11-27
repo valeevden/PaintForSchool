@@ -32,9 +32,9 @@
             this.Brush = new System.Windows.Forms.Button();
             this.LineND = new System.Windows.Forms.Button();
             this.Rectangle_2d = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.Square = new System.Windows.Forms.Button();
             this.Circle_2d = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.Ellipse = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -68,7 +68,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Location = new System.Drawing.Point(338, 98);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(753, 657);
+            this.pictureBox1.Size = new System.Drawing.Size(753, 588);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
@@ -106,34 +106,38 @@
             this.Rectangle_2d.UseVisualStyleBackColor = true;
             this.Rectangle_2d.Click += new System.EventHandler(this.Rectangle_2d_Click);
             // 
-            // button4
+            // Square
             // 
-            this.button4.Location = new System.Drawing.Point(49, 260);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(124, 48);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Square_2d";
-            this.button4.UseVisualStyleBackColor = true;
+            this.Square.Location = new System.Drawing.Point(49, 260);
+            this.Square.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Square.Name = "Square";
+            this.Square.Size = new System.Drawing.Size(124, 48);
+            this.Square.TabIndex = 4;
+            this.Square.Text = "Square";
+            this.Square.UseVisualStyleBackColor = true;
+            this.Square.Click += new System.EventHandler(this.Square_Click);
             // 
             // Circle_2d
             // 
             this.Circle_2d.Location = new System.Drawing.Point(49, 314);
-            this.Circle_2d.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Circle_2d.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.Circle_2d.Name = "Circle_2d";
             this.Circle_2d.Size = new System.Drawing.Size(124, 48);
             this.Circle_2d.TabIndex = 5;
-            this.Circle_2d.Text = "Circle_2d";
+            this.Circle_2d.Text = "Circle";
             this.Circle_2d.UseVisualStyleBackColor = true;
-            this.Circle_2d.Click += new System.EventHandler(this.Circle_2d_Click);
+            this.Circle_2d.Click += new System.EventHandler(this.Circle_Click);
             // 
-            // button6
+            // Ellipse
             // 
-            this.button6.Location = new System.Drawing.Point(49, 368);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(124, 48);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "Ellipse_2d";
-            this.button6.UseVisualStyleBackColor = true;
+            this.Ellipse.Location = new System.Drawing.Point(49, 368);
+            this.Ellipse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Ellipse.Name = "Ellipse";
+            this.Ellipse.Size = new System.Drawing.Size(124, 48);
+            this.Ellipse.TabIndex = 6;
+            this.Ellipse.Text = "Ellipse";
+            this.Ellipse.UseVisualStyleBackColor = true;
+            this.Ellipse.Click += new System.EventHandler(this.Ellipse_Click);
             // 
             // button7
             // 
@@ -375,9 +379,9 @@
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.Ellipse);
             this.Controls.Add(this.Circle_2d);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.Square);
             this.Controls.Add(this.Rectangle_2d);
             this.Controls.Add(this.LineND);
             this.Controls.Add(this.Brush);
@@ -399,9 +403,9 @@
         private System.Windows.Forms.Button Brush;
         private System.Windows.Forms.Button LineND;
         private System.Windows.Forms.Button Rectangle_2d;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button Square;
         private System.Windows.Forms.Button Circle_2d;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button Ellipse;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;

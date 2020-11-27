@@ -8,9 +8,10 @@ using System.Windows.Forms;
 
 namespace PaintForSchool.Figures
 {
-    public class CircleFigure : IFigure
+    public class EllipseFigure : IFigure
     {
-        public Point[] GetPoints(Point startPoint, Point endPoint, int anglesNumber = 1)
+
+        public Point[] GetPoints(Point startPoint, Point endPoint)
         {
             Point[] points = new Point[4];
             points[0] = startPoint;
@@ -20,17 +21,16 @@ namespace PaintForSchool.Figures
             return points;
         }
 
-        public  Rectangle MakeRectangle(Point startPoint, Point endPoint)
+        public Rectangle MakeRectangle(Point startPoint, Point endPoint)
         {
             int x = startPoint.X;
             int y = startPoint.Y;
             int width = endPoint.X - startPoint.X;
             int height = endPoint.Y - startPoint.Y;
-            
+
             // ректангл описывается 4 точками. Х и У верхнего левого угла, ширина, высота
-            Rectangle rectangle = new Rectangle(x, y, height, height);
+            Rectangle rectangle = new Rectangle(x, y, width, height);
             return rectangle;
         }
-        
     }
 }

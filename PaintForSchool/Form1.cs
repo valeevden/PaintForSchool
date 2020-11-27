@@ -72,11 +72,31 @@ namespace PaintForSchool
                         GC.Collect();
                         break;
 
-                    case "Circle_2d":
+                    case "Square":
                         _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                         _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
 
-                        //_graphics.DrawEllipse(_pen, _startPoint, e.Location);
+                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
+                        pictureBox1.Image = _tmpBitmap;
+                        GC.Collect();
+                        break;
+
+                    case "Circle":
+                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+
+                        CircleFigure circle = new CircleFigure();
+                        _graphics.DrawEllipse(_pen, circle.MakeRectangle(_startPoint, e.Location));
+                        pictureBox1.Image = _tmpBitmap;
+                        GC.Collect();
+                        break;
+
+                    case "Ellipse":
+                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+
+                        EllipseFigure ellipse = new EllipseFigure();
+                        _graphics.DrawEllipse(_pen, ellipse.MakeRectangle(_startPoint, e.Location));
                         pictureBox1.Image = _tmpBitmap;
                         GC.Collect();
                         break;
@@ -147,11 +167,8 @@ namespace PaintForSchool
 
         }
 
-
-
         private void ClearAll_Click(object sender, EventArgs e)
         {
-            //_path.Reset(); // Обнуляем путь
             _graphics.Clear(Color.White);
             pictureBox1.Image = _mainBitmap;
 
@@ -194,10 +211,22 @@ namespace PaintForSchool
             }
         }
 
-        private void Circle_2d_Click(object sender, EventArgs e)
+        private void Circle_Click(object sender, EventArgs e)
         {
             _figure = new CircleFigure();
-            _selectedButton = "Circle_2d";
+            _selectedButton = "Circle";
+        }
+
+        private void Ellipse_Click(object sender, EventArgs e)
+        {
+            _figure = new EllipseFigure();
+            _selectedButton = "Ellipse";
+        }
+
+        private void Square_Click(object sender, EventArgs e)
+        {
+            _figure = new SquareFigure();
+            _selectedButton = "Square";
         }
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
