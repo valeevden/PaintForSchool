@@ -4,11 +4,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
+
 
 namespace PaintForSchool.Figures
 {
-    public class rightNfigure_2d : IFigure
+    public class NanglesFigure : IFigure
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
@@ -30,8 +30,6 @@ namespace PaintForSchool.Figures
             {
                 points[i] = new Point(startPoint.X + (int)((Math.Round(externalRadius, 0)) * Math.Sin(sector * (i + 1))), startPoint.Y + (int)((Math.Round(externalRadius, 0)) * Math.Cos(sector * (i + 1))));
             }
-
-
 
             return points;
         }

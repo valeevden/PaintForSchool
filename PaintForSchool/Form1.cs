@@ -62,97 +62,97 @@ namespace PaintForSchool
             if (_mouseDown)
             {
                 _figure.secondPoint = e.Location;
-                pictureBox1.Image = holst.DrawIt(_figure, _pen);
+                pictureBox1.Image = holst.DrawIt(_figure,_pen);
                 GC.Collect();
-                switch (_selectedButton)
-                {
-                    case "Rectangle_2d":
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                //switch (_selectedButton)
+                //{
+                //    case "Rectangle_2d":
+                //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                //        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
 
-                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
-                        pictureBox1.Image = _tmpBitmap;
-                        GC.Collect();
-                        break;
+                //        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
+                //        pictureBox1.Image = _tmpBitmap;
+                //        GC.Collect();
+                //        break;
 
-                    case "Square":
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                //    case "Square":
+                //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                //        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
 
-                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
-                        pictureBox1.Image = _tmpBitmap;
-                        GC.Collect();
-                        break;
+                //        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
+                //        pictureBox1.Image = _tmpBitmap;
+                //        GC.Collect();
+                //        break;
 
-                    case "Circle":
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                //    case "Circle":
+                //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                //        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
 
-                        CircleFigure circle = new CircleFigure();
-                        _graphics.DrawEllipse(_pen, circle.MakeRectangle(_startPoint, e.Location));
-                        pictureBox1.Image = _tmpBitmap;
-                        GC.Collect();
-                        break;
+                //        CircleFigure circle = new CircleFigure();
+                //        _graphics.DrawEllipse(_pen, circle.MakeRectangle(_startPoint, e.Location));
+                //        pictureBox1.Image = _tmpBitmap;
+                //        GC.Collect();
+                //        break;
 
-                    case "Ellipse":
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                //    case "Ellipse":
+                //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                //        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
 
-                        EllipseFigure ellipse = new EllipseFigure();
-                        _graphics.DrawEllipse(_pen, ellipse.MakeRectangle(_startPoint, e.Location));
-                        pictureBox1.Image = _tmpBitmap;
-                        GC.Collect();
-                        break;
+                //        EllipseFigure ellipse = new EllipseFigure();
+                //        _graphics.DrawEllipse(_pen, ellipse.MakeRectangle(_startPoint, e.Location));
+                //        pictureBox1.Image = _tmpBitmap;
+                //        GC.Collect();
+                //        break;
 
-                    case "Brush":
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                        _path.AddLine(_prePointBrush, e.Location);
-                        //_pen.LineJoin = LineJoin.Round; // Стиль объединения концов линий
-                        _graphics.DrawPath(_pen, _path);
-                        pictureBox1.Image = _tmpBitmap;
-                        GC.Collect();
-                        _prePointBrush = e.Location;
-                        break;
+                //    case "Brush":
+                //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                //        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                //        _path.AddLine(_prePointBrush, e.Location);
+                //        //_pen.LineJoin = LineJoin.Round; // Стиль объединения концов линий
+                //        _graphics.DrawPath(_pen, _path);
+                //        pictureBox1.Image = _tmpBitmap;
+                //        GC.Collect();
+                //        _prePointBrush = e.Location;
+                //        break;
 
-                    case "Line2D":
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
-                        pictureBox1.Image = _tmpBitmap;
-                        GC.Collect();
-                        break;
+                //    case "Line2D":
+                //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                //        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                //        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
+                //        pictureBox1.Image = _tmpBitmap;
+                //        GC.Collect();
+                //        break;
 
-                    case "LineND":
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                        if (_pointN == new Point(-1, -1))
-                        {
-                            _pointN = e.Location;
-                        }
-                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_pointN, e.Location));
-                        _tmp = e.Location;
-                        pictureBox1.Image = _tmpBitmap;
-                        GC.Collect();
-                        break;
+                //    case "LineND":
+                //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                //        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                //        if (_pointN == new Point(-1, -1))
+                //        {
+                //            _pointN = e.Location;
+                //        }
+                //        _graphics.DrawPolygon(_pen, _figure.GetPoints(_pointN, e.Location));
+                //        _tmp = e.Location;
+                //        pictureBox1.Image = _tmpBitmap;
+                //        GC.Collect();
+                //        break;
 
-                    case "FigureND":
-                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                        if (_pointN == new Point(-1, -1))
-                        {
-                            _pointN = e.Location;
-                            _tmp = e.Location;
-                        }
-                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_pointN, e.Location));
-                        _tmp2 = e.Location;
-                        pictureBox1.Image = _tmpBitmap;
-                        GC.Collect();
-                        break;
+                //    case "FigureND":
+                //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                //        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                //        if (_pointN == new Point(-1, -1))
+                //        {
+                //            _pointN = e.Location;
+                //            _tmp = e.Location;
+                //        }
+                //        _graphics.DrawPolygon(_pen, _figure.GetPoints(_pointN, e.Location));
+                //        _tmp2 = e.Location;
+                //        pictureBox1.Image = _tmpBitmap;
+                //        GC.Collect();
+                //        break;
 
-                    default:
-                        break;
-                }
+                //    default:
+                //        break;
+                //}
             }
         }
 
@@ -162,27 +162,27 @@ namespace PaintForSchool
             //_mainBitmap = _tmpBitmap;
             holst.Save();
             _pointN = e.Location;
-                if (_selectedButton == "LineND")
-                {
-                    _pointN = e.Location;
-                    if (_doubleClick)
-                    {
-                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp, _pointN));
-                        //нельзя положить это в дабл клик, потому что линия должна рисоваться по e.Location, который в дабл клике не вызвать
-                        pictureBox1.Image = _tmpBitmap;
-                        _pointN = new Point(-1, -1);
-                        _doubleClick = false;
-                    }
-                }
-                else if (_selectedButton == "FigureND")
-                {
-                    _pointN = e.Location;
-                    if (_doubleClick)
-                    {
-                        _pointN = new Point(-1, -1);
-                        _doubleClick = false;
-                    }
-                }
+                //if (_selectedButton == "LineND")
+                //{
+                //    _pointN = e.Location;
+                //    if (_doubleClick)
+                //    {
+                //        _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp, _pointN));
+                //        //нельзя положить это в дабл клик, потому что линия должна рисоваться по e.Location, который в дабл клике не вызвать
+                //        pictureBox1.Image = _tmpBitmap;
+                //        _pointN = new Point(-1, -1);
+                //        _doubleClick = false;
+                //    }
+                //}
+                //else if (_selectedButton == "FigureND")
+                //{
+                //    _pointN = e.Location;
+                //    if (_doubleClick)
+                //    {
+                //        _pointN = new Point(-1, -1);
+                //        _doubleClick = false;
+                //    }
+                //}
 
             //}
 
@@ -190,6 +190,8 @@ namespace PaintForSchool
 
         private void ClearAll_Click(object sender, EventArgs e)
         {
+            pictureBox1.Image = holst.Clear();
+            
            // _graphics.Clear(Color.White);
             //pictureBox1.Image = _mainBitmap;
             _tmp = _tmp2;
@@ -201,8 +203,8 @@ namespace PaintForSchool
         }
         private void Rectangle_2d_Click(object sender, EventArgs e)
         {
-            //_figure = new RectangleFigure();
-            _selectedButton = "Rectangle_2d";
+            _figure = new RectangleFigure();
+            //_selectedButton = "Rectangle_2d";
         }
 
         private void Line2D_Click(object sender, EventArgs e)
@@ -253,27 +255,25 @@ namespace PaintForSchool
         private void Square_Click(object sender, EventArgs e)
         {
             _figure = new SquareFigure();
-            _selectedButton = "Square";
+            //_selectedButton = "Square";
         }
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
             _doubleClick = true;
 
-            if (_selectedButton == "FigureND")
-            {
-                _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp2, _tmp));
-                pictureBox1.Image = _tmpBitmap;
+            //if (_selectedButton == "FigureND")
+            //{
+            //    _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp2, _tmp));
+            //    pictureBox1.Image = _tmpBitmap;
                 
-            }
-            
-
+            //}
         }
 
-        private void rightNfigure_2d_Click(object sender, EventArgs e)
+        private void NanglesFigure_Click(object sender, EventArgs e)
         {
-            _selectedButton = "rightNfigure_2d";
-            _figure = new rightNfigure_2d();
+            //_selectedButton = "NanglesFigure";
+            _figure = new NanglesFigure();
         }
 
         private void _anglesNumber_ValueChanged(object sender, EventArgs e)

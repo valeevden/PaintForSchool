@@ -53,7 +53,7 @@
     <Compile Include="Figures\LineND.cs" />
     <Compile Include="Figures\Line2D.cs" />
     <Compile Include="Figures\Rectangle.cs" />
-    <Compile Include="Figures\rightNfigure_2d.cs" />
+    <Compile Include="Figures\NanglesFigure.cs" />
     <Compile Include="Figures\Square.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

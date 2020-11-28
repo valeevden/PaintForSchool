@@ -16,10 +16,10 @@ namespace PaintForSchool.Figures
         public int anglesNumber { get; set; }
         public Point[] GetPoints()
         {
-            int xMax = Math.Max(startPoint.X, endPoint.X);
-            int xMin = Math.Min(startPoint.X, endPoint.X);
-            int a = xMax - xMin;
-            //int a = endPoint.X - startPoint.X;
+            int xMax = Math.Max(startPoint.X, secondPoint.X);
+            int xMin = Math.Min(startPoint.X, secondPoint.X);
+            //int a = xMax - xMin;
+            int a = secondPoint.X - startPoint.X;
             Point[] points = new Point[4];
             points[0] = startPoint;
             points[1] = new Point(startPoint.X, startPoint.Y + a);
