@@ -14,7 +14,6 @@ namespace PaintForSchool
         Bitmap _mainBitmap; //Объект Bitmap используется для работы с изображениями, определяемыми данными пикселей
         Bitmap _tmpBitmap;
         Graphics _graphics; //класс с методами для рисования
-        IPainter _painter;
 
         public Canvas(int width, int height)
         {

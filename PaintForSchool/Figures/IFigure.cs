@@ -15,7 +15,7 @@ namespace PaintForSchool.Figures
         Point secondPoint { get; set; }
         //string fType { get; }
 
-        IPainter Painter { get; set; }
+        IPainter Painter { get; }
 
         //int anglesNumber { get; set; }
 

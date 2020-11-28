@@ -16,13 +16,13 @@ namespace PaintForSchool.Figures
         public Point secondPoint { get; set; }
         //public string fType { get; }
 
-        public IPainter Painter { get; set; }
+        public IPainter Painter { get; }
         
         //public int anglesNumber { get; set; }
 
         public RectangleFigure()
         {
-            Painter=new PolygonIPainter();
+            Painter = new PolygonIPainter();
         }
 
         public Point[] GetPoints()
