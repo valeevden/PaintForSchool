@@ -30,5 +30,9 @@ namespace PaintForSchool.Figures
         {
             throw new NotImplementedException();
         }
+        public void Set(Point point)
+        {
+            startPoint = point;
+        }
     }
 }

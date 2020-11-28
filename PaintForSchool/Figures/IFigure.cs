@@ -16,5 +16,7 @@ namespace PaintForSchool.Figures
 
         Point[] GetPoints();
         void DrawFigure(Pen pen, Graphics graphics);
+
+        void Set(Point point);
     }
 }

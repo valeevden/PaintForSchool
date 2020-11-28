@@ -22,7 +22,7 @@ namespace PaintForSchool.Figures
             double sector = fullRoundInRad / anglesNumber;
 
 
-            externalRadius = Math.Sqrt(Math.Pow(Math.Abs(secondPoint.X - startPoint.X), 2)+ Math.Pow(Math.Abs(secondPoint.Y - startPoint.Y), 2));
+            externalRadius = Math.Sqrt(Math.Pow(Math.Abs(secondPoint.X - startPoint.X), 2) + Math.Pow(Math.Abs(secondPoint.Y - startPoint.Y), 2));
 
             Point[] points = new Point[anglesNumber];
 
@@ -37,6 +37,11 @@ namespace PaintForSchool.Figures
         public void DrawFigure(Pen pen, Graphics graphics)
         {
             graphics.DrawPolygon(pen, GetPoints());
+        }
+
+        public void Set(Point point)
+        {
+            startPoint = point;
         }
     }
 }

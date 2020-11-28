@@ -29,6 +29,10 @@ namespace PaintForSchool.Figures
         {
             graphics.DrawPolygon(pen, GetPoints());
         }
+        public void Set(Point point)
+        {
+            startPoint = point;
+        }
 
-    }
+        }
 }

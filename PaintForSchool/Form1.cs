@@ -26,7 +26,7 @@ namespace PaintForSchool
         Point _prePointBrush;//предыдущая точка для Brush
         IFigure _figure; // Объект интерфейса
         string _selectedButton; // Стринга для свитча, чтобы понимать какая кнопка нажата
-        GraphicsPath _path;
+        //GraphicsPath _path;
         
         public Form1()
         {
@@ -44,14 +44,17 @@ namespace PaintForSchool
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _mouseDown = true;
-            _figure.startPoint = e.Location;
+            //_figure.startPoint = e.Location;
+            //_figure.secondPoint = e.Location;
 
-            if (_selectedButton == "Brush")
-            {
-            _path = new GraphicsPath(); //весь путь Brush
-            _path.StartFigure();
-            _prePointBrush = e.Location;
-            }
+            _figure.Set(e.Location);
+
+            //if (_selectedButton == "Brush")
+            //{
+            //_path = new GraphicsPath(); //весь путь Brush
+            //_path.StartFigure();
+            //_prePointBrush = e.Location;
+            //}
 
         }
 
@@ -61,6 +64,7 @@ namespace PaintForSchool
             {
                 _figure.secondPoint = e.Location;
                 pictureBox1.Image = holst.DrawIt(_figure,_pen);
+                
                 GC.Collect();
                 //switch (_selectedButton)
                 //{
@@ -197,7 +201,7 @@ namespace PaintForSchool
 
         private void Brush_Click(object sender, EventArgs e)
         {
-            _selectedButton = "Brush";
+            _figure = new MyBrush();
         }
         private void Rectangle_2d_Click(object sender, EventArgs e)
         {
