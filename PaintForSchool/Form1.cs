@@ -21,6 +21,8 @@ namespace PaintForSchool
         Color _color;
         Point _startPoint;
         Point _pointN = new Point( -1, -1 );
+        Point _tmp;
+        Point _tmp2;
         bool _mouseDown = false;
         bool _doubleClick = false;
         Point _prePointBrush;//предыдущая точка для Brush
@@ -121,17 +123,29 @@ namespace PaintForSchool
                         break;
 
                     case "LineND":
-                        
                         _tmpBitmap = (Bitmap)_mainBitmap.Clone();
                         _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                       
                         if (_pointN == new Point(-1, -1))
                         {
-                            _pointN = e.Location; 
+                            _pointN = e.Location;
                         }
                         _graphics.DrawPolygon(_pen, _figure.GetPoints(_pointN, e.Location));
+                        _tmp = e.Location;
                         pictureBox1.Image = _tmpBitmap;
-                        
+                        GC.Collect();
+                        break;
+
+                    case "FigureND":
+                        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
+                        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
+                        if (_pointN == new Point(-1, -1))
+                        {
+                            _pointN = e.Location;
+                            _tmp = e.Location;
+                        }
+                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_pointN, e.Location));
+                        _tmp2 = e.Location;
+                        pictureBox1.Image = _tmpBitmap;
                         GC.Collect();
                         break;
 
@@ -142,16 +156,38 @@ namespace PaintForSchool
            
         }
 
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e) //происходит после дабл клика
         {
             _mouseDown = false;
             _mainBitmap = _tmpBitmap;
-            _pointN = e.Location;
-            if (_doubleClick)
-            {
-                _pointN = new Point(-1, -1);
-                _doubleClick = false;
-            }
+            //_pointN = e.Location;
+            //if (_doubleClick)
+            //{
+                if (_selectedButton == "LineND")
+                {
+                    _pointN = e.Location;
+                    if (_doubleClick)
+                    {
+                        _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp, _pointN));
+                        //нельзя положить это в дабл клик, потому что линия должна рисоваться по e.Location, который в дабл клике не вызвать
+                        pictureBox1.Image = _tmpBitmap;
+                        _pointN = new Point(-1, -1);
+                        _doubleClick = false;
+                    }
+                }
+                else if (_selectedButton == "FigureND")
+                {
+                    _pointN = e.Location;
+                    if (_doubleClick)
+                    {
+                        _pointN = new Point(-1, -1);
+                        _doubleClick = false;
+                    }
+                }
+                //_pointN = new Point(-1, -1);
+                //_doubleClick = false;
+
+            //}
 
         }
 
@@ -159,7 +195,7 @@ namespace PaintForSchool
         {
             _graphics.Clear(Color.White);
             pictureBox1.Image = _mainBitmap;
-
+            _tmp = _tmp2;
         }
 
         private void Brush_Click(object sender, EventArgs e)
@@ -182,6 +218,12 @@ namespace PaintForSchool
         {
             _figure = new LineND();
             _selectedButton = "LineND";
+        }
+
+        private void FigureND_Click(object sender, EventArgs e)
+        {
+            _figure = new FigureND();
+            _selectedButton = "FigureND";
         }
 
         private void trackPenWidth_Scroll(object sender, EventArgs e)
@@ -220,9 +262,17 @@ namespace PaintForSchool
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
             _doubleClick = true;
-            //_pointN = new Point(-1, -1);
 
+            if (_selectedButton == "FigureND")
+            {
+                _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp2, _tmp));
+                pictureBox1.Image = _tmpBitmap;
+                
+            }
             
+
         }
+
+        
     }
 }
