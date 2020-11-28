@@ -13,8 +13,8 @@ namespace PaintForSchool.Figures
         Point startPoint { get; set; }
         Point secondPoint { get; set; }
         int anglesNumber { get; set; }
+
         Point[] GetPoints();
-       
         void DrawFigure(Pen pen, Graphics graphics);
     }
 }

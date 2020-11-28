@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PaintForSchool
 {
-    class Abstract
+    class AbstractClass
     {
     }
 }

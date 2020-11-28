@@ -37,10 +37,8 @@ namespace PaintForSchool
         {
             _selectedButton = "Brush";
             holst = new Holst(pictureBox1.Width, pictureBox1.Height);
-             //в экземпляр класса графикс кладётся ссылка на битмап
-                                                         //теперь все действия которые делаются с помощью Графикс передаются в битмап
             _mouseDown = false;
-            //pictureBox1.Image = _mainBitmap; //в пикчербокс передаётся битмап, потому что ПБ ест только изображения
+           
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -159,7 +157,7 @@ namespace PaintForSchool
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e) //происходит после дабл клика
         {
             _mouseDown = false;
-            //_mainBitmap = _tmpBitmap;
+            
             holst.Save();
             _pointN = e.Location;
                 //if (_selectedButton == "LineND")
