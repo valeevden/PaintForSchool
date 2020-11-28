@@ -8,10 +8,9 @@ using System.Windows.Forms;
 
 namespace PaintForSchool.Figures
 {
-    public class CircleFigure : IFigure
+    public class CircleFigure //: IFigure
     {
-        
-        public Point[] GetPoints(Point startPoint, Point endPoint)
+        public Point[] GetPoints(Point startPoint, Point endPoint, int anglesNumber = 1)
         {
             Point[] points = new Point[4];
             points[0] = startPoint;

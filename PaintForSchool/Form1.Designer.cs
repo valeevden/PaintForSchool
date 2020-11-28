@@ -38,8 +38,8 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
+            this.rightNfigure_2d = new System.Windows.Forms.Button();
             this.FigureND = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
             this.Line2D = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.trackPenWidth = new System.Windows.Forms.TrackBar();
@@ -47,8 +47,10 @@
             this.colorPalete = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this._anglesNumber = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackPenWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._anglesNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -161,14 +163,16 @@
             this.FigureND.UseVisualStyleBackColor = true;
             this.FigureND.Click += new System.EventHandler(this.FigureND_Click);
             // 
-            // button11
+            // rightNfigure_2d
             // 
-            this.button11.Location = new System.Drawing.Point(49, 309);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(124, 48);
-            this.button11.TabIndex = 11;
-            this.button11.Text = "rightNfigure_2d";
-            this.button11.UseVisualStyleBackColor = true;
+            this.rightNfigure_2d.Margin = new System.Windows.Forms.Padding(2);
+            this.rightNfigure_2d.Name = "rightNfigure_2d";
+            this.rightNfigure_2d.Size = new System.Drawing.Size(124, 48);
+            this.rightNfigure_2d.TabIndex = 11;
+            this.rightNfigure_2d.Text = "rightNfigure_2d";
+            this.rightNfigure_2d.UseVisualStyleBackColor = true;
+            this.rightNfigure_2d.Click += new System.EventHandler(this.rightNfigure_2d_Click);
+            this.rightNfigure_2d.Location = new System.Drawing.Point(49, 638);
             // 
             // Line2D
             // 
@@ -233,19 +237,35 @@
             // 
             this.colorDialog1.Color = System.Drawing.Color.Red;
             // 
+            // _anglesNumber
+            // 
+            this._anglesNumber.Location = new System.Drawing.Point(632, 47);
+            this._anglesNumber.Name = "_anglesNumber";
+            this._anglesNumber.Size = new System.Drawing.Size(120, 20);
+            this._anglesNumber.TabIndex = 29;
+            this._anglesNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._anglesNumber.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this._anglesNumber.ValueChanged += new System.EventHandler(this._anglesNumber_ValueChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(894, 561);
+            this.ClientSize = new System.Drawing.Size(1130, 764);
+            this.Controls.Add(this._anglesNumber);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.colorPalete);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.trackPenWidth);
             this.Controls.Add(this.button23);
             this.Controls.Add(this.Line2D);
-            this.Controls.Add(this.button11);
             this.Controls.Add(this.FigureND);
+            this.Controls.Add(this.rightNfigure_2d);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
@@ -261,6 +281,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackPenWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._anglesNumber)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,7 +300,6 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button FigureND;
-        private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button Line2D;
         private System.Windows.Forms.Button button23;
         private System.Windows.Forms.TrackBar trackPenWidth;
@@ -287,6 +307,7 @@
         private System.Windows.Forms.Label colorPalete;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.NumericUpDown _anglesNumber;
     }
 }
 

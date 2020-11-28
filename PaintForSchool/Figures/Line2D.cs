@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PaintForSchool.Figures
 {
-    public class Line2D : IFigure
+    public class Line2D// : IFigure
     {
-        public Point[] GetPoints(Point startPoint, Point endPoint)
+        public Point[] GetPoints(Point startPoint, Point endPoint, int anglesNumber)
         {
             Point[] points = new Point[2];
             points[0] = startPoint;

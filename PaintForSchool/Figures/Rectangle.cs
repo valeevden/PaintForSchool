@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace PaintForSchool.Figures
 {
-    public class RectangleFigure : IFigure // Класс для прямоугольников по 2 точкам
+    public class RectangleFigure //: IFigure // Класс для прямоугольников по 2 точкам
     {
-        public Point[] GetPoints(Point startPoint, Point endPoint)
+        public Point[] GetPoints(Point startPoint, Point endPoint, int anglesNumber)
         {
             Point[] points = new Point[4];
             points[0] = startPoint;
