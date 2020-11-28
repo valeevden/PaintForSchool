@@ -26,13 +26,7 @@ namespace PaintForSchool
         {
             _tmpBitmap = (Bitmap)_mainBitmap.Clone();
             _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-
-            if (figure.fType == "Polygon")
-            {
-                _painter = new PolygonIPainter();
-            }
-                _painter.DrawFigure(pen, _graphics, figure.GetPoints());
-
+            figure.Painter.DrawFigure(pen, _graphics, figure.GetPoints());
             return _tmpBitmap;
         }
         public void Save()

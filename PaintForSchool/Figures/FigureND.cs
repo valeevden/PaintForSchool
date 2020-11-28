@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PaintForSchool.Figures
 {
-    public class FigureND : IFigure
+    public class FigureND //: IFigure
     {
         public string fType { get; }
 

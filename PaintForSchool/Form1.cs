@@ -223,7 +223,7 @@ namespace PaintForSchool
 
         private void FigureND_Click(object sender, EventArgs e)
         {
-            _figure = new FigureND();
+            //_figure = new FigureND();
             _selectedButton = "FigureND";
         }
 
@@ -256,7 +256,7 @@ namespace PaintForSchool
 
         private void Square_Click(object sender, EventArgs e)
         {
-            _figure = new SquareFigure();
+            //_figure = new SquareFigure();
             //_selectedButton = "Square";
         }
 
