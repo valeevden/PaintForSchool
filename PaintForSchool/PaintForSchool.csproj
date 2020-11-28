@@ -46,12 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Figures\MyBrush.cs" />
     <Compile Include="Figures\Circle.cs" />
     <Compile Include="Figures\Ellipse.cs" />
+    <Compile Include="Figures\FigureND.cs" />
     <Compile Include="Figures\IFigure.cs" />
     <Compile Include="Figures\LineND.cs" />
     <Compile Include="Figures\Line2D.cs" />
     <Compile Include="Figures\Rectangle.cs" />
+    <Compile Include="Figures\NanglesFigure.cs" />
     <Compile Include="Figures\Square.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -59,6 +62,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Canvas.cs" />
+    <Compile Include="Painter\IPainter.cs" />
+    <Compile Include="Painter\PolygonIPainter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

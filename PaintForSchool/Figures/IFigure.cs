@@ -9,7 +9,15 @@ namespace PaintForSchool.Figures
 {
     public interface IFigure //Интерфейс фигур
     {
-        Point[] GetPoints(Point startPoint, Point endPoint);
 
+        Point startPoint { get; set; }
+        Point secondPoint { get; set; }
+        string fType { get; }
+        //int anglesNumber { get; set; }
+
+        Point[] GetPoints();
+        //void DrawFigure(Pen pen, Graphics graphics);
+
+        void Set(Point point);
     }
 }

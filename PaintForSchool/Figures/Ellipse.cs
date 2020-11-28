@@ -8,10 +8,17 @@ using System.Windows.Forms;
 
 namespace PaintForSchool.Figures
 {
-    public class EllipseFigure : IFigure
+    public class EllipseFigure //: IFigure
     {
+        public string fType { get; }
 
-        public Point[] GetPoints(Point startPoint, Point endPoint)
+        //public int anglesNumber { get; set; }
+
+        public EllipseFigure()
+        {
+            fType = "";
+        }
+        public Point[] GetPoints(Point startPoint, Point endPoint, int anglesNumber =1)
         {
             Point[] points = new Point[4];
             points[0] = startPoint;
