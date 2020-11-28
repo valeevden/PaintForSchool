@@ -14,13 +14,13 @@ namespace PaintForSchool
 {
     public partial class Form1 : Form
     {
-        Holst holst;
+        Canvas canvas;
         Pen _pen = new Pen(Color.Red, 6); //класс с инструментами для рисования. Дефолтный карандаш
         Color _color;
-        Point _startPoint;
-        Point _pointN = new Point( -1, -1 );
-        Point _tmp;
-        Point _tmp2;
+        //Point _startPoint;
+        //Point _pointN = new Point( -1, -1 );
+        //Point _tmp;
+        //Point _tmp2;
         bool _mouseDown = false;
         bool _doubleClick = false;
         Point _prePointBrush;//предыдущая точка для Brush
@@ -36,7 +36,7 @@ namespace PaintForSchool
         private void Form1_Load(object sender, EventArgs e)
         {
             _selectedButton = "Brush";
-            holst = new Holst(pictureBox1.Width, pictureBox1.Height);
+            canvas = new Canvas(pictureBox1.Width, pictureBox1.Height);
             _mouseDown = false;
            
         }
@@ -63,7 +63,7 @@ namespace PaintForSchool
             if (_mouseDown)
             {
                 _figure.secondPoint = e.Location;
-                pictureBox1.Image = holst.DrawIt(_figure,_pen);
+                pictureBox1.Image = canvas.DrawIt(_figure,_pen);
                 
                 GC.Collect();
                 //switch (_selectedButton)
@@ -162,8 +162,8 @@ namespace PaintForSchool
         {
             _mouseDown = false;
             
-            holst.Save();
-            _pointN = e.Location;
+            canvas.Save();
+           //_pointN = e.Location;
                 //if (_selectedButton == "LineND")
                 //{
                 //    _pointN = e.Location;
@@ -192,16 +192,16 @@ namespace PaintForSchool
 
         private void ClearAll_Click(object sender, EventArgs e)
         {
-            pictureBox1.Image = holst.Clear();
+            pictureBox1.Image = canvas.Clear();
             
            // _graphics.Clear(Color.White);
             //pictureBox1.Image = _mainBitmap;
-            _tmp = _tmp2;
+            //_tmp = _tmp2;
         }
 
         private void Brush_Click(object sender, EventArgs e)
         {
-            _figure = new MyBrush();
+            //_figure = new MyBrush();
         }
         private void Rectangle_2d_Click(object sender, EventArgs e)
         {
@@ -275,12 +275,12 @@ namespace PaintForSchool
         private void NanglesFigure_Click(object sender, EventArgs e)
         {
             //_selectedButton = "NanglesFigure";
-            _figure = new NanglesFigure();
+            //_figure = new NanglesFigure();
         }
 
         private void _anglesNumber_ValueChanged(object sender, EventArgs e)
         {
-            _figure.anglesNumber = (int)_anglesNumber.Value;
+            //_figure.anglesNumber = (int)_anglesNumber.Value;
         }
     }
 }

@@ -62,7 +62,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Holst.cs" />
+    <Compile Include="Canvas.cs" />
+    <Compile Include="Painter\IPainter.cs" />
+    <Compile Include="Painter\PolygonIPainter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

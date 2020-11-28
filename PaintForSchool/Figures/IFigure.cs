@@ -12,10 +12,11 @@ namespace PaintForSchool.Figures
 
         Point startPoint { get; set; }
         Point secondPoint { get; set; }
-        int anglesNumber { get; set; }
+        string fType { get; }
+        //int anglesNumber { get; set; }
 
         Point[] GetPoints();
-        void DrawFigure(Pen pen, Graphics graphics);
+        //void DrawFigure(Pen pen, Graphics graphics);
 
         void Set(Point point);
     }

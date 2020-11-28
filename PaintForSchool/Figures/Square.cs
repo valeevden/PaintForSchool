@@ -13,7 +13,14 @@ namespace PaintForSchool.Figures
 
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
-        public int anglesNumber { get; set; }
+        public string fType { get; }
+
+        //public int anglesNumber { get; set; }
+
+        public SquareFigure()
+        {
+            fType = "Polygon";
+        }
         public Point[] GetPoints()
         {
             int xMax = Math.Max(startPoint.X, secondPoint.X);

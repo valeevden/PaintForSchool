@@ -9,7 +9,7 @@ using System.Drawing.Drawing2D;
 
 namespace PaintForSchool.Figures
 {
-    class MyBrush : IFigure
+    class MyBrush  //IFigure
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }

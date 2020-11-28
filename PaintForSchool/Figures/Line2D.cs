@@ -9,6 +9,14 @@ namespace PaintForSchool.Figures
 {
     public class Line2D// : IFigure
     {
+        public string fType { get; }
+
+        //public int anglesNumber { get; set; }
+
+        public Line2D()
+        {
+            fType = "";
+        }
         public Point[] GetPoints(Point startPoint, Point endPoint, int anglesNumber)
         {
             Point[] points = new Point[2];

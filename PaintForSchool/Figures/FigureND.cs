@@ -9,6 +9,14 @@ namespace PaintForSchool.Figures
 {
     public class FigureND : IFigure
     {
+        public string fType { get; }
+
+        //public int anglesNumber { get; set; }
+
+        public FigureND()
+        {
+            fType = "";
+        }
         public Point startPoint { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Point secondPoint { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public int anglesNumber { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

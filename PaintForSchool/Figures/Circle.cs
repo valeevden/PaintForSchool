@@ -10,6 +10,14 @@ namespace PaintForSchool.Figures
 {
     public class CircleFigure //: IFigure
     {
+        public string fType { get; }
+
+        //public int anglesNumber { get; set; }
+
+        public CircleFigure()
+        {
+            fType = "";
+        }
         public Point[] GetPoints(Point startPoint, Point endPoint, int anglesNumber = 1)
         {
             Point[] points = new Point[4];

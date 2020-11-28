@@ -13,8 +13,15 @@ namespace PaintForSchool.Figures
 
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
-        public int anglesNumber { get; set; }
+        public string fType { get; }
         
+        //public int anglesNumber { get; set; }
+
+        public RectangleFigure()
+        {
+            fType = "Polygon";
+        }
+
         public Point[] GetPoints()
         {
             Point[] points = new Point[4];
@@ -25,10 +32,10 @@ namespace PaintForSchool.Figures
             return points;
         }
 
-        public void DrawFigure(Pen pen, Graphics graphics)
-        {
-            graphics.DrawPolygon(pen, GetPoints());
-        }
+        //public void DrawFigure(Pen pen, Graphics graphics)
+        //{
+        //    graphics.DrawPolygon(pen, GetPoints());
+        //}
         public void Set(Point point)
         {
             startPoint = point;
