@@ -43,8 +43,6 @@ namespace PaintForSchool.Figures
             return points;
         }
 
-        
-
         public void Set(Point point)
         {
             startPoint = point;

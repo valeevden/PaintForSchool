@@ -28,6 +28,7 @@ namespace PaintForSchool
             figure.Painter.DrawFigure(pen, _graphics, figure.GetPoints());
             return _tmpBitmap;
         }
+        
         public void Save()
         {
             _mainBitmap = _tmpBitmap;

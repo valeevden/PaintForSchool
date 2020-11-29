@@ -15,6 +15,11 @@ namespace PaintForSchool.Painter
         //переменная для хранения и стартоой точки, и предпоследней,  от которой будем рисовать следующий отрезок
         Point startPoint;
 
+
+        public BrushIPainter()
+        {
+
+        }
         //констрктор пейнтера срабатывает на MouseDown - начинается запись нового пути кисти
         public BrushIPainter(GraphicsPath pathFromForm, Point startPointFromForm)
         {

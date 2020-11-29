@@ -17,12 +17,14 @@ namespace PaintForSchool.Figures
         //public string fType { get; }
 
         public IPainter Painter { get; }
-        
+
         //public int anglesNumber { get; set; }
 
         public RectangleFigure()
         {
-            Painter = new PolygonIPainter();
+            Painter = new PolygonIPainter(); 
+
+            
         }
 
         public Point[] GetPoints()
@@ -39,9 +41,9 @@ namespace PaintForSchool.Figures
         //{
         //    graphics.DrawPolygon(pen, GetPoints());
         //}
-        public void Set(Point point)
+        public void Set(Point pointFromForm)
         {
-            startPoint = point;
+            startPoint = pointFromForm;
         }
 
         }

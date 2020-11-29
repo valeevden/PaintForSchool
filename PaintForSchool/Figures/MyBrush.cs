@@ -12,6 +12,7 @@ namespace PaintForSchool.Figures
 {
     class MyBrush :IFigure
     {
+        //переменная для хранения и стартоой точки, и предпоследней,  от которой будем рисовать следующий отрезок
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
 
@@ -19,7 +20,8 @@ namespace PaintForSchool.Figures
 
         public MyBrush()
         {
-            
+            Painter = new BrushIPainter();
+
             startPoint = new Point(-1, -1);
         }
 
@@ -34,6 +36,7 @@ namespace PaintForSchool.Figures
             return points;
         }
 
+        //обработка MouseDown
         public void Set(Point point)
         {
 
