@@ -269,7 +269,7 @@ namespace PaintForSchool
 
         private void _anglesNumber_ValueChanged(object sender, EventArgs e)
         {
-            if (_figure.Painter is NPolygonIPainter)
+            if (_figure.Painter is PolygonIPainter)
             {
                 _figure = new NanglesFigure((int)_anglesNumber.Value);
             }
