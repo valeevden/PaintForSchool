@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PaintForSchool.Painter
 {
-    class EllipseIPainter : IPainter
+    class CircleIPainter : IPainter
     {
         public void DrawFigure(Pen pen, Graphics graphics, Point[] points)
         {
@@ -27,16 +27,9 @@ namespace PaintForSchool.Painter
             int height = point[1].Y - point[0].Y;
 
             // Ректангл (прямоугольник) описывается 4 точками. Х и У верхнего левого угла, ширина и высота
-            if (point.Length == 3)
-            {
-                Rectangle rectangle = new Rectangle(x, y, width, width);
-                return rectangle;
-            }
-            else
-            {
-                Rectangle rectangle = new Rectangle(x, y, width, height);
-                return rectangle;
-            }
+            Rectangle rectangle = new Rectangle(x, y, width, width);
+
+            return rectangle;
         }
     }
 }

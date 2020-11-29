@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Canvas.cs" />
     <Compile Include="Painter\BrushIPainter.cs" />
+    <Compile Include="Painter\CircleIPainter.cs" />
     <Compile Include="Painter\EllipseIPainter.cs" />
     <Compile Include="Painter\NPolygonIPainter.cs" />
     <Compile Include="Painter\IPainter.cs" />

@@ -233,8 +233,8 @@ namespace PaintForSchool
 
         private void Circle_Click(object sender, EventArgs e)
         {
-            //_figure = new CircleFigure();
-            _selectedButton = "Circle";
+            _figure = new CircleFigure();
+            //_selectedButton = "Circle";
         }
 
         private void Ellipse_Click(object sender, EventArgs e)
@@ -263,7 +263,6 @@ namespace PaintForSchool
 
         private void NanglesFigure_Click(object sender, EventArgs e)
         {
-            
             _figure = new NanglesFigure((int)_anglesNumber.Value);
         }
 
