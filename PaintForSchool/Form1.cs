@@ -244,8 +244,14 @@ namespace PaintForSchool
 
         private void Square_Click(object sender, EventArgs e)
         {
-            //_figure = new SquareFigure();
+            _figure = new SquareFigure ();
             //_selectedButton = "Square";
+        }
+
+        private void Triangle3D_Click(object sender, EventArgs e)
+        {
+            
+            _figure = new Triangle3DFigure ();
         }
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
@@ -272,6 +278,11 @@ namespace PaintForSchool
             {
                 _figure = new NanglesFigure((int)_anglesNumber.Value);
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
