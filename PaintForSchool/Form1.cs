@@ -274,5 +274,10 @@ namespace PaintForSchool
         {
             _figure = new IsoscelesTriangle();
         }
+
+        private void RectTriangleButton_Click(object sender, EventArgs e)
+        {
+            _figure = new RectTriangle();
+        }
     }
 }

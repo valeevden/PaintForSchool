@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PaintForSchool.Figures;
+using System.Drawing;
 using PaintForSchool.Painter;
 
 namespace PaintForSchool.Figures
 {
-    class IsoscelesTriangle : IFigure
+    public class RectTriangle : IFigure
     {
+
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
 
         public IPainter Painter { get; }
 
-        public IsoscelesTriangle()
+        public RectTriangle()
         {
             Painter = new PolygonIPainter();
         }
@@ -27,7 +28,8 @@ namespace PaintForSchool.Figures
 
             points[0] = startPoint;
             points[1] = secondPoint;
-            points[2] = new Point((secondPoint.X-(secondPoint.X-startPoint.X)*2),secondPoint.Y);
+            points[2].X = startPoint.X;
+            points[2].Y = secondPoint.Y;
 
             return points;
         }
@@ -36,5 +38,6 @@ namespace PaintForSchool.Figures
         {
             startPoint = point;
         }
+
     }
 }
