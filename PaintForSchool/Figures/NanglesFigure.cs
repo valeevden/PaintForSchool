@@ -11,6 +11,7 @@ namespace PaintForSchool.Figures
 {
     public class NanglesFigure : IFigure
     {
+        //наколбасил
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
         public int anglesNumber { get; set; }
