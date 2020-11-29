@@ -66,6 +66,7 @@
     <Compile Include="Painter\BrushIPainter.cs" />
     <Compile Include="Painter\NPolygonIPainter.cs" />
     <Compile Include="Painter\IPainter.cs" />
+    <Compile Include="Painter\PointPolygonIPainter.cs" />
     <Compile Include="Painter\PolygonIPainter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,8 +13,9 @@ namespace PaintForSchool.Figures
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
+        public Point tmpPoint { get; set; }
         //string fType { get; }
-        public bool doubleClick { get; set; }
+        //public bool doubleClick { get; set; }
         public IPainter Painter { get; }
 
         public LineND()
@@ -42,6 +43,8 @@ namespace PaintForSchool.Figures
                 startPoint = point;
                 startPoint = secondPoint;
             }
+
+
         }
     }
 }

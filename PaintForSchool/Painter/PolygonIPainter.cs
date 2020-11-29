@@ -11,6 +11,7 @@ namespace PaintForSchool.Painter
     {
         public void DrawFigure(Pen pen, Graphics graphics, Point[] points)
         {
+
             graphics.DrawPolygon(pen, points);
         }
     }
