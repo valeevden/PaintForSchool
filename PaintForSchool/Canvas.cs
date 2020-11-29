@@ -14,7 +14,6 @@ namespace PaintForSchool
         Bitmap _mainBitmap; //Объект Bitmap используется для работы с изображениями, определяемыми данными пикселей
         Bitmap _tmpBitmap;
         Graphics _graphics; //класс с методами для рисования
-        IPainter _painter;
 
         public Canvas(int width, int height)
         {
@@ -26,15 +25,10 @@ namespace PaintForSchool
         {
             _tmpBitmap = (Bitmap)_mainBitmap.Clone();
             _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-
-            if (figure.fType == "Polygon")
-            {
-                _painter = new PolygonIPainter();
-            }
-                _painter.DrawFigure(pen, _graphics, figure.GetPoints());
-
+            figure.Painter.DrawFigure(pen, _graphics, figure.GetPoints());
             return _tmpBitmap;
         }
+        
         public void Save()
         {
             _mainBitmap = _tmpBitmap;

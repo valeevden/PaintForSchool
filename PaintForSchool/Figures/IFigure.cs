@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
+using PaintForSchool.Painter;
 
 namespace PaintForSchool.Figures
 {
@@ -12,7 +13,10 @@ namespace PaintForSchool.Figures
 
         Point startPoint { get; set; }
         Point secondPoint { get; set; }
-        string fType { get; }
+        //string fType { get; }
+
+        IPainter Painter { get; }
+
         //int anglesNumber { get; set; }
 
         Point[] GetPoints();

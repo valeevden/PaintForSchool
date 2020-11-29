@@ -6,44 +6,48 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using PaintForSchool.Painter;
 
 namespace PaintForSchool.Figures
 {
-    class MyBrush  //IFigure
+    class MyBrush :IFigure
     {
+        //переменная для хранения и стартоой точки, и предпоследней,  от которой будем рисовать следующий отрезок
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
-        public int anglesNumber { get; set; }
 
-        GraphicsPath _path;
+        public IPainter Painter { get; set; }
 
         public MyBrush()
         {
+            Painter = new BrushIPainter();
+
             startPoint = new Point(-1, -1);
-            //старт устанавливается в невозможное место
-            //Изменение точки на реально возможную является сигналом для начала записи пути в path
-
-            
         }
 
-        public void DrawFigure(Pen pen, Graphics graphics)
-        {
-            _path.AddLine(startPoint, secondPoint);
-            pen.LineJoin = LineJoin.Round; // Стиль объединения концов линий
-            graphics.DrawPath(pen, _path);
-            startPoint = secondPoint;
-        }
+        GraphicsPath _path;
 
+
+        //передаём в BrushIPainter текущую точку
         public Point[] GetPoints()
         {
-            throw new NotImplementedException();
+            Point[] points = new Point[1];
+            points[0] = secondPoint;
+            return points;
         }
 
+        //обработка MouseDown
         public void Set(Point point)
         {
+
+            //передаём в BrushIPainter точку старта рисования кистью
             startPoint = point;
-            _path = new GraphicsPath(); //весь путь Brush
+
+            //начинаем запись нового пути для нового отрезка рисования кистью
+            _path = new GraphicsPath();
             _path.StartFigure();
+
+            Painter = new BrushIPainter(_path, startPoint);
         }
     }
 }

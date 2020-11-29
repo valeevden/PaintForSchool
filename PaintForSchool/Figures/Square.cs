@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PaintForSchool.Figures
 {
-    public class SquareFigure : IFigure // Класс для квадратов по 2 точкам
+    public class SquareFigure //: IFigure // Класс для квадратов по 2 точкам
     {
 
         public Point startPoint { get; set; }
@@ -36,10 +36,10 @@ namespace PaintForSchool.Figures
             return points;
         }
 
-        public void DrawFigure(Pen pen, Graphics graphics)
-        {
-            graphics.DrawPolygon(pen, GetPoints());
-        }
+        //public void DrawFigure(Pen pen, Graphics graphics)
+        //{
+        //    graphics.DrawPolygon(pen, GetPoints());
+        //}
         public void Set(Point point)
         {
             startPoint = point;

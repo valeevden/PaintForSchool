@@ -4,15 +4,24 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PaintForSchool.Painter;
 
 
 namespace PaintForSchool.Figures
 {
-    public class NanglesFigure //: //IFigure
+    public class NanglesFigure : IFigure
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
         public int anglesNumber { get; set; }
+
+        public IPainter Painter { get; set; }
+
+        public NanglesFigure(int anglesNumberFromForm)
+        {
+            Painter = new NPolygonIPainter();
+            anglesNumber = anglesNumberFromForm;
+        }
 
         public Point[] GetPoints()
         {
@@ -32,11 +41,6 @@ namespace PaintForSchool.Figures
             }
 
             return points;
-        }
-
-        public void DrawFigure(Pen pen, Graphics graphics)
-        {
-            graphics.DrawPolygon(pen, GetPoints());
         }
 
         public void Set(Point point)

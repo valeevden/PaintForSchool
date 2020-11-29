@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;//для Brush
+using PaintForSchool.Painter;
 
 namespace PaintForSchool
 {
@@ -17,16 +18,13 @@ namespace PaintForSchool
         Canvas canvas;
         Pen _pen = new Pen(Color.Red, 6); //класс с инструментами для рисования. Дефолтный карандаш
         Color _color;
-        //Point _startPoint;
-        //Point _pointN = new Point( -1, -1 );
-        //Point _tmp;
-        //Point _tmp2;
+        
         bool _mouseDown = false;
         bool _doubleClick = false;
-        Point _prePointBrush;//предыдущая точка для Brush
+        
         IFigure _figure; // Объект интерфейса
         string _selectedButton; // Стринга для свитча, чтобы понимать какая кнопка нажата
-        //GraphicsPath _path;
+        
         
         public Form1()
         {
@@ -38,24 +36,14 @@ namespace PaintForSchool
             _selectedButton = "Brush";
             canvas = new Canvas(pictureBox1.Width, pictureBox1.Height);
             _mouseDown = false;
-           
+            
+            _figure = new MyBrush();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _mouseDown = true;
-            //_figure.startPoint = e.Location;
-            //_figure.secondPoint = e.Location;
-
             _figure.Set(e.Location);
-
-            //if (_selectedButton == "Brush")
-            //{
-            //_path = new GraphicsPath(); //весь путь Brush
-            //_path.StartFigure();
-            //_prePointBrush = e.Location;
-            //}
-
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -223,7 +211,7 @@ namespace PaintForSchool
 
         private void FigureND_Click(object sender, EventArgs e)
         {
-            _figure = new FigureND();
+            //_figure = new FigureND();
             _selectedButton = "FigureND";
         }
 
@@ -256,7 +244,7 @@ namespace PaintForSchool
 
         private void Square_Click(object sender, EventArgs e)
         {
-            _figure = new SquareFigure();
+            //_figure = new SquareFigure();
             //_selectedButton = "Square";
         }
 
@@ -274,13 +262,16 @@ namespace PaintForSchool
 
         private void NanglesFigure_Click(object sender, EventArgs e)
         {
-            //_selectedButton = "NanglesFigure";
-            //_figure = new NanglesFigure();
+            
+            _figure = new NanglesFigure((int)_anglesNumber.Value);
         }
 
         private void _anglesNumber_ValueChanged(object sender, EventArgs e)
         {
-            //_figure.anglesNumber = (int)_anglesNumber.Value;
+            if (_figure.Painter is NPolygonIPainter)
+            {
+                _figure = new NanglesFigure((int)_anglesNumber.Value);
+            }
         }
     }
 }
