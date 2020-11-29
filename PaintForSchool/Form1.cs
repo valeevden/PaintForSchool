@@ -20,8 +20,9 @@ namespace PaintForSchool
         Color _color;
         
         bool _mouseDown = false;
-        bool _doubleClick = false;
-        
+        public bool doubleClick = false;
+        public bool mouseMove = false;
+
         IFigure _figure; // Объект интерфейса
         string _selectedButton; // Стринга для свитча, чтобы понимать какая кнопка нажата
         
@@ -48,6 +49,7 @@ namespace PaintForSchool
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
+            mouseMove = true;
             if (_mouseDown)
             {
                 _figure.secondPoint = e.Location;
@@ -149,8 +151,15 @@ namespace PaintForSchool
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e) //происходит после дабл клика
         {
             _mouseDown = false;
-            
+            if (doubleClick)
+            {
+                pictureBox1.Image = canvas.DrawIt(_figure, _pen);
+                _figure.secondPoint = new Point(-1, -1);
+                _figure.Set(new Point(-1, -1));
+                doubleClick = false;
+            }
             canvas.Save();
+
            //_pointN = e.Location;
                 //if (_selectedButton == "LineND")
                 //{
@@ -178,6 +187,44 @@ namespace PaintForSchool
 
         }
 
+        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            doubleClick = true;
+
+
+            //if (_selectedButton == "FigureND")
+            //{
+            //    _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp2, _tmp));
+            //    pictureBox1.Image = _tmpBitmap;
+
+            //}
+        }
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                pictureBox1.Image = canvas.Clear();
+            }
+        }
+
+        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Clicks == 2)
+            {
+
+            }
+        }
+
         private void ClearAll_Click(object sender, EventArgs e)
         {
             pictureBox1.Image = canvas.Clear();
@@ -189,7 +236,7 @@ namespace PaintForSchool
 
         private void Brush_Click(object sender, EventArgs e)
         {
-            //_figure = new MyBrush();
+            _figure = new MyBrush();
         }
         private void Rectangle_2d_Click(object sender, EventArgs e)
         {
@@ -199,14 +246,14 @@ namespace PaintForSchool
 
         private void Line2D_Click(object sender, EventArgs e)
         {
-            //_figure = new Line2D();
-            _selectedButton = "Line2D";
+            _figure = new Line2D();
+            //_selectedButton = "Line2D";
         }
 
         private void LineND_Click(object sender, EventArgs e)
         {
-           // _figure = new LineND();
-            _selectedButton = "LineND";
+            _figure = new LineND();
+            //_selectedButton = "LineND";
         }
 
         private void FigureND_Click(object sender, EventArgs e)
@@ -248,17 +295,7 @@ namespace PaintForSchool
             //_selectedButton = "Square";
         }
 
-        private void pictureBox1_DoubleClick(object sender, EventArgs e)
-        {
-            _doubleClick = true;
-
-            //if (_selectedButton == "FigureND")
-            //{
-            //    _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp2, _tmp));
-            //    pictureBox1.Image = _tmpBitmap;
-                
-            //}
-        }
+        
 
         private void NanglesFigure_Click(object sender, EventArgs e)
         {
@@ -273,5 +310,7 @@ namespace PaintForSchool
                 _figure = new NanglesFigure((int)_anglesNumber.Value);
             }
         }
+
+        
     }
 }
