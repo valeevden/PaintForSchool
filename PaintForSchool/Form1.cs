@@ -20,7 +20,7 @@ namespace PaintForSchool
         Color _color;
         
         bool _mouseDown = false;
-        bool _doubleClick = false;
+        public bool doubleClick = false;
         
         IFigure _figure; // Объект интерфейса
         string _selectedButton; // Стринга для свитча, чтобы понимать какая кнопка нажата
@@ -205,8 +205,8 @@ namespace PaintForSchool
 
         private void LineND_Click(object sender, EventArgs e)
         {
-           // _figure = new LineND();
-            _selectedButton = "LineND";
+            _figure = new LineND();
+            //_selectedButton = "LineND";
         }
 
         private void FigureND_Click(object sender, EventArgs e)
@@ -250,7 +250,8 @@ namespace PaintForSchool
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
-            _doubleClick = true;
+            doubleClick = true;
+            _figure.Set(new Point(-1, -1));
 
             //if (_selectedButton == "FigureND")
             //{
