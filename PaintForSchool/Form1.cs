@@ -189,6 +189,7 @@ namespace PaintForSchool
 
         private void Brush_Click(object sender, EventArgs e)
         {
+            _figure = new MyBrush();
             //_figure = new MyBrush();
         }
         private void Rectangle_2d_Click(object sender, EventArgs e)
@@ -238,8 +239,8 @@ namespace PaintForSchool
 
         private void Ellipse_Click(object sender, EventArgs e)
         {
-            //_figure = new EllipseFigure();
-            _selectedButton = "Ellipse";
+            _figure = new EllipseFigure();
+            //_selectedButton = "Ellipse";
         }
 
         private void Square_Click(object sender, EventArgs e)

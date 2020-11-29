@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaintForSchool.Painter;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -8,16 +9,18 @@ using System.Windows.Forms;
 
 namespace PaintForSchool.Figures
 {
-    public class CircleFigure //: IFigure
+    public class CircleFigure : IFigure
     {
-        public string fType { get; }
+        public Point startPoint { get; set; }
+        public Point secondPoint { get; set; }
+        
+        public IPainter Painter { get; set; }
 
-        //public int anglesNumber { get; set; }
-
-        public CircleFigure()
+        public CircleFigure(int anglesNumberFromForm)
         {
-            fType = "";
+            Painter = new EllipseIPainter();
         }
+
         public Point[] GetPoints(Point startPoint, Point endPoint, int anglesNumber = 1)
         {
             Point[] points = new Point[4];
@@ -31,7 +34,7 @@ namespace PaintForSchool.Figures
         public  Rectangle MakeRectangle(Point startPoint, Point endPoint)
         {
             int x = startPoint.X;
-            int y = startPoint.Y;
+            int y = endPoint.X;
             int width = endPoint.X - startPoint.X;
             int height = endPoint.Y - startPoint.Y;
             
@@ -39,6 +42,15 @@ namespace PaintForSchool.Figures
             Rectangle rectangle = new Rectangle(x, y, height, height);
             return rectangle;
         }
-        
+
+        public Point[] GetPoints()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Set(Point point)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
