@@ -128,28 +128,29 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(49, 363);
+            this.button7.Location = new System.Drawing.Point(49, 417);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(124, 48);
             this.button7.TabIndex = 7;
             this.button7.Text = "Triangle_3d";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Triangle3D_Click);
             // 
             // RectTriangleButton
             // 
-            this.RectTriangleButton.Location = new System.Drawing.Point(49, 417);
+            this.RectTriangleButton.Location = new System.Drawing.Point(49, 363);
             this.RectTriangleButton.Name = "RectTriangleButton";
             this.RectTriangleButton.Size = new System.Drawing.Size(124, 48);
             this.RectTriangleButton.TabIndex = 8;
-            this.RectTriangleButton.Text = "Прямоугольный треугольник";
+            this.RectTriangleButton.Text = "RectTriangle";
             this.RectTriangleButton.UseVisualStyleBackColor = true;
             this.RectTriangleButton.Click += new System.EventHandler(this.RectTriangleButton_Click);
             // 
             // IsoscelesTriangle
             // 
-            this.IsoscelesTriangle.Location = new System.Drawing.Point(49, 471);
+            this.IsoscelesTriangle.Location = new System.Drawing.Point(49, 470);
             this.IsoscelesTriangle.Name = "IsoscelesTriangle";
-            this.IsoscelesTriangle.Size = new System.Drawing.Size(124, 48);
+            this.IsoscelesTriangle.Size = new System.Drawing.Size(124, 49);
             this.IsoscelesTriangle.TabIndex = 9;
             this.IsoscelesTriangle.Text = "ravnBed_Tianlge 2d";
             this.IsoscelesTriangle.UseVisualStyleBackColor = true;
