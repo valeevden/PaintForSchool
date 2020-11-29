@@ -36,8 +36,8 @@
             this.Circle_2d = new System.Windows.Forms.Button();
             this.Ellipse = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.RectTriangleButton = new System.Windows.Forms.Button();
+            this.IsoscelesTriangle = new System.Windows.Forms.Button();
             this.FigureND = new System.Windows.Forms.Button();
             this.Line2D = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
@@ -135,23 +135,25 @@
             this.button7.Text = "Triangle_3d";
             this.button7.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // RectTriangleButton
             // 
-            this.button8.Location = new System.Drawing.Point(49, 417);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(124, 48);
-            this.button8.TabIndex = 8;
-            this.button8.Text = "rightTriangle_2d";
-            this.button8.UseVisualStyleBackColor = true;
+            this.RectTriangleButton.Location = new System.Drawing.Point(49, 417);
+            this.RectTriangleButton.Name = "RectTriangleButton";
+            this.RectTriangleButton.Size = new System.Drawing.Size(124, 48);
+            this.RectTriangleButton.TabIndex = 8;
+            this.RectTriangleButton.Text = "Прямоугольный треугольник";
+            this.RectTriangleButton.UseVisualStyleBackColor = true;
+            this.RectTriangleButton.Click += new System.EventHandler(this.RectTriangleButton_Click);
             // 
-            // button9
+            // IsoscelesTriangle
             // 
-            this.button9.Location = new System.Drawing.Point(49, 471);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(124, 48);
-            this.button9.TabIndex = 9;
-            this.button9.Text = "ravnBed_Tianlge 2d";
-            this.button9.UseVisualStyleBackColor = true;
+            this.IsoscelesTriangle.Location = new System.Drawing.Point(49, 471);
+            this.IsoscelesTriangle.Name = "IsoscelesTriangle";
+            this.IsoscelesTriangle.Size = new System.Drawing.Size(124, 48);
+            this.IsoscelesTriangle.TabIndex = 9;
+            this.IsoscelesTriangle.Text = "ravnBed_Tianlge 2d";
+            this.IsoscelesTriangle.UseVisualStyleBackColor = true;
+            this.IsoscelesTriangle.Click += new System.EventHandler(this.IsoscelesTriangle_Click);
             // 
             // FigureND
             // 
@@ -269,8 +271,8 @@
             this.Controls.Add(this.button23);
             this.Controls.Add(this.Line2D);
             this.Controls.Add(this.FigureND);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
+            this.Controls.Add(this.IsoscelesTriangle);
+            this.Controls.Add(this.RectTriangleButton);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.Ellipse);
             this.Controls.Add(this.Circle_2d);
@@ -300,8 +302,8 @@
         private System.Windows.Forms.Button Circle_2d;
         private System.Windows.Forms.Button Ellipse;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button RectTriangleButton;
+        private System.Windows.Forms.Button IsoscelesTriangle;
         private System.Windows.Forms.Button FigureND;
         private System.Windows.Forms.Button Line2D;
         private System.Windows.Forms.Button button23;

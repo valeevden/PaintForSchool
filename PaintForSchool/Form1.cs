@@ -181,16 +181,11 @@ namespace PaintForSchool
         private void ClearAll_Click(object sender, EventArgs e)
         {
             pictureBox1.Image = canvas.Clear();
-            
-           // _graphics.Clear(Color.White);
-            //pictureBox1.Image = _mainBitmap;
-            //_tmp = _tmp2;
         }
 
         private void Brush_Click(object sender, EventArgs e)
         {
             _figure = new MyBrush();
-            //_figure = new MyBrush();
         }
         private void Rectangle_2d_Click(object sender, EventArgs e)
         {
@@ -272,6 +267,16 @@ namespace PaintForSchool
             {
                 _figure = new NanglesFigure((int)_anglesNumber.Value);
             }
+        }
+
+        private void IsoscelesTriangle_Click(object sender, EventArgs e)
+        {
+            _figure = new IsoscelesTriangle();
+        }
+
+        private void RectTriangleButton_Click(object sender, EventArgs e)
+        {
+            _figure = new RectTriangle();
         }
     }
 }
