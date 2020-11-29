@@ -199,8 +199,8 @@ namespace PaintForSchool
 
         private void Line2D_Click(object sender, EventArgs e)
         {
-            //_figure = new Line2D();
-            _selectedButton = "Line2D";
+            _figure = new Line2D();
+            //_selectedButton = "Line2D";
         }
 
         private void LineND_Click(object sender, EventArgs e)
