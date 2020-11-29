@@ -23,11 +23,11 @@ namespace PaintForSchool.Painter
         {
             int x = point[0].X;
             int y = point[0].Y;
-            int width = point[1].X - point[0].X;
-            int height = point[1].Y - point[0].Y;
+            int width = 2 * (point[1].X - point[0].X);
+            int height = 2* (point[1].Y - point[0].Y);
 
             // Ректангл (прямоугольник) описывается 4 точками. Х и У верхнего левого угла, ширина и высота
-            Rectangle rectangle = new Rectangle(x, y, width, width);
+            Rectangle rectangle = new Rectangle(x, y, width, height);
 
             return rectangle;
         }

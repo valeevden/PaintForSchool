@@ -29,7 +29,7 @@ namespace PaintForSchool.Painter
             // Ректангл (прямоугольник) описывается 4 точками. Х и У верхнего левого угла, ширина и высота
             if (point.Length == 3)
             {
-                Rectangle rectangle = new Rectangle(x, y, width, width);
+                Rectangle rectangle = new Rectangle(x, y, height, height);
                 return rectangle;
             }
             else
