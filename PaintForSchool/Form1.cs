@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;//для Brush
+using PaintForSchool.Painter;
 
 namespace PaintForSchool
 {
@@ -38,6 +39,7 @@ namespace PaintForSchool
             _selectedButton = "Brush";
             canvas = new Canvas(pictureBox1.Width, pictureBox1.Height);
             _mouseDown = false;
+            _figure = new MyBrush();
            
         }
 
@@ -274,13 +276,16 @@ namespace PaintForSchool
 
         private void NanglesFigure_Click(object sender, EventArgs e)
         {
-            //_selectedButton = "NanglesFigure";
-            //_figure = new NanglesFigure();
+            
+            _figure = new NanglesFigure((int)_anglesNumber.Value);
         }
 
         private void _anglesNumber_ValueChanged(object sender, EventArgs e)
         {
-            //_figure.anglesNumber = (int)_anglesNumber.Value;
+            if (_figure.Painter is NPolygonIPainter)
+            {
+                _figure = new NanglesFigure((int)_anglesNumber.Value);
+            }
         }
     }
 }
