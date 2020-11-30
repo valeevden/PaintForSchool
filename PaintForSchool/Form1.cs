@@ -86,12 +86,12 @@ namespace PaintForSchool
             _mouseDown = false;
             if (doubleClick)
             {
-                pictureBox1.Image = canvas.DrawIt(_figure, _pen);
+                //pictureBox1.Image = canvas.DrawIt(_figure, _pen);
                 //_figure = new LineND();
+                _figure.startPoint = _figure.secondPoint;
                 _figure.secondPoint = new Point(-1, -1);
                 _figure.Set(new Point(-1, -1));
                 doubleClick = false;
-                canvas.Save();
             }
             canvas.Save();
 
