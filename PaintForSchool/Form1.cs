@@ -40,12 +40,13 @@ namespace PaintForSchool
         {
             _mouseDown = true;
             _figure.Set(e.Location);
+            
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             mouseMove = true;
-            if (_mouseDown)
+            if (_mouseDown && e.Button != MouseButtons.Right)
             {
                 _figure.secondPoint = e.Location;
                 pictureBox1.Image = canvas.DrawIt(_figure,_pen);
@@ -84,14 +85,11 @@ namespace PaintForSchool
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e) //происходит после дабл клика
         {
             _mouseDown = false;
-            if (doubleClick)
+            if (e.Button == MouseButtons.Right)
             {
-                //pictureBox1.Image = canvas.DrawIt(_figure, _pen);
-                //_figure = new LineND();
-                _figure.startPoint = _figure.secondPoint;
+                //_figure.startPoint = _figure.secondPoint;
                 _figure.secondPoint = new Point(-1, -1);
                 _figure.Set(new Point(-1, -1));
-                doubleClick = false;
             }
             canvas.Save();
 
@@ -146,7 +144,8 @@ namespace PaintForSchool
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
             doubleClick = true;
-
+            
+            
 
             //if (_selectedButton == "FigureND")
             //{
@@ -157,10 +156,7 @@ namespace PaintForSchool
         }
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                pictureBox1.Image = canvas.Clear();
-            }
+            
         }
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -266,6 +262,19 @@ namespace PaintForSchool
         private void RectTriangleButton_Click(object sender, EventArgs e)
         {
             _figure = new RectTriangle();
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == (Keys.Enter))
+            {
+                pictureBox1.Image = canvas.Clear();
+            }
         }
     }
 }

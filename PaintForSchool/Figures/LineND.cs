@@ -16,13 +16,18 @@ namespace PaintForSchool.Figures
         public Point tmpPoint { get; set; }
         //string fType { get; }
         //public bool doubleClick { get; set; }
-        public IPainter Painter { get; }
+        public IPainter Painter { get; set;  }
 
         public LineND()
         {
             startPoint = new Point(-1, -1);
             Painter = new PolygonIPainter();
             
+        }
+        public LineND(Point startPoint, Point secondPoint)
+        {
+           // Painter = new PointPolygonIPainter(startPoint, secondPoint);
+
         }
 
         public Point[] GetPoints()
@@ -38,13 +43,17 @@ namespace PaintForSchool.Figures
             if (startPoint == new Point(-1, -1))
             {
                 startPoint = point;
+                tmpPoint = point;
             }
             else
             {
                 startPoint = secondPoint;
             }
-
-
         }
+
+        //public void LastLine()
+        //{
+        //    Painter = new PointPolygonIPainter(tmpPoint, secondPoint);
+        //}
     }
 }
