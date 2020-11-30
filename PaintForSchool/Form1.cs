@@ -175,10 +175,7 @@ namespace PaintForSchool
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Clicks == 2)
-            {
-
-            }
+           
         }
 
         private void ClearAll_Click(object sender, EventArgs e)
@@ -246,17 +243,6 @@ namespace PaintForSchool
         private void Triangle3D_Click(object sender, EventArgs e)
         {
             _figure = new Triangle3DFigure ();
-        }
-
-        private void pictureBox1_DoubleClick(object sender, EventArgs e)
-        {
-            _doubleClick = true;
-
-            //if (_selectedButton == "FigureND")
-            //{
-            //    _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp2, _tmp));
-            //    pictureBox1.Image = _tmpBitmap;
-            //}
         }
 
         private void NanglesFigure_Click(object sender, EventArgs e)
