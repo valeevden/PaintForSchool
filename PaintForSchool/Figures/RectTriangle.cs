@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PaintForSchool.Figures;
 using System.Drawing;
 using PaintForSchool.Painter;
+using PaintForSchool.DoubleClickReaction;
 
 namespace PaintForSchool.Figures
 {
@@ -16,10 +17,12 @@ namespace PaintForSchool.Figures
         public Point secondPoint { get; set; }
 
         public IPainter Painter { get; }
+        public IDoubleClickReaction doubleClickReaction { get; set; }
 
         public RectTriangle()
         {
             Painter = new PolygonIPainter();
+            doubleClickReaction = new NDNotActive();
         }
 
         public Point[] GetPoints()

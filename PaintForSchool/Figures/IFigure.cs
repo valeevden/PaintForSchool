@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
 using PaintForSchool.Painter;
+using PaintForSchool.DoubleClickReaction;
 
 namespace PaintForSchool.Figures
 {
@@ -15,6 +16,8 @@ namespace PaintForSchool.Figures
         Point secondPoint { get; set; }
 
         IPainter Painter { get; }
+
+        IDoubleClickReaction doubleClickReaction {get; set;}
 
         Point[] GetPoints();
 

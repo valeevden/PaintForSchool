@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing.Drawing2D;
 using PaintForSchool.Painter;
+using PaintForSchool.DoubleClickReaction;
 
 namespace PaintForSchool.Figures
 {
@@ -17,11 +18,15 @@ namespace PaintForSchool.Figures
 
         public IPainter Painter { get; set; }
 
+        public IDoubleClickReaction doubleClickReaction { get; set; }
+
         public MyBrush()
         {
             Painter = new BrushIPainter();
 
             startPoint = new Point(-1, -1);
+
+            doubleClickReaction = new NDNotActive();
         }
 
         GraphicsPath _path;

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
 using PaintForSchool.Painter;
+using PaintForSchool.DoubleClickReaction;
 
 namespace PaintForSchool.Figures
 {
@@ -16,9 +17,12 @@ namespace PaintForSchool.Figures
 
         public IPainter Painter { get; }
 
+        public IDoubleClickReaction doubleClickReaction { get; set; }
+
         public Line2D()
         {
             Painter = new PolygonIPainter();
+            doubleClickReaction = new NDNotActive();
         }
 
         public Point[] GetPoints()

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PaintForSchool.Painter;
+using PaintForSchool.DoubleClickReaction;
 
 
 namespace PaintForSchool.Figures
@@ -16,11 +17,13 @@ namespace PaintForSchool.Figures
         public int anglesNumber { get; set; }
 
         public IPainter Painter { get; set; }
+        public IDoubleClickReaction doubleClickReaction { get; set; }
 
         public NanglesFigure(int anglesNumberFromForm)
         {
             Painter = new PolygonIPainter();
             anglesNumber = anglesNumberFromForm;
+            doubleClickReaction = new NDNotActive();
         }
 
         public Point[] GetPoints()

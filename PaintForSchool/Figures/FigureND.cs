@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
 using PaintForSchool.Painter;
+using PaintForSchool.DoubleClickReaction;
 
 namespace PaintForSchool.Figures
 {
@@ -14,10 +15,12 @@ namespace PaintForSchool.Figures
         public Point secondPoint { get; set; }
         public Point tmpPoint { get; set; }
         public IPainter Painter { get; }
+        public IDoubleClickReaction doubleClickReaction { get; set; }
         public FigureND()
         {
             Painter = new PolygonIPainter();
             startPoint = new Point(-1, -1);
+            doubleClickReaction = new NDActive(this);
         }
 
         public Point[] GetPoints()

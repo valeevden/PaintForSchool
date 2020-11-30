@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace PaintForSchool.DoubleClickReaction
 {
-    interface DoubleClickReaction
+    public interface IDoubleClickReaction
     {
+        void Do();
     }
 }

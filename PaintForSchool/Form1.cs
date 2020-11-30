@@ -40,6 +40,7 @@ namespace PaintForSchool
         {
             _mouseDown = true;
             _figure.Set(e.Location);
+
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -88,9 +89,13 @@ namespace PaintForSchool
             {
                 //pictureBox1.Image = canvas.DrawIt(_figure, _pen);
                 //_figure = new LineND();
-                _figure.startPoint = _figure.secondPoint;
-                _figure.secondPoint = new Point(-1, -1);
-                _figure.Set(new Point(-1, -1));
+
+                //_figure.startPoint = _figure.secondPoint;
+                //_figure.secondPoint = new Point(-1, -1);
+                //_figure.Set(new Point(-1, -1));
+
+                _figure.doubleClickReaction.Do();
+                
                 doubleClick = false;
             }
             canvas.Save();

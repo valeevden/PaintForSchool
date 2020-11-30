@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace PaintForSchool.DoubleClickReaction
 {
-    class NDNotActive
+    class NDNotActive : IDoubleClickReaction
     {
+        public void Do()
+        {
+            
+            return;
+        }
     }
 }

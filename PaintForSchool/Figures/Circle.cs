@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PaintForSchool.DoubleClickReaction;
 
 namespace PaintForSchool.Figures
 {
@@ -16,9 +17,12 @@ namespace PaintForSchool.Figures
 
         public IPainter Painter { get; set; }
 
+        public IDoubleClickReaction doubleClickReaction { get; set; }
+
         public CircleFigure()
         {
             Painter = new CircleIPainter();
+            doubleClickReaction = new NDNotActive();
         }
 
         public Point[] GetPoints()

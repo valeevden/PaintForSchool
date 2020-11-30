@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PaintForSchool.Painter;
+using PaintForSchool.DoubleClickReaction;
+
 
 namespace PaintForSchool.Figures
 {
@@ -15,10 +17,12 @@ namespace PaintForSchool.Figures
         public Point secondPoint { get; set; }
 
         public IPainter Painter { get; }
+        public IDoubleClickReaction doubleClickReaction { get; set; }
 
         public Triangle3DFigure ()
         {
             Painter = new PolygonIPainter();
+            doubleClickReaction = new NDActive(this);
 
         }
 
