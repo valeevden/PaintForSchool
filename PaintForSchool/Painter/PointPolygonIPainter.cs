@@ -18,12 +18,14 @@ namespace PaintForSchool.Painter
         public void DrawFigure(Pen pen, Graphics graphics, Point[] points)
         {
             
-            //if (points[0] != new Point(-1, -1))
-            //{
-                points[0] = startPoint;
+            if (points[0] != new Point(-1, -1) || points[0] == new Point(0, 0))
+            {
+                
+            }
+            else
+            {
                 graphics.DrawPolygon(pen, points);
-                startPoint = points[1];
-            //}
+            }
         }
     }
 }

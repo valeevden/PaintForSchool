@@ -154,9 +154,11 @@ namespace PaintForSchool
             if (doubleClick)
             {
                 pictureBox1.Image = canvas.DrawIt(_figure, _pen);
+                //_figure = new LineND();
                 _figure.secondPoint = new Point(-1, -1);
                 _figure.Set(new Point(-1, -1));
                 doubleClick = false;
+                canvas.Save();
             }
             canvas.Save();
 
@@ -258,8 +260,8 @@ namespace PaintForSchool
 
         private void FigureND_Click(object sender, EventArgs e)
         {
-            //_figure = new FigureND();
-            _selectedButton = "FigureND";
+            _figure = new FigureND();
+            //_selectedButton = "FigureND";
         }
 
         private void trackPenWidth_Scroll(object sender, EventArgs e)

@@ -20,8 +20,9 @@ namespace PaintForSchool.Figures
 
         public LineND()
         {
-            Painter = new PolygonIPainter();
             startPoint = new Point(-1, -1);
+            Painter = new PolygonIPainter();
+            
         }
 
         public Point[] GetPoints()
@@ -40,7 +41,6 @@ namespace PaintForSchool.Figures
             }
             else
             {
-                startPoint = point;
                 startPoint = secondPoint;
             }
 
