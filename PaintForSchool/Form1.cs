@@ -18,8 +18,9 @@ namespace PaintForSchool
         Canvas canvas;
         Pen _pen = new Pen(Color.Red, 6); //класс с инструментами для рисования. Дефолтный карандаш
         bool _mouseDown = false;
-        bool _doubleClick = false;
-        
+        public bool doubleClick = false;
+        public bool mouseMove = false;
+
         IFigure _figure; // Объект интерфейса
         
         
@@ -43,6 +44,7 @@ namespace PaintForSchool
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
+            mouseMove = true;
             if (_mouseDown)
             {
                 _figure.secondPoint = e.Location;
@@ -82,7 +84,39 @@ namespace PaintForSchool
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e) //происходит после дабл клика
         {
             _mouseDown = false;
+            if (doubleClick)
+            {
+                pictureBox1.Image = canvas.DrawIt(_figure, _pen);
+                //_figure = new LineND();
+                _figure.secondPoint = new Point(-1, -1);
+                _figure.Set(new Point(-1, -1));
+                doubleClick = false;
+                canvas.Save();
+            }
             canvas.Save();
+
+           //_pointN = e.Location;
+                //if (_selectedButton == "LineND")
+                //{
+                //    _pointN = e.Location;
+                //    if (_doubleClick)
+                //    {
+                //        _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp, _pointN));
+                //        //нельзя положить это в дабл клик, потому что линия должна рисоваться по e.Location, который в дабл клике не вызвать
+                //        pictureBox1.Image = _tmpBitmap;
+                //        _pointN = new Point(-1, -1);
+                //        _doubleClick = false;
+                //    }
+                //}
+                //else if (_selectedButton == "FigureND")
+                //{
+                //    _pointN = e.Location;
+                //    if (_doubleClick)
+                //    {
+                //        _pointN = new Point(-1, -1);
+                //        _doubleClick = false;
+                //    }
+                //}
 
             //_pointN = e.Location;
             //if (_selectedButton == "LineND")
@@ -109,6 +143,41 @@ namespace PaintForSchool
             
         }
 
+        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            doubleClick = true;
+
+
+            //if (_selectedButton == "FigureND")
+            //{
+            //    _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp2, _tmp));
+            //    pictureBox1.Image = _tmpBitmap;
+
+            //}
+        }
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                pictureBox1.Image = canvas.Clear();
+            }
+        }
+
+        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+           
+        }
+
         private void ClearAll_Click(object sender, EventArgs e)
         {
             pictureBox1.Image = canvas.Clear();
@@ -126,17 +195,20 @@ namespace PaintForSchool
 
         private void Line2D_Click(object sender, EventArgs e)
         {
-            //_figure = new Line2D();
+            _figure = new Line2D();
+            //_selectedButton = "Line2D";
         }
 
         private void LineND_Click(object sender, EventArgs e)
         {
-           // _figure = new LineND();
+            _figure = new LineND();
+            //_selectedButton = "LineND";
         }
 
         private void FigureND_Click(object sender, EventArgs e)
         {
-            //_figure = new FigureND();
+            _figure = new FigureND();
+            //_selectedButton = "FigureND";
         }
 
         private void trackPenWidth_Scroll(object sender, EventArgs e)
@@ -171,17 +243,6 @@ namespace PaintForSchool
         private void Triangle3D_Click(object sender, EventArgs e)
         {
             _figure = new Triangle3DFigure ();
-        }
-
-        private void pictureBox1_DoubleClick(object sender, EventArgs e)
-        {
-            _doubleClick = true;
-
-            //if (_selectedButton == "FigureND")
-            //{
-            //    _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp2, _tmp));
-            //    pictureBox1.Image = _tmpBitmap;
-            //}
         }
 
         private void NanglesFigure_Click(object sender, EventArgs e)

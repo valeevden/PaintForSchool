@@ -61,7 +61,10 @@
             this.pictureBox1.Size = new System.Drawing.Size(550, 421);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
@@ -78,7 +81,7 @@
             // 
             // LineND
             // 
-            this.LineND.Location = new System.Drawing.Point(49, 152);
+            this.LineND.Location = new System.Drawing.Point(48, 204);
             this.LineND.Name = "LineND";
             this.LineND.Size = new System.Drawing.Size(124, 48);
             this.LineND.TabIndex = 2;
@@ -128,7 +131,8 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(49, 417);
+            this.button7.Location = new System.Drawing.Point(48, 471);
+            this.button7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(124, 48);
             this.button7.TabIndex = 7;
@@ -138,7 +142,8 @@
             // 
             // RectTriangleButton
             // 
-            this.RectTriangleButton.Location = new System.Drawing.Point(49, 363);
+            this.RectTriangleButton.Location = new System.Drawing.Point(48, 363);
+            this.RectTriangleButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RectTriangleButton.Name = "RectTriangleButton";
             this.RectTriangleButton.Size = new System.Drawing.Size(124, 48);
             this.RectTriangleButton.TabIndex = 8;
@@ -148,9 +153,10 @@
             // 
             // IsoscelesTriangle
             // 
-            this.IsoscelesTriangle.Location = new System.Drawing.Point(49, 470);
+            this.IsoscelesTriangle.Location = new System.Drawing.Point(48, 415);
+            this.IsoscelesTriangle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.IsoscelesTriangle.Name = "IsoscelesTriangle";
-            this.IsoscelesTriangle.Size = new System.Drawing.Size(124, 49);
+            this.IsoscelesTriangle.Size = new System.Drawing.Size(124, 52);
             this.IsoscelesTriangle.TabIndex = 9;
             this.IsoscelesTriangle.Text = "Isosceles Triangle";
             this.IsoscelesTriangle.UseVisualStyleBackColor = true;
@@ -168,7 +174,7 @@
             // 
             // Line2D
             // 
-            this.Line2D.Location = new System.Drawing.Point(49, 204);
+            this.Line2D.Location = new System.Drawing.Point(49, 152);
             this.Line2D.Name = "Line2D";
             this.Line2D.Size = new System.Drawing.Size(124, 48);
             this.Line2D.TabIndex = 12;
@@ -285,6 +291,7 @@
             this.Name = "Form1";
             this.Text = "RastPaint";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackPenWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._anglesNumber)).EndInit();
