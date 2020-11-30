@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using PaintForSchool.Figures;
 using PaintForSchool.Painter;
+using System.Windows.Forms;
 
 namespace PaintForSchool
 {
@@ -14,6 +15,7 @@ namespace PaintForSchool
         Bitmap _mainBitmap; //Объект Bitmap используется для работы с изображениями, определяемыми данными пикселей
         Bitmap _tmpBitmap;
         Graphics _graphics; //класс с методами для рисования
+        
 
         public Canvas(int width, int height)
         {
@@ -34,11 +36,30 @@ namespace PaintForSchool
             _mainBitmap = _tmpBitmap;
         }
 
-        public Bitmap Clear() // ХЗ как это работает точно, должно заливать графику цветом фона и возвращать битмап
+        public Bitmap Clear() // Заливает графику цветом фона и возвращает битмап
         {
             _graphics.Clear(Color.White);
             return _mainBitmap;
 
+        }
+
+        public void SaveFiles()
+        {
+            SaveFileDialog saveMe = new SaveFileDialog();
+            saveMe.Title = "Схоронить...";
+            saveMe.Filter = "Картинки (*.JPG)|*.JPG)"; 
+                if (saveMe.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                _mainBitmap.Save(saveMe.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+                catch
+                {
+
+                    MessageBox.Show("Error", "Oshibka", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

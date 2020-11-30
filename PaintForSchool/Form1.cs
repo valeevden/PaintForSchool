@@ -213,15 +213,15 @@ namespace PaintForSchool
 
         private void trackPenWidth_Scroll(object sender, EventArgs e)
         {
-            _pen = new Pen(colorDialog1.Color, trackPenWidth.Value);
+            _pen = new Pen(colorDialog.Color, trackPenWidth.Value);
         }
 
         private void colorPalete_Click(object sender, EventArgs e)
         {
-            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                colorPalete.BackColor = colorDialog1.Color;
-                _pen = new Pen(colorDialog1.Color, trackPenWidth.Value);
+                colorPalete.BackColor = colorDialog.Color;
+                _pen = new Pen(colorDialog.Color, trackPenWidth.Value);
             }
         }
 
@@ -267,5 +267,18 @@ namespace PaintForSchool
         {
             _figure = new RectTriangle();
         }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            saveFileDialog.Title = "Save as...";
+            saveFileDialog.Filter = "Image Files (*.PNG)|*.PNG| All files (*.*)|*.*";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                    pictureBox1.Image.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                    MessageBox.Show("Save Complete", "ОК", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
     }
 }
