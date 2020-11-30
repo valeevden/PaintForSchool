@@ -19,7 +19,7 @@ namespace PaintForSchool.Figures
 
         public NanglesFigure(int anglesNumberFromForm)
         {
-            Painter = new NPolygonIPainter();
+            Painter = new PolygonIPainter();
             anglesNumber = anglesNumberFromForm;
         }
 

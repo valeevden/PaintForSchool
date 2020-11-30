@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaintForSchool.Painter;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -8,37 +9,36 @@ using System.Windows.Forms;
 
 namespace PaintForSchool.Figures
 {
-    public class CircleFigure //: IFigure
+    public class CircleFigure : IFigure
     {
-        public string fType { get; }
+        public Point startPoint { get; set; }
+        public Point secondPoint { get; set; }
 
-        //public int anglesNumber { get; set; }
+        public IPainter Painter { get; set; }
 
         public CircleFigure()
         {
-            fType = "";
+            Painter = new CircleIPainter();
         }
-        public Point[] GetPoints(Point startPoint, Point endPoint, int anglesNumber = 1)
+
+        public Point[] GetPoints()
         {
-            Point[] points = new Point[4];
-            points[0] = startPoint;
-            points[1] = new Point(startPoint.X, endPoint.Y);
-            points[2] = endPoint;
-            points[3] = new Point(endPoint.X, startPoint.Y);
+            int radius = secondPoint.X - startPoint.X;
+           
+            //double hpt = Math.Sqrt(Math.Pow(radius, 2) + Math.Pow(radius, 2));
+            
+            Point startRectangleHere = new Point (secondPoint.X, startPoint.Y+radius);
+
+            Point[] points = new Point[3];
+            points[0] = startRectangleHere;
+            points[1] = startPoint;
+            points[2] = secondPoint;
             return points;
         }
 
-        public  Rectangle MakeRectangle(Point startPoint, Point endPoint)
+        public void Set(Point point)
         {
-            int x = startPoint.X;
-            int y = startPoint.Y;
-            int width = endPoint.X - startPoint.X;
-            int height = endPoint.Y - startPoint.Y;
-            
-            // ректангл описывается 4 точками. Х и У верхнего левого угла, ширина, высота
-            Rectangle rectangle = new Rectangle(x, y, height, height);
-            return rectangle;
+            startPoint = point;
         }
-        
     }
 }

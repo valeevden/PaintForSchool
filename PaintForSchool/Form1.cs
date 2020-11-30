@@ -17,14 +17,11 @@ namespace PaintForSchool
     {
         Canvas canvas;
         Pen _pen = new Pen(Color.Red, 6); //класс с инструментами для рисования. Дефолтный карандаш
-        Color _color;
-        
         bool _mouseDown = false;
         public bool doubleClick = false;
         public bool mouseMove = false;
 
         IFigure _figure; // Объект интерфейса
-        string _selectedButton; // Стринга для свитча, чтобы понимать какая кнопка нажата
         
         
         public Form1()
@@ -34,10 +31,8 @@ namespace PaintForSchool
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            _selectedButton = "Brush";
             canvas = new Canvas(pictureBox1.Width, pictureBox1.Height);
             _mouseDown = false;
-            
             _figure = new MyBrush();
         }
 
@@ -56,64 +51,6 @@ namespace PaintForSchool
                 pictureBox1.Image = canvas.DrawIt(_figure,_pen);
                 
                 GC.Collect();
-                //switch (_selectedButton)
-                //{
-                //    case "Rectangle_2d":
-                //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                //        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-
-                //        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
-                //        pictureBox1.Image = _tmpBitmap;
-                //        GC.Collect();
-                //        break;
-
-                //    case "Square":
-                //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                //        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-
-                //        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
-                //        pictureBox1.Image = _tmpBitmap;
-                //        GC.Collect();
-                //        break;
-
-                //    case "Circle":
-                //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                //        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-
-                //        CircleFigure circle = new CircleFigure();
-                //        _graphics.DrawEllipse(_pen, circle.MakeRectangle(_startPoint, e.Location));
-                //        pictureBox1.Image = _tmpBitmap;
-                //        GC.Collect();
-                //        break;
-
-                //    case "Ellipse":
-                //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                //        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-
-                //        EllipseFigure ellipse = new EllipseFigure();
-                //        _graphics.DrawEllipse(_pen, ellipse.MakeRectangle(_startPoint, e.Location));
-                //        pictureBox1.Image = _tmpBitmap;
-                //        GC.Collect();
-                //        break;
-
-                //    case "Brush":
-                //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                //        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                //        _path.AddLine(_prePointBrush, e.Location);
-                //        //_pen.LineJoin = LineJoin.Round; // Стиль объединения концов линий
-                //        _graphics.DrawPath(_pen, _path);
-                //        pictureBox1.Image = _tmpBitmap;
-                //        GC.Collect();
-                //        _prePointBrush = e.Location;
-                //        break;
-
-                //    case "Line2D":
-                //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
-                //        _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
-                //        _graphics.DrawPolygon(_pen, _figure.GetPoints(_startPoint, e.Location));
-                //        pictureBox1.Image = _tmpBitmap;
-                //        GC.Collect();
-                //        break;
 
                 //    case "LineND":
                 //        _tmpBitmap = (Bitmap)_mainBitmap.Clone();
@@ -141,10 +78,6 @@ namespace PaintForSchool
                 //        pictureBox1.Image = _tmpBitmap;
                 //        GC.Collect();
                 //        break;
-
-                //    default:
-                //        break;
-                //}
             }
         }
 
@@ -185,8 +118,29 @@ namespace PaintForSchool
                 //    }
                 //}
 
+            //_pointN = e.Location;
+            //if (_selectedButton == "LineND")
+            //{
+            //    _pointN = e.Location;
+            //    if (_doubleClick)
+            //    {
+            //        _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp, _pointN));
+            //        //нельзя положить это в дабл клик, потому что линия должна рисоваться по e.Location, который в дабл клике не вызвать
+            //        pictureBox1.Image = _tmpBitmap;
+            //        _pointN = new Point(-1, -1);
+            //        _doubleClick = false;
+            //    }
             //}
-
+            //else if (_selectedButton == "FigureND")
+            //{
+            //    _pointN = e.Location;
+            //    if (_doubleClick)
+            //    {
+            //        _pointN = new Point(-1, -1);
+            //        _doubleClick = false;
+            //    }
+            //}
+            
         }
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
@@ -230,20 +184,16 @@ namespace PaintForSchool
         private void ClearAll_Click(object sender, EventArgs e)
         {
             pictureBox1.Image = canvas.Clear();
-            
-           // _graphics.Clear(Color.White);
-            //pictureBox1.Image = _mainBitmap;
-            //_tmp = _tmp2;
         }
 
         private void Brush_Click(object sender, EventArgs e)
         {
             _figure = new MyBrush();
         }
+
         private void Rectangle_2d_Click(object sender, EventArgs e)
         {
             _figure = new RectangleFigure();
-            //_selectedButton = "Rectangle_2d";
         }
 
         private void Line2D_Click(object sender, EventArgs e)
@@ -273,7 +223,6 @@ namespace PaintForSchool
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
-                _color = colorDialog1.Color;
                 colorPalete.BackColor = colorDialog1.Color;
                 _pen = new Pen(colorDialog1.Color, trackPenWidth.Value);
             }
@@ -281,38 +230,56 @@ namespace PaintForSchool
 
         private void Circle_Click(object sender, EventArgs e)
         {
-            //_figure = new CircleFigure();
-            _selectedButton = "Circle";
+            _figure = new CircleFigure();
         }
 
         private void Ellipse_Click(object sender, EventArgs e)
         {
-            //_figure = new EllipseFigure();
-            _selectedButton = "Ellipse";
+            _figure = new EllipseFigure();
         }
 
         private void Square_Click(object sender, EventArgs e)
         {
-            //_figure = new SquareFigure();
-            //_selectedButton = "Square";
+            _figure = new SquareFigure ();
         }
 
-        
+        private void Triangle3D_Click(object sender, EventArgs e)
+        {
+            _figure = new Triangle3DFigure ();
+        }
+
+        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            _doubleClick = true;
+
+            //if (_selectedButton == "FigureND")
+            //{
+            //    _graphics.DrawPolygon(_pen, _figure.GetPoints(_tmp2, _tmp));
+            //    pictureBox1.Image = _tmpBitmap;
+            //}
+        }
 
         private void NanglesFigure_Click(object sender, EventArgs e)
         {
-            
             _figure = new NanglesFigure((int)_anglesNumber.Value);
         }
 
         private void _anglesNumber_ValueChanged(object sender, EventArgs e)
         {
-            if (_figure.Painter is NPolygonIPainter)
+            if (_figure.Painter is PolygonIPainter)
             {
                 _figure = new NanglesFigure((int)_anglesNumber.Value);
             }
         }
 
-        
+        private void IsoscelesTriangle_Click(object sender, EventArgs e)
+        {
+            _figure = new IsoscelesTriangle();
+        }
+
+        private void RectTriangleButton_Click(object sender, EventArgs e)
+        {
+            _figure = new RectTriangle();
+        }
     }
 }
