@@ -17,7 +17,7 @@ namespace PaintForSchool
     {
         Canvas canvas;
         Pen _pen = new Pen(Color.Red, 6); //класс с инструментами для рисования. Дефолтный карандаш
-        Color _color;
+        //Color _color;
         bool _mouseDown = false;
         bool _doubleClick = false;
         
@@ -149,7 +149,7 @@ namespace PaintForSchool
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
-                _color = colorDialog1.Color;
+                //_color = colorDialog1.Color;
                 colorPalete.BackColor = colorDialog1.Color;
                 _pen = new Pen(colorDialog1.Color, trackPenWidth.Value);
             }
