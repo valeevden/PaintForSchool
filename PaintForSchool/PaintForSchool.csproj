@@ -69,7 +69,6 @@
     <Compile Include="Painter\BrushIPainter.cs" />
     <Compile Include="Painter\CircleIPainter.cs" />
     <Compile Include="Painter\EllipseIPainter.cs" />
-    <Compile Include="Painter\NPolygonIPainter.cs" />
     <Compile Include="Painter\IPainter.cs" />
     <Compile Include="Painter\PolygonIPainter.cs" />
     <Compile Include="Program.cs" />

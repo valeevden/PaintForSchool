@@ -92,7 +92,7 @@
             this.Rectangle_2d.Name = "Rectangle_2d";
             this.Rectangle_2d.Size = new System.Drawing.Size(124, 48);
             this.Rectangle_2d.TabIndex = 3;
-            this.Rectangle_2d.Text = "Rectangle_2d";
+            this.Rectangle_2d.Text = "Rectangle";
             this.Rectangle_2d.UseVisualStyleBackColor = true;
             this.Rectangle_2d.Click += new System.EventHandler(this.Rectangle_2d_Click);
             // 
@@ -152,7 +152,7 @@
             this.IsoscelesTriangle.Name = "IsoscelesTriangle";
             this.IsoscelesTriangle.Size = new System.Drawing.Size(124, 49);
             this.IsoscelesTriangle.TabIndex = 9;
-            this.IsoscelesTriangle.Text = "ravnBed_Tianlge 2d";
+            this.IsoscelesTriangle.Text = "Isosceles Triangle";
             this.IsoscelesTriangle.UseVisualStyleBackColor = true;
             this.IsoscelesTriangle.Click += new System.EventHandler(this.IsoscelesTriangle_Click);
             // 

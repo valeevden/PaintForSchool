@@ -25,18 +25,9 @@ namespace PaintForSchool.Painter
             int y = point[0].Y;
             int width = point[1].X - point[0].X;
             int height = point[1].Y - point[0].Y;
-
-            // Ректангл (прямоугольник) описывается 4 точками. Х и У верхнего левого угла, ширина и высота
-            if (point.Length == 3)
-            {
-                Rectangle rectangle = new Rectangle(x, y, height, height);
-                return rectangle;
-            }
-            else
-            {
-                Rectangle rectangle = new Rectangle(x, y, width, height);
-                return rectangle;
-            }
+            Rectangle rectangle = new Rectangle(x, y, width, height);
+            return rectangle;
+            
         }
     }
 }

@@ -23,8 +23,6 @@ namespace PaintForSchool.Figures
         public RectangleFigure()
         {
             Painter = new PolygonIPainter(); 
-
-            
         }
 
         public Point[] GetPoints()
@@ -37,14 +35,10 @@ namespace PaintForSchool.Figures
             return points;
         }
 
-        //public void DrawFigure(Pen pen, Graphics graphics)
-        //{
-        //    graphics.DrawPolygon(pen, GetPoints());
-        //}
         public void Set(Point pointFromForm)
         {
             startPoint = pointFromForm;
         }
 
-        }
+    }
 }

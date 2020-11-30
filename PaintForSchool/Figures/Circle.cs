@@ -34,7 +34,6 @@ namespace PaintForSchool.Figures
             points[1] = startPoint;
             points[2] = secondPoint;
             return points;
-
         }
 
         public void Set(Point point)
