@@ -22,48 +22,25 @@ namespace PaintForSchool.Figures
 
         public Point[] GetPoints()
         {
-                Point[] points = new Point[4];
-            if (startPoint.X < secondPoint.X && startPoint.Y < secondPoint.Y)
+            int a = Math.Abs(startPoint.X - secondPoint.X);
+
+            if (startPoint.Y > secondPoint.Y)
             {
-                int a = secondPoint.X - startPoint.X;
-                points[0] = startPoint;
-                points[1] = new Point(startPoint.X, startPoint.Y + a);
-                points[2] = new Point(startPoint.X + a, startPoint.Y + a);
-                points[3] = new Point(startPoint.X + a, startPoint.Y);
+                a = -a;
             }
 
-             if (startPoint.X < secondPoint.X && startPoint.Y > secondPoint.Y)
-             {
-                int a = secondPoint.X - startPoint.X;
-                points[0] = startPoint;
-                points[1] = new Point(startPoint.X, startPoint.Y - a);
-                points[2] = new Point(startPoint.X + a, startPoint.Y - a);
-                points[3] = new Point(startPoint.X + a, startPoint.Y);
-             }
-
-            if (startPoint.X > secondPoint.X && startPoint.Y > secondPoint.Y)
-            {
-                int a = secondPoint.X - startPoint.X;
-                points[0] = startPoint;
-                points[1] = new Point(startPoint.X, startPoint.Y + a);
-                points[2] = new Point(startPoint.X + a, startPoint.Y + a);
-                points[3] = new Point(startPoint.X + a, startPoint.Y);
-            }
-            if (startPoint.X > secondPoint.X && startPoint.Y < secondPoint.Y)
-            {
-                int a = secondPoint.X - startPoint.X;
-                points[0] = startPoint;
-                points[1] = new Point(startPoint.X, startPoint.Y - a);
-                points[2] = new Point(startPoint.X + a, startPoint.Y - a);
-                points[3] = new Point(startPoint.X + a, startPoint.Y);
-            }
+            Point[] points = new Point[4];
+            points[0] = startPoint;
+            points[1] = new Point(startPoint.X, startPoint.Y + a);
+            points[2] = new Point(secondPoint.X, startPoint.Y + a);
+            points[3] = new Point(secondPoint.X, startPoint.Y);
             return points;
         }
-
-            public void Set(Point pointFromForm)
+        public void Set(Point pointFromForm)
             {
                 startPoint = pointFromForm;
             }
         }
     }
+
 

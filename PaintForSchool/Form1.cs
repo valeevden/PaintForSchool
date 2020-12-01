@@ -267,5 +267,28 @@ namespace PaintForSchool
         {
             _figure = new RectTriangle();
         }
+
+        private void SaveFiles_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1 != null)
+            {
+                SaveFileDialog tpm = new SaveFileDialog();
+                tpm.Title = "Сохранить картинку как..";
+                tpm.OverwritePrompt = true;
+                tpm.Filter = "Image Files (*.BMP)|*.BMP| Image Files(*.JPG)|*.JPG|;Image Files(*.EPS)|*.EPS|; All Files (*.*)|*.*";
+
+                if (tpm.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        pictureBox1.Image.Save(tpm.FileName);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Ошибка, MessageBoxButtons.OK");
+                    }
+                }
+            }
+        }
     }
 }
