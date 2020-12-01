@@ -40,5 +40,6 @@ namespace PaintForSchool
             return _mainBitmap;
 
         }
+
     }
 }

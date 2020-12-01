@@ -18,8 +18,9 @@ namespace PaintForSchool.Figures
 
         public Triangle3DFigure ()
         {
+            
+            startPoint = new Point(-1,-1);
             Painter = new PolygonIPainter();
-
         }
 
         public Point[] GetPoints()
@@ -27,13 +28,20 @@ namespace PaintForSchool.Figures
             Point[] points = new Point[3];
             points[0] = startPoint;
             points[1] = secondPoint;
-            points[2] = new Point();
+            points[2] = new Point ();
             return points;
         }
 
-        public void Set(Point pointFromForm)
+        public void Set(Point point)
         {
-            startPoint = pointFromForm;
+            if (startPoint == new Point (-1,-1))
+            {
+                startPoint = point;
+            }
+            else
+            {
+
+            }
         }
     }
 }

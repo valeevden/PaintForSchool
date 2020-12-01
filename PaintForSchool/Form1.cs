@@ -13,7 +13,7 @@ using PaintForSchool.Painter;
 
 namespace PaintForSchool
 {
-    public partial class Form1 : Form
+    public partial class Upload : Form
     {
         Canvas canvas;
         Pen _pen = new Pen(Color.Red, 6); //класс с инструментами для рисования. Дефолтный карандаш
@@ -26,7 +26,7 @@ namespace PaintForSchool
         string _selectedButton; // Стринга для свитча, чтобы понимать какая кнопка нажата
         
         
-        public Form1()
+        public Upload()
         {
             InitializeComponent();
         }
@@ -283,6 +283,47 @@ namespace PaintForSchool
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void SaveFile_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1 != null)
+            {
+                SaveFileDialog tpm = new SaveFileDialog();
+                tpm.Title = "Сохранить картинку как..";
+                tpm.OverwritePrompt = true;
+                tpm.Filter = "Image Files (*.BMP;*.JPG;*.EPS)|*.BMP;*.JPG;*.EPS; All Files (*.*)|*.*";
+
+                if (tpm.ShowDialog () == DialogResult.OK )
+                {
+                    try
+                    {
+                        pictureBox1.Image.Save (tpm.FileName);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Ошибка, MessageBoxButtons.OK");
+                    }
+                }
+
+            }
+        }
+
+        private void Upload_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog F = new OpenFileDialog();
+            F.Filter = "All Files (*.*)|*.*";
+            if( F.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    pictureBox1.Image = new Bitmap(F.FileName); 
+                }
+                catch 
+                {
+                    MessageBox.Show("Невозможно открыть выбранный файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                }
+            }
         }
     }
 }
