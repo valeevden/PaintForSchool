@@ -15,19 +15,17 @@ namespace PaintForSchool.Figures
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
         public Point tmpPoint { get; set; }
-        //public Point tmp2Point { get; set; }
         public GraphicsPath Path { get; set; }
-        //public List<Point> _pointsList = new List<Point>();
         public bool started { get; set; }
         public IPainter Painter { get; set; }
         public IRightClickReaction Reaction { get; set; }
+
+
         public FigureND()
         {
-            //Path = new GraphicsPath();
             Painter = new PolygonIPainter();
             Reaction = new FreeFigureIRightClickReaction(this);
             started = false;
-            //startPoint = new Point(-1, -1);
         }
 
         public Point[] GetPoints()
