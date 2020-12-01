@@ -23,7 +23,6 @@ namespace PaintForSchool.Figures
 
         public LineND()
         {
-            startPoint = new Point(-1, -1);
             Painter = new PolygonIPainter();
             Reaction = new FreeLineIRightClickReaction(this);
             started = false;

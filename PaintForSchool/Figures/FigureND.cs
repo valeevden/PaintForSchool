@@ -25,7 +25,7 @@ namespace PaintForSchool.Figures
         {
             //Path = new GraphicsPath();
             Painter = new PolygonIPainter();
-            Reaction = new FreeIRightClickReaction(this);
+            Reaction = new FreeFigureIRightClickReaction(this);
             started = false;
             //startPoint = new Point(-1, -1);
         }
