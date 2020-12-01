@@ -10,11 +10,11 @@ using System.Drawing.Drawing2D;
 
 namespace PaintForSchool.RightClickReaction
 {
-    public class FreeIRightClickReaction : IRightClickReaction
+    public class FreeFigureIRightClickReaction : IRightClickReaction
     {
         IFigure _figure;
         
-        public FreeIRightClickReaction(IFigure figureFromForm)
+        public FreeFigureIRightClickReaction(IFigure figureFromForm)
         {
             _figure = figureFromForm; 
         }
