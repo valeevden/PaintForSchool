@@ -10,12 +10,21 @@ namespace PaintForSchool.Painter
 {
     public class PointPolygonIPainter : IPainter
     {
-       
+        GraphicsPath _path;
+
+        public PointPolygonIPainter()
+        {
+
+        }
+        public PointPolygonIPainter(GraphicsPath path)
+        {
+            _path = path;
+        }
         public void DrawFigure(Pen pen, Graphics graphics, Point[] points)
         {
-            graphics.DrawPolygon(pen, points);
+            graphics.DrawPath(pen, _path);
 
-            //path.AddLine(startPoint, points[1]);
+            //_path.AddLine(startPoint, points[1]);
 
             //graphics.DrawPath(pen, path);
 

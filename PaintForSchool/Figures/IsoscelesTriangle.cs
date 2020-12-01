@@ -9,7 +9,7 @@ using PaintForSchool.Painter;
 
 namespace PaintForSchool.Figures
 {
-    class IsoscelesTriangle : IFigure
+    class IsoscelesTriangle //: IFigure
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }

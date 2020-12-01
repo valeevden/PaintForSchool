@@ -9,7 +9,7 @@ using PaintForSchool.Painter;
 
 namespace PaintForSchool.Figures
 {
-    public class RectangleFigure : IFigure // Класс для прямоугольников по 2 точкам
+    public class RectangleFigure //: IFigure // Класс для прямоугольников по 2 точкам
     {
 
         public Point startPoint { get; set; }

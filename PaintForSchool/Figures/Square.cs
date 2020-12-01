@@ -9,7 +9,7 @@ using PaintForSchool.Painter;
 
 namespace PaintForSchool.Figures
 {
-    public class SquareFigure : IFigure // Класс для квадратов по 2 точкам
+    public class SquareFigure //: IFigure // Класс для квадратов по 2 точкам
     {
 
         public Point startPoint { get; set; }

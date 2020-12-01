@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RightClickReaction\FreeIRightClickReaction.cs" />
+    <Compile Include="RightClickReaction\IRightClickReaction.cs" />
     <Compile Include="Figures\INPointsFigure.cs" />
     <Compile Include="Figures\IsoscelesTriangle.cs" />
     <Compile Include="Figures\MyBrush.cs" />

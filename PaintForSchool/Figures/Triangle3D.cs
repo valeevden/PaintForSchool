@@ -8,7 +8,7 @@ using PaintForSchool.Painter;
 
 namespace PaintForSchool.Figures
 {
-    public class Triangle3DFigure : IFigure
+    public class Triangle3DFigure //: IFigure
     {
         public Point startPoint { get; set; }
 

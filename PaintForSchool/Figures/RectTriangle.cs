@@ -9,7 +9,7 @@ using PaintForSchool.Painter;
 
 namespace PaintForSchool.Figures
 {
-    public class RectTriangle : IFigure
+    public class RectTriangle //: IFigure
     {
 
         public Point startPoint { get; set; }

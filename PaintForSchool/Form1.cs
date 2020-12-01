@@ -34,7 +34,7 @@ namespace PaintForSchool
         {
             canvas = new Canvas(pictureBox1.Width, pictureBox1.Height);
             _mouseDown = false;
-            _figure = new MyBrush();
+            //_figure = new MyBrush();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -87,13 +87,15 @@ namespace PaintForSchool
             _mouseDown = false;
             if (e.Button == MouseButtons.Right)
             {
-                _figure.startPoint = new Point(-2, -2);
+                _figure.Reaction.Do();
                 pictureBox1.Image = canvas.DrawIt(_figure, _pen);
+                //_figure.startPoint = new Point(-2, -2);
+                //pictureBox1.Image = canvas.DrawIt(_figure, _pen);
                 //_figure.startPoint = new Point(-3, -3);
                 //_figure.startPoint = _figure.secondPoint;
                 //_figure.LastLine(_figure.secondPoint);
-                _figure.secondPoint = new Point(-1, -1);
-                _figure.Set(new Point(-1, -1));
+                //_figure.secondPoint = new Point(-1, -1);
+                //_figure.Set(new Point(-1, -1));
             }
             canvas.Save();
 
@@ -185,23 +187,23 @@ namespace PaintForSchool
 
         private void Brush_Click(object sender, EventArgs e)
         {
-            _figure = new MyBrush();
+           // _figure = new MyBrush();
         }
 
         private void Rectangle_2d_Click(object sender, EventArgs e)
         {
-            _figure = new RectangleFigure();
+            //_figure = new RectangleFigure();
         }
 
         private void Line2D_Click(object sender, EventArgs e)
         {
-            _figure = new Line2D();
+            //_figure = new Line2D();
             //_selectedButton = "Line2D";
         }
 
         private void LineND_Click(object sender, EventArgs e)
         {
-            _figure = new LineND();
+            //_figure = new LineND();
             //_selectedButton = "LineND";
         }
 
@@ -227,45 +229,45 @@ namespace PaintForSchool
 
         private void Circle_Click(object sender, EventArgs e)
         {
-            _figure = new CircleFigure();
+            //_figure = new CircleFigure();
         }
 
         private void Ellipse_Click(object sender, EventArgs e)
         {
-            _figure = new EllipseFigure();
+           // _figure = new EllipseFigure();
         }
 
         private void Square_Click(object sender, EventArgs e)
         {
-            _figure = new SquareFigure ();
+            //_figure = new SquareFigure ();
         }
 
         private void Triangle3D_Click(object sender, EventArgs e)
         {
-            _figure = new Triangle3DFigure ();
+            //_figure = new Triangle3DFigure ();
         }
 
         private void NanglesFigure_Click(object sender, EventArgs e)
         {
-            _figure = new NanglesFigure((int)_anglesNumber.Value);
+            //_figure = new NanglesFigure((int)_anglesNumber.Value);
         }
 
         private void _anglesNumber_ValueChanged(object sender, EventArgs e)
         {
-            if (_figure.Painter is PolygonIPainter)
-            {
-                _figure = new NanglesFigure((int)_anglesNumber.Value);
-            }
+            //if (_figure.Painter is PolygonIPainter)
+            //{
+            //    _figure = new NanglesFigure((int)_anglesNumber.Value);
+            //}
         }
 
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
         {
-            _figure = new IsoscelesTriangle();
+            //_figure = new IsoscelesTriangle();
         }
 
         private void RectTriangleButton_Click(object sender, EventArgs e)
         {
-            _figure = new RectTriangle();
+            //_figure = new RectTriangle();
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)

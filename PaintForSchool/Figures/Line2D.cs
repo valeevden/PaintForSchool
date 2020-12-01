@@ -8,7 +8,7 @@ using PaintForSchool.Painter;
 
 namespace PaintForSchool.Figures
 {
-    public class Line2D : IFigure
+    public class Line2D //: IFigure
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }

@@ -14,7 +14,7 @@ namespace PaintForSchool
         Bitmap _mainBitmap; //Объект Bitmap используется для работы с изображениями, определяемыми данными пикселей
         Bitmap _tmpBitmap;
         Graphics _graphics; //класс с методами для рисования
-
+        
         public Canvas(int width, int height)
         {
             _mainBitmap = new Bitmap(width, height);
@@ -38,6 +38,7 @@ namespace PaintForSchool
         public Bitmap Clear() // ХЗ как это работает точно, должно заливать графику цветом фона и возвращать битмап
         {
             _graphics.Clear(Color.White);
+            
             return _mainBitmap;
 
         }
