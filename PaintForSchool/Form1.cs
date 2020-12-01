@@ -90,13 +90,6 @@ namespace PaintForSchool
             {
                 _figure.Reaction.Do();
                 pictureBox1.Image = canvas.DrawIt(_figure, _pen);
-                //_figure.startPoint = new Point(-2, -2);
-                //pictureBox1.Image = canvas.DrawIt(_figure, _pen);
-                //_figure.startPoint = new Point(-3, -3);
-                //_figure.startPoint = _figure.secondPoint;
-                //_figure.LastLine(_figure.secondPoint);
-                //_figure.secondPoint = new Point(-1, -1);
-                //_figure.Set(new Point(-1, -1));
             }
             canvas.Save();
 
@@ -204,7 +197,7 @@ namespace PaintForSchool
 
         private void LineND_Click(object sender, EventArgs e)
         {
-            //_figure = new LineND();
+            _figure = new LineND();
             //_selectedButton = "LineND";
         }
 

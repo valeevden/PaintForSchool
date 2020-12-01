@@ -13,7 +13,6 @@ namespace PaintForSchool.Figures
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
-
         public IPainter Painter { get; set; }
 
         public CircleFigure()

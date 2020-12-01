@@ -10,24 +10,24 @@ using PaintForSchool.RightClickReaction;
 
 namespace PaintForSchool.Figures
 {
-    public class FigureND : IFigure // INPointsFigure
+    public class FigureND : IFigure 
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
-        //public Point tmpPoint { get; set; }
+        public Point tmpPoint { get; set; }
         //public Point tmp2Point { get; set; }
         public GraphicsPath Path { get; set; }
-        public List<Point> _pointsList = new List<Point>();
+        //public List<Point> _pointsList = new List<Point>();
         public bool started { get; set; }
         public IPainter Painter { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public FigureND()
         {
-            Path = new GraphicsPath();
+            //Path = new GraphicsPath();
             Painter = new PolygonIPainter();
             Reaction = new FreeIRightClickReaction(this);
-            //startPoint = new Point(-1, -1);
             started = false;
+            //startPoint = new Point(-1, -1);
         }
 
         public Point[] GetPoints()
@@ -43,9 +43,10 @@ namespace PaintForSchool.Figures
         {
             if (started == false)
             {
+                Path = new GraphicsPath();
                 Path.StartFigure();
                 started = true;
-                
+                tmpPoint = point;
             }
             else
             {

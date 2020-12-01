@@ -15,10 +15,11 @@ namespace PaintForSchool.Figures
 
         Point startPoint { get; set; }
         Point secondPoint { get; set; }
+        Point tmpPoint { get; set; }
         GraphicsPath Path { get; set; }
-        IPainter Painter { get; }
         IRightClickReaction Reaction {get; set; }
         bool started { get; set; }
+        IPainter Painter { get; }
         Point[] GetPoints();
 
         void Set(Point point);

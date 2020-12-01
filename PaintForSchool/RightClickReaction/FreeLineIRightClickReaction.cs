@@ -10,19 +10,19 @@ using System.Drawing.Drawing2D;
 
 namespace PaintForSchool.RightClickReaction
 {
-    public class FreeIRightClickReaction : IRightClickReaction
+    public class FreeLineIRightClickReaction : IRightClickReaction
     {
         IFigure _figure;
         
-        public FreeIRightClickReaction(IFigure figureFromForm)
+        public FreeLineIRightClickReaction(IFigure figureFromForm)
         {
             _figure = figureFromForm; 
         }
         public void Do()
         {
-            //_figure.secondPoint = new Point((int)_figure.Path.PathPoints[2].X, (int)_figure.Path.PathPoints[2].Y);
             _figure.started = false;
-            _figure.secondPoint = _figure.tmpPoint;
+            //_figure.secondPoint = new Point((int)_figure.Path.PathPoints[2].X, (int)_figure.Path.PathPoints[2].Y);
+            _figure.startPoint = _figure.secondPoint;
             _figure.Path.CloseFigure();
             _figure.Path.Dispose();
         }
