@@ -6,19 +6,27 @@ using System.Text;
 using System.Threading.Tasks;
 using PaintForSchool.Figures;
 using PaintForSchool.Painter;
+using PaintForSchool.RightClickReaction;
+using System.Drawing.Drawing2D;
 
 namespace PaintForSchool.Figures
 {
-    class IsoscelesTriangle //: IFigure
+    class IsoscelesTriangle : IFigure
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
 
         public IPainter Painter { get; }
 
+        public GraphicsPath Path { get; set; }
+        public IRightClickReaction Reaction { get; set; }
+        public bool started { get; set; }
+        public Point tmpPoint { get; set; }
+
         public IsoscelesTriangle()
         {
             Painter = new PolygonIPainter();
+            Reaction = new NoReactionIReaction();
         }
 
         public Point[] GetPoints()

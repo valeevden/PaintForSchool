@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing.Drawing2D;
 using PaintForSchool.Painter;
+using PaintForSchool.RightClickReaction;
 
 namespace PaintForSchool.Figures
 {
@@ -21,10 +22,16 @@ namespace PaintForSchool.Figures
         {
             Painter = new BrushIPainter();
 
+            Reaction = new NoReactionIReaction();
+
             startPoint = new Point(-1, -1);
         }
 
         GraphicsPath _path;
+        public GraphicsPath Path { get; set; }
+        public IRightClickReaction Reaction { get; set; }
+        public bool started { get; set; }
+        public Point tmpPoint { get; set; }
 
 
         //передаём в BrushIPainter текущую точку

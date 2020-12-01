@@ -5,21 +5,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PaintForSchool.Painter;
+using System.Drawing.Drawing2D;
+using PaintForSchool.RightClickReaction;
 
 
 namespace PaintForSchool.Figures
 {
-    public class NanglesFigure //: IFigure
+    public class NanglesFigure : IFigure
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
         public int anglesNumber { get; set; }
 
         public IPainter Painter { get; set; }
+        public GraphicsPath Path { get; set; }
+        public IRightClickReaction Reaction { get; set; }
+        public bool started { get; set; }
+        public Point tmpPoint { get; set; }
 
         public NanglesFigure(int anglesNumberFromForm)
         {
             Painter = new PolygonIPainter();
+            Reaction = new NoReactionIReaction();
             anglesNumber = anglesNumberFromForm;
         }
 
