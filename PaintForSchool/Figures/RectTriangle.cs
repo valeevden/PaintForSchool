@@ -6,20 +6,27 @@ using System.Threading.Tasks;
 using PaintForSchool.Figures;
 using System.Drawing;
 using PaintForSchool.Painter;
+using System.Drawing.Drawing2D;
+using PaintForSchool.RightClickReaction;
 
 namespace PaintForSchool.Figures
 {
-    public class RectTriangle //: IFigure
+    public class RectTriangle : IFigure
     {
 
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
 
         public IPainter Painter { get; }
+        public Point tmpPoint { get ; set ; }
+        public GraphicsPath Path { get; set; }
+        public IRightClickReaction Reaction { get ; set; }
+        public bool started { get; set; }
 
         public RectTriangle()
         {
             Painter = new PolygonIPainter();
+            Reaction = new NoReactionIReaction();
         }
 
         public Point[] GetPoints()

@@ -1,28 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PaintForSchool.Painter;
-
+using PaintForSchool.RightClickReaction;
 
 namespace PaintForSchool.Figures
 {
-    public class RectangleFigure //: IFigure // Класс для прямоугольников по 2 точкам
+    public class RectangleFigure : IFigure 
     {
 
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
-        //public string fType { get; }
-
+        public Point tmpPoint { get; set; }
         public IPainter Painter { get; }
-
-        //public int anglesNumber { get; set; }
+        public GraphicsPath Path { get; set; }
+        public IRightClickReaction Reaction { get; set; }
+        public bool started { get; set; }
+       
 
         public RectangleFigure()
         {
-            Painter = new PolygonIPainter(); 
+            Painter = new PolygonIPainter();
+            Reaction =new NoReactionIReaction();
+            started = false;
         }
 
         public Point[] GetPoints()

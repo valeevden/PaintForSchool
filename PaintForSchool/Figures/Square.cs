@@ -15,11 +15,8 @@ namespace PaintForSchool.Figures
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
-
         public Point tmpPoint { get; set; }
-
         public GraphicsPath Path { get; set; }
-        //public List<Point> _pointsList = new List<Point>();
         public bool started { get; set; }
         public IPainter Painter { get; set; }
 

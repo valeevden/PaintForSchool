@@ -12,9 +12,7 @@ namespace PaintForSchool.Painter
     {
         GraphicsPath _path;
 
-        //переменная для хранения и стартоой точки, и предпоследней,  от которой будем рисовать следующий отрезок
         Point startPoint;
-
 
         public BrushIPainter()
         {
