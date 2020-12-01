@@ -35,6 +35,7 @@ namespace PaintForSchool
             canvas = new Canvas(pictureBox1.Width, pictureBox1.Height);
             _mouseDown = false;
             //_figure = new MyBrush();
+            _figure = new FigureND();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)

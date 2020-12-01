@@ -45,6 +45,7 @@ namespace PaintForSchool.Figures
             {
                 Path.StartFigure();
                 started = true;
+                
             }
             else
             {
