@@ -22,7 +22,7 @@ namespace PaintForSchool.Figures
         public EllipseFigure()
         {
             Painter = new EllipseIPainter();
-            doubleClickReaction = new NDNotActive();
+            doubleClickReaction = new PathIsNotActive();
         }
 
         public Point[] GetPoints()

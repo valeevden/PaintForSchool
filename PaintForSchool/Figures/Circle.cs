@@ -22,7 +22,7 @@ namespace PaintForSchool.Figures
         public CircleFigure()
         {
             Painter = new CircleIPainter();
-            doubleClickReaction = new NDNotActive();
+            doubleClickReaction = new PathIsNotActive();
         }
 
         public Point[] GetPoints()

@@ -22,7 +22,7 @@ namespace PaintForSchool.Figures
         public RectTriangle()
         {
             Painter = new PolygonIPainter();
-            doubleClickReaction = new NDNotActive();
+            doubleClickReaction = new PathIsNotActive();
         }
 
         public Point[] GetPoints()

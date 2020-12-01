@@ -8,11 +8,11 @@ using System.Drawing;
 
 namespace PaintForSchool.DoubleClickReaction
 {
-    class NDActive : IDoubleClickReaction
+    class PathIsActive : IDoubleClickReaction
     {
         IFigure _figure;
 
-        public NDActive(IFigure figureFromForm)
+        public PathIsActive(IFigure figureFromForm)
         {
             _figure = figureFromForm;
         }

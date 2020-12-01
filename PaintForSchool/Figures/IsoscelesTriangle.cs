@@ -21,7 +21,7 @@ namespace PaintForSchool.Figures
         public IsoscelesTriangle()
         {
             Painter = new PolygonIPainter();
-            doubleClickReaction = new NDNotActive();
+            doubleClickReaction = new PathIsNotActive();
         }
 
         public Point[] GetPoints()

@@ -18,9 +18,9 @@ namespace PaintForSchool.Figures
         public IDoubleClickReaction doubleClickReaction { get; set; }
         public FigureND()
         {
-            Painter = new PolygonIPainter();
+            Painter = new PathIPainter();
             startPoint = new Point(-1, -1);
-            doubleClickReaction = new NDActive(this);
+            doubleClickReaction = new PathIsActive(this);
         }
 
         public Point[] GetPoints()

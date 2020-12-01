@@ -47,8 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DoubleClickReaction\IDoubleClickReaction.cs" />
-    <Compile Include="DoubleClickReaction\NDActive.cs" />
-    <Compile Include="DoubleClickReaction\NDNotActive.cs" />
+    <Compile Include="DoubleClickReaction\PathIsActive.cs" />
+    <Compile Include="DoubleClickReaction\PathIsNotActive.cs" />
     <Compile Include="Figures\IsoscelesTriangle.cs" />
     <Compile Include="Figures\MyBrush.cs" />
     <Compile Include="Figures\Circle.cs" />
@@ -73,7 +73,7 @@
     <Compile Include="Painter\CircleIPainter.cs" />
     <Compile Include="Painter\EllipseIPainter.cs" />
     <Compile Include="Painter\IPainter.cs" />
-    <Compile Include="Painter\PointPolygonIPainter.cs" />
+    <Compile Include="Painter\PathIPainter.cs" />
     <Compile Include="Painter\PolygonIPainter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

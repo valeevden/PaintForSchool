@@ -23,7 +23,7 @@ namespace PaintForSchool.Figures
         {
             Painter = new PolygonIPainter();
             anglesNumber = anglesNumberFromForm;
-            doubleClickReaction = new NDNotActive();
+            doubleClickReaction = new PathIsNotActive();
         }
 
         public Point[] GetPoints()

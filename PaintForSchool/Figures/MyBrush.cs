@@ -26,7 +26,7 @@ namespace PaintForSchool.Figures
 
             startPoint = new Point(-1, -1);
 
-            doubleClickReaction = new NDNotActive();
+            doubleClickReaction = new PathIsNotActive();
         }
 
         GraphicsPath _path;

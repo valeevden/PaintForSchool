@@ -22,7 +22,7 @@ namespace PaintForSchool.Figures
         public Line2D()
         {
             Painter = new PolygonIPainter();
-            doubleClickReaction = new NDNotActive();
+            doubleClickReaction = new PathIsNotActive();
         }
 
         public Point[] GetPoints()

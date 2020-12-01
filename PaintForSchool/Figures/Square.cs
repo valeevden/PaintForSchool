@@ -20,7 +20,7 @@ namespace PaintForSchool.Figures
         public SquareFigure()
         {
             Painter = new PolygonIPainter();
-            doubleClickReaction = new NDNotActive();
+            doubleClickReaction = new PathIsNotActive();
         }
 
         public Point[] GetPoints()

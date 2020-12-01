@@ -4,28 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using PaintForSchool.Figures;
 
 namespace PaintForSchool.Painter
 {
-    public class PointPolygonIPainter : IPainter
+    public class PathIPainter : IPainter
     {
-        public Point startPoint;
+        public Point secondPoint;
 
-        public PointPolygonIPainter(Point point)
+        IFigure _figure;
+
+        GraphicsPath _path;
+
+        public PathIPainter()
         {
-            startPoint = point;
+            _path = new GraphicsPath();
+            _path.StartFigure();
         }
         public void DrawFigure(Pen pen, Graphics graphics, Point[] points)
         {
             
-            if (points[0] != new Point(-1, -1) || points[0] == new Point(0, 0))
-            {
-                
-            }
-            else
-            {
-                graphics.DrawPolygon(pen, points);
-            }
+            graphics.DrawPath(pen, GetPath(points));
+        }
+
+        private GraphicsPath GetPath(Point[] points)
+        {
+            _path.AddLine(points[0], points[1]);
+            return _path;
         }
     }
 }
+

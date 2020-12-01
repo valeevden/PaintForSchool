@@ -21,8 +21,8 @@ namespace PaintForSchool.Figures
 
         public Triangle3DFigure ()
         {
-            Painter = new PolygonIPainter();
-            doubleClickReaction = new NDActive(this);
+            Painter = new PathIPainter();
+            doubleClickReaction = new PathIsActive(this);
 
         }
 
