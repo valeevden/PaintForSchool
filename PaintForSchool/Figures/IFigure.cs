@@ -13,7 +13,6 @@ namespace PaintForSchool.Figures
 
         Point startPoint { get; set; }
         Point secondPoint { get; set; }
-
         IPainter Painter { get; }
 
         Point[] GetPoints();

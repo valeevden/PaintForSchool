@@ -24,9 +24,10 @@ namespace PaintForSchool.Figures
             Painter = new PolygonIPainter();
             
         }
-        public LineND(Point startPoint, Point secondPoint)
+        public LineND(Point startPoint)
         {
-           // Painter = new PointPolygonIPainter(startPoint, secondPoint);
+            startPoint = tmpPoint;
+            Painter = new PolygonIPainter();
 
         }
 
@@ -51,9 +52,6 @@ namespace PaintForSchool.Figures
             }
         }
 
-        //public void LastLine()
-        //{
-        //    Painter = new PointPolygonIPainter(tmpPoint, secondPoint);
-        //}
+        
     }
 }

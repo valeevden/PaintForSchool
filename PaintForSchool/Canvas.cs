@@ -18,6 +18,7 @@ namespace PaintForSchool
         public Canvas(int width, int height)
         {
             _mainBitmap = new Bitmap(width, height);
+            _tmpBitmap = (Bitmap)_mainBitmap.Clone();
             _graphics = Graphics.FromImage(_mainBitmap);
         } 
 

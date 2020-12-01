@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Figures\INPointsFigure.cs" />
     <Compile Include="Figures\IsoscelesTriangle.cs" />
     <Compile Include="Figures\MyBrush.cs" />
     <Compile Include="Figures\Circle.cs" />
