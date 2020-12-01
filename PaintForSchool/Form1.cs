@@ -233,12 +233,12 @@ namespace PaintForSchool
 
         private void Square_Click(object sender, EventArgs e)
         {
-            //_figure = new SquareFigure ();
+            _figure = new SquareFigure ();
         }
 
         private void Triangle3D_Click(object sender, EventArgs e)
         {
-            //_figure = new Triangle3DFigure ();
+            _figure = new Triangle3DFigure ();
         }
 
         private void NanglesFigure_Click(object sender, EventArgs e)
