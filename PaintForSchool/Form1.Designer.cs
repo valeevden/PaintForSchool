@@ -28,13 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.LineND = new System.Windows.Forms.Button();
-            this.Circle_2d = new System.Windows.Forms.Button();
-            this.Ellipse = new System.Windows.Forms.Button();
             this.Triangle3D = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
-            this.FigureND = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.trackPenWidth = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,95 +37,49 @@
             this.label2 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this._anglesNumber = new System.Windows.Forms.NumericUpDown();
-            this.NanglesFigure = new System.Windows.Forms.Button();
             this.SaveFile = new System.Windows.Forms.Button();
             this.UploadFile = new System.Windows.Forms.Button();
+            this.NanglesFigure = new System.Windows.Forms.Button();
             this.Line2D = new System.Windows.Forms.Button();
+            this.FigureND = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.Ellipse = new System.Windows.Forms.Button();
+            this.Circle_2d = new System.Windows.Forms.Button();
             this.Square = new System.Windows.Forms.Button();
             this.Rectangle_2d = new System.Windows.Forms.Button();
+            this.LineND = new System.Windows.Forms.Button();
             this.Brush = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackPenWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._anglesNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // LineND
-            // 
-            this.LineND.Image = global::PaintForSchool.Properties.Resources.graph;
-            this.LineND.Location = new System.Drawing.Point(202, 187);
-            this.LineND.Margin = new System.Windows.Forms.Padding(4);
-            this.LineND.Name = "LineND";
-            this.LineND.Size = new System.Drawing.Size(67, 59);
-            this.LineND.TabIndex = 2;
-            this.LineND.UseVisualStyleBackColor = true;
-            this.LineND.Click += new System.EventHandler(this.LineND_Click);
-            // 
-            // Circle_2d
-            // 
-            this.Circle_2d.Image = global::PaintForSchool.Properties.Resources.dry_clean;
-            this.Circle_2d.Location = new System.Drawing.Point(202, 254);
-            this.Circle_2d.Margin = new System.Windows.Forms.Padding(4);
-            this.Circle_2d.Name = "Circle_2d";
-            this.Circle_2d.Size = new System.Drawing.Size(67, 56);
-            this.Circle_2d.TabIndex = 5;
-            this.Circle_2d.UseVisualStyleBackColor = true;
-            this.Circle_2d.Click += new System.EventHandler(this.Circle_Click);
-            // 
-            // Ellipse
-            // 
-            this.Ellipse.Image = global::PaintForSchool.Properties.Resources.ellipse;
-            this.Ellipse.Location = new System.Drawing.Point(135, 251);
-            this.Ellipse.Margin = new System.Windows.Forms.Padding(4);
-            this.Ellipse.Name = "Ellipse";
-            this.Ellipse.Size = new System.Drawing.Size(59, 57);
-            this.Ellipse.TabIndex = 6;
-            this.Ellipse.UseVisualStyleBackColor = true;
-            this.Ellipse.Click += new System.EventHandler(this.Ellipse_Click);
-            // 
             // Triangle3D
             // 
-            this.Triangle3D.Location = new System.Drawing.Point(65, 447);
+            this.Triangle3D.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Triangle3D.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Triangle3D.Location = new System.Drawing.Point(133, 446);
             this.Triangle3D.Margin = new System.Windows.Forms.Padding(4);
             this.Triangle3D.Name = "Triangle3D";
-            this.Triangle3D.Size = new System.Drawing.Size(165, 59);
+            this.Triangle3D.Size = new System.Drawing.Size(60, 60);
             this.Triangle3D.TabIndex = 7;
             this.Triangle3D.Text = "Triangle_3d";
-            this.Triangle3D.UseVisualStyleBackColor = true;
+            this.Triangle3D.UseVisualStyleBackColor = false;
             this.Triangle3D.Click += new System.EventHandler(this.Triangle3D_Click);
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button8.Image = global::PaintForSchool.Properties.Resources.plain_triangle;
-            this.button8.Location = new System.Drawing.Point(65, 514);
-            this.button8.Margin = new System.Windows.Forms.Padding(4);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(60, 60);
-            this.button8.TabIndex = 8;
-            this.button8.UseVisualStyleBackColor = false;
             // 
             // button9
             // 
+            this.button9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button9.Location = new System.Drawing.Point(65, 580);
             this.button9.Margin = new System.Windows.Forms.Padding(4);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(165, 59);
+            this.button9.Size = new System.Drawing.Size(60, 60);
             this.button9.TabIndex = 9;
             this.button9.Text = "ravnBed_Tianlge 2d";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // FigureND
-            // 
-            this.FigureND.Location = new System.Drawing.Point(65, 314);
-            this.FigureND.Margin = new System.Windows.Forms.Padding(4);
-            this.FigureND.Name = "FigureND";
-            this.FigureND.Size = new System.Drawing.Size(165, 59);
-            this.FigureND.TabIndex = 10;
-            this.FigureND.Text = "FigureND";
-            this.FigureND.UseVisualStyleBackColor = true;
-            this.FigureND.Click += new System.EventHandler(this.FigureND_Click);
+            this.button9.UseVisualStyleBackColor = false;
             // 
             // button23
             // 
@@ -192,7 +141,7 @@
             // 
             // _anglesNumber
             // 
-            this._anglesNumber.Location = new System.Drawing.Point(239, 401);
+            this._anglesNumber.Location = new System.Drawing.Point(133, 402);
             this._anglesNumber.Margin = new System.Windows.Forms.Padding(4);
             this._anglesNumber.Minimum = new decimal(new int[] {
             2,
@@ -200,7 +149,7 @@
             0,
             0});
             this._anglesNumber.Name = "_anglesNumber";
-            this._anglesNumber.Size = new System.Drawing.Size(159, 22);
+            this._anglesNumber.Size = new System.Drawing.Size(60, 22);
             this._anglesNumber.TabIndex = 29;
             this._anglesNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._anglesNumber.Value = new decimal(new int[] {
@@ -210,21 +159,10 @@
             0});
             this._anglesNumber.ValueChanged += new System.EventHandler(this._anglesNumber_ValueChanged);
             // 
-            // NanglesFigure
-            // 
-            this.NanglesFigure.Location = new System.Drawing.Point(65, 382);
-            this.NanglesFigure.Margin = new System.Windows.Forms.Padding(4);
-            this.NanglesFigure.Name = "NanglesFigure";
-            this.NanglesFigure.Size = new System.Drawing.Size(165, 59);
-            this.NanglesFigure.TabIndex = 30;
-            this.NanglesFigure.Text = "NanglesFigure";
-            this.NanglesFigure.UseVisualStyleBackColor = true;
-            this.NanglesFigure.Click += new System.EventHandler(this.NanglesFigure_Click);
-            // 
             // SaveFile
             // 
             this.SaveFile.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.SaveFile.Location = new System.Drawing.Point(286, 528);
+            this.SaveFile.Location = new System.Drawing.Point(232, 520);
             this.SaveFile.Name = "SaveFile";
             this.SaveFile.Size = new System.Drawing.Size(80, 44);
             this.SaveFile.TabIndex = 31;
@@ -235,7 +173,7 @@
             // UploadFile
             // 
             this.UploadFile.BackColor = System.Drawing.SystemColors.Info;
-            this.UploadFile.Location = new System.Drawing.Point(286, 590);
+            this.UploadFile.Location = new System.Drawing.Point(232, 586);
             this.UploadFile.Name = "UploadFile";
             this.UploadFile.Size = new System.Drawing.Size(80, 49);
             this.UploadFile.TabIndex = 32;
@@ -243,26 +181,95 @@
             this.UploadFile.UseVisualStyleBackColor = false;
             this.UploadFile.Click += new System.EventHandler(this.Upload_Click);
             // 
+            // NanglesFigure
+            // 
+            this.NanglesFigure.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.NanglesFigure.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.NanglesFigure.Image = global::PaintForSchool.Properties.Resources.hexagon;
+            this.NanglesFigure.Location = new System.Drawing.Point(65, 382);
+            this.NanglesFigure.Margin = new System.Windows.Forms.Padding(4);
+            this.NanglesFigure.Name = "NanglesFigure";
+            this.NanglesFigure.Size = new System.Drawing.Size(60, 60);
+            this.NanglesFigure.TabIndex = 30;
+            this.NanglesFigure.UseVisualStyleBackColor = false;
+            this.NanglesFigure.Click += new System.EventHandler(this.NanglesFigure_Click);
+            // 
             // Line2D
             // 
+            this.Line2D.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Line2D.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Line2D.Image = global::PaintForSchool.Properties.Resources.diagonal_line;
-            this.Line2D.Location = new System.Drawing.Point(65, 251);
+            this.Line2D.Location = new System.Drawing.Point(65, 187);
             this.Line2D.Margin = new System.Windows.Forms.Padding(4);
             this.Line2D.Name = "Line2D";
-            this.Line2D.Size = new System.Drawing.Size(62, 59);
+            this.Line2D.Size = new System.Drawing.Size(60, 60);
             this.Line2D.TabIndex = 12;
-            this.Line2D.UseVisualStyleBackColor = true;
+            this.Line2D.UseVisualStyleBackColor = false;
             this.Line2D.Click += new System.EventHandler(this.Line2D_Click);
+            // 
+            // FigureND
+            // 
+            this.FigureND.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.FigureND.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.FigureND.Image = global::PaintForSchool.Properties.Resources.yield;
+            this.FigureND.Location = new System.Drawing.Point(65, 446);
+            this.FigureND.Margin = new System.Windows.Forms.Padding(4);
+            this.FigureND.Name = "FigureND";
+            this.FigureND.Size = new System.Drawing.Size(60, 60);
+            this.FigureND.TabIndex = 10;
+            this.FigureND.UseVisualStyleBackColor = false;
+            this.FigureND.Click += new System.EventHandler(this.FigureND_Click);
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button8.Image = global::PaintForSchool.Properties.Resources.plain_triangle;
+            this.button8.Location = new System.Drawing.Point(65, 512);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(60, 60);
+            this.button8.TabIndex = 8;
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // Ellipse
+            // 
+            this.Ellipse.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Ellipse.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Ellipse.Image = global::PaintForSchool.Properties.Resources.ellipse;
+            this.Ellipse.Location = new System.Drawing.Point(133, 255);
+            this.Ellipse.Margin = new System.Windows.Forms.Padding(4);
+            this.Ellipse.Name = "Ellipse";
+            this.Ellipse.Size = new System.Drawing.Size(60, 60);
+            this.Ellipse.TabIndex = 6;
+            this.Ellipse.UseVisualStyleBackColor = false;
+            this.Ellipse.Click += new System.EventHandler(this.Ellipse_Click);
+            // 
+            // Circle_2d
+            // 
+            this.Circle_2d.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Circle_2d.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Circle_2d.Image = global::PaintForSchool.Properties.Resources.dry_clean;
+            this.Circle_2d.Location = new System.Drawing.Point(133, 319);
+            this.Circle_2d.Margin = new System.Windows.Forms.Padding(4);
+            this.Circle_2d.Name = "Circle_2d";
+            this.Circle_2d.Size = new System.Drawing.Size(60, 60);
+            this.Circle_2d.TabIndex = 5;
+            this.Circle_2d.UseVisualStyleBackColor = false;
+            this.Circle_2d.Click += new System.EventHandler(this.Circle_Click);
             // 
             // Square
             // 
+            this.Square.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Square.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Square.Image = global::PaintForSchool.Properties.Resources.square1;
-            this.Square.Location = new System.Drawing.Point(135, 187);
+            this.Square.Location = new System.Drawing.Point(65, 255);
             this.Square.Margin = new System.Windows.Forms.Padding(4);
             this.Square.Name = "Square";
-            this.Square.Size = new System.Drawing.Size(59, 56);
+            this.Square.Size = new System.Drawing.Size(60, 60);
             this.Square.TabIndex = 4;
-            this.Square.UseVisualStyleBackColor = true;
+            this.Square.UseVisualStyleBackColor = false;
             this.Square.Click += new System.EventHandler(this.Square_Click);
             // 
             // Rectangle_2d
@@ -270,13 +277,26 @@
             this.Rectangle_2d.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.Rectangle_2d.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Rectangle_2d.Image = global::PaintForSchool.Properties.Resources.rectangle1;
-            this.Rectangle_2d.Location = new System.Drawing.Point(65, 187);
+            this.Rectangle_2d.Location = new System.Drawing.Point(65, 319);
             this.Rectangle_2d.Margin = new System.Windows.Forms.Padding(4);
             this.Rectangle_2d.Name = "Rectangle_2d";
             this.Rectangle_2d.Size = new System.Drawing.Size(60, 60);
             this.Rectangle_2d.TabIndex = 3;
             this.Rectangle_2d.UseVisualStyleBackColor = false;
             this.Rectangle_2d.Click += new System.EventHandler(this.Rectangle_2d_Click);
+            // 
+            // LineND
+            // 
+            this.LineND.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.LineND.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.LineND.Image = global::PaintForSchool.Properties.Resources.graph;
+            this.LineND.Location = new System.Drawing.Point(133, 187);
+            this.LineND.Margin = new System.Windows.Forms.Padding(4);
+            this.LineND.Name = "LineND";
+            this.LineND.Size = new System.Drawing.Size(60, 60);
+            this.LineND.TabIndex = 2;
+            this.LineND.UseVisualStyleBackColor = false;
+            this.LineND.Click += new System.EventHandler(this.LineND_Click);
             // 
             // Brush
             // 
@@ -307,11 +327,21 @@
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(275, 357);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(53, 66);
+            this.button1.TabIndex = 33;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Upload
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1179, 690);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.UploadFile);
             this.Controls.Add(this.SaveFile);
             this.Controls.Add(this.NanglesFigure);
@@ -369,6 +399,7 @@
         private System.Windows.Forms.Button NanglesFigure;
         private System.Windows.Forms.Button SaveFile;
         private System.Windows.Forms.Button UploadFile;
+        private System.Windows.Forms.Button button1;
     }
 }
 

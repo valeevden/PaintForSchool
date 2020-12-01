@@ -183,6 +183,16 @@ namespace PaintForSchool.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap rotating_arrow_symbol {
+            get {
+                object obj = ResourceManager.GetObject("rotating-arrow-symbol", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap square {
             get {
                 object obj = ResourceManager.GetObject("square", resourceCulture);
@@ -196,6 +206,26 @@ namespace PaintForSchool.Properties {
         internal static System.Drawing.Bitmap square1 {
             get {
                 object obj = ResourceManager.GetObject("square1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tap {
+            get {
+                object obj = ResourceManager.GetObject("tap", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yield {
+            get {
+                object obj = ResourceManager.GetObject("yield", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
