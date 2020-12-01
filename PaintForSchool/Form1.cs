@@ -290,5 +290,24 @@ namespace PaintForSchool
                 }
             }
         }
+
+        private void Upload_Click(object sender, EventArgs e)
+        {
+           OpenFileDialog F = new OpenFileDialog();
+           F.Filter = "All Files (*.*)|*.*";
+            if (F.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    pictureBox1.Image = new Bitmap(F.FileName);
+                }
+                catch
+                {
+                    MessageBox.Show("Невозможно открыть выбранный файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            
+            }
+        }
     }
-}
+

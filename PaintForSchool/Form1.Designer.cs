@@ -49,6 +49,7 @@
             this._anglesNumber = new System.Windows.Forms.NumericUpDown();
             this.NanglesFigure = new System.Windows.Forms.Button();
             this.SaveFiles = new System.Windows.Forms.Button();
+            this.Upload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackPenWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._anglesNumber)).BeginInit();
@@ -291,11 +292,22 @@
             this.SaveFiles.UseVisualStyleBackColor = true;
             this.SaveFiles.Click += new System.EventHandler(this.SaveFiles_Click);
             // 
+            // Upload
+            // 
+            this.Upload.Location = new System.Drawing.Point(320, 472);
+            this.Upload.Name = "Upload";
+            this.Upload.Size = new System.Drawing.Size(64, 55);
+            this.Upload.TabIndex = 32;
+            this.Upload.Text = "Upload";
+            this.Upload.UseVisualStyleBackColor = true;
+            this.Upload.Click += new System.EventHandler(this.Upload_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1179, 690);
+            this.Controls.Add(this.Upload);
             this.Controls.Add(this.SaveFiles);
             this.Controls.Add(this.NanglesFigure);
             this.Controls.Add(this._anglesNumber);
@@ -352,6 +364,7 @@
         private System.Windows.Forms.NumericUpDown _anglesNumber;
         private System.Windows.Forms.Button NanglesFigure;
         private System.Windows.Forms.Button SaveFiles;
+        private System.Windows.Forms.Button Upload;
     }
 }
 
