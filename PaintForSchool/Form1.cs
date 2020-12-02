@@ -34,7 +34,6 @@ namespace PaintForSchool
         private void Form1_Load(object sender, EventArgs e)
         {
             canvas = new Canvas(pictureBox1.Width, pictureBox1.Height);
-            _mouseDown = false;
             _figure = new MyBrush();
         }
 
@@ -55,8 +54,9 @@ namespace PaintForSchool
                 GC.Collect();
             }
         }
+        
 
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e) //происходит после дабл клика
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e) 
         {
             _mouseDown = false;
             if (e.Button == MouseButtons.Right)
@@ -207,7 +207,7 @@ namespace PaintForSchool
                     SaveFileDialog tpm = new SaveFileDialog();
                     tpm.Title = "Сохранить картинку как..";
                     tpm.OverwritePrompt = true;
-                    tpm.Filter = "Image Files (*.BMP)|*.BMP| Image Files(*.JPG)|*.JPG|;Image Files(*.EPS)|*.EPS|; All Files (*.*)|*.*";
+                    tpm.Filter = "Image Files (*.BMP)|*.BMP| Image Files(*.JPG)|*.JPG|;Image Files(*.PNG)|*.PNG|; All Files (*.*)|*.*";
 
                     if (tpm.ShowDialog() == DialogResult.OK)
                     {

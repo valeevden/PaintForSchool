@@ -34,9 +34,12 @@ namespace PaintForSchool.Figures
         public Point[] GetPoints()
         {
             Point[] points = new Point[3];
-            points[0] = startPoint;
-            points[1] = secondPoint;
-            points[2] = new Point();
+            for (int i = 0; i == 3; i++)
+            {
+                points[0] = startPoint;
+                points[1] = secondPoint;
+                points[2] = new Point();
+            }
             return points;
         }
 
