@@ -198,5 +198,51 @@ namespace PaintForSchool
                 pictureBox1.Image = canvas.Clear();
             }
         }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            {
+                if (pictureBox1 != null)
+                {
+                    SaveFileDialog tpm = new SaveFileDialog();
+                    tpm.Title = "Сохранить картинку как..";
+                    tpm.OverwritePrompt = true;
+                    tpm.Filter = "Image Files (*.BMP)|*.BMP| Image Files(*.JPG)|*.JPG|;Image Files(*.EPS)|*.EPS|; All Files (*.*)|*.*";
+
+                    if (tpm.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            pictureBox1.Image.Save(tpm.FileName);
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Ошибка, MessageBoxButtons.OK");
+                        }
+                    }
+                }
+            }
+        }
+
+        private void uploadButton_Click(object sender, EventArgs e)
+        {
+            {
+                OpenFileDialog F = new OpenFileDialog();
+                F.Filter = "All Files (*.*)|*.*";
+                if (F.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        pictureBox1.Image = new Bitmap(F.FileName);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Невозможно открыть выбранный файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+            }
+        }
     }
+    
 }
