@@ -35,6 +35,8 @@ namespace PaintForSchool.Figures
 
         void Set(Point point);
 
-        void Move(Point delta); 
+        void Move(Point delta);
+
+        void IsRotate(Point center);
     }
 }

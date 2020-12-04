@@ -84,6 +84,11 @@ namespace PaintForSchool.Figures
             
         }
 
+        public void IsRotate(Point center)
+        {
+
+        }
+
         public bool IsYou(Point delta)
         {
             Point p1 = pointsList[3];

@@ -57,10 +57,10 @@ namespace PaintForSchool
                     _figure.Set(e.Location);
                     _figure = fabrica.CreateFigure(_pen);
                     break;
+
                 case "MOVE":
                     _figure = null;
 
-                    
                     foreach (IFigure checkFigure in figuresList)
                     {
                         if (checkFigure.IsYou(e.Location))
@@ -74,9 +74,15 @@ namespace PaintForSchool
                             break;
 
                         }
+                        if (checkFigure.IsRotate(e.Location))
+                        {
+                            _figure = checkFigure;
+                            figuresList.Remove(_figure);
+                        }
                     }
                     break;
             }
+
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -115,6 +121,10 @@ namespace PaintForSchool
                     default:
                         break;
                 }
+            }
+            else if (_mouseDown==false)
+            {
+
             }
         }
 
