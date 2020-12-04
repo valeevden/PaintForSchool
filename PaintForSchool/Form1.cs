@@ -20,7 +20,6 @@ namespace PaintForSchool
         Canvas canvas;
         Pen _pen = new Pen(Color.Red, 6); //класс с инструментами для рисования. Дефолтный карандаш
         bool _mouseDown = false;
-        public bool doubleClick = false;
         public bool mouseMove = false;
         IFabric fabrica;
         Point startPoint;
@@ -133,7 +132,7 @@ namespace PaintForSchool
                         {
 
                             Point delta = new Point(e.X - startPoint.X, e.Y - startPoint.Y);
-                            startPoint = e.Location;
+                            //startPoint = e.Location;
 
                             _figure.Rotate(delta);
 
@@ -193,16 +192,6 @@ namespace PaintForSchool
                 canvas.Save();
         }
 
-        private void pictureBox1_DoubleClick(object sender, EventArgs e)
-        {
-            doubleClick = true;
-
-        }
-
-        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
-        {
-
-        }
 
         private void ClearAll_Click(object sender, EventArgs e)
         {
@@ -218,7 +207,13 @@ namespace PaintForSchool
         private void Rectangle_2d_Click(object sender, EventArgs e)
         {
             fabrica = new RectangleIFabric();
-            //_figure = new RectangleFigure();
+            _figure = new RectangleFigure(_pen);
+        }
+
+        private void Square_Click(object sender, EventArgs e)
+        {
+            fabrica = new SquareIFabric();
+            _figure = new SquareFigure(_pen);
         }
 
         private void Line2D_Click(object sender, EventArgs e)
@@ -258,11 +253,6 @@ namespace PaintForSchool
         private void Ellipse_Click(object sender, EventArgs e)
         {
             //_figure = new EllipseFigure();
-        }
-
-        private void Square_Click(object sender, EventArgs e)
-        {
-            // _figure = new SquareFigure ();
         }
 
         private void Triangle3D_Click(object sender, EventArgs e)
@@ -310,7 +300,7 @@ namespace PaintForSchool
                     SaveFileDialog tpm = new SaveFileDialog();
                     tpm.Title = "Сохранить картинку как..";
                     tpm.OverwritePrompt = true;
-                    tpm.Filter = "Image Files (*.BMP)|*.BMP| Image Files(*.JPG)|*.JPG|;Image Files(*.PNG)|*.PNG|; All Files (*.*)|*.*";
+                    tpm.Filter = "Image Files (*.BMP)|*.BMP| Image Files(*.JPG)|*.JPG|; Image Files(*.PNG)|*.PNG|; All Files (*.*)|*.*";
 
                     if (tpm.ShowDialog() == DialogResult.OK)
                     {

@@ -40,13 +40,6 @@ namespace PaintForSchool.Figures
 
         public Point[] GetPoints()
         {
-            //Point[] points = new Point[4];
-            //points[0] = startPoint;
-            //points[1] = new Point(startPoint.X,secondPoint.Y);
-            //points[2] = secondPoint;
-            //points[3] = new Point(secondPoint.X,startPoint.Y);
-
-
             pointsArray = pointsList.ToArray();
             return pointsArray;
         }
@@ -61,17 +54,17 @@ namespace PaintForSchool.Figures
             Point[] pointstoArray = new Point[4];
 
             pointsList = new List<Point> { };
-            //pointsList[0] = startPoint;
-            //pointsList[1] = new Point(startPoint.X, secondPoint.Y); 
-            //pointsList[2] = secondPoint;
-            //pointsList[3] = new Point(secondPoint.X, startPoint.Y);
 
             pointstoArray[0] = startPoint;
-            pointstoArray[1] = new Point(startPoint.X, secondPoint.Y);
-            pointstoArray[2] = secondPoint;
-            pointstoArray[3] = new Point(secondPoint.X, startPoint.Y);
+            //pointstoArray[1] = new Point(startPoint.X, secondPoint.Y);
+            //pointstoArray[2] = secondPoint;
+            //pointstoArray[3] = new Point(secondPoint.X, startPoint.Y);
+            
+            pointstoArray[1] = new Point(startPoint.X, endPoint.Y);
+            pointstoArray[2] = endPoint;
+            pointstoArray[3] = new Point(endPoint.X, startPoint.Y);
+
             pointsList = pointstoArray.ToList();
-            //return pointsList;
         }
 
         public void Move(Point delta)
