@@ -169,6 +169,7 @@ namespace PaintForSchool
         private void ClearAll_Click(object sender, EventArgs e)
         {
             pictureBox1.Image = canvas.Clear();
+            figuresList.Clear();
         }
 
         private void Brush_Click(object sender, EventArgs e)
