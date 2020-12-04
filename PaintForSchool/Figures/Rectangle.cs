@@ -84,9 +84,41 @@ namespace PaintForSchool.Figures
             
         }
 
-        public bool IsRotate(Point center)
+        public void Rotate(Point point)
         {
-            return false;
+            int delta = point.Y;//дельта
+
+            PointF center = new Point();
+
+            float sumX = 0;
+            float sumY = 0;
+
+            foreach (Point bound in pointsList)
+            {
+                sumX += bound.X;
+                sumY += bound.Y;
+            }
+
+            float count = pointsList.Count();
+            center.X = sumX / count;
+
+            center.Y = sumY / count;
+
+            for (int i = 0; i < pointsList.Count; i++)
+            {
+                //по теореме пифагора
+                double radius = Math.Sqrt(Math.Pow((pointsList[i].X - center.X), 2) + Math.Pow((pointsList[i].Y - center.Y), 2));
+
+                double rotatedX = pointsList[i].X - delta;
+
+                double rotatedY = Math.Sqrt(Math.Pow((rotatedX - center.X), 2) - Math.Pow(radius, 2));
+
+                pointsList[i] = new Point((int)rotatedX, (int)rotatedY);
+            }
+
+            startPoint = pointsList[0];
+
+            return;
         }
 
         public bool IsYou(Point delta)

@@ -25,7 +25,7 @@ namespace PaintForSchool.Figures
         int Width { get; set; }
         bool IsYou(Point touchPoint);
 
-        bool IsRotate(Point center);
+        void Rotate(Point point);
 
         List<Point> pointsList { get; set; }
 

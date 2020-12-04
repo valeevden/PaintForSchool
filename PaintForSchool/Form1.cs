@@ -74,11 +74,6 @@ namespace PaintForSchool
                             break;
 
                         }
-                        if (checkFigure.IsRotate(e.Location))
-                        {
-                            _figure = checkFigure;
-                            figuresList.Remove(_figure);
-                        }
                     }
                     break;
             }
@@ -117,14 +112,22 @@ namespace PaintForSchool
                             GC.Collect();
                         }
                         break;
+                    case "ROTATE":
+                        {
+                            Point delta = new Point(e.X - startPoint.X, e.Y - startPoint.Y);
+                            startPoint = e.Location;
+
+                            _figure.Rotate(delta);
+
+                            pictureBox1.Image = canvas.DrawIt(_figure, new Pen(movingFigure.Color, movingFigure.Width));
+
+                            GC.Collect();
+                        }
+                        break;
 
                     default:
                         break;
                 }
-            }
-            else if (_mouseDown==false)
-            {
-
             }
         }
 
