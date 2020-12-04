@@ -350,6 +350,7 @@ namespace PaintForSchool
             if (radioButtonPaintMode.Checked)
             {
                 mode = "PAINT";
+                _figure = new RectangleFigure(_pen);
             }
         }
 

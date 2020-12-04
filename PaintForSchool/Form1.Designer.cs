@@ -62,6 +62,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Pane;
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Location = new System.Drawing.Point(322, 98);
             this.pictureBox1.Name = "pictureBox1";
@@ -324,6 +325,7 @@
             // 
             // moveButton
             // 
+            this.moveButton.Enabled = false;
             this.moveButton.Location = new System.Drawing.Point(431, 51);
             this.moveButton.Name = "moveButton";
             this.moveButton.Size = new System.Drawing.Size(53, 32);
@@ -334,6 +336,7 @@
             // 
             // paintButton
             // 
+            this.paintButton.Enabled = false;
             this.paintButton.Location = new System.Drawing.Point(431, 10);
             this.paintButton.Name = "paintButton";
             this.paintButton.Size = new System.Drawing.Size(53, 32);
@@ -386,8 +389,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button Brush;
         private System.Windows.Forms.Button LineND;
         private System.Windows.Forms.Button Rectangle_2d;
@@ -414,6 +415,7 @@
         private System.Windows.Forms.RadioButton radioButtonRotate;
         private System.Windows.Forms.Button moveButton;
         private System.Windows.Forms.Button paintButton;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
