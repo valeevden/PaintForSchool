@@ -52,7 +52,7 @@
             this.uploadButton = new System.Windows.Forms.Button();
             this.radioButtonPaintMode = new System.Windows.Forms.RadioButton();
             this.radioButtonMoveMode = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButtonRotate = new System.Windows.Forms.RadioButton();
             this.moveButton = new System.Windows.Forms.Button();
             this.paintButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -300,6 +300,7 @@
             this.radioButtonPaintMode.TabStop = true;
             this.radioButtonPaintMode.Text = "PAINT";
             this.radioButtonPaintMode.UseVisualStyleBackColor = true;
+            this.radioButtonPaintMode.CheckedChanged += new System.EventHandler(this.radioButtonPaintMode_CheckedChanged);
             // 
             // radioButtonMoveMode
             // 
@@ -312,15 +313,16 @@
             this.radioButtonMoveMode.UseVisualStyleBackColor = true;
             this.radioButtonMoveMode.CheckedChanged += new System.EventHandler(this.radioButtonMoveMode_CheckedChanged);
             // 
-            // radioButton3
+            // radioButtonRotate
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(322, 66);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(85, 17);
-            this.radioButton3.TabIndex = 35;
-            this.radioButton3.Text = "radioButton3";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButtonRotate.AutoSize = true;
+            this.radioButtonRotate.Location = new System.Drawing.Point(322, 66);
+            this.radioButtonRotate.Name = "radioButtonRotate";
+            this.radioButtonRotate.Size = new System.Drawing.Size(69, 17);
+            this.radioButtonRotate.TabIndex = 35;
+            this.radioButtonRotate.Text = "ROTATE";
+            this.radioButtonRotate.UseVisualStyleBackColor = true;
+            this.radioButtonRotate.CheckedChanged += new System.EventHandler(this.radioButtonRotate_CheckedChanged);
             // 
             // moveButton
             // 
@@ -349,7 +351,7 @@
             this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.paintButton);
             this.Controls.Add(this.moveButton);
-            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButtonRotate);
             this.Controls.Add(this.radioButtonMoveMode);
             this.Controls.Add(this.radioButtonPaintMode);
             this.Controls.Add(this.uploadButton);
@@ -411,7 +413,7 @@
         private System.Windows.Forms.Button uploadButton;
         private System.Windows.Forms.RadioButton radioButtonPaintMode;
         private System.Windows.Forms.RadioButton radioButtonMoveMode;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButtonRotate;
         private System.Windows.Forms.Button moveButton;
         private System.Windows.Forms.Button paintButton;
     }

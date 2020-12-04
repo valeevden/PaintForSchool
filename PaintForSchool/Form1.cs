@@ -72,12 +72,28 @@ namespace PaintForSchool
                             movingFigure = checkFigure;
                             startPoint = checkFigure.touchPoint;
                             break;
+                        }
+                    }
+                    break;
 
+                case "ROTATE":
+                    _figure = null;
+
+                    foreach (IFigure checkFigure in figuresList)
+                    {
+                        if (checkFigure.IsYou(e.Location))
+                        {
+                            _figure = checkFigure;
+                            figuresList.Remove(_figure);
+                            pictureBox1.Image = canvas.Clear();
+                            DrawAll();
+                            movingFigure = checkFigure;
+                            startPoint = checkFigure.touchPoint;
+                            break;
                         }
                     }
                     break;
             }
-
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -104,7 +120,6 @@ namespace PaintForSchool
                         {
                             Point delta = new Point (e.X - startPoint.X, e.Y - startPoint.Y);
                             startPoint = e.Location;
-                            //_figure.secondPoint = e.Location;
 
                             _figure.Move(delta);
                             pictureBox1.Image = canvas.DrawIt(_figure, new Pen(movingFigure.Color, movingFigure.Width));
@@ -112,8 +127,11 @@ namespace PaintForSchool
                             GC.Collect();
                         }
                         break;
+
                     case "ROTATE":
+                        if (_figure != null)
                         {
+
                             Point delta = new Point(e.X - startPoint.X, e.Y - startPoint.Y);
                             startPoint = e.Location;
 
@@ -123,6 +141,7 @@ namespace PaintForSchool
 
                             GC.Collect();
                         }
+                        
                         break;
 
                     default:
@@ -161,6 +180,12 @@ namespace PaintForSchool
                     pictureBox1.Image = canvas.Clear();
                     DrawAll();
                     break;
+
+                case "ROTATE":
+                    pictureBox1.Image = canvas.Clear();
+                    DrawAll();
+                    break;
+
 
                 default:
                     break;
@@ -324,7 +349,26 @@ namespace PaintForSchool
 
         private void radioButtonMoveMode_CheckedChanged(object sender, EventArgs e)
         {
-            
+            if (radioButtonMoveMode.Checked)
+            {
+                mode = "MOVE";
+            }
+        }
+
+        private void radioButtonPaintMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonPaintMode.Checked)
+            {
+                mode = "PAINT";
+            }
+        }
+
+        private void radioButtonRotate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonRotate.Checked)
+            {
+                mode = "ROTATE";
+            }
         }
 
         private void moveButton_Click(object sender, EventArgs e)
@@ -346,5 +390,6 @@ namespace PaintForSchool
         {
             mode = "PAINT";
         }
+
     }
 }

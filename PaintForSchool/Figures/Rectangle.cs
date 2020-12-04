@@ -86,7 +86,7 @@ namespace PaintForSchool.Figures
 
         public void Rotate(Point point)
         {
-            int delta = point.Y;//дельта
+            int delta = point.X;//дельта
 
             PointF center = new Point();
 
@@ -111,12 +111,12 @@ namespace PaintForSchool.Figures
 
                 double rotatedX = pointsList[i].X - delta;
 
-                double rotatedY = Math.Sqrt(Math.Pow((rotatedX - center.X), 2) - Math.Pow(radius, 2));
-
-                pointsList[i] = new Point((int)rotatedX, (int)rotatedY);
+                double rotatedY = Math.Sqrt(Math.Pow(radius, 2) - Math.Pow((rotatedX - center.X), 2));
+                
+                pointsList[i] = new Point((int)rotatedX, pointsList[i].Y -(int)rotatedY);
             }
 
-            startPoint = pointsList[0];
+            //startPoint = pointsList[0];
 
             return;
         }
