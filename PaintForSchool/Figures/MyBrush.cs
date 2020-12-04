@@ -10,7 +10,7 @@ using PaintForSchool.RightClickReaction;
 
 namespace PaintForSchool.Figures
 {
-    class MyBrush :IFigure
+    class MyBrush// :IFigure
     {
         //переменная для хранения и стартоой точки, и предпоследней,  от которой будем рисовать следующий отрезок
         public Point startPoint { get; set; }

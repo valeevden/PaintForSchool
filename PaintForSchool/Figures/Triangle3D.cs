@@ -10,7 +10,7 @@ using PaintForSchool.RightClickReaction;
 
 namespace PaintForSchool.Figures
 {
-    public class Triangle3DFigure : IFigure
+    public class Triangle3DFigure// : IFigure
     {
         public Point startPoint { get; set; }
 
@@ -27,7 +27,7 @@ namespace PaintForSchool.Figures
         public Triangle3DFigure ()
         {
             Painter = new PolygonIPainter();
-            Reaction = new FreeFigureIRightClickReaction(this);
+           // Reaction = new FreeFigureIRightClickReaction(this);
             started = false;
         }
 

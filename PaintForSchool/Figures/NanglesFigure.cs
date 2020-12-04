@@ -11,7 +11,7 @@ using PaintForSchool.RightClickReaction;
 
 namespace PaintForSchool.Figures
 {
-    public class NanglesFigure : IFigure
+    public class NanglesFigure //: IFigure
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }

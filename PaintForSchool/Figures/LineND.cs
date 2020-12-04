@@ -11,7 +11,7 @@ using PaintForSchool.RightClickReaction;
 
 namespace PaintForSchool.Figures
 {
-    public class LineND : IFigure
+    public class LineND// : IFigure
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
@@ -24,7 +24,7 @@ namespace PaintForSchool.Figures
         public LineND()
         {
             Painter = new PolygonIPainter();
-            Reaction = new FreeLineIRightClickReaction(this);
+          //  Reaction = new FreeLineIRightClickReaction(this);
             started = false;
         }
         

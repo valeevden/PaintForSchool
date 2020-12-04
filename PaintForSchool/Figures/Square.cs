@@ -11,7 +11,7 @@ using PaintForSchool.RightClickReaction;
 
 namespace PaintForSchool.Figures
 {
-    public class SquareFigure : IFigure
+    public class SquareFigure //: IFigure
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }

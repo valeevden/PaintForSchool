@@ -10,7 +10,7 @@ using PaintForSchool.RightClickReaction;
 
 namespace PaintForSchool.Figures
 {
-    public class FigureND : IFigure 
+    public class FigureND //: IFigure 
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
@@ -24,7 +24,7 @@ namespace PaintForSchool.Figures
         public FigureND()
         {
             Painter = new PolygonIPainter();
-            Reaction = new FreeFigureIRightClickReaction(this);
+          //  Reaction = new FreeFigureIRightClickReaction(this);
             started = false;
         }
 

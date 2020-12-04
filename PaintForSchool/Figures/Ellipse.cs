@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace PaintForSchool.Figures
 {
-    public class EllipseFigure : IFigure
+    public class EllipseFigure //: IFigure
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Drawing.Drawing2D;//для Brush
 using PaintForSchool.Painter;
 using PaintForSchool.RightClickReaction;
+using PaintForSchool.Fabrics;
 
 namespace PaintForSchool
 {
@@ -21,11 +22,15 @@ namespace PaintForSchool
         bool _mouseDown = false;
         public bool doubleClick = false;
         public bool mouseMove = false;
+        IFabric fabrica;
+        Point startPoint;
 
         IFigure _figure; // Объект интерфейса
-        
-        
-        
+        List<IFigure> figuresList;
+        string mode = "PAINT";
+
+
+
         public Form1()
         {
             InitializeComponent();
@@ -34,31 +39,90 @@ namespace PaintForSchool
         private void Form1_Load(object sender, EventArgs e)
         {
             canvas = new Canvas(pictureBox1.Width, pictureBox1.Height);
-            _figure = new MyBrush();
+            // _figure = new MyBrush();
+            _figure = new RectangleFigure(_pen);
+            figuresList = new List<IFigure>();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _mouseDown = true;
-            _figure.Set(e.Location);
+
+            switch (mode)
+            {
+                case "PAINT":
+                    startPoint = e.Location;
+                    _figure.Set(e.Location);
+                    _figure = fabrica.CreateFigure(_pen);
+                    break;
+                case "MOVE":
+                    _figure = null;
+                    foreach (IFigure checkFigure in figuresList)
+                    {
+                        if (checkFigure.IsYou(e.Location))
+                        {
+                            _figure = checkFigure;
+                            figuresList.Remove(_figure);
+                            Pen penHistory;
+                            penHistory = new Pen(_figure.Color, _figure.Width);
+                            DrawAll(penHistory);
+                            break;
+                            
+                        }
+                    }
+                    break;
+            }
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            mouseMove = true;
-            if (_mouseDown && e.Button != MouseButtons.Right)
-            {
-                _figure.secondPoint = e.Location;
-                pictureBox1.Image = canvas.DrawIt(_figure,_pen);
-                
-                GC.Collect();
-            }
-        }
-        
+          if (_mouseDown && e.Button != MouseButtons.Right)
+          {
 
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e) 
+            switch (mode)
+            {
+                case "PAINT":
+                
+                _figure.Update(startPoint, e.Location);
+                mouseMove = true;
+                
+                _figure.secondPoint = e.Location;
+                pictureBox1.Image = canvas.DrawIt(_figure, _pen);
+
+                GC.Collect();
+                
+                break;
+
+                case "MOVE":
+                        if (_figure != null)
+                        {
+                            Point delta = new Point(e.X - startPoint.X, e.Y - startPoint.Y);
+                            startPoint = e.Location;
+                            _figure.secondPoint = e.Location;
+                    
+                            _figure.Move(delta);
+                            pictureBox1.Image = canvas.DrawIt(_figure, _pen);
+
+                            GC.Collect();
+                        }
+                  break;
+
+                default:
+                    break;
+            }
+          }
+        }
+
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             _mouseDown = false;
+
+            if (_figure != null)
+            {
+                figuresList.Add(_figure);
+            }
+
             if (e.Button == MouseButtons.Right)
             {
                 if (_figure.Reaction is FreeFigureIRightClickReaction)
@@ -72,31 +136,18 @@ namespace PaintForSchool
                 }
             }
             canvas.Save();
+
         }
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
             doubleClick = true;
-          
-        }
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            
-        }
-
-        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
 
         }
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-           
+
         }
 
         private void ClearAll_Click(object sender, EventArgs e)
@@ -106,27 +157,28 @@ namespace PaintForSchool
 
         private void Brush_Click(object sender, EventArgs e)
         {
-            _figure = new MyBrush();
+            //  _figure = new MyBrush();
         }
 
         private void Rectangle_2d_Click(object sender, EventArgs e)
         {
-            _figure = new RectangleFigure();
+            fabrica = new RectangleIFabric();
+            //_figure = new RectangleFigure();
         }
 
         private void Line2D_Click(object sender, EventArgs e)
         {
-            _figure = new Line2D();
+            //  _figure = new Line2D();
         }
 
         private void LineND_Click(object sender, EventArgs e)
         {
-            _figure = new LineND();
+            // _figure = new LineND();
         }
 
         private void FigureND_Click(object sender, EventArgs e)
         {
-            _figure = new FigureND();
+            //_figure = new FigureND();
         }
 
         private void trackPenWidth_Scroll(object sender, EventArgs e)
@@ -145,51 +197,47 @@ namespace PaintForSchool
 
         private void Circle_Click(object sender, EventArgs e)
         {
-            _figure = new CircleFigure();
+            // _figure = new CircleFigure();
         }
 
         private void Ellipse_Click(object sender, EventArgs e)
         {
-           _figure = new EllipseFigure();
+            //_figure = new EllipseFigure();
         }
 
         private void Square_Click(object sender, EventArgs e)
         {
-            _figure = new SquareFigure ();
+            // _figure = new SquareFigure ();
         }
 
         private void Triangle3D_Click(object sender, EventArgs e)
         {
-            _figure = new Triangle3DFigure ();
+            // _figure = new Triangle3DFigure ();
         }
 
         private void NanglesFigure_Click(object sender, EventArgs e)
         {
-            _figure = new NanglesFigure((int)_anglesNumber.Value);
+            // _figure = new NanglesFigure((int)_anglesNumber.Value);
         }
 
         private void _anglesNumber_ValueChanged(object sender, EventArgs e)
         {
             if (_figure.Painter is PolygonIPainter)
             {
-                _figure = new NanglesFigure((int)_anglesNumber.Value);
+                // _figure = new NanglesFigure((int)_anglesNumber.Value);
             }
         }
 
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
         {
-            _figure = new IsoscelesTriangle();
+            // _figure = new IsoscelesTriangle();
         }
 
         private void RectTriangleButton_Click(object sender, EventArgs e)
         {
-            _figure = new RectTriangle();
+            // _figure = new RectTriangle();
         }
 
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
@@ -243,6 +291,29 @@ namespace PaintForSchool
 
             }
         }
+
+        private void radioButtonMoveMode_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void moveButton_Click(object sender, EventArgs e)
+        {
+            mode = "MOVE";
+        }
+
+
+        private void DrawAll(Pen penHistory)
+        {
+            foreach (IFigure figure in figuresList)
+            {
+                pictureBox1.Image = canvas.DrawIt(_figure, penHistory);
+            }
+        }
+
+        private void paintButton_Click(object sender, EventArgs e)
+        {
+            mode = "PAINT";
+        }
     }
-    
 }

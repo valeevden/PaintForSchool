@@ -20,8 +20,20 @@ namespace PaintForSchool.Figures
         IRightClickReaction Reaction {get; set; }
         bool started { get; set; }
         IPainter Painter { get; }
+        Color Color { get; set; }
+        int Width { get; set; }
+        bool IsYou(Point touchPoint);
+      
+
+
+        List<Point> pointsList { get; set; }
+
         Point[] GetPoints();
 
+        void Update(Point startPoint, Point endPoint);
+
         void Set(Point point);
+
+        void Move(Point delta); 
     }
 }

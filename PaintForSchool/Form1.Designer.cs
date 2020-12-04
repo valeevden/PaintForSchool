@@ -50,6 +50,11 @@
             this.NanglesFigure = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.uploadButton = new System.Windows.Forms.Button();
+            this.radioButtonPaintMode = new System.Windows.Forms.RadioButton();
+            this.radioButtonMoveMode = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.moveButton = new System.Windows.Forms.Button();
+            this.paintButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackPenWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._anglesNumber)).BeginInit();
@@ -63,11 +68,8 @@
             this.pictureBox1.Size = new System.Drawing.Size(550, 421);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
             this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
-            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
@@ -135,7 +137,7 @@
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(48, 471);
-            this.button7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(124, 48);
             this.button7.TabIndex = 7;
@@ -146,7 +148,7 @@
             // RectTriangleButton
             // 
             this.RectTriangleButton.Location = new System.Drawing.Point(48, 363);
-            this.RectTriangleButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RectTriangleButton.Margin = new System.Windows.Forms.Padding(2);
             this.RectTriangleButton.Name = "RectTriangleButton";
             this.RectTriangleButton.Size = new System.Drawing.Size(124, 48);
             this.RectTriangleButton.TabIndex = 8;
@@ -157,7 +159,7 @@
             // IsoscelesTriangle
             // 
             this.IsoscelesTriangle.Location = new System.Drawing.Point(48, 415);
-            this.IsoscelesTriangle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.IsoscelesTriangle.Margin = new System.Windows.Forms.Padding(2);
             this.IsoscelesTriangle.Name = "IsoscelesTriangle";
             this.IsoscelesTriangle.Size = new System.Drawing.Size(124, 52);
             this.IsoscelesTriangle.TabIndex = 9;
@@ -287,11 +289,69 @@
             this.uploadButton.UseVisualStyleBackColor = true;
             this.uploadButton.Click += new System.EventHandler(this.uploadButton_Click);
             // 
+            // radioButtonPaintMode
+            // 
+            this.radioButtonPaintMode.AutoSize = true;
+            this.radioButtonPaintMode.Checked = true;
+            this.radioButtonPaintMode.Location = new System.Drawing.Point(322, 18);
+            this.radioButtonPaintMode.Name = "radioButtonPaintMode";
+            this.radioButtonPaintMode.Size = new System.Drawing.Size(57, 17);
+            this.radioButtonPaintMode.TabIndex = 33;
+            this.radioButtonPaintMode.TabStop = true;
+            this.radioButtonPaintMode.Text = "PAINT";
+            this.radioButtonPaintMode.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonMoveMode
+            // 
+            this.radioButtonMoveMode.AutoSize = true;
+            this.radioButtonMoveMode.Location = new System.Drawing.Point(322, 42);
+            this.radioButtonMoveMode.Name = "radioButtonMoveMode";
+            this.radioButtonMoveMode.Size = new System.Drawing.Size(56, 17);
+            this.radioButtonMoveMode.TabIndex = 34;
+            this.radioButtonMoveMode.Text = "MOVE";
+            this.radioButtonMoveMode.UseVisualStyleBackColor = true;
+            this.radioButtonMoveMode.CheckedChanged += new System.EventHandler(this.radioButtonMoveMode_CheckedChanged);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(322, 66);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(85, 17);
+            this.radioButton3.TabIndex = 35;
+            this.radioButton3.Text = "radioButton3";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // moveButton
+            // 
+            this.moveButton.Location = new System.Drawing.Point(431, 51);
+            this.moveButton.Name = "moveButton";
+            this.moveButton.Size = new System.Drawing.Size(53, 32);
+            this.moveButton.TabIndex = 36;
+            this.moveButton.Text = "MOVE";
+            this.moveButton.UseVisualStyleBackColor = true;
+            this.moveButton.Click += new System.EventHandler(this.moveButton_Click);
+            // 
+            // paintButton
+            // 
+            this.paintButton.Location = new System.Drawing.Point(431, 10);
+            this.paintButton.Name = "paintButton";
+            this.paintButton.Size = new System.Drawing.Size(53, 32);
+            this.paintButton.TabIndex = 37;
+            this.paintButton.Text = "PAINT";
+            this.paintButton.UseVisualStyleBackColor = true;
+            this.paintButton.Click += new System.EventHandler(this.paintButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.paintButton);
+            this.Controls.Add(this.moveButton);
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButtonMoveMode);
+            this.Controls.Add(this.radioButtonPaintMode);
             this.Controls.Add(this.uploadButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.NanglesFigure);
@@ -316,7 +376,6 @@
             this.Name = "Form1";
             this.Text = "RastPaint";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackPenWidth)).EndInit();
@@ -350,6 +409,11 @@
         private System.Windows.Forms.Button NanglesFigure;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button uploadButton;
+        private System.Windows.Forms.RadioButton radioButtonPaintMode;
+        private System.Windows.Forms.RadioButton radioButtonMoveMode;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.Button moveButton;
+        private System.Windows.Forms.Button paintButton;
     }
 }
 

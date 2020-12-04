@@ -20,23 +20,34 @@ namespace PaintForSchool.Figures
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool started { get; set; }
-       
 
-        public RectangleFigure()
+        public List<Point> pointsList { get; set; }
+
+        public Point[] pointsArray { get; set; }
+        public Color Color { get; set; }
+        public int Width { get; set ; }
+
+        public RectangleFigure(Pen pen)
         {
             Painter = new PolygonIPainter();
-            Reaction =new NoReactionIReaction();
+            Reaction = new NoReactionIReaction();
             started = false;
+            Color = pen.Color;
+            Width = (int)pen.Width;
+
         }
 
         public Point[] GetPoints()
         {
-            Point[] points = new Point[4];
-            points[0] = startPoint;
-            points[1] = new Point(startPoint.X,secondPoint.Y);
-            points[2] = secondPoint;
-            points[3] = new Point(secondPoint.X,startPoint.Y);
-            return points;
+            //Point[] points = new Point[4];
+            //points[0] = startPoint;
+            //points[1] = new Point(startPoint.X,secondPoint.Y);
+            //points[2] = secondPoint;
+            //points[3] = new Point(secondPoint.X,startPoint.Y);
+
+
+            pointsArray = pointsList.ToArray();
+            return pointsArray;
         }
 
         public void Set(Point pointFromForm)
@@ -44,5 +55,49 @@ namespace PaintForSchool.Figures
             startPoint = pointFromForm;
         }
 
+        public void Update(Point startPoint, Point endPoint)
+        {
+            Point[] pointstoArray = new Point[4];
+
+            pointsList = new List<Point> { };
+            //pointsList[0] = startPoint;
+            //pointsList[1] = new Point(startPoint.X, secondPoint.Y); 
+            //pointsList[2] = secondPoint;
+            //pointsList[3] = new Point(secondPoint.X, startPoint.Y);
+
+            pointstoArray[0] = startPoint;
+            pointstoArray[1] = new Point(startPoint.X, secondPoint.Y);
+            pointstoArray[2] = secondPoint;
+            pointstoArray[3] = new Point(secondPoint.X, startPoint.Y);
+            pointsList = pointstoArray.ToList();
+            //return pointsList;
+        }
+
+        public void Move(Point shiftPoint)
+        {
+            for (int i = 0; i < pointsList.Count; i++)
+            {
+              pointsList[i]  = new Point (pointsList[i].X + shiftPoint.X, pointsList[i].Y + shiftPoint.Y);
+
+            }
+            
+        }
+
+        public bool IsYou(Point touchPoint)
+        {
+            Point p1 = pointsList[3];
+            Point p2;
+            foreach (Point pi in pointsList)
+            {
+                p2 = pi;
+                if (Math.Abs((touchPoint.X - p1.X) * (p2.Y - p1.Y) - (touchPoint.Y - p1.Y) * (p2.X - p1.X))
+                    <= Math.Abs(10 * ((p2.Y - p1.Y) + (p2.X - p1.X))))
+                {
+                    return true;
+                }
+                p1 = p2;
+            }
+            return false;
+        }
     }
 }
