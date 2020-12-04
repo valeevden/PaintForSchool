@@ -304,11 +304,12 @@ namespace PaintForSchool
         }
 
 
-        private void DrawAll(Pen penHistory)
+        public void DrawAll(Pen penHistory)
         {
             foreach (IFigure figure in figuresList)
             {
-                pictureBox1.Image = canvas.DrawIt(_figure, penHistory);
+                pictureBox1.Image = canvas.DrawIt(figure, penHistory);
+                canvas.Save();
             }
         }
 
