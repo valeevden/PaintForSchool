@@ -28,6 +28,8 @@ namespace PaintForSchool.Figures
         public Color Color { get; set; }
         public int Width { get; set ; }
 
+        private double radius1;
+
         public RectangleFigure(Pen pen)
         {
             Painter = new PolygonIPainter();
@@ -36,6 +38,22 @@ namespace PaintForSchool.Figures
             Color = pen.Color;
             Width = (int)pen.Width;
 
+            PointF center = new Point();
+
+            float sumX = 0;
+            float sumY = 0;
+
+            foreach (Point bound in pointsList)
+            {
+                sumX += bound.X;
+                sumY += bound.Y;
+            }
+
+            float count = pointsList.Count();
+
+            center.X = sumX / count;
+            center.Y = sumY / count;
+            radius1 = Math.Sqrt(Math.Pow((pointsList[3].X - center.X), 2) + Math.Pow((center.Y - pointsList[3].Y), 2));
         }
 
         public Point[] GetPoints()
@@ -84,37 +102,28 @@ namespace PaintForSchool.Figures
             
         }
 
-        public void Rotate(Point point)
+        public void Rotate(int input) 
         {
-            int delta = point.X;//дельта
+            double rotateAngle = (double)input*2;
 
-            PointF center = new Point();
+            
 
-            float sumX = 0;
-            float sumY = 0;
 
-            foreach (Point bound in pointsList)
-            {
-                sumX += bound.X;
-                sumY += bound.Y;
-            }
 
-            float count = pointsList.Count();
-            center.X = sumX / count;
-
-            center.Y = sumY / count;
-
-            for (int i = 0; i < pointsList.Count; i++)
-            {
-                //по теореме пифагора
-                double radius = Math.Sqrt(Math.Pow((pointsList[i].X - center.X), 2) + Math.Pow((pointsList[i].Y - center.Y), 2));
-
-                double rotatedX = pointsList[i].X - delta;
-
-                double rotatedY = Math.Sqrt(Math.Pow(radius, 2) - Math.Pow((rotatedX - center.X), 2));
+            
                 
-                pointsList[i] = new Point((int)rotatedX, pointsList[i].Y -(int)rotatedY);
-            }
+                //double radius2 = Math.Sqrt(Math.Pow((pointsList[1].X - center.X), 2) + Math.Pow((pointsList[1].Y - center.Y), 2));
+                //double radius3 = Math.Sqrt(Math.Pow((pointsList[2].X - center.X), 2) + Math.Pow((pointsList[2].Y - center.Y), 2));
+                //double radius4 = Math.Sqrt(Math.Pow((pointsList[3].X - center.X), 2) + Math.Pow((pointsList[3].Y - center.Y), 2));
+
+                
+                
+                pointsList[3] = new Point(pointsList[3].X+(int)((radius1*Math.Cos(rotateAngle))),pointsList[3].Y+ (int)((radius1*Math.Sin(rotateAngle))));
+
+                //pointsList[1] = new Point((int)(center.X + (radius2 * Math.Cos(rotateAngle))), (int)(center.Y + (radius2 * Math.Sin(rotateAngle))));
+                //pointsList[2] = new Point((int)(center.X + (radius3 * Math.Cos(rotateAngle))), (int)(center.Y + (radius3 * Math.Sin(rotateAngle))));
+                //pointsList[3] = new Point((int)(center.X + (radius4 * Math.Cos(rotateAngle))), (int)(center.Y + (radius4 * Math.Sin(rotateAngle))));
+            
 
             //startPoint = pointsList[0];
 
