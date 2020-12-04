@@ -84,9 +84,9 @@ namespace PaintForSchool.Figures
             
         }
 
-        public void IsRotate(Point center)
+        public bool IsRotate(Point center)
         {
-
+            return false;
         }
 
         public bool IsYou(Point delta)

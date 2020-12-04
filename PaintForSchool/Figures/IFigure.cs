@@ -24,8 +24,8 @@ namespace PaintForSchool.Figures
         Color Color { get; set; }
         int Width { get; set; }
         bool IsYou(Point touchPoint);
-      
 
+        bool IsRotate(Point center);
 
         List<Point> pointsList { get; set; }
 
@@ -37,6 +37,6 @@ namespace PaintForSchool.Figures
 
         void Move(Point delta);
 
-        void IsRotate(Point center);
+        
     }
 }
