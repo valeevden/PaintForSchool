@@ -16,6 +16,7 @@ namespace PaintForSchool.Figures
         Point startPoint { get; set; }
         Point secondPoint { get; set; }
         Point tmpPoint { get; set; }
+        Point touchPoint { get; set; }
         GraphicsPath Path { get; set; }
         IRightClickReaction Reaction {get; set; }
         bool started { get; set; }

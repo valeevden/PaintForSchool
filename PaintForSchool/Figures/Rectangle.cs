@@ -16,6 +16,7 @@ namespace PaintForSchool.Figures
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
         public Point tmpPoint { get; set; }
+        public Point touchPoint { get ; set ; }
         public IPainter Painter { get; }
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }
@@ -73,26 +74,27 @@ namespace PaintForSchool.Figures
             //return pointsList;
         }
 
-        public void Move(Point shiftPoint)
+        public void Move(Point delta)
         {
             for (int i = 0; i < pointsList.Count; i++)
             {
-              pointsList[i]  = new Point (pointsList[i].X + shiftPoint.X, pointsList[i].Y + shiftPoint.Y);
+              pointsList[i]  = new Point (pointsList[i].X + delta.X, pointsList[i].Y + delta.Y);
 
             }
             
         }
 
-        public bool IsYou(Point touchPoint)
+        public bool IsYou(Point delta)
         {
             Point p1 = pointsList[3];
             Point p2;
             foreach (Point pi in pointsList)
             {
                 p2 = pi;
-                if (Math.Abs((touchPoint.X - p1.X) * (p2.Y - p1.Y) - (touchPoint.Y - p1.Y) * (p2.X - p1.X))
+                if (Math.Abs((delta.X - p1.X) * (p2.Y - p1.Y) - (delta.Y - p1.Y) * (p2.X - p1.X))
                     <= Math.Abs(10 * ((p2.Y - p1.Y) + (p2.X - p1.X))))
                 {
+                    touchPoint = delta;
                     return true;
                 }
                 p1 = p2;

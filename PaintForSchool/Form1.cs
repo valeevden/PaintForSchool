@@ -24,6 +24,7 @@ namespace PaintForSchool
         public bool mouseMove = false;
         IFabric fabrica;
         Point startPoint;
+        IFigure movingFigure;
 
         IFigure _figure; // Объект интерфейса
         List<IFigure> figuresList;
@@ -41,6 +42,7 @@ namespace PaintForSchool
             canvas = new Canvas(pictureBox1.Width, pictureBox1.Height);
             // _figure = new MyBrush();
             _figure = new RectangleFigure(_pen);
+            fabrica = new RectangleIFabric();
             figuresList = new List<IFigure>();
         }
 
@@ -57,18 +59,20 @@ namespace PaintForSchool
                     break;
                 case "MOVE":
                     _figure = null;
+
+                    
                     foreach (IFigure checkFigure in figuresList)
                     {
                         if (checkFigure.IsYou(e.Location))
                         {
                             _figure = checkFigure;
                             figuresList.Remove(_figure);
-                            Pen penHistory;
-                            penHistory = new Pen(_figure.Color, _figure.Width);
                             pictureBox1.Image = canvas.Clear();
-                            DrawAll(penHistory);
+                            DrawAll();
+                            movingFigure = checkFigure;
+                            startPoint = checkFigure.touchPoint;
                             break;
-                            
+
                         }
                     }
                     break;
@@ -77,41 +81,41 @@ namespace PaintForSchool
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-          if (_mouseDown && e.Button != MouseButtons.Right)
-          {
-
-            switch (mode)
+            if (_mouseDown && e.Button != MouseButtons.Right)
             {
-                case "PAINT":
-                
-                _figure.Update(startPoint, e.Location);
-                mouseMove = true;
-                
-                _figure.secondPoint = e.Location;
-                pictureBox1.Image = canvas.DrawIt(_figure, _pen);
 
-                GC.Collect();
-                
-                break;
+                switch (mode)
+                {
+                    case "PAINT":
 
-                case "MOVE":
+                        _figure.Update(startPoint, e.Location);
+                        mouseMove = true;
+
+                        _figure.secondPoint = e.Location;
+                        pictureBox1.Image = canvas.DrawIt(_figure, _pen);
+
+                        GC.Collect();
+
+                        break;
+
+                    case "MOVE":
                         if (_figure != null)
                         {
-                            Point delta = new Point(e.X - startPoint.X, e.Y - startPoint.Y);
+                            Point delta = new Point (e.X - startPoint.X, e.Y - startPoint.Y);
                             startPoint = e.Location;
-                            _figure.secondPoint = e.Location;
-                    
+                            //_figure.secondPoint = e.Location;
+
                             _figure.Move(delta);
-                            pictureBox1.Image = canvas.DrawIt(_figure, _pen);
+                            pictureBox1.Image = canvas.DrawIt(_figure, new Pen(movingFigure.Color, movingFigure.Width));
 
                             GC.Collect();
                         }
-                  break;
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
+                }
             }
-          }
         }
 
 
@@ -123,21 +127,32 @@ namespace PaintForSchool
             {
                 figuresList.Add(_figure);
             }
-
-            if (e.Button == MouseButtons.Right)
+            switch (mode)
             {
-                if (_figure.Reaction is FreeFigureIRightClickReaction)
-                {
-                    _figure.Reaction.Do();
-                    pictureBox1.Image = canvas.DrawIt(_figure, _pen);
-                }
-                else
-                {
-                    _figure.Reaction.Do();
-                }
-            }
-            canvas.Save();
+                case "PAINT":
+                    if (e.Button == MouseButtons.Right)
+                    {
+                        if (_figure.Reaction is FreeFigureIRightClickReaction)
+                        {
+                            _figure.Reaction.Do();
+                            pictureBox1.Image = canvas.DrawIt(_figure, _pen);
+                        }
+                        else
+                        {
+                            _figure.Reaction.Do();
+                        }
+                    }
+                    break;
 
+                case "MOVE":
+                    pictureBox1.Image = canvas.Clear();
+                    DrawAll();
+                    break;
+
+                default:
+                    break;
+            }
+                canvas.Save();
         }
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
@@ -304,11 +319,11 @@ namespace PaintForSchool
         }
 
 
-        public void DrawAll(Pen penHistory)
+        public void DrawAll()
         {
-            foreach (IFigure figure in figuresList)
+            foreach (IFigure figureINList in figuresList)
             {
-                pictureBox1.Image = canvas.DrawIt(figure, penHistory);
+                pictureBox1.Image = canvas.DrawIt(figureINList, new Pen(figureINList.Color, figureINList.Width));
                 canvas.Save();
             }
         }
