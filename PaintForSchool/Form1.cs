@@ -65,6 +65,7 @@ namespace PaintForSchool
                             figuresList.Remove(_figure);
                             Pen penHistory;
                             penHistory = new Pen(_figure.Color, _figure.Width);
+                            pictureBox1.Image = canvas.Clear();
                             DrawAll(penHistory);
                             break;
                             
