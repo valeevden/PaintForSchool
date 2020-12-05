@@ -99,7 +99,7 @@ namespace PaintForSchool.Figures
             float count = pointsList.Count();
             
 
-            center = new Point((int)(sumX / count), (int)(sumY / count));
+            center = new Point((int)Math.Round((sumX / count), 0), (int)Math.Round((sumY / count), 0));
 
             double[] startAngle = new double[_anglesNumber];//углы между радиусами точек и осями координат
 
@@ -141,7 +141,7 @@ namespace PaintForSchool.Figures
 
                 double rotatedY = center.Y + radius * (-1*(Math.Sin(startAngle[i] + 0.017)));
 
-                pointsList[i] = new Point((int)rotatedX, (int)rotatedY);
+                pointsList[i] = new Point((int)Math.Round(rotatedX, 0), (int)Math.Round(rotatedY, 0));
             }
             //startPoint = pointsList[0];
 
