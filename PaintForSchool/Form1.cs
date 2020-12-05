@@ -92,6 +92,27 @@ namespace PaintForSchool
                         }
                     }
                     break;
+
+                case "ZOOM":
+                    _figure = null;
+
+                    foreach (IFigure checkFigure in figuresList)
+                    {
+                        if (checkFigure.IsYou(e.Location))
+                        {
+                            _figure = checkFigure;
+                            figuresList.Remove(_figure);
+                            pictureBox1.Image = canvas.Clear();
+                            DrawAll();
+                            movingFigure = checkFigure;
+                            startPoint = checkFigure.touchPoint;
+                            break;
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
             }
         }
 
@@ -143,6 +164,22 @@ namespace PaintForSchool
                         
                         break;
 
+                    case "ZOOM":
+                        if (_figure != null)
+                        {
+
+                            Point delta = new Point(e.X - startPoint.X, e.Y - startPoint.Y);
+                            startPoint = e.Location;
+
+                            _figure.Zoom(delta);
+
+                            pictureBox1.Image = canvas.DrawIt(_figure, new Pen(movingFigure.Color, movingFigure.Width));
+
+                            GC.Collect();
+                        }
+
+                        break;
+
                     default:
                         break;
                 }
@@ -181,6 +218,11 @@ namespace PaintForSchool
                     break;
 
                 case "ROTATE":
+                    pictureBox1.Image = canvas.Clear();
+                    DrawAll();
+                    break;
+
+                case "ZOOM":
                     pictureBox1.Image = canvas.Clear();
                     DrawAll();
                     break;
@@ -362,11 +404,19 @@ namespace PaintForSchool
             }
         }
 
+
+        private void radioButtonZoom_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonZoom.Checked)
+            {
+                mode = "ZOOM";
+            }
+        }
+
         private void moveButton_Click(object sender, EventArgs e)
         {
             mode = "MOVE";
         }
-
 
         public void DrawAll()
         {

@@ -53,8 +53,7 @@
             this.radioButtonPaintMode = new System.Windows.Forms.RadioButton();
             this.radioButtonMoveMode = new System.Windows.Forms.RadioButton();
             this.radioButtonRotate = new System.Windows.Forms.RadioButton();
-            this.moveButton = new System.Windows.Forms.Button();
-            this.paintButton = new System.Windows.Forms.Button();
+            this.radioButtonZoom = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackPenWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._anglesNumber)).BeginInit();
@@ -323,35 +322,24 @@
             this.radioButtonRotate.UseVisualStyleBackColor = true;
             this.radioButtonRotate.CheckedChanged += new System.EventHandler(this.radioButtonRotate_CheckedChanged);
             // 
-            // moveButton
+            // radioButtonZoom
             // 
-            this.moveButton.Enabled = false;
-            this.moveButton.Location = new System.Drawing.Point(431, 51);
-            this.moveButton.Name = "moveButton";
-            this.moveButton.Size = new System.Drawing.Size(53, 32);
-            this.moveButton.TabIndex = 36;
-            this.moveButton.Text = "MOVE";
-            this.moveButton.UseVisualStyleBackColor = true;
-            this.moveButton.Click += new System.EventHandler(this.moveButton_Click);
-            // 
-            // paintButton
-            // 
-            this.paintButton.Enabled = false;
-            this.paintButton.Location = new System.Drawing.Point(431, 10);
-            this.paintButton.Name = "paintButton";
-            this.paintButton.Size = new System.Drawing.Size(53, 32);
-            this.paintButton.TabIndex = 37;
-            this.paintButton.Text = "PAINT";
-            this.paintButton.UseVisualStyleBackColor = true;
-            this.paintButton.Click += new System.EventHandler(this.paintButton_Click);
+            this.radioButtonZoom.AutoSize = true;
+            this.radioButtonZoom.Location = new System.Drawing.Point(413, 66);
+            this.radioButtonZoom.Name = "radioButtonZoom";
+            this.radioButtonZoom.Size = new System.Drawing.Size(57, 17);
+            this.radioButtonZoom.TabIndex = 36;
+            this.radioButtonZoom.TabStop = true;
+            this.radioButtonZoom.Text = "ZOOM";
+            this.radioButtonZoom.UseVisualStyleBackColor = true;
+            this.radioButtonZoom.CheckedChanged += new System.EventHandler(this.radioButtonZoom_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
-            this.Controls.Add(this.paintButton);
-            this.Controls.Add(this.moveButton);
+            this.Controls.Add(this.radioButtonZoom);
             this.Controls.Add(this.radioButtonRotate);
             this.Controls.Add(this.radioButtonMoveMode);
             this.Controls.Add(this.radioButtonPaintMode);
@@ -413,9 +401,8 @@
         private System.Windows.Forms.RadioButton radioButtonPaintMode;
         private System.Windows.Forms.RadioButton radioButtonMoveMode;
         private System.Windows.Forms.RadioButton radioButtonRotate;
-        private System.Windows.Forms.Button moveButton;
-        private System.Windows.Forms.Button paintButton;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.RadioButton radioButtonZoom;
     }
 }
 

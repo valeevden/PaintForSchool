@@ -194,6 +194,10 @@ namespace PaintForSchool.Figures
             return;
         }
 
+        public void Zoom(Point point)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
