@@ -28,6 +28,8 @@ namespace PaintForSchool.Figures
         public Color Color { get; set; }
         public int Width { get; set ; }
 
+        private int _anglesNumber;
+
         public RectangleFigure(Pen pen)
         {
             Painter = new PolygonIPainter();
@@ -35,7 +37,7 @@ namespace PaintForSchool.Figures
             started = false;
             Color = pen.Color;
             Width = (int)pen.Width;
-
+            _anglesNumber = 4;
         }
 
         public Point[] GetPoints()
@@ -77,12 +79,14 @@ namespace PaintForSchool.Figures
             
         }
 
-        public void Rotate(Point point)
+        public void Rotate()
         {
-            int delta = point.X;//дельта
+            //double deltaX = 0;//дельта
+            //double deltaY = 0;
 
-            PointF center = new Point();
+            PointF center = new Point(); //координаты центра фигуры
 
+            //суммы соответствующих координат
             float sumX = 0;
             float sumY = 0;
 
@@ -93,22 +97,52 @@ namespace PaintForSchool.Figures
             }
 
             float count = pointsList.Count();
-            center.X = sumX / count;
+            
 
-            center.Y = sumY / count;
+            center = new Point((int)(sumX / count), (int)(sumY / count));
+
+            double[] startAngle = new double[_anglesNumber];//углы между радиусами точек и осями координат
 
             for (int i = 0; i < pointsList.Count; i++)
             {
-                //по теореме пифагора
-                double radius = Math.Sqrt(Math.Pow((pointsList[i].X - center.X), 2) + Math.Pow((pointsList[i].Y - center.Y), 2));
 
-                double rotatedX = pointsList[i].X - delta;
 
-                double rotatedY = Math.Sqrt(Math.Pow(radius, 2) - Math.Pow((rotatedX - center.X), 2));
+                if (pointsList[i].Y < center.Y)
+                {
+                    if (pointsList[i].X < center.X)
+                    {
+                        startAngle[i] = 3.14159 - Math.Asin((Math.Abs(pointsList[i].X - center.X)) / (Math.Abs(pointsList[i].Y - center.Y)));
+                    }
+                    else
+                    {
+                        startAngle[i] = Math.Asin((Math.Abs(pointsList[i].X - center.X)) / (Math.Abs(pointsList[i].Y - center.Y)));
+                    }
+                }
+                else
+                {
+                    if (pointsList[i].X < center.X)
+                    {
+                        startAngle[i] = 3.14159 + Math.Asin((Math.Abs(pointsList[i].X - center.X)) / (Math.Abs(pointsList[i].Y - center.Y)));
+                    }
+                    else
+                    {
+                        startAngle[i] = 3.14159*2 - Math.Asin((Math.Abs(pointsList[i].X - center.X)) / (Math.Abs(pointsList[i].Y - center.Y)));
+                    }
+                }
+
                 
-                pointsList[i] = new Point((int)rotatedX, pointsList[i].Y -(int)rotatedY);
             }
+            for (int i = 0; i < _anglesNumber; i++)
+            {
+                //по теореме пифагора
+                double radius = Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2));
 
+                double rotatedX = center.X + radius * Math.Cos(startAngle[i] + 0.017);
+
+                double rotatedY = center.Y + radius * (-1*(Math.Sin(startAngle[i] + 0.017)));
+
+                pointsList[i] = new Point((int)rotatedX, (int)rotatedY);
+            }
             //startPoint = pointsList[0];
 
             return;

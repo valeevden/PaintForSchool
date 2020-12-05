@@ -80,9 +80,9 @@ namespace PaintForSchool.Figures
             return false;
         }
 
-        public void Rotate(Point point)
+        public void Rotate()
         {
-            int delta = point.X;//дельта
+            double delta = 0.017;//дельта
 
             PointF center = new Point();
 
