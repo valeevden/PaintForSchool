@@ -92,11 +92,11 @@ namespace PaintForSchool.Figures
             {
                 delta = -0.017;
             }
-            delta *= 1.5;
+            delta *= 1.5;//регулировка скорость вращения
 
             PointF center = new Point(); //координаты центра фигуры
 
-            //суммы соответствующих координат
+            //суммы соответствующих координат для нахождения центра
             float sumX = 0;
             float sumY = 0;
 
@@ -108,12 +108,12 @@ namespace PaintForSchool.Figures
 
             float count = pointsList.Count();
             
-
+            //находим центр
             center = new Point((int)Math.Round((sumX / count), 0), (int)Math.Round((sumY / count), 0));
 
-            double[] startAngle = new double[_anglesNumber];//углы между радиусами точек и осями координат
+            double[] startAngle = new double[_anglesNumber];//углы между радиусами точек и осью X против часовой стрелки от первой четверти
 
-            for (int i = 0; i < pointsList.Count; i++)
+            for (int i = 0; i < pointsList.Count; i++)//рассчёт углов между радиусами и X
             {
                 double radius = Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2));
 
@@ -142,6 +142,10 @@ namespace PaintForSchool.Figures
                     
                 
             }
+            //конец рассчёта углов между радиусами и X
+
+
+            //поворот точек на delta радиан
             for (int i = 0; i < _anglesNumber; i++)
             {
                 //по теореме пифагора
