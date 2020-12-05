@@ -28,7 +28,7 @@ namespace PaintForSchool.Figures
         public Color Color { get; set; }
         public int Width { get; set ; }
 
-        private int _anglesNumber;
+        public int _anglesNumber { get; set; }
 
         public RectangleFigure(Pen pen)
         {

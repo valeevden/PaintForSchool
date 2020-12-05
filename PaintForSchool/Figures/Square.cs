@@ -27,6 +27,8 @@ namespace PaintForSchool.Figures
         public Point[] pointsArray { get; set; }
         public Color Color { get; set; }
         public int Width { get; set; }
+        public int _anglesNumber { get; set; }
+
 
 
         public SquareFigure(Pen pen)
@@ -36,6 +38,7 @@ namespace PaintForSchool.Figures
             started = false;
             Color = pen.Color;
             Width = (int)pen.Width;
+            _anglesNumber = 4;
         }
 
         public Point[] GetPoints()
@@ -80,43 +83,6 @@ namespace PaintForSchool.Figures
             return false;
         }
 
-        public void Rotate(Point point)
-        {
-            double delta = 0.017;//дельта
-
-            PointF center = new Point();
-
-            float sumX = 0;
-            float sumY = 0;
-
-            foreach (Point bound in pointsList)
-            {
-                sumX += bound.X;
-                sumY += bound.Y;
-            }
-
-            float count = pointsList.Count();
-            center.X = sumX / count;
-
-            center.Y = sumY / count;
-
-            for (int i = 0; i < pointsList.Count; i++)
-            {
-                //по теореме пифагора
-                double radius = Math.Sqrt(Math.Pow((pointsList[i].X - center.X), 2) + Math.Pow((pointsList[i].Y - center.Y), 2));
-
-                double rotatedX = pointsList[i].X - delta;
-
-                double rotatedY = Math.Sqrt(Math.Pow(radius, 2) - Math.Pow((rotatedX - center.X), 2));
-
-                pointsList[i] = new Point((int)rotatedX, pointsList[i].Y - (int)rotatedY);
-            }
-
-            //startPoint = pointsList[0];
-
-            return;
-        }
-
         public void Update(Point startPoint, Point endPoint)
         {
             Point[] pointstoArray = new Point[4];
@@ -144,6 +110,89 @@ namespace PaintForSchool.Figures
             }
         }
 
+
+        public void Rotate(Point point)
+        {
+
+            double delta;
+            if (point.Y < 0)
+            {
+                delta = 0.017;//дельта
+                              //double deltaY = 0;
+            }
+            else
+            {
+                delta = -0.017;
+            }
+            delta *= 1.5;//регулировка скорость вращения
+
+            PointF center = new Point(); //координаты центра фигуры
+
+            //суммы соответствующих координат для нахождения центра
+            float sumX = 0;
+            float sumY = 0;
+
+            foreach (Point bound in pointsList)
+            {
+                sumX += bound.X;
+                sumY += bound.Y;
+            }
+
+            float count = pointsList.Count();
+
+            //находим центр
+            center = new Point((int)Math.Round((sumX / count), 0), (int)Math.Round((sumY / count), 0));
+
+            double[] startAngle = new double[_anglesNumber];//углы между радиусами точек и осью X против часовой стрелки от первой четверти
+
+            for (int i = 0; i < pointsList.Count; i++)//рассчёт углов между радиусами и X
+            {
+                double radius = Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2));
+
+                if (pointsList[i].Y < center.Y)
+                {
+                    if (pointsList[i].X < center.X)
+                    {
+                        startAngle[i] = 3.14159 - Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radius);
+                    }
+                    else
+                    {
+                        startAngle[i] = Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radius);
+                    }
+                }
+                else
+                {
+                    if (pointsList[i].X < center.X)
+                    {
+                        startAngle[i] = 3.14159 + Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radius);
+                    }
+                    else
+                    {
+                        startAngle[i] = 3.14159 * 2 - Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radius);
+                    }
+                }
+
+
+            }
+            //конец рассчёта углов между радиусами и X
+
+
+            //поворот точек на delta радиан
+            for (int i = 0; i < _anglesNumber; i++)
+            {
+                //по теореме пифагора
+                double radius = Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2));
+
+                double rotatedX = center.X + radius * Math.Cos(startAngle[i] + delta);
+
+                double rotatedY = center.Y + radius * (-1 * (Math.Sin(startAngle[i] + delta)));
+
+                pointsList[i] = new Point((int)Math.Round(rotatedX, 0), (int)Math.Round(rotatedY, 0));
+            }
+            //startPoint = pointsList[0];
+
+            return;
+        }
 
     }
 }

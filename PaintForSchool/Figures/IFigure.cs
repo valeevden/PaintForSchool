@@ -23,6 +23,8 @@ namespace PaintForSchool.Figures
         IPainter Painter { get; }
         Color Color { get; set; }
         int Width { get; set; }
+        int _anglesNumber { get; set; }
+
         bool IsYou(Point touchPoint);
 
         void Rotate(Point point);
