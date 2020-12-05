@@ -79,10 +79,20 @@ namespace PaintForSchool.Figures
             
         }
 
-        public void Rotate()
+        public void Rotate(Point point)
         {
-            //double deltaX = 0;//дельта
-            //double deltaY = 0;
+
+            double delta;
+            if (point.Y < 0)
+            {
+               delta = 0.017 ;//дельта
+                                       //double deltaY = 0;
+            }
+            else
+            {
+                delta = -0.017;
+            }
+            delta *= 1.5;
 
             PointF center = new Point(); //координаты центра фигуры
 
@@ -137,9 +147,9 @@ namespace PaintForSchool.Figures
                 //по теореме пифагора
                 double radius = Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2));
 
-                double rotatedX = center.X + radius * Math.Cos(startAngle[i] + 0.017);
+                double rotatedX = center.X + radius * Math.Cos(startAngle[i] + delta);
 
-                double rotatedY = center.Y + radius * (-1*(Math.Sin(startAngle[i] + 0.017)));
+                double rotatedY = center.Y + radius * (-1*(Math.Sin(startAngle[i] + delta)));
 
                 pointsList[i] = new Point((int)Math.Round(rotatedX, 0), (int)Math.Round(rotatedY, 0));
             }

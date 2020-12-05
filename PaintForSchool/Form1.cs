@@ -131,10 +131,10 @@ namespace PaintForSchool
                         if (_figure != null)
                         {
 
-                            //Point delta = new Point(e.X - startPoint.X, e.Y - startPoint.Y);
-                            //startPoint = e.Location;
+                            Point delta = new Point(e.X - startPoint.X, e.Y - startPoint.Y);
+                            startPoint = e.Location;
 
-                            _figure.Rotate();
+                            _figure.Rotate(delta);
 
                             pictureBox1.Image = canvas.DrawIt(_figure, new Pen(movingFigure.Color, movingFigure.Width));
 
