@@ -105,28 +105,28 @@ namespace PaintForSchool.Figures
 
             for (int i = 0; i < pointsList.Count; i++)
             {
-
+                double radius = Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2));
 
                 if (pointsList[i].Y < center.Y)
                 {
                     if (pointsList[i].X < center.X)
                     {
-                        startAngle[i] = 3.14159 - Math.Tan((Math.Abs(pointsList[i].X - center.X)) / (Math.Abs(pointsList[i].Y - center.Y)));
+                        startAngle[i] = 3.14159 - Math.Asin((Math.Abs(pointsList[i].Y - center.Y))/ radius);
                     }
                     else
                     {
-                        startAngle[i] = Math.Tan((Math.Abs(pointsList[i].X - center.X)) / (Math.Abs(pointsList[i].Y - center.Y)));
+                        startAngle[i] = Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radius);
                     }
                 }
                 else
                 {
                     if (pointsList[i].X < center.X)
                     {
-                        startAngle[i] = 3.14159 + Math.Tan((Math.Abs(pointsList[i].X - center.X)) / (Math.Abs(pointsList[i].Y - center.Y)));
+                        startAngle[i] = 3.14159 + Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radius);
                     }
                     else
                     {
-                        startAngle[i] = 3.14159*2 - Math.Tan((Math.Abs(pointsList[i].X - center.X)) / (Math.Abs(pointsList[i].Y - center.Y)));
+                        startAngle[i] = 3.14159*2 - Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radius);
                     }
                 }
                     
