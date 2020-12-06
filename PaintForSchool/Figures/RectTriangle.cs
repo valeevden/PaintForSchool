@@ -11,7 +11,7 @@ using PaintForSchool.RightClickReaction;
 
 namespace PaintForSchool.Figures
 {
-    public class RectTriangle// : IFigure
+    public class RectTriangle //: IFigure
     {
 
         public Point startPoint { get; set; }
@@ -22,6 +22,8 @@ namespace PaintForSchool.Figures
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get ; set; }
         public bool started { get; set; }
+
+        public bool IsFilled { get; set; }
 
         public RectTriangle()
         {

@@ -7,6 +7,7 @@ using System.Drawing.Drawing2D;
 using System.Threading.Tasks;
 using PaintForSchool.Painter;
 using PaintForSchool.RightClickReaction;
+using PaintForSchool.Filler;
 
 namespace PaintForSchool.Figures
 {
@@ -21,15 +22,14 @@ namespace PaintForSchool.Figures
         IRightClickReaction Reaction {get; set; }
         bool started { get; set; }
         IPainter Painter { get; }
+        IFiller Filler { get; }
         Color Color { get; set; }
         int Width { get; set; }
         int _anglesNumber { get; set; }
 
         bool IsYou(Point touchPoint);
 
-        void Rotate(Point point);
-        void Zoom(Point point, Point eLocation);
-
+        bool IsFilled { get; set; }
 
         Point [] pointsArray { get; set; }
         List<Point> pointsList { get; set; }
@@ -42,6 +42,8 @@ namespace PaintForSchool.Figures
         void Set(Point point);
 
         void Move(Point delta);
+        void Rotate(Point point);
+        void Zoom(Point point, Point eLocation);
 
         
     }

@@ -7,20 +7,24 @@ using System.Text;
 using System.Threading.Tasks;
 using PaintForSchool.Painter;
 using PaintForSchool.RightClickReaction;
+using PaintForSchool.Filler;
 
 namespace PaintForSchool.Figures
 {
-    public class RectangleFigure : IFigure 
+    public class RectangleFigure : IFigure
     {
 
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
         public Point tmpPoint { get; set; }
-        public Point touchPoint { get ; set ; }
+        public Point touchPoint { get; set; }
         public IPainter Painter { get; }
+        public IFiller Filler {get; }
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool started { get; set; }
+
+        public bool IsFilled { get; set; }
 
         public List<Point> pointsList { get; set; }
 
@@ -34,10 +38,12 @@ namespace PaintForSchool.Figures
         {
             Painter = new PolygonIPainter();
             Reaction = new NoReactionIReaction();
+            Filler = new PolygonFiller();
             started = false;
             Color = pen.Color;
             Width = (int)pen.Width;
             _anglesNumber = 4;
+            IsFilled = false;
         }
 
         public Point[] GetPoints()

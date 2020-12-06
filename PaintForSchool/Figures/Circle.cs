@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PaintForSchool.Filler;
 
 namespace PaintForSchool.Figures
 {
@@ -18,7 +19,9 @@ namespace PaintForSchool.Figures
         public Point tmpPoint { get; set; }
         public GraphicsPath Path { get; set; }
         public bool started { get; set; }
+        public bool IsFilled { get; set; }
         public IPainter Painter { get; set; }
+        public IFiller Filler { get; }
         public IRightClickReaction Reaction { get; set; }
         public Point touchPoint { get; set; }
         public Color Color { get; set; }

@@ -55,6 +55,7 @@
             this.radioButtonRotate = new System.Windows.Forms.RadioButton();
             this.radioButtonZoom = new System.Windows.Forms.RadioButton();
             this.radioButtonPeak = new System.Windows.Forms.RadioButton();
+            this.FILL = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackPenWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._anglesNumber)).BeginInit();
@@ -347,11 +348,24 @@
             this.radioButtonPeak.UseVisualStyleBackColor = true;
             this.radioButtonPeak.CheckedChanged += new System.EventHandler(this.radioButtonPeak_CheckedChanged);
             // 
+            // FILL
+            // 
+            this.FILL.AutoSize = true;
+            this.FILL.Location = new System.Drawing.Point(412, 43);
+            this.FILL.Name = "FILL";
+            this.FILL.Size = new System.Drawing.Size(46, 17);
+            this.FILL.TabIndex = 38;
+            this.FILL.TabStop = true;
+            this.FILL.Text = "FILL";
+            this.FILL.UseVisualStyleBackColor = true;
+            this.FILL.CheckedChanged += new System.EventHandler(this.FILL_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.FILL);
             this.Controls.Add(this.radioButtonPeak);
             this.Controls.Add(this.radioButtonZoom);
             this.Controls.Add(this.radioButtonRotate);
@@ -418,6 +432,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.RadioButton radioButtonZoom;
         private System.Windows.Forms.RadioButton radioButtonPeak;
+        private System.Windows.Forms.RadioButton FILL;
     }
 }
 

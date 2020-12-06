@@ -110,6 +110,25 @@ namespace PaintForSchool
                         }
                     }
                     break;
+                case "FILL":
+                    _figure = null;
+                    foreach (IFigure checkFigure in figuresList)
+                    {
+                        if (checkFigure.IsYou(e.Location))
+                        {
+                            _figure = checkFigure;
+                            _figure.IsFilled = true;
+                            figuresList.Remove(_figure);
+                            pictureBox1.Image = canvas.Clear();
+                            DrawAll();
+                            
+                            canvas.DrawIt(_figure, _pen);
+                            movingFigure = checkFigure;
+                            startPoint = checkFigure.touchPoint;
+                            break;
+                        }
+                    }
+                    break;
 
                 default:
                     break;
@@ -247,6 +266,11 @@ namespace PaintForSchool
                     break;
 
                 case "PEAK":
+                    pictureBox1.Image = canvas.Clear();
+                    DrawAll();
+                    break;
+                
+                case "FILL":
                     pictureBox1.Image = canvas.Clear();
                     DrawAll();
                     break;
@@ -452,6 +476,13 @@ namespace PaintForSchool
                 mode = "PEAK";
             }
         }
+        private void FILL_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FILL.Checked)
+            {
+                mode = "FILL";
+            }
+        }
 
 
         public void DrawAll()
@@ -463,6 +494,5 @@ namespace PaintForSchool
             }
         }
 
-       
     }
 }

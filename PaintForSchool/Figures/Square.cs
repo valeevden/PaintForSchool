@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PaintForSchool.Painter;
 using PaintForSchool.RightClickReaction;
+using PaintForSchool.Filler;
 
 
 namespace PaintForSchool.Figures
@@ -18,10 +19,11 @@ namespace PaintForSchool.Figures
         public Point tmpPoint { get; set; }
         public Point touchPoint { get; set; }
         public IPainter Painter { get; }
+        public IFiller Filler { get; }
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool started { get; set; }
-
+        public bool IsFilled { get; set; }
         public List<Point> pointsList { get; set; }
 
         public Point[] pointsArray { get; set; }

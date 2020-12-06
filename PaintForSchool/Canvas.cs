@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using PaintForSchool.Figures;
 using PaintForSchool.Painter;
+using PaintForSchool.Filler;
 
 namespace PaintForSchool
 {
@@ -27,6 +28,12 @@ namespace PaintForSchool
             _tmpBitmap = (Bitmap)_mainBitmap.Clone();
             _graphics = Graphics.FromImage(_tmpBitmap); //графикс рисует на временном битмапе
             figure.Painter.DrawFigure(pen, _graphics, figure.GetPoints());
+            
+            if (figure.IsFilled==true)
+            {
+                figure.Filler.FillFigure(pen, _graphics, figure.GetPoints());
+            }
+            
             return _tmpBitmap;
         }
         
