@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace PaintForSchool.Figures
 {
-    public class CircleFigure //: IFigure
+    public class CircleFigure : IFigure
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
@@ -20,33 +20,84 @@ namespace PaintForSchool.Figures
         public bool started { get; set; }
         public IPainter Painter { get; set; }
         public IRightClickReaction Reaction { get; set; }
+        public Point touchPoint { get; set; }
+        public Color Color { get; set; }
+        public int Width { get; set; }
+        public int _anglesNumber { get; set; }
+        public List<Point> pointsList { get; set ; }
+        public Point[] pointsArray { get; set; }
 
+        
 
-        public CircleFigure()
+        public CircleFigure(Pen pen)
         {
             Painter = new CircleIPainter();
             Reaction = new NoReactionIReaction();
             started = false;
-        }
-
-        public Point[] GetPoints()
-        {
-            int radius = secondPoint.X - startPoint.X;
-           
-            //double hpt = Math.Sqrt(Math.Pow(radius, 2) + Math.Pow(radius, 2));
-            
-            Point startRectangleHere = new Point (secondPoint.X, startPoint.Y+radius);
-
-            Point[] points = new Point[3];
-            points[0] = startRectangleHere;
-            points[1] = startPoint;
-            points[2] = secondPoint;
-            return points;
+            Color = pen.Color;
+            Width = (int)pen.Width;
+            _anglesNumber = 0;
         }
 
         public void Set(Point point)
         {
             startPoint = point;
+        }
+
+        public Point[] GetPoints()
+        {
+            pointsArray = pointsList.ToArray();
+            return pointsArray;
+        }
+
+
+        public void Update(Point startPoint, Point endPoint)
+        {
+            //double hpt = Math.Sqrt(Math.Pow(radius, 2) + Math.Pow(radius, 2));
+            int radius = endPoint.X - startPoint.X;
+            Point startRectangleHere = new Point(secondPoint.X, startPoint.Y + radius);
+            Point[] pointsArray = new Point[3];
+            pointsArray[0] = startRectangleHere;
+            pointsArray[1] = startPoint;
+            pointsArray[2] = endPoint;
+
+            pointsList = pointsArray.ToList();
+        }
+
+        public bool IsYou(Point eLocation)
+        {
+            Point centr = pointsList[1];
+            int radius = pointsList[2].X - pointsList[1].X;
+            double a = Math.Pow(eLocation.X - pointsList[1].X, 2) + Math.Pow(eLocation.Y - pointsList[1].Y, 2);
+            int b = radius * radius;
+            int accuracy = 2000; // задаем Точноть. Большое значение т.к. квадрат радиуса растет очень быстро
+            if (Math.Abs(a - b) <= accuracy)
+            {
+                touchPoint = eLocation;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void Rotate(Point point)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Zoom(Point point)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Move(Point delta)
+        {
+            for (int i = 0; i < pointsList.Count; i++)
+            {
+                pointsList[i] = new Point(pointsList[i].X + delta.X, pointsList[i].Y + delta.Y);
+            }
         }
     }
 }

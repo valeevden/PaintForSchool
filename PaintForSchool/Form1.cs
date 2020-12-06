@@ -180,6 +180,7 @@ namespace PaintForSchool
 
                         break;
 
+
                     default:
                         break;
                 }
@@ -227,6 +228,11 @@ namespace PaintForSchool
                     DrawAll();
                     break;
 
+                case "PEAK":
+                    pictureBox1.Image = canvas.Clear();
+                    DrawAll();
+                    break;
+
 
                 default:
                     break;
@@ -239,6 +245,7 @@ namespace PaintForSchool
         {
             pictureBox1.Image = canvas.Clear();
             figuresList.Clear();
+            radioButtonPaintMode.Checked = true;
         }
 
         private void Brush_Click(object sender, EventArgs e)
@@ -250,12 +257,21 @@ namespace PaintForSchool
         {
             fabrica = new RectangleIFabric();
             _figure = new RectangleFigure(_pen);
+            radioButtonPaintMode.Checked = true;
         }
 
         private void Square_Click(object sender, EventArgs e)
         {
             fabrica = new SquareIFabric();
             _figure = new SquareFigure(_pen);
+            radioButtonPaintMode.Checked = true;
+        }
+        private void Circle_Click(object sender, EventArgs e)
+        {
+            fabrica = new CircleIFabric();
+             _figure = new CircleFigure(_pen);
+            radioButtonPaintMode.Checked = true;
+            
         }
 
         private void Line2D_Click(object sender, EventArgs e)
@@ -276,6 +292,7 @@ namespace PaintForSchool
         private void trackPenWidth_Scroll(object sender, EventArgs e)
         {
             _pen = new Pen(colorDialog1.Color, trackPenWidth.Value);
+            radioButtonPaintMode.Checked = true;
         }
 
         private void colorPalete_Click(object sender, EventArgs e)
@@ -284,13 +301,10 @@ namespace PaintForSchool
             {
                 colorPalete.BackColor = colorDialog1.Color;
                 _pen = new Pen(colorDialog1.Color, trackPenWidth.Value);
+                radioButtonPaintMode.Checked = true;
             }
         }
 
-        private void Circle_Click(object sender, EventArgs e)
-        {
-            // _figure = new CircleFigure();
-        }
 
         private void Ellipse_Click(object sender, EventArgs e)
         {
@@ -413,10 +427,14 @@ namespace PaintForSchool
             }
         }
 
-        private void moveButton_Click(object sender, EventArgs e)
+        private void radioButtonPeak_CheckedChanged(object sender, EventArgs e)
         {
-            mode = "MOVE";
+            if (radioButtonPeak.Checked)
+            {
+                mode = "PEAK";
+            }
         }
+
 
         public void DrawAll()
         {
@@ -427,10 +445,6 @@ namespace PaintForSchool
             }
         }
 
-        private void paintButton_Click(object sender, EventArgs e)
-        {
-            mode = "PAINT";
-        }
-
+       
     }
 }
