@@ -53,20 +53,16 @@ namespace PaintForSchool.Figures
 
         public void Update(Point startPoint, Point endPoint)
         {
-            Point[] pointstoArray = new Point[4];
+            Point[] pointsArray = new Point[4];
 
             pointsList = new List<Point> { };
 
-            pointstoArray[0] = startPoint;
-            //pointstoArray[1] = new Point(startPoint.X, secondPoint.Y);
-            //pointstoArray[2] = secondPoint;
-            //pointstoArray[3] = new Point(secondPoint.X, startPoint.Y);
-            
-            pointstoArray[1] = new Point(startPoint.X, endPoint.Y);
-            pointstoArray[2] = endPoint;
-            pointstoArray[3] = new Point(endPoint.X, startPoint.Y);
+            pointsArray[0] = startPoint;
+            pointsArray[1] = new Point(startPoint.X, endPoint.Y);
+            pointsArray[2] = endPoint;
+            pointsArray[3] = new Point(endPoint.X, startPoint.Y);
 
-            pointsList = pointstoArray.ToList();
+            pointsList = pointsArray.ToList();
         }
 
         public void Move(Point delta)
@@ -249,13 +245,14 @@ namespace PaintForSchool.Figures
         {
             Point p1 = pointsList[3];
             Point p2;
+            int accuracy = 20; // Точность захвата
             foreach (Point pi in pointsList)
             {
                 p2 = pi;
                 if (Math.Abs((delta.X - p1.X) * (p2.Y - p1.Y) - (delta.Y - p1.Y) * (p2.X - p1.X))
-                    <= Math.Abs(10 * ((p2.Y - p1.Y) + (p2.X - p1.X))))
+                    <= Math.Abs( ((p2.Y - p1.Y) + (p2.X - p1.X))))
                 {
-                    if ((Math.Abs(p1.X - p2.X) >= Math.Abs(p1.X - delta.X)) && (Math.Abs(p1.Y - p2.Y) >= Math.Abs(p1.Y - delta.Y)))
+                    if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - delta.X)) && (Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - delta.Y)))
                     {
                         touchPoint = delta;
                         return true;

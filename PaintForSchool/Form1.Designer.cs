@@ -54,6 +54,7 @@
             this.radioButtonMoveMode = new System.Windows.Forms.RadioButton();
             this.radioButtonRotate = new System.Windows.Forms.RadioButton();
             this.radioButtonZoom = new System.Windows.Forms.RadioButton();
+            this.radioButtonPeak = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackPenWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._anglesNumber)).BeginInit();
@@ -334,11 +335,24 @@
             this.radioButtonZoom.UseVisualStyleBackColor = true;
             this.radioButtonZoom.CheckedChanged += new System.EventHandler(this.radioButtonZoom_CheckedChanged);
             // 
+            // radioButtonPeak
+            // 
+            this.radioButtonPeak.AutoSize = true;
+            this.radioButtonPeak.Location = new System.Drawing.Point(413, 18);
+            this.radioButtonPeak.Name = "radioButtonPeak";
+            this.radioButtonPeak.Size = new System.Drawing.Size(75, 17);
+            this.radioButtonPeak.TabIndex = 37;
+            this.radioButtonPeak.TabStop = true;
+            this.radioButtonPeak.Text = "ADD peak";
+            this.radioButtonPeak.UseVisualStyleBackColor = true;
+            this.radioButtonPeak.CheckedChanged += new System.EventHandler(this.radioButtonPeak_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.radioButtonPeak);
             this.Controls.Add(this.radioButtonZoom);
             this.Controls.Add(this.radioButtonRotate);
             this.Controls.Add(this.radioButtonMoveMode);
@@ -403,6 +417,7 @@
         private System.Windows.Forms.RadioButton radioButtonRotate;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.RadioButton radioButtonZoom;
+        private System.Windows.Forms.RadioButton radioButtonPeak;
     }
 }
 

@@ -31,7 +31,9 @@ namespace PaintForSchool.Figures
         void Zoom(Point point);
 
 
+        Point [] pointsArray { get; set; }
         List<Point> pointsList { get; set; }
+
 
         Point[] GetPoints();
 
