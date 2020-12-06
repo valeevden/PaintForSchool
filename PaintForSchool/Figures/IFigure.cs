@@ -28,7 +28,7 @@ namespace PaintForSchool.Figures
         bool IsYou(Point touchPoint);
 
         void Rotate(Point point);
-        void Zoom(Point point);
+        void Zoom(Point point, Point eLocation);
 
 
         Point [] pointsArray { get; set; }

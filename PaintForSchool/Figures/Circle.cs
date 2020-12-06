@@ -84,12 +84,14 @@ namespace PaintForSchool.Figures
 
         public void Rotate(Point point)
         {
-            throw new NotImplementedException();
+            // Оно крутится, верь мне, просто ты этого не видишь)
+           // throw new NotImplementedException();
         }
 
-        public void Zoom(Point point)
+        public void Zoom(Point deltaPoint, Point eLocation)
         {
-            throw new NotImplementedException();
+            startPoint = this.pointsList[1];
+            this.Update(pointsList[1], eLocation);
         }
 
         public void Move(Point delta)

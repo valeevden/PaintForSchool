@@ -167,15 +167,33 @@ namespace PaintForSchool
                     case "ZOOM":
                         if (_figure != null)
                         {
+                            if (_figure is null) //Здесь заглушка, используется для тестирования.
+                            {
+                                startPoint = movingFigure.pointsList[1];
+                                _figure.Update(startPoint, e.Location);
+                                mouseMove = true;
 
-                            Point delta = new Point(e.X - startPoint.X, e.Y - startPoint.Y);
-                            startPoint = e.Location;
+                                _figure.secondPoint = e.Location;
 
-                            _figure.Zoom(delta);
+                                pictureBox1.Image = canvas.DrawIt(_figure, new Pen(movingFigure.Color, movingFigure.Width));
 
-                            pictureBox1.Image = canvas.DrawIt(_figure, new Pen(movingFigure.Color, movingFigure.Width));
+                                GC.Collect();
 
-                            GC.Collect();
+                                break;
+                            }
+                            else
+                            {
+                                Point delta = new Point(e.X - startPoint.X, e.Y - startPoint.Y);
+                                startPoint = e.Location;
+
+                                _figure.Zoom(delta, e.Location);
+                                _figure.secondPoint = e.Location;
+
+
+                                pictureBox1.Image = canvas.DrawIt(_figure, new Pen(movingFigure.Color, movingFigure.Width));
+
+                                GC.Collect();
+                            }
                         }
 
                         break;

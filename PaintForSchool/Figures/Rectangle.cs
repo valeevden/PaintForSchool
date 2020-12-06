@@ -158,7 +158,7 @@ namespace PaintForSchool.Figures
             return;
         }
 
-        public void Zoom (Point point)
+        public void Zoom (Point point, Point eLocation)
         {
 
             double delta;
