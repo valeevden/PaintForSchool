@@ -70,7 +70,7 @@ namespace PaintForSchool.Figures
             int radius = pointsList[2].X - pointsList[1].X;
             double a = Math.Pow(eLocation.X - pointsList[1].X, 2) + Math.Pow(eLocation.Y - pointsList[1].Y, 2);
             int b = radius * radius;
-            int accuracy = 2000; // задаем Точноть. Большое значение т.к. квадрат радиуса растет очень быстро
+            int accuracy = 2000; // задаем Точность. Большое значение т.к. квадрат радиуса растет очень быстро
             if (Math.Abs(a - b) <= accuracy)
             {
                 touchPoint = eLocation;

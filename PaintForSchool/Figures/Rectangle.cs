@@ -245,13 +245,14 @@ namespace PaintForSchool.Figures
         {
             Point p1 = pointsList[3];
             Point p2;
+            int accuracy = 20; // Точность захвата
             foreach (Point pi in pointsList)
             {
                 p2 = pi;
                 if (Math.Abs((delta.X - p1.X) * (p2.Y - p1.Y) - (delta.Y - p1.Y) * (p2.X - p1.X))
-                    <= Math.Abs(10 * ((p2.Y - p1.Y) + (p2.X - p1.X))))
+                    <= Math.Abs( ((p2.Y - p1.Y) + (p2.X - p1.X))))
                 {
-                    if ((Math.Abs(p1.X - p2.X) >= Math.Abs(p1.X - delta.X)) && (Math.Abs(p1.Y - p2.Y) >= Math.Abs(p1.Y - delta.Y)))
+                    if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - delta.X)) && (Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - delta.Y)))
                     {
                         touchPoint = delta;
                         return true;
