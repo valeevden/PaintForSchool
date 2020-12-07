@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PaintForSchool.Filler;
 
 namespace PaintForSchool.Figures
 {
@@ -28,7 +29,7 @@ namespace PaintForSchool.Figures
         public List<Point> pointsList { get; set; }
         public Point[] pointsArray { get; set; }
 
-        public IFiller Filler => throw new NotImplementedException();
+        public IFiller Filler { get; set; }
 
         public bool IsFilled { get; set; }
 
@@ -36,6 +37,7 @@ namespace PaintForSchool.Figures
         {
             Painter = new EllipseIPainter();
             Reaction = new NoReactionIReaction();
+            Filler = new EllipseFiller();
             started = false;
             Color = pen.Color;
             Width = (int)pen.Width;

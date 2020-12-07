@@ -27,7 +27,6 @@ namespace PaintForSchool.Painter
             int height = point[1].Y - point[0].Y;
             Rectangle rectangle = new Rectangle(x, y, width, height);
             return rectangle;
-            
         }
     }
 }

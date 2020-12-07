@@ -36,7 +36,7 @@ namespace PaintForSchool.Figures
         {
             Painter = new CircleIPainter();
             Reaction = new NoReactionIReaction();
-            Filler = new EllipseFiller();
+            Filler = new CircleFiller();
             IsFilled = false;
             started = false;
             Color = pen.Color;
