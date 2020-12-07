@@ -133,8 +133,7 @@ namespace PaintForSchool
                 case "COLOR_PICK":
                     if (pictureBox1.Image != null)
                     {
-                        Bitmap bmp = (Bitmap)pictureBox1.Image;
-                        pickedColor = bmp.GetPixel(e.X, e.Y);
+                        pickedColor = canvas._mainBitmap.GetPixel(e.X, e.Y);
                         colorPalete.BackColor = pickedColor;
                         _pen.Color = pickedColor;
                     }

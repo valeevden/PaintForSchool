@@ -12,7 +12,7 @@ namespace PaintForSchool
 {
     public class Canvas
     {
-        Bitmap _mainBitmap; //Объект Bitmap используется для работы с изображениями, определяемыми данными пикселей
+        public Bitmap _mainBitmap { get; protected set; } //Объект Bitmap используется для работы с изображениями, определяемыми данными пикселей
         Bitmap _tmpBitmap;
         Graphics _graphics; //класс с методами для рисования
         
@@ -22,6 +22,8 @@ namespace PaintForSchool
             _tmpBitmap = (Bitmap)_mainBitmap.Clone();
             _graphics = Graphics.FromImage(_mainBitmap);
         } 
+
+        
 
         public Bitmap DrawIt(IFigure figure, Pen pen)
         {
