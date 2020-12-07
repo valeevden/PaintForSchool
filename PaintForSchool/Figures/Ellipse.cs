@@ -1,4 +1,5 @@
-﻿using PaintForSchool.Painter;
+﻿using PaintForSchool.Filler;
+using PaintForSchool.Painter;
 using PaintForSchool.RightClickReaction;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,9 @@ namespace PaintForSchool.Figures
         public List<Point> pointsList { get; set; }
         public Point[] pointsArray { get; set; }
 
+        public IFiller Filler => throw new NotImplementedException();
+
+        public bool IsFilled { get; set; }
 
         public EllipseFigure(Pen pen)
         {
@@ -36,6 +40,7 @@ namespace PaintForSchool.Figures
             Color = pen.Color;
             Width = (int)pen.Width;
             _anglesNumber = 0;
+            IsFilled = false;
         }
 
         public Point[] GetPoints()
@@ -57,7 +62,7 @@ namespace PaintForSchool.Figures
             secondPoint = point;
         }
 
-        public bool IsYou(Point eLocation)
+        public bool IsEdge(Point eLocation)
         {
             PointF centr = pointsList[0];
             //double a = Math.Pow((eLocation.X - pointsList[0].X), 2);
@@ -86,7 +91,7 @@ namespace PaintForSchool.Figures
 
             Point p1 = pointsListR[3];
             Point p2;
-            int accuracy = 1; // Точность захвата
+            double accuracy = 0.01; // Точность захвата
             foreach (Point pi in pointsListR)
             {
                 p2 = pi;
@@ -124,6 +129,11 @@ namespace PaintForSchool.Figures
             {
                 pointsList[i] = new Point(pointsList[i].X + delta.X, pointsList[i].Y + delta.Y);
             }
+        }
+
+        public bool IsArea(Point touchPoint)
+        {
+            throw new NotImplementedException();
         }
     }
 }
