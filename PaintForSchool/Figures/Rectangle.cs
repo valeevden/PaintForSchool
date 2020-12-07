@@ -83,16 +83,15 @@ namespace PaintForSchool.Figures
 
         public void Rotate(Point point)
         {
-
+            //определяем направление движение мыши: вверх или вниз
             double delta;
             if (point.Y < 0)
             {
-               delta = 0.017 ;//дельта
-                                       //double deltaY = 0;
+               delta = 0.017 ;//если вверх, то поворачиваем на один градус влево каждый MouseMove
             }
             else
             {
-                delta = -0.017;
+                delta = -0.017;//если вниз, то поворачиваем на один градус влево каждый MouseMove
             }
             delta *= 1.5;//регулировка скорость вращения
 
@@ -115,10 +114,16 @@ namespace PaintForSchool.Figures
 
             double[] startAngle = new double[_anglesNumber];//углы между радиусами точек и осью X против часовой стрелки от первой четверти
 
-            for (int i = 0; i < pointsList.Count; i++)//рассчёт углов между радиусами и X
+            //рассчёт углов между радиусами и X
+            //если синус угла это отношение противолежащего катета к гипотенузе,
+            //то сам угол - это арксинус этого же отношения
+            for (int i = 0; i < pointsList.Count; i++)
             {
                 double radius = Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2));
 
+                //только поняв в какой четверти находит противолежщий катет можно
+                //правильно интерпретировать результат, т. к. например арксинусы для
+                //углов 10, 170, 190 и 350 градусов будет одинаковыми
                 if (pointsList[i].Y < center.Y)
                 {
                     if (pointsList[i].X < center.X)
@@ -147,19 +152,18 @@ namespace PaintForSchool.Figures
             //конец рассчёта углов между радиусами и X
 
 
-            //поворот точек на delta радиан
+            //поворот точек на delta радиан Против часовой
             for (int i = 0; i < _anglesNumber; i++)
             {
-                //по теореме пифагора
+                //может не надо радиус заново искать?
                 double radius = Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2));
 
                 double rotatedX = center.X + radius * Math.Cos(startAngle[i] + delta);
 
-                double rotatedY = center.Y + radius * (-1*(Math.Sin(startAngle[i] + delta)));
+                double rotatedY = center.Y + radius * (-1*(Math.Sin(startAngle[i] + delta)));//-1*Sin для инверсии Y
 
                 pointsList[i] = new Point((int)Math.Round(rotatedX, 0), (int)Math.Round(rotatedY, 0));
             }
-            //startPoint = pointsList[0];
 
             return;
         }
