@@ -11,6 +11,7 @@ namespace PaintForSchool.Filler
     {
         public void FillFigure(Pen pen, Graphics graphics, Point[] points)
         {
+            
             graphics.FillPolygon(new SolidBrush(pen.Color), points);
         }
     }

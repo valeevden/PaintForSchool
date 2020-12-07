@@ -36,6 +36,8 @@ namespace PaintForSchool.Figures
         {
             Painter = new CircleIPainter();
             Reaction = new NoReactionIReaction();
+            Filler = new EllipseFiller();
+            IsFilled = false;
             started = false;
             Color = pen.Color;
             Width = (int)pen.Width;
@@ -67,7 +69,7 @@ namespace PaintForSchool.Figures
             pointsList = pointsArray.ToList();
         }
 
-        public bool IsYou(Point eLocation)
+        public bool IsEdge(Point eLocation)
         {
             Point centr = pointsList[1];
             int radius = pointsList[2].X - pointsList[1].X;
@@ -83,6 +85,26 @@ namespace PaintForSchool.Figures
             {
                 return false;
             }
+        }
+
+        public bool IsArea(Point delta)
+        {
+            
+            double radius = pointsList[2].X - pointsList[1].X; ;
+            double integrator = 1;
+            Point centr = pointsList[1];
+            while (radius>0.0000001)
+                {
+                radius = pointsList[2].X * integrator - pointsList[1].X;
+                double a = Math.Pow(delta.X - pointsList[1].X, 2) + Math.Pow(delta.Y - pointsList[1].Y, 2);
+                double b = radius * radius;
+                int accuracy = 2000; // задаем Точность. Большое значение т.к. квадрат радиуса растет очень быстро
+                if ((Math.Abs(a - b) <= accuracy))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void Rotate(Point point)

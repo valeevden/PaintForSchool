@@ -247,7 +247,7 @@ namespace PaintForSchool.Figures
             return;
         }
 
-        public bool IsYou(Point delta)
+        public bool IsEdge(Point delta)
         {
             Point p1 = pointsList[3];
             Point p2;
@@ -266,6 +266,17 @@ namespace PaintForSchool.Figures
                     }
                 }
                 p1 = p2;
+            }
+            return false;
+        }
+        
+        public bool IsArea(Point delta)
+        {
+            if((Math.Abs(pointsList[0].Y-pointsList[1].Y)> Math.Abs(pointsList[0].Y - delta.Y))
+               &&
+                (Math.Abs(pointsList[3].X-pointsList[2].X)> Math.Abs(pointsList[3].X - delta.X)))
+            {
+                return true;
             }
             return false;
         }

@@ -62,7 +62,7 @@ namespace PaintForSchool
 
                     foreach (IFigure checkFigure in figuresList)
                     {
-                        if (checkFigure.IsYou(e.Location))
+                        if (checkFigure.IsEdge(e.Location))
                         {
                             _figure = checkFigure;
                             figuresList.Remove(_figure);
@@ -80,7 +80,7 @@ namespace PaintForSchool
 
                     foreach (IFigure checkFigure in figuresList)
                     {
-                        if (checkFigure.IsYou(e.Location))
+                        if (checkFigure.IsEdge(e.Location))
                         {
                             _figure = checkFigure;
                             figuresList.Remove(_figure);
@@ -98,7 +98,7 @@ namespace PaintForSchool
 
                     foreach (IFigure checkFigure in figuresList)
                     {
-                        if (checkFigure.IsYou(e.Location))
+                        if (checkFigure.IsEdge(e.Location))
                         {
                             _figure = checkFigure;
                             figuresList.Remove(_figure);
@@ -114,7 +114,7 @@ namespace PaintForSchool
                     _figure = null;
                     foreach (IFigure checkFigure in figuresList)
                     {
-                        if (checkFigure.IsYou(e.Location))
+                        if (checkFigure.IsEdge(e.Location))
                         {
                             _figure = checkFigure;
                             _figure.IsFilled = true;

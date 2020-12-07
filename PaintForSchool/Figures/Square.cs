@@ -37,6 +37,8 @@ namespace PaintForSchool.Figures
         {
             Painter = new PolygonIPainter();
             Reaction = new NoReactionIReaction();
+            Filler = new PolygonFiller();
+            IsFilled = false;
             started = false;
             Color = pen.Color;
             Width = (int)pen.Width;
@@ -67,7 +69,7 @@ namespace PaintForSchool.Figures
             startPoint = point;
         }
 
-        public bool IsYou(Point delta)
+        public bool IsEdge(Point delta)
         {
             Point p1 = pointsList[3];
             Point p2;
@@ -81,6 +83,17 @@ namespace PaintForSchool.Figures
                     return true;
                 }
                 p1 = p2;
+            }
+            return false;
+        }
+
+        public bool IsArea(Point delta)
+        {
+            if ((Math.Abs(pointsList[0].Y - pointsList[1].Y) > Math.Abs(pointsList[0].Y - delta.Y))
+               &&
+                (Math.Abs(pointsList[3].X - pointsList[2].X) > Math.Abs(pointsList[3].X - delta.X)))
+            {
+                return true;
             }
             return false;
         }

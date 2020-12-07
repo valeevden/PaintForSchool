@@ -27,7 +27,8 @@ namespace PaintForSchool.Figures
         int Width { get; set; }
         int _anglesNumber { get; set; }
 
-        bool IsYou(Point touchPoint);
+        bool IsEdge(Point touchPoint);
+        bool IsArea(Point touchPoint);
 
         bool IsFilled { get; set; }
 
