@@ -56,6 +56,7 @@
             this.radioButtonZoom = new System.Windows.Forms.RadioButton();
             this.radioButtonPeak = new System.Windows.Forms.RadioButton();
             this.FILL = new System.Windows.Forms.RadioButton();
+            this.colorPicker = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackPenWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._anglesNumber)).BeginInit();
@@ -67,7 +68,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Location = new System.Drawing.Point(322, 98);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(550, 421);
+            this.pictureBox1.Size = new System.Drawing.Size(587, 421);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
@@ -137,7 +138,7 @@
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(48, 471);
-            this.button7.Margin = new System.Windows.Forms.Padding(2);
+            this.button7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(124, 48);
             this.button7.TabIndex = 7;
@@ -148,7 +149,7 @@
             // RectTriangleButton
             // 
             this.RectTriangleButton.Location = new System.Drawing.Point(48, 363);
-            this.RectTriangleButton.Margin = new System.Windows.Forms.Padding(2);
+            this.RectTriangleButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RectTriangleButton.Name = "RectTriangleButton";
             this.RectTriangleButton.Size = new System.Drawing.Size(124, 48);
             this.RectTriangleButton.TabIndex = 8;
@@ -159,7 +160,7 @@
             // IsoscelesTriangle
             // 
             this.IsoscelesTriangle.Location = new System.Drawing.Point(48, 415);
-            this.IsoscelesTriangle.Margin = new System.Windows.Forms.Padding(2);
+            this.IsoscelesTriangle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.IsoscelesTriangle.Name = "IsoscelesTriangle";
             this.IsoscelesTriangle.Size = new System.Drawing.Size(124, 52);
             this.IsoscelesTriangle.TabIndex = 9;
@@ -200,7 +201,7 @@
             // trackPenWidth
             // 
             this.trackPenWidth.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.trackPenWidth.Location = new System.Drawing.Point(606, 25);
+            this.trackPenWidth.Location = new System.Drawing.Point(642, 25);
             this.trackPenWidth.Maximum = 30;
             this.trackPenWidth.Minimum = 1;
             this.trackPenWidth.Name = "trackPenWidth";
@@ -212,7 +213,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(539, 7);
+            this.label1.Location = new System.Drawing.Point(595, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 26;
@@ -221,7 +222,7 @@
             // colorPalete
             // 
             this.colorPalete.BackColor = System.Drawing.Color.Red;
-            this.colorPalete.Location = new System.Drawing.Point(530, 20);
+            this.colorPalete.Location = new System.Drawing.Point(586, 20);
             this.colorPalete.Name = "colorPalete";
             this.colorPalete.Size = new System.Drawing.Size(50, 50);
             this.colorPalete.TabIndex = 27;
@@ -230,7 +231,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(700, 7);
+            this.label2.Location = new System.Drawing.Point(736, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 28;
@@ -293,7 +294,7 @@
             // 
             this.radioButtonPaintMode.AutoSize = true;
             this.radioButtonPaintMode.Checked = true;
-            this.radioButtonPaintMode.Location = new System.Drawing.Point(322, 18);
+            this.radioButtonPaintMode.Location = new System.Drawing.Point(313, 18);
             this.radioButtonPaintMode.Name = "radioButtonPaintMode";
             this.radioButtonPaintMode.Size = new System.Drawing.Size(57, 17);
             this.radioButtonPaintMode.TabIndex = 33;
@@ -305,7 +306,7 @@
             // radioButtonMoveMode
             // 
             this.radioButtonMoveMode.AutoSize = true;
-            this.radioButtonMoveMode.Location = new System.Drawing.Point(322, 42);
+            this.radioButtonMoveMode.Location = new System.Drawing.Point(313, 42);
             this.radioButtonMoveMode.Name = "radioButtonMoveMode";
             this.radioButtonMoveMode.Size = new System.Drawing.Size(56, 17);
             this.radioButtonMoveMode.TabIndex = 34;
@@ -316,7 +317,7 @@
             // radioButtonRotate
             // 
             this.radioButtonRotate.AutoSize = true;
-            this.radioButtonRotate.Location = new System.Drawing.Point(322, 66);
+            this.radioButtonRotate.Location = new System.Drawing.Point(313, 66);
             this.radioButtonRotate.Name = "radioButtonRotate";
             this.radioButtonRotate.Size = new System.Drawing.Size(69, 17);
             this.radioButtonRotate.TabIndex = 35;
@@ -327,7 +328,7 @@
             // radioButtonZoom
             // 
             this.radioButtonZoom.AutoSize = true;
-            this.radioButtonZoom.Location = new System.Drawing.Point(413, 66);
+            this.radioButtonZoom.Location = new System.Drawing.Point(386, 66);
             this.radioButtonZoom.Name = "radioButtonZoom";
             this.radioButtonZoom.Size = new System.Drawing.Size(57, 17);
             this.radioButtonZoom.TabIndex = 36;
@@ -339,7 +340,7 @@
             // radioButtonPeak
             // 
             this.radioButtonPeak.AutoSize = true;
-            this.radioButtonPeak.Location = new System.Drawing.Point(413, 18);
+            this.radioButtonPeak.Location = new System.Drawing.Point(386, 18);
             this.radioButtonPeak.Name = "radioButtonPeak";
             this.radioButtonPeak.Size = new System.Drawing.Size(75, 17);
             this.radioButtonPeak.TabIndex = 37;
@@ -351,7 +352,7 @@
             // FILL
             // 
             this.FILL.AutoSize = true;
-            this.FILL.Location = new System.Drawing.Point(412, 43);
+            this.FILL.Location = new System.Drawing.Point(386, 42);
             this.FILL.Name = "FILL";
             this.FILL.Size = new System.Drawing.Size(46, 17);
             this.FILL.TabIndex = 38;
@@ -360,11 +361,24 @@
             this.FILL.UseVisualStyleBackColor = true;
             this.FILL.CheckedChanged += new System.EventHandler(this.FILL_CheckedChanged);
             // 
+            // colorPicker
+            // 
+            this.colorPicker.AutoSize = true;
+            this.colorPicker.Location = new System.Drawing.Point(580, 76);
+            this.colorPicker.Name = "colorPicker";
+            this.colorPicker.Size = new System.Drawing.Size(82, 17);
+            this.colorPicker.TabIndex = 39;
+            this.colorPicker.TabStop = true;
+            this.colorPicker.Text = "Color Picker";
+            this.colorPicker.UseVisualStyleBackColor = true;
+            this.colorPicker.CheckedChanged += new System.EventHandler(this.colorPicker_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 561);
+            this.ClientSize = new System.Drawing.Size(921, 561);
+            this.Controls.Add(this.colorPicker);
             this.Controls.Add(this.FILL);
             this.Controls.Add(this.radioButtonPeak);
             this.Controls.Add(this.radioButtonZoom);
@@ -433,6 +447,7 @@
         private System.Windows.Forms.RadioButton radioButtonZoom;
         private System.Windows.Forms.RadioButton radioButtonPeak;
         private System.Windows.Forms.RadioButton FILL;
+        private System.Windows.Forms.RadioButton colorPicker;
     }
 }
 

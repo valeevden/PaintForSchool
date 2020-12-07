@@ -28,6 +28,7 @@ namespace PaintForSchool
         IFigure _figure; // Объект интерфейса
         List<IFigure> figuresList;
         string mode = "PAINT";
+        Color pickedColor;
 
 
 
@@ -127,6 +128,19 @@ namespace PaintForSchool
                             startPoint = checkFigure.touchPoint;
                             break;
                         }
+                    }
+                    break;
+                case "COLOR_PICK":
+                    if (pictureBox1.Image != null)
+                    {
+                        pickedColor = canvas._mainBitmap.GetPixel(e.X, e.Y);
+                        colorPalete.BackColor = pickedColor;
+                        _pen.Color = pickedColor;
+                    }
+                    else
+                    {
+                        _pen.Color = Color.White;
+                        colorPalete.BackColor = Color.White;
                     }
                     break;
 
@@ -274,8 +288,11 @@ namespace PaintForSchool
                     pictureBox1.Image = canvas.Clear();
                     DrawAll();
                     break;
-
-
+                case "COLOR_PICK":
+                    //mode = "PAINT";
+                    radioButtonPaintMode.Checked = true;
+                    colorPicker.Checked = false;
+                    break;
                 default:
                     break;
             }
@@ -346,6 +363,8 @@ namespace PaintForSchool
                 radioButtonPaintMode.Checked = true;
             }
         }
+
+
 
 
         private void Ellipse_Click(object sender, EventArgs e)
@@ -499,5 +518,13 @@ namespace PaintForSchool
             }
         }
 
+        private void colorPicker_CheckedChanged(object sender, EventArgs e)
+        {
+            if (colorPicker.Checked)
+            {
+                mode = "COLOR_PICK";
+            }
+
+        }
     }
 }

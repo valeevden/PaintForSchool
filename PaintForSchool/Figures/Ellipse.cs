@@ -50,11 +50,13 @@ namespace PaintForSchool.Figures
             pointsArray = pointsList.ToArray();
             return pointsArray;
         }
-        public void Update(Point startPoint, Point endPoint)
+        public void Update(Point startP, Point endP)
         {
             Point[] pointsArray = new Point[2];
-            pointsArray[0] = startPoint;
-            pointsArray[1] = endPoint;
+            pointsArray[0] = startP;
+            startPoint = startP;
+            pointsArray[1] = endP;
+            secondPoint = endP;
 
             pointsList = pointsArray.ToList();
         }
@@ -93,7 +95,7 @@ namespace PaintForSchool.Figures
 
             Point p1 = pointsListR[3];
             Point p2;
-            double accuracy = 0.01; // Точность захвата
+            double accuracy = 20; // Точность захвата
             foreach (Point pi in pointsListR)
             {
                 p2 = pi;
@@ -136,6 +138,30 @@ namespace PaintForSchool.Figures
         public bool IsArea(Point touchPoint)
         {
             throw new NotImplementedException();
+        }
+
+        // Приватный метод, который принимает на вход массив поинтов и выплевывает ректангл
+        private Rectangle MakeRectangleFromPointsList(List <Point> point)
+        {
+            int x = point[0].X;
+            int y = point[0].Y;
+            int width = point[1].X - point[0].X;
+            int height = point[1].Y - point[0].Y;
+            Rectangle rectangle = new Rectangle(x, y, width, height);
+            return rectangle;
+
+        }
+
+        private void MakePointsForExtrenalRectangle(List<Point> point)
+        {
+
+            List<Point> pointsListR = new List<Point> {};
+            pointsListR.Capacity = 4;
+            pointsListR[0] = startPoint;
+            pointsListR[1] = new Point(startPoint.X, secondPoint.Y);
+            pointsListR[2] = secondPoint;
+            pointsListR[3] = new Point(secondPoint.X, startPoint.Y);
+
         }
     }
 }
