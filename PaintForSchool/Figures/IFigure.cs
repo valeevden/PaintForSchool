@@ -25,14 +25,15 @@ namespace PaintForSchool.Figures
         int Width { get; set; }
         int _anglesNumber { get; set; }
 
+        Point [] pointsArray { get; set; }
+        List<Point> pointsList { get; set; }
+
         bool IsYou(Point touchPoint);
 
         void Rotate(Point point);
         void Zoom(Point point, Point eLocation);
 
 
-        Point [] pointsArray { get; set; }
-        List<Point> pointsList { get; set; }
 
 
         Point[] GetPoints();
