@@ -55,13 +55,13 @@ namespace PaintForSchool.Figures
         {
             Point[] pointsArray = new Point[4];
 
-            pointsList = new List<Point> { };
 
             pointsArray[0] = startPoint;
             pointsArray[1] = new Point(startPoint.X, endPoint.Y);
             pointsArray[2] = endPoint;
             pointsArray[3] = new Point(endPoint.X, startPoint.Y);
 
+            pointsList = new List<Point> { };
             pointsList = pointsArray.ToList();
         }
 

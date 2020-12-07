@@ -60,24 +60,50 @@ namespace PaintForSchool.Figures
         public bool IsYou(Point eLocation)
         {
             PointF centr = pointsList[0];
-            double a = Math.Pow((pointsList[1].X - pointsList[0].X), 2);
-            double b = Math.Pow((pointsList[1].Y - pointsList[0].Y), 2);
-            double aX = Math.Sqrt(pointsList[1].X - pointsList[0].X);
-            double aY = Math.Sqrt(pointsList[1].Y - pointsList[0].Y);
-
-            double eq = Math.Abs((a / aX) - (b / aY));
+            //double a = Math.Pow((eLocation.X - pointsList[0].X), 2);
+            //double b = Math.Pow((eLocation.Y - pointsList[0].Y), 2);
+            //double aX = Math.Sqrt(eLocation.X - pointsList[0].X);
+            //double aY = Math.Sqrt(eLocation.Y - pointsList[0].Y);
 
 
-            int accuracy = 5000; //задаем Точность.
-            if (eq  <= accuracy)
+            //double eq = Math.Abs((a / aX) - (b / aY));
+            //int accuracy = 1000 ; //задаем Точность.
+            //if (eq  >= accuracy)
+            //{
+            //    touchPoint = eLocation;
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
+
+            List <Point> pointsListR = new List<Point> { eLocation, eLocation, eLocation, eLocation };
+            pointsListR[0] = startPoint;
+            pointsListR[1] = new Point(startPoint.X, eLocation.Y);
+            pointsListR[2] = eLocation;
+            pointsListR[3] = new Point(eLocation.X, startPoint.Y);
+
+            Point p1 = pointsListR[3];
+            Point p2;
+            int accuracy = 1; // Точность захвата
+            foreach (Point pi in pointsListR)
             {
-                touchPoint = eLocation;
-                return true;
+                p2 = pi;
+                if (Math.Abs((eLocation.X - p1.X) * (p2.Y - p1.Y) - (eLocation.Y - p1.Y) * (p2.X - p1.X))
+                    <= Math.Abs(((p2.Y - p1.Y) + (p2.X - p1.X))))
+                {
+                    if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - eLocation.X)) && (Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - eLocation.Y)))
+                    {
+                        touchPoint = eLocation;
+                        return true;
+
+                    }
+                }
+                p1 = p2;
             }
-            else
-            {
-                return false;
-            }
+            return false;
+
         }
 
         public void Rotate(Point point)
