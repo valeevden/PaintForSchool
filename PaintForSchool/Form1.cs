@@ -350,7 +350,9 @@ namespace PaintForSchool
 
         private void Ellipse_Click(object sender, EventArgs e)
         {
-            //_figure = new EllipseFigure();
+            fabrica = new EllipseIFabric();
+            _figure = new EllipseFigure(_pen);
+            radioButtonPaintMode.Checked = true;
         }
 
         private void Triangle3D_Click(object sender, EventArgs e)
