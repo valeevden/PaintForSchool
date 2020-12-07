@@ -83,7 +83,7 @@ namespace PaintForSchool.Figures
 
         public void Rotate(Point point)
         {
-            //определяем направление движение мыши: вверх или вниз
+            //определяем направление движения мыши: вверх или вниз
             double delta;
             if (point.Y < 0)
             {

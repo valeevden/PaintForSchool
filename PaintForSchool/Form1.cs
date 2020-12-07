@@ -363,13 +363,16 @@ namespace PaintForSchool
         private void NanglesFigure_Click(object sender, EventArgs e)
         {
             // _figure = new NanglesFigure((int)_anglesNumber.Value);
+            fabrica = new NanglesIFabric((int)_anglesNumber.Value);
+            _figure = fabrica.CreateFigure(_pen);
         }
 
         private void _anglesNumber_ValueChanged(object sender, EventArgs e)
         {
-            if (_figure.Painter is PolygonIPainter)
+            if (_figure is NanglesFigure)
             {
-                // _figure = new NanglesFigure((int)_anglesNumber.Value);
+                fabrica = new NanglesIFabric((int)_anglesNumber.Value);
+                _figure = fabrica.CreateFigure(_pen);
             }
         }
 
