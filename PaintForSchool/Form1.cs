@@ -134,13 +134,21 @@ namespace PaintForSchool
                     if (pictureBox1.Image != null)
                     {
                         pickedColor = canvas._mainBitmap.GetPixel(e.X, e.Y);
-                        colorPalete.BackColor = pickedColor;
-                        _pen.Color = pickedColor;
+                        if (pickedColor.A == 0)
+                        {
+                            _pen.Color = pictureBox1.BackColor;
+                            colorPalete.BackColor = pictureBox1.BackColor;
+                        }
+                        else
+                        {
+                            colorPalete.BackColor = pickedColor;
+                            _pen.Color = pickedColor;
+                        }
                     }
                     else
                     {
-                        _pen.Color = Color.White;
-                        colorPalete.BackColor = Color.White;
+                        _pen.Color = pictureBox1.BackColor;
+                        colorPalete.BackColor = pictureBox1.BackColor;
                     }
                     break;
 
