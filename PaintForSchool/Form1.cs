@@ -397,7 +397,10 @@ namespace PaintForSchool
 
         private void IsoscelesTriangle_Click(object sender, EventArgs e)
         {
-            // _figure = new IsoscelesTriangle();
+            
+            fabrica = new IsoscelesIFabric();
+            _figure = new IsoscelesTriangle(_pen);
+            radioButtonPaintMode.Checked = true;
         }
 
         private void RectTriangleButton_Click(object sender, EventArgs e)
@@ -524,6 +527,10 @@ namespace PaintForSchool
             {
                 mode = "COLOR_PICK";
             }
+
+        }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
 
         }
     }

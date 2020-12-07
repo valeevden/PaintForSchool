@@ -251,7 +251,7 @@ namespace PaintForSchool.Figures
             return;
         }
 
-        public bool IsEdge(Point delta)
+        public bool IsEdge(Point touch)
         {
             Point p1 = pointsList[3];
             Point p2;
@@ -259,14 +259,13 @@ namespace PaintForSchool.Figures
             foreach (Point pi in pointsList)
             {
                 p2 = pi;
-                if (Math.Abs((delta.X - p1.X) * (p2.Y - p1.Y) - (delta.Y - p1.Y) * (p2.X - p1.X))
+                if (Math.Abs((touch.X - p1.X) * (p2.Y - p1.Y) - (touch.Y - p1.Y) * (p2.X - p1.X))
                     <= Math.Abs( ((p2.Y - p1.Y) + (p2.X - p1.X))))
                 {
-                    if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - delta.X)) && (Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - delta.Y)))
+                    if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - touch.X)) && (Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - touch.Y)))
                     {
-                        touchPoint = delta;
+                        touchPoint = touch;
                         return true;
-
                     }
                 }
                 p1 = p2;

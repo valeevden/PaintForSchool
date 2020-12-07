@@ -66,20 +66,23 @@
             // 
             this.pictureBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Pane;
             this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Location = new System.Drawing.Point(322, 98);
+            this.pictureBox1.Location = new System.Drawing.Point(429, 121);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(587, 421);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // Brush
             // 
-            this.Brush.Location = new System.Drawing.Point(49, 98);
+            this.Brush.Location = new System.Drawing.Point(65, 121);
+            this.Brush.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Brush.Name = "Brush";
-            this.Brush.Size = new System.Drawing.Size(124, 48);
+            this.Brush.Size = new System.Drawing.Size(165, 59);
             this.Brush.TabIndex = 1;
             this.Brush.Text = "Brush (Pencil)";
             this.Brush.UseVisualStyleBackColor = true;
@@ -87,9 +90,10 @@
             // 
             // LineND
             // 
-            this.LineND.Location = new System.Drawing.Point(48, 204);
+            this.LineND.Location = new System.Drawing.Point(64, 251);
+            this.LineND.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LineND.Name = "LineND";
-            this.LineND.Size = new System.Drawing.Size(124, 48);
+            this.LineND.Size = new System.Drawing.Size(165, 59);
             this.LineND.TabIndex = 2;
             this.LineND.Text = "LineND";
             this.LineND.UseVisualStyleBackColor = true;
@@ -97,9 +101,10 @@
             // 
             // Rectangle_2d
             // 
-            this.Rectangle_2d.Location = new System.Drawing.Point(179, 98);
+            this.Rectangle_2d.Location = new System.Drawing.Point(239, 121);
+            this.Rectangle_2d.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Rectangle_2d.Name = "Rectangle_2d";
-            this.Rectangle_2d.Size = new System.Drawing.Size(124, 48);
+            this.Rectangle_2d.Size = new System.Drawing.Size(165, 59);
             this.Rectangle_2d.TabIndex = 3;
             this.Rectangle_2d.Text = "Rectangle";
             this.Rectangle_2d.UseVisualStyleBackColor = true;
@@ -107,9 +112,10 @@
             // 
             // Square
             // 
-            this.Square.Location = new System.Drawing.Point(179, 152);
+            this.Square.Location = new System.Drawing.Point(239, 187);
+            this.Square.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Square.Name = "Square";
-            this.Square.Size = new System.Drawing.Size(124, 48);
+            this.Square.Size = new System.Drawing.Size(165, 59);
             this.Square.TabIndex = 4;
             this.Square.Text = "Square";
             this.Square.UseVisualStyleBackColor = true;
@@ -117,9 +123,10 @@
             // 
             // Circle_2d
             // 
-            this.Circle_2d.Location = new System.Drawing.Point(179, 255);
+            this.Circle_2d.Location = new System.Drawing.Point(239, 314);
+            this.Circle_2d.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Circle_2d.Name = "Circle_2d";
-            this.Circle_2d.Size = new System.Drawing.Size(124, 48);
+            this.Circle_2d.Size = new System.Drawing.Size(165, 59);
             this.Circle_2d.TabIndex = 5;
             this.Circle_2d.Text = "Circle";
             this.Circle_2d.UseVisualStyleBackColor = true;
@@ -127,9 +134,10 @@
             // 
             // Ellipse
             // 
-            this.Ellipse.Location = new System.Drawing.Point(178, 204);
+            this.Ellipse.Location = new System.Drawing.Point(237, 251);
+            this.Ellipse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Ellipse.Name = "Ellipse";
-            this.Ellipse.Size = new System.Drawing.Size(124, 48);
+            this.Ellipse.Size = new System.Drawing.Size(165, 59);
             this.Ellipse.TabIndex = 6;
             this.Ellipse.Text = "Ellipse";
             this.Ellipse.UseVisualStyleBackColor = true;
@@ -140,7 +148,7 @@
             this.button7.Location = new System.Drawing.Point(48, 471);
             this.button7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(124, 48);
+            this.button7.Size = new System.Drawing.Size(165, 59);
             this.button7.TabIndex = 7;
             this.button7.Text = "Triangle_3d";
             this.button7.UseVisualStyleBackColor = true;
@@ -151,7 +159,7 @@
             this.RectTriangleButton.Location = new System.Drawing.Point(48, 363);
             this.RectTriangleButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RectTriangleButton.Name = "RectTriangleButton";
-            this.RectTriangleButton.Size = new System.Drawing.Size(124, 48);
+            this.RectTriangleButton.Size = new System.Drawing.Size(165, 59);
             this.RectTriangleButton.TabIndex = 8;
             this.RectTriangleButton.Text = "RectTriangle";
             this.RectTriangleButton.UseVisualStyleBackColor = true;
@@ -162,7 +170,7 @@
             this.IsoscelesTriangle.Location = new System.Drawing.Point(48, 415);
             this.IsoscelesTriangle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.IsoscelesTriangle.Name = "IsoscelesTriangle";
-            this.IsoscelesTriangle.Size = new System.Drawing.Size(124, 52);
+            this.IsoscelesTriangle.Size = new System.Drawing.Size(165, 64);
             this.IsoscelesTriangle.TabIndex = 9;
             this.IsoscelesTriangle.Text = "Isosceles Triangle";
             this.IsoscelesTriangle.UseVisualStyleBackColor = true;
@@ -170,9 +178,10 @@
             // 
             // FigureND
             // 
-            this.FigureND.Location = new System.Drawing.Point(49, 255);
+            this.FigureND.Location = new System.Drawing.Point(65, 314);
+            this.FigureND.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FigureND.Name = "FigureND";
-            this.FigureND.Size = new System.Drawing.Size(124, 48);
+            this.FigureND.Size = new System.Drawing.Size(165, 59);
             this.FigureND.TabIndex = 10;
             this.FigureND.Text = "FigureND";
             this.FigureND.UseVisualStyleBackColor = true;
@@ -180,9 +189,10 @@
             // 
             // Line2D
             // 
-            this.Line2D.Location = new System.Drawing.Point(49, 152);
+            this.Line2D.Location = new System.Drawing.Point(65, 187);
+            this.Line2D.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Line2D.Name = "Line2D";
-            this.Line2D.Size = new System.Drawing.Size(124, 48);
+            this.Line2D.Size = new System.Drawing.Size(165, 59);
             this.Line2D.TabIndex = 12;
             this.Line2D.Text = "Line2D";
             this.Line2D.UseVisualStyleBackColor = true;
@@ -190,9 +200,10 @@
             // 
             // button23
             // 
-            this.button23.Location = new System.Drawing.Point(65, 22);
+            this.button23.Location = new System.Drawing.Point(87, 27);
+            this.button23.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(223, 48);
+            this.button23.Size = new System.Drawing.Size(297, 59);
             this.button23.TabIndex = 24;
             this.button23.Text = "Clear ALL";
             this.button23.UseVisualStyleBackColor = true;
@@ -205,7 +216,7 @@
             this.trackPenWidth.Maximum = 30;
             this.trackPenWidth.Minimum = 1;
             this.trackPenWidth.Name = "trackPenWidth";
-            this.trackPenWidth.Size = new System.Drawing.Size(267, 45);
+            this.trackPenWidth.Size = new System.Drawing.Size(356, 56);
             this.trackPenWidth.TabIndex = 25;
             this.trackPenWidth.Value = 6;
             this.trackPenWidth.Scroll += new System.EventHandler(this.trackPenWidth_Scroll);
@@ -215,7 +226,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(595, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
+            this.label1.Size = new System.Drawing.Size(41, 17);
             this.label1.TabIndex = 26;
             this.label1.Text = "Color";
             // 
@@ -224,7 +235,7 @@
             this.colorPalete.BackColor = System.Drawing.Color.Red;
             this.colorPalete.Location = new System.Drawing.Point(586, 20);
             this.colorPalete.Name = "colorPalete";
-            this.colorPalete.Size = new System.Drawing.Size(50, 50);
+            this.colorPalete.Size = new System.Drawing.Size(67, 62);
             this.colorPalete.TabIndex = 27;
             this.colorPalete.Click += new System.EventHandler(this.colorPalete_Click);
             // 
@@ -233,7 +244,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(736, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.Size = new System.Drawing.Size(35, 17);
             this.label2.TabIndex = 28;
             this.label2.Text = "Size";
             // 
@@ -243,14 +254,15 @@
             // 
             // _anglesNumber
             // 
-            this._anglesNumber.Location = new System.Drawing.Point(183, 326);
+            this._anglesNumber.Location = new System.Drawing.Point(244, 401);
+            this._anglesNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this._anglesNumber.Minimum = new decimal(new int[] {
             2,
             0,
             0,
             0});
             this._anglesNumber.Name = "_anglesNumber";
-            this._anglesNumber.Size = new System.Drawing.Size(119, 20);
+            this._anglesNumber.Size = new System.Drawing.Size(159, 22);
             this._anglesNumber.TabIndex = 29;
             this._anglesNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._anglesNumber.Value = new decimal(new int[] {
@@ -262,9 +274,10 @@
             // 
             // NanglesFigure
             // 
-            this.NanglesFigure.Location = new System.Drawing.Point(49, 310);
+            this.NanglesFigure.Location = new System.Drawing.Point(65, 382);
+            this.NanglesFigure.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NanglesFigure.Name = "NanglesFigure";
-            this.NanglesFigure.Size = new System.Drawing.Size(124, 48);
+            this.NanglesFigure.Size = new System.Drawing.Size(165, 59);
             this.NanglesFigure.TabIndex = 30;
             this.NanglesFigure.Text = "NanglesFigure";
             this.NanglesFigure.UseVisualStyleBackColor = true;
@@ -272,9 +285,10 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(178, 415);
+            this.saveButton.Location = new System.Drawing.Point(237, 511);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(124, 52);
+            this.saveButton.Size = new System.Drawing.Size(165, 64);
             this.saveButton.TabIndex = 31;
             this.saveButton.Text = "SAVE";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -282,9 +296,10 @@
             // 
             // uploadButton
             // 
-            this.uploadButton.Location = new System.Drawing.Point(179, 471);
+            this.uploadButton.Location = new System.Drawing.Point(239, 580);
+            this.uploadButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.uploadButton.Name = "uploadButton";
-            this.uploadButton.Size = new System.Drawing.Size(124, 48);
+            this.uploadButton.Size = new System.Drawing.Size(165, 59);
             this.uploadButton.TabIndex = 32;
             this.uploadButton.Text = "UPLOAD";
             this.uploadButton.UseVisualStyleBackColor = true;
@@ -296,7 +311,7 @@
             this.radioButtonPaintMode.Checked = true;
             this.radioButtonPaintMode.Location = new System.Drawing.Point(313, 18);
             this.radioButtonPaintMode.Name = "radioButtonPaintMode";
-            this.radioButtonPaintMode.Size = new System.Drawing.Size(57, 17);
+            this.radioButtonPaintMode.Size = new System.Drawing.Size(69, 21);
             this.radioButtonPaintMode.TabIndex = 33;
             this.radioButtonPaintMode.TabStop = true;
             this.radioButtonPaintMode.Text = "PAINT";
@@ -308,7 +323,7 @@
             this.radioButtonMoveMode.AutoSize = true;
             this.radioButtonMoveMode.Location = new System.Drawing.Point(313, 42);
             this.radioButtonMoveMode.Name = "radioButtonMoveMode";
-            this.radioButtonMoveMode.Size = new System.Drawing.Size(56, 17);
+            this.radioButtonMoveMode.Size = new System.Drawing.Size(69, 21);
             this.radioButtonMoveMode.TabIndex = 34;
             this.radioButtonMoveMode.Text = "MOVE";
             this.radioButtonMoveMode.UseVisualStyleBackColor = true;
@@ -319,7 +334,7 @@
             this.radioButtonRotate.AutoSize = true;
             this.radioButtonRotate.Location = new System.Drawing.Point(313, 66);
             this.radioButtonRotate.Name = "radioButtonRotate";
-            this.radioButtonRotate.Size = new System.Drawing.Size(69, 17);
+            this.radioButtonRotate.Size = new System.Drawing.Size(86, 21);
             this.radioButtonRotate.TabIndex = 35;
             this.radioButtonRotate.Text = "ROTATE";
             this.radioButtonRotate.UseVisualStyleBackColor = true;
@@ -330,7 +345,7 @@
             this.radioButtonZoom.AutoSize = true;
             this.radioButtonZoom.Location = new System.Drawing.Point(386, 66);
             this.radioButtonZoom.Name = "radioButtonZoom";
-            this.radioButtonZoom.Size = new System.Drawing.Size(57, 17);
+            this.radioButtonZoom.Size = new System.Drawing.Size(71, 21);
             this.radioButtonZoom.TabIndex = 36;
             this.radioButtonZoom.TabStop = true;
             this.radioButtonZoom.Text = "ZOOM";
@@ -342,7 +357,7 @@
             this.radioButtonPeak.AutoSize = true;
             this.radioButtonPeak.Location = new System.Drawing.Point(386, 18);
             this.radioButtonPeak.Name = "radioButtonPeak";
-            this.radioButtonPeak.Size = new System.Drawing.Size(75, 17);
+            this.radioButtonPeak.Size = new System.Drawing.Size(93, 21);
             this.radioButtonPeak.TabIndex = 37;
             this.radioButtonPeak.TabStop = true;
             this.radioButtonPeak.Text = "ADD peak";
@@ -354,7 +369,7 @@
             this.FILL.AutoSize = true;
             this.FILL.Location = new System.Drawing.Point(386, 42);
             this.FILL.Name = "FILL";
-            this.FILL.Size = new System.Drawing.Size(46, 17);
+            this.FILL.Size = new System.Drawing.Size(56, 21);
             this.FILL.TabIndex = 38;
             this.FILL.TabStop = true;
             this.FILL.Text = "FILL";
@@ -375,7 +390,7 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 561);
             this.Controls.Add(this.colorPicker);
@@ -406,6 +421,7 @@
             this.Controls.Add(this.LineND);
             this.Controls.Add(this.Brush);
             this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "RastPaint";
             this.Load += new System.EventHandler(this.Form1_Load);
