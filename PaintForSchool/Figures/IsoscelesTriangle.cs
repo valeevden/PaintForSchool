@@ -114,7 +114,7 @@ namespace PaintForSchool.Figures
         {
             if ((Math.Abs(pointsList[0].Y - pointsList[1].Y) > Math.Abs(pointsList[0].Y - delta.Y))
                &&
-                (Math.Abs(pointsList[3].X - pointsList[2].X) > Math.Abs(pointsList[3].X - delta.X)))
+                (Math.Abs(pointsList[2].X - pointsList[1].X) > Math.Abs(pointsList[2].X - delta.X)))
             {
                 return true;
             }
