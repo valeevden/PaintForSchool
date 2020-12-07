@@ -39,6 +39,7 @@ namespace PaintForSchool.Figures
             Filler = new PolygonFiller();
             _anglesNumber = N;
             Color = pen.Color;
+            Width = (int)pen.Width;
         }
 
         public Point[] GetPoints()
@@ -54,7 +55,25 @@ namespace PaintForSchool.Figures
 
         public bool IsEdge(Point touchPoint)
         {
-            throw new NotImplementedException();
+            Point p1 = pointsList[_anglesNumber-1];
+            Point p2;
+            int accuracy = 30; // Точность захвата
+            foreach (Point pi in pointsList)
+            {
+                p2 = pi;
+                if (Math.Abs((touchPoint.X - p1.X) * (p2.Y - p1.Y) - (touchPoint.Y - p1.Y) * (p2.X - p1.X))
+                    <= Math.Abs(((p2.Y - p1.Y) + (p2.X - p1.X))))
+                {
+                    if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - touchPoint.X)) && (Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - touchPoint.Y)))
+                    {
+                        this.touchPoint = touchPoint;
+                        return true;
+
+                    }
+                }
+                p1 = p2;
+            }
+            return false;
         }
 
         public bool IsArea(Point touchPoint)
@@ -123,16 +142,16 @@ namespace PaintForSchool.Figures
             float count = pointsList.Count();
 
             //находим центр
-            center = new Point((int)Math.Round((sumX / count), 0), (int)Math.Round((sumY / count), 0));
+            center = new PointF((sumX / count), (sumY / count));
 
-            double[] startAngle = new double[_anglesNumber];//углы между радиусами точек и осью X против часовой стрелки от первой четверти
+            float[] startAngle = new float[_anglesNumber];//углы между радиусами точек и осью X против часовой стрелки от первой четверти
 
             //рассчёт углов между радиусами и X
             //если синус угла это отношение противолежащего катета к гипотенузе,
             //то сам угол - это арксинус этого же отношения
             for (int i = 0; i < pointsList.Count; i++)
             {
-                double radius = Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2));
+                float radius = (float)Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2));
 
                 //только поняв в какой четверти находит противолежщий катет можно
                 //правильно интерпретировать результат, т. к. например арксинусы для
@@ -141,22 +160,22 @@ namespace PaintForSchool.Figures
                 {
                     if (pointsList[i].X < center.X)
                     {
-                        startAngle[i] = 3.14159 - Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radius);
+                        startAngle[i] = (float)Math.PI - (float)Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radius);
                     }
                     else
                     {
-                        startAngle[i] = Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radius);
+                        startAngle[i] = (float)Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radius);
                     }
                 }
                 else
                 {
                     if (pointsList[i].X < center.X)
                     {
-                        startAngle[i] = 3.14159 + Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radius);
+                        startAngle[i] = (float)Math.PI + (float)Math.Asin(((float)Math.Abs(pointsList[i].Y - center.Y)) / radius);
                     }
                     else
                     {
-                        startAngle[i] = 3.14159 * 2 - Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radius);
+                        startAngle[i] = (float)Math.PI * 2 - (float)Math.Asin(((float)Math.Abs(pointsList[i].Y - center.Y)) / radius);
                     }
                 }
 
@@ -169,11 +188,11 @@ namespace PaintForSchool.Figures
             for (int i = 0; i < _anglesNumber; i++)
             {
                 //может не надо радиус заново искать?
-                double radius = Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2));
+                float radius = (float)Math.Sqrt((float)Math.Pow(pointsList[i].X - center.X, 2) + (float)Math.Pow(pointsList[i].Y - center.Y, 2));
 
-                double rotatedX = center.X + radius * Math.Cos(startAngle[i] + delta);
+                float rotatedX = center.X + radius * (float)Math.Cos(startAngle[i] + delta);
 
-                double rotatedY = center.Y + radius * (-1 * (Math.Sin(startAngle[i] + delta)));//-1*Sin для инверсии Y
+                float rotatedY = center.Y + radius * (-1 * ((float)Math.Sin(startAngle[i] + delta)));//-1*Sin для инверсии Y
 
                 pointsList[i] = new Point((int)Math.Round(rotatedX, 0), (int)Math.Round(rotatedY, 0));
             }
