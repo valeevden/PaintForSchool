@@ -289,7 +289,7 @@ namespace PaintForSchool
                     DrawAll();
                     break;
                 case "COLOR_PICK":
-                    mode = "PAINT";
+                    //mode = "PAINT";
                     radioButtonPaintMode.Checked = true;
                     colorPicker.Checked = false;
                     break;
