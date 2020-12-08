@@ -12,7 +12,7 @@ using PaintForSchool.Filler;
 
 namespace PaintForSchool.Figures
 {
-    class IsoscelesTriangle  : IFigure
+    class IsoscelesTriangle : IFigure
     {
         public Point startPoint { get; set; }
         public Point secondPoint { get; set; }
@@ -20,7 +20,7 @@ namespace PaintForSchool.Figures
         public Point touchPoint { get; set; }
         public Point[] pointsArray { get; set; }
         public List<Point> pointsList { get; set; }
-        public Color Color { get; set;  }
+        public Color Color { get; set; }
         public IFiller Filler { get; }
 
         public int _anglesNumber { get; set; }
@@ -33,7 +33,7 @@ namespace PaintForSchool.Figures
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool started { get; set; }
-        
+
 
         public IsoscelesTriangle(Pen pen)
         {
@@ -50,16 +50,16 @@ namespace PaintForSchool.Figures
         {
             pointsArray = pointsList.ToArray();
             return pointsArray;
-         }
+        }
 
         public void Set(Point point)
         {
             startPoint = point;
         }
 
-        public void Update (Point startPoint, Point endPoint)
+        public void Update(Point startPoint, Point endPoint)
         {
-            
+
             Point[] pointsArray = new Point[3];
 
             pointsArray[0] = startPoint;
@@ -67,10 +67,10 @@ namespace PaintForSchool.Figures
             pointsArray[2] = new Point((secondPoint.X - (secondPoint.X - startPoint.X) * 2), secondPoint.Y);
 
             pointsList = new List<Point> { };
-            pointsList = pointsArray.ToList(); 
+            pointsList = pointsArray.ToList();
         }
 
-        public void Move (Point delta)
+        public void Move(Point delta)
         {
             for (int i = 0; i < pointsList.Count; i++)
             {
@@ -165,7 +165,7 @@ namespace PaintForSchool.Figures
 
             return;
         }
-    
+
 
         public void Zoom(Point point, Point eLocation)
         {
@@ -251,16 +251,18 @@ namespace PaintForSchool.Figures
 
         public bool IsEdge(Point touch)
         {
-            Point p1 = pointsList[pointsList.Count()-1];
+            Point p1 = pointsList[pointsList.Count() - 1];
             Point p2;
             int accuracy = 20; // Точность захвата
             foreach (Point pi in pointsList)
             {
                 p2 = pi;
                 if (Math.Abs((touch.X - p1.X) * (p2.Y - p1.Y) - (touch.Y - p1.Y) * (p2.X - p1.X))
-                    <= Math.Abs(((p2.Y - p1.Y) + (p2.X - p1.X))))
+                    <= Math.Abs(25 * ((p2.Y - p1.Y) + (p2.X - p1.X))))
                 {
-                    if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - touch.X)) && (Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - touch.Y)))
+                    if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - touch.X)) && ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p2.X - touch.X)))
+                        &&
+                        ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - touch.Y)) && ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p2.Y - touch.Y)))))
                     {
                         touchPoint = touch;
                         return true;
@@ -271,7 +273,7 @@ namespace PaintForSchool.Figures
             return false;
         }
 
-        public bool IsArea(Point touch)
+        public bool IsArea(Point touchPoint2)
         {
             float sumX = 0;
             float sumY = 0;
@@ -286,17 +288,19 @@ namespace PaintForSchool.Figures
             PointF center = new PointF((sumX / count), (sumY / count));
             //нужно начать цикл изменения радиуса с шагом точности
             double[] radArray = new double[pointsList.Count()];
-            //циклом заполнить массив исходных радиус
+            //циклом заполняем массив ИСХОДНЫХ радиусов от центра до точек
 
             for (int i = 0; i < pointsList.Count(); i++)
             {
                 radArray[i] = (Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2)));
 
             }
+            //лист для уменьшающихся треугольников
             List<Point> copyList = new List<Point>(pointsList);
 
+            //углы для восстановления точек по радиусам
             double[] startAngle = new double[_anglesNumber];
-
+            //рассчёт углов
             for (int i = 0; i < pointsList.Count(); i++)
             {
                 if (pointsList[i].Y < center.Y)
@@ -323,9 +327,9 @@ namespace PaintForSchool.Figures
                 }
             }
 
-            double MinRadius= radArray[0];
-
-            for (int i = 0; i < radArray.Length-1; i++)
+            double MinRadius = radArray[0];
+            //находим минимальный радиус через сортировку
+            for (int i = 0; i < radArray.Length - 1; i++)
             {
                 if (radArray[i] > radArray[i + 1])
                 {
@@ -334,16 +338,20 @@ namespace PaintForSchool.Figures
             }
 
             int accuracy = 10;
+
+            //количество точностей в минимальном радиусе
             double counter = MinRadius / accuracy;
-            double [] difference = new double [radArray.Length ];
-            for (int i=0; i < radArray.Length; i++ )
+
+            //массив шагов уменьшения для каждого из радиусов
+            double[] difference = new double[radArray.Length];
+            for (int i = 0; i < radArray.Length; i++)
             {
-                difference[i] = radArray [i] / counter;
+                difference[i] = radArray[i] / counter;
             }
             //цикл изменяющий радиусы для построения уменьшенных треугольников
-            for (int j = 0; j < (int) counter; j++)
+            for (int j = 0; j < (int)counter; j++)
             {
-                for (int i = 0; i < radArray.Length ; i++)
+                for (int i = 0; i < radArray.Length; i++)
                 {
                     radArray[i] = radArray[i] - difference[i];
                     double rotatedX = center.X + radArray[i] * Math.Cos(startAngle[i]);
@@ -363,17 +371,23 @@ namespace PaintForSchool.Figures
                 foreach (Point pi in copyList)
                 {
                     p2 = pi;
-                    if (Math.Abs((touch.X - p1.X) * (p2.Y - p1.Y) - (touch.Y - p1.Y) * (p2.X - p1.X))
-                            <= Math.Abs(((p2.Y - p1.Y) + (p2.X - p1.X))))
+                    if (Math.Abs((touchPoint2.X - p1.X) * (p2.Y - p1.Y) - (touchPoint2.Y - p1.Y) * (p2.X - p1.X))
+                    <= Math.Abs(25 * ((p2.Y - p1.Y) + (p2.X - p1.X))))
                     {
-                        return true;
+                        if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - touchPoint2.X)) && ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p2.X - touchPoint2.X)))
+                            &&
+                            ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - touchPoint2.Y)) && ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p2.Y - touchPoint2.Y)))))
+                        {
+                            this.touchPoint = touchPoint2;
+                            return true;
+                        }
+                        p1 = p2;
                     }
-                    p1 = p2;
-                }
 
+                }
             }
-            return false;
+                return false;
+
         }
-       
     }
 }
