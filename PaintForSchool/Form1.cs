@@ -343,7 +343,9 @@ namespace PaintForSchool
 
         private void Line2D_Click(object sender, EventArgs e)
         {
-            //  _figure = new Line2D();
+            fabrica = new Line2DIFabric();
+            _figure = new Line2D(_pen);
+            radioButtonPaintMode.Checked = true;
         }
 
         private void LineND_Click(object sender, EventArgs e)
