@@ -335,13 +335,17 @@ namespace PaintForSchool.Figures
 
             int accuracy = 10;
             double counter = MinRadius / accuracy;
-            double difference = MinRadius / counter; 
+            double [] difference = new double [radArray.Length ];
+            for (int i=0; i < radArray.Length; i++ )
+            {
+                difference[i] = radArray [i] / counter;
+            }
             //цикл изменяющий радиусы для построения уменьшенных треугольников
             for (int j = 0; j < (int) counter; j++)
             {
                 for (int i = 0; i < radArray.Length ; i++)
                 {
-                    radArray[i] = radArray[i] - difference;
+                    radArray[i] = radArray[i] - difference[i];
                     double rotatedX = center.X + radArray[i] * Math.Cos(startAngle[i]);
 
                     double rotatedY = center.Y + radArray[i] * (-1 * (Math.Sin(startAngle[i]))); //-1*Sin для инверсии Y
