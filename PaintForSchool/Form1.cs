@@ -401,6 +401,7 @@ namespace PaintForSchool
                 fabrica = new NanglesIFabric((int)_anglesNumber.Value);
                 _figure = fabrica.CreateFigure(_pen);
             }
+               
         }
 
         private void IsoscelesTriangle_Click(object sender, EventArgs e)

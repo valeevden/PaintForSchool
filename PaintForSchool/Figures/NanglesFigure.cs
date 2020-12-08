@@ -63,21 +63,32 @@ namespace PaintForSchool.Figures
             startPoint = point;
         }
 
-        public bool IsEdge(Point touchPoint)
+        public bool IsEdge(Point touchPoint2)
         {
             Point p1 = pointsList[_anglesNumber-1];
             Point p2;
-            int accuracy = 30; // Точность захвата
+            int accuracy = 10; // Точность захвата
             int edgeCounter = 0;
             foreach (Point pi in pointsList)
             {
                 edgeCounter++;
                 p2 = pi;
-                if (Math.Abs((touchPoint.X - p1.X) * (p2.Y - p1.Y) - (touchPoint.Y - p1.Y) * (p2.X - p1.X))
-                    <= Math.Abs(((p2.Y - p1.Y) + (p2.X - p1.X))))
+                if (Math.Abs((touchPoint2.X - p1.X) * (p2.Y - p1.Y) - (touchPoint2.Y - p1.Y) * (p2.X - p1.X))
+                    <= Math.Abs(25*((p2.Y - p1.Y) + (p2.X - p1.X))))
                 {
-                    if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - touchPoint.X)) && (Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - touchPoint.Y)))
+                    if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - touchPoint2.X))&& ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p2.X - touchPoint2.X)))
+                        &&
+                        ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - touchPoint2.Y))&&((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p2.Y - touchPoint2.Y)))))
                     {
+                        //if (((p1.X < p2.X) && ((touchPoint.X > p1.X - accuracy) || (touchPoint.X < p2.X + accuracy)))
+                        //    ||
+                        //    (((p1.X > p2.X) && ((touchPoint.X < p1.X + accuracy) || (touchPoint.X > p2.X - accuracy))))
+                        //    &&
+                        //     (((p1.Y < p2.Y) && ((touchPoint.Y > p1.Y - accuracy) || (touchPoint.Y < p2.Y + accuracy)))
+                        //    ||
+                        //     (((p1.Y > p2.Y) && ((touchPoint.Y < p1.Y + accuracy) || (touchPoint.Y > p2.Y - accuracy))))))
+
+                        //{
 
                         //запоминание координат и номера грани для AddPeak или MoveEdge, точки записываются по часовй стрелке
                         edgeModifying.point1 = p1;
@@ -85,10 +96,10 @@ namespace PaintForSchool.Figures
                         edgeModifying.edgeNumber = edgeCounter;
                         //запомнили
 
-                        this.touchPoint = touchPoint;
+                        this.touchPoint = touchPoint2;
                         return true;
-
                     }
+                    //}
                 }
                 p1 = p2;
             }
