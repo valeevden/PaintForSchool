@@ -87,24 +87,45 @@ namespace PaintForSchool.Figures
             }
         }
 
-        public bool IsArea(Point delta)
+        public bool IsArea(Point eLocation)
         {
-            
-            double radius = pointsList[2].X - pointsList[1].X; ;
-            double integrator = 1;
             Point centr = pointsList[1];
-            while (radius>0.0000001)
+            double radius = pointsList[2].X - pointsList[1].X;
+            int accuracy = 10;
+            double minRadius = accuracy;
+
+            int counter = (int) radius / accuracy;
+
+            for (int i = 0; i < counter; i++)
+            {
+                double a = Math.Pow(eLocation.X - pointsList[1].X, 2) + Math.Pow(eLocation.Y - pointsList[1].Y, 2);
+                double b = minRadius * minRadius;
+                int accuracyEdge = 2000; // задаем Точность. Большое значение т.к. квадрат радиуса растет очень быстро
+                if (Math.Abs(a - b) <= accuracyEdge)
                 {
-                radius = pointsList[2].X * integrator - pointsList[1].X;
-                double a = Math.Pow(delta.X - pointsList[1].X, 2) + Math.Pow(delta.Y - pointsList[1].Y, 2);
-                double b = radius * radius;
-                int accuracy = 2000; // задаем Точность. Большое значение т.к. квадрат радиуса растет очень быстро
-                if ((Math.Abs(a - b) <= accuracy))
-                {
+                    touchPoint = eLocation;
                     return true;
                 }
+                minRadius += accuracy;
             }
-            return false;
+             return false;
+               
+              
+            //double radius = pointsList[2].X - pointsList[1].X; ;
+            //double integrator = 1;
+            //Point centr = pointsList[1];
+            //while (radius>0.0000001)
+            //    {
+            //    radius = pointsList[2].X * integrator - pointsList[1].X;
+            //    double a = Math.Pow(delta.X - pointsList[1].X, 2) + Math.Pow(delta.Y - pointsList[1].Y, 2);
+            //    double b = radius * radius;
+            //    int accuracy = 2000; // задаем Точность. Большое значение т.к. квадрат радиуса растет очень быстро
+            //    if ((Math.Abs(a - b) <= accuracy))
+            //    {
+            //        return true;
+            //    }
+            //}
+            //return false;
         }
 
         public void Rotate(Point point)
