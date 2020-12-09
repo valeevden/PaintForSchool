@@ -58,7 +58,6 @@ namespace PaintForSchool
                         if (_figure.started == false)
                         {
                             startPoint = e.Location;
-                            //_figure.startPoint = e.Location;
                             tmpPoint = e.Location;
                             _figure.started = true;
                         }
@@ -71,8 +70,6 @@ namespace PaintForSchool
                     else
                     {
                         startPoint = e.Location;
-                        //_figure.Set(e.Location);
-                        //_figure.started = true;
                         _figure = fabrica.CreateFigure(_pen);
                     }
 
@@ -308,8 +305,17 @@ namespace PaintForSchool
                     break;
 
                 case "MOVE":
-                    pictureBox1.Image = canvas.Clear();
-                    DrawAll();
+                    if ((e.Button != MouseButtons.Right) && (_figure.Reaction is FreeLineIRightClickReaction || _figure.Reaction is FreeFigureIRightClickReaction))
+                    {
+                        figuresList.Add(_figure);
+                        pictureBox1.Image = canvas.Clear();
+                        DrawAll();
+                    }
+                    else
+                    {
+                        pictureBox1.Image = canvas.Clear();
+                        DrawAll();
+                    }
                     break;
 
                 case "ROTATE":
@@ -379,14 +385,14 @@ namespace PaintForSchool
         private void Line2D_Click(object sender, EventArgs e)
         {
             fabrica = new Line2DIFabric();
-            _figure = new Line2D(_pen);
+            _figure = fabrica.CreateFigure(_pen);
             radioButtonPaintMode.Checked = true;
         }
 
         private void LineND_Click(object sender, EventArgs e)
         {
             fabrica = new LineNDIFabric();
-            _figure = new LineND(_pen);
+            _figure = fabrica.CreateFigure(_pen);
             radioButtonPaintMode.Checked = true;
         }
 

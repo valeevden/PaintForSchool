@@ -75,6 +75,25 @@ namespace PaintForSchool.Figures
 
         public bool IsEdge(Point touch)
         {
+            Point p1 = pointsList[1];
+            Point p2;
+            int accuracy = 20; // Точность захвата
+            foreach (Point pi in pointsList)
+            {
+                p2 = pi;
+                if (Math.Abs((touch.X - p1.X) * (p2.Y - p1.Y) - (touch.Y - p1.Y) * (p2.X - p1.X))
+                    <= Math.Abs(25 * ((p2.Y - p1.Y) + (p2.X - p1.X))))
+                {
+                    if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - touch.X)) && ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p2.X - touch.X)))
+                            &&
+                            ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - touch.Y)) && ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p2.Y - touch.Y)))))
+                    {
+                        touchPoint = touch;
+                        return true;
+                    }
+                }
+                p1 = p2;
+            }
             return false;
         }
 
