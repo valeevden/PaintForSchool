@@ -37,16 +37,26 @@ namespace PaintForSchool.Figures
             Reaction = new FreeLineIRightClickReaction(this);
             Color = pen.Color;
             Width = (int)pen.Width;
-            pointsList = new List<Point> {  };
+            pointsList = new List<Point> { new Point(0,0) };
             started = false;
+            _anglesNumber = 1;
         }
         
         public Point[] GetPoints()
         {
-            Point[] pointsArray = new Point[2];
-            pointsArray[0] = startPoint;
-            pointsArray[1] = pointsList[pointsList.Count - 1];
-            return pointsArray;
+            //if (started == true)
+            //{
+                pointsList[_anglesNumber - 2] = currentList[0];
+                pointsList[_anglesNumber - 1] = currentList[1];
+            //}
+            return pointsArray = pointsList.ToArray();
+
+            //pointsList.Add(currentList[1]);
+            //return pointsArray = currentList.ToArray();
+            //Point[] pointsArray = new Point[2];
+            //pointsArray[0] = startPoint;
+            //pointsArray[1] = pointsList[pointsList.Count - 1];
+            //return pointsArray;
         }
 
         //public void Set(Point point)
@@ -76,7 +86,7 @@ namespace PaintForSchool.Figures
 
         public void Update(Point startPoint, Point endPoint)
         {
-            pointsList = new List<Point> { startPoint, endPoint };
+            currentList = new List<Point> { startPoint, endPoint };
 
             //pointsList[0] = startPoint;
 

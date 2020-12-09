@@ -57,13 +57,16 @@ namespace PaintForSchool
                         if (_figure.started == false)
                         {
                             startPoint = e.Location;
-                            _figure.startPoint = e.Location;
+                            //_figure.startPoint = e.Location;
                             _figure.pointsList.Add(e.Location);
                             _figure.started = true;
+                            _figure._anglesNumber++;
                         }
                         else
                         {
-                            _figure.startPoint = _figure.secondPoint;
+                            _figure.pointsList.Add(e.Location);
+                            startPoint = _figure.secondPoint;
+                            _figure._anglesNumber++;
                         }
                     }
                     else
@@ -272,11 +275,13 @@ namespace PaintForSchool
         {
             _mouseDown = false;
 
-            if (_figure != null && (_figure.Reaction is FreeFigureIRightClickReaction || _figure.Reaction is FreeLineIRightClickReaction))
+            if (_figure != null && _figure.Reaction is NoReactionIReaction)
             {
-                _figure.secondPoint = e.Location;
-                _figure.pointsList.Add(e.Location);
                 figuresList.Add(_figure);
+            }
+            else
+            {
+
             }
             switch (mode)
             {
@@ -285,7 +290,7 @@ namespace PaintForSchool
                     {
                         if (_figure.Reaction is FreeLineIRightClickReaction)
                         {
-                            _figure.Reaction.Do();
+                            //_figure.Reaction.Do();
                             figuresList.Add(_figure);
                             pictureBox1.Image = canvas.DrawIt(_figure, _pen);
                         }
