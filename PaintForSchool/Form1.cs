@@ -137,7 +137,7 @@ namespace PaintForSchool
                     _figure = null;
                     foreach (IFigure checkFigure in figuresList)
                     {
-                        if (checkFigure.IsEdge(e.Location))
+                        if (checkFigure.IsEdge(e.Location) || checkFigure.IsArea(e.Location))
                         {
                             _figure = checkFigure;
                             _figure.IsFilled = true;

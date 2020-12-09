@@ -16,7 +16,8 @@ namespace PaintForSchool.Painter
 
             // Методом DrawEllispe в графиксе рисуем эллипс вписанный в ректангл
             graphics.DrawEllipse(pen, rectangle);
-            graphics.DrawRectangle(pen, rectangle);
+
+
         }
 
         // Приватный метод, который принимает на вход массив поинтов и выплевывает ректангл
