@@ -82,7 +82,7 @@ namespace PaintForSchool
 
                     foreach (IFigure checkFigure in figuresList)
                     {
-                        if (checkFigure.IsEdge(e.Location))
+                        if (checkFigure.IsEdge(e.Location) || checkFigure.IsArea(e.Location))
                         {
                             _figure = checkFigure;
                             figuresList.Remove(_figure);
@@ -140,10 +140,12 @@ namespace PaintForSchool
                             _figure.IsFilled = true;
                             figuresList.Remove(_figure);
                             pictureBox1.Image = canvas.Clear();
-                            DrawAll();
-                            
-                            canvas.DrawIt(_figure, _pen);
                             movingFigure = checkFigure;
+                            DrawAll();
+
+                           
+
+                            canvas.DrawIt(_figure, _pen);
                             startPoint = checkFigure.touchPoint;
                             break;
                         }
@@ -549,6 +551,7 @@ namespace PaintForSchool
 
         public void DrawAll()
         {
+            movingFigure.Color = colorDialog1.Color;
             foreach (IFigure figureINList in figuresList)
             {
                 pictureBox1.Image = canvas.DrawIt(figureINList, new Pen(figureINList.Color, figureINList.Width));
