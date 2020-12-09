@@ -7,6 +7,7 @@ using PaintForSchool.RightClickReaction;
 using PaintForSchool.Figures;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using PaintForSchool.Fabrics;
 
 namespace PaintForSchool.RightClickReaction
 {
@@ -20,15 +21,7 @@ namespace PaintForSchool.RightClickReaction
         }
         public void Do()
         {
-            //закончить рисование
-            //добавить фигуру в лист
-
-
-            //_figure.started = false;
-            ////_figure.secondPoint = new Point((int)_figure.Path.PathPoints[2].X, (int)_figure.Path.PathPoints[2].Y);
-            //_figure.startPoint = _figure.secondPoint;
-            //_figure.Path.CloseFigure();
-            //_figure.Path.Dispose();
+            
         }
     }
 }
