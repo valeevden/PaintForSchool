@@ -370,7 +370,7 @@ namespace PaintForSchool
             {
                 colorPalete.BackColor = colorDialog1.Color;
                 _pen = new Pen(colorDialog1.Color, trackPenWidth.Value);
-                radioButtonPaintMode.Checked = true;
+                //radioButtonPaintMode.Checked = true;
             }
         }
 
