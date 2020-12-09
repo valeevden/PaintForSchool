@@ -24,6 +24,7 @@ namespace PaintForSchool
         IFabric fabrica;
         Point startPoint;
         IFigure movingFigure;
+        Point tmpPoint;
 
         IFigure _figure; // Объект интерфейса
         List<IFigure> figuresList;
@@ -58,15 +59,13 @@ namespace PaintForSchool
                         {
                             startPoint = e.Location;
                             //_figure.startPoint = e.Location;
-                            _figure.pointsList.Add(e.Location);
+                            tmpPoint = e.Location;
                             _figure.started = true;
-                            _figure._anglesNumber++;
                         }
                         else
                         {
-                            _figure.pointsList.Add(e.Location);
+                            tmpPoint = e.Location;
                             startPoint = _figure.secondPoint;
-                            _figure._anglesNumber++;
                         }
                     }
                     else
@@ -189,8 +188,12 @@ namespace PaintForSchool
                 switch (mode)
                 {
                     case "PAINT":
-
-                        _figure.Update(startPoint, e.Location);
+                        if (mouseMove == false)
+                        {
+                            _figure._anglesNumber++;
+                            _figure.pointsList.Add(tmpPoint);
+                        }
+                            _figure.Update(startPoint, e.Location);
                         mouseMove = true;
 
                         _figure.secondPoint = e.Location;
@@ -274,6 +277,7 @@ namespace PaintForSchool
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             _mouseDown = false;
+            mouseMove = false;
 
             if (_figure != null && _figure.Reaction is NoReactionIReaction)
             {
