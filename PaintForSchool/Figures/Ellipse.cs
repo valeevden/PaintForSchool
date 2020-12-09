@@ -68,7 +68,11 @@ namespace PaintForSchool.Figures
 
         public bool IsEdge(Point eLocation)
         {
-            PointF centr = pointsList[0];
+            return false;
+            
+
+
+            //  x^2/a^2+y^2/b^2=1
             //double a = Math.Pow((eLocation.X - pointsList[0].X), 2);
             //double b = Math.Pow((eLocation.Y - pointsList[0].Y), 2);
             //double aX = Math.Sqrt(eLocation.X - pointsList[0].X);
@@ -76,8 +80,8 @@ namespace PaintForSchool.Figures
 
 
             //double eq = Math.Abs((a / aX) - (b / aY));
-            //int accuracy = 1000 ; //задаем Точность.
-            //if (eq  >= accuracy)
+            //int accuracy = 1000; //задаем Точность.
+            //if (eq >= accuracy)
             //{
             //    touchPoint = eLocation;
             //    return true;
@@ -87,31 +91,31 @@ namespace PaintForSchool.Figures
             //    return false;
             //}
 
-            List <Point> pointsListR = new List<Point> { eLocation, eLocation, eLocation, eLocation };
-            pointsListR[0] = startPoint;
-            pointsListR[1] = new Point(startPoint.X, eLocation.Y);
-            pointsListR[2] = eLocation;
-            pointsListR[3] = new Point(eLocation.X, startPoint.Y);
+            //List <Point> pointsListR = new List<Point> { eLocation, eLocation, eLocation, eLocation };
+            //pointsListR[0] = startPoint;
+            //pointsListR[1] = new Point(startPoint.X, eLocation.Y);
+            //pointsListR[2] = eLocation;
+            //pointsListR[3] = new Point(eLocation.X, startPoint.Y);
 
-            Point p1 = pointsListR[3];
-            Point p2;
-            double accuracy = 20; // Точность захвата
-            foreach (Point pi in pointsListR)
-            {
-                p2 = pi;
-                if (Math.Abs((eLocation.X - p1.X) * (p2.Y - p1.Y) - (eLocation.Y - p1.Y) * (p2.X - p1.X))
-                    <= Math.Abs(((p2.Y - p1.Y) + (p2.X - p1.X))))
-                {
-                    if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - eLocation.X)) && (Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - eLocation.Y)))
-                    {
-                        touchPoint = eLocation;
-                        return true;
+            //Point p1 = pointsListR[3];
+            //Point p2;
+            //double accuracy = 20; // Точность захвата
+            //foreach (Point pi in pointsListR)
+            //{
+            //    p2 = pi;
+            //    if (Math.Abs((eLocation.X - p1.X) * (p2.Y - p1.Y) - (eLocation.Y - p1.Y) * (p2.X - p1.X))
+            //        <= Math.Abs(((p2.Y - p1.Y) + (p2.X - p1.X))))
+            //    {
+            //        if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - eLocation.X)) && (Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - eLocation.Y)))
+            //        {
+            //            touchPoint = eLocation;
+            //            return true;
 
-                    }
-                }
-                p1 = p2;
-            }
-            return false;
+            //        }
+            //    }
+            //    p1 = p2;
+            //}
+            //return false;
 
         }
 
@@ -135,9 +139,21 @@ namespace PaintForSchool.Figures
             }
         }
 
-        public bool IsArea(Point touchPoint)
+        public bool IsArea(Point eLocation)
         {
-            throw new NotImplementedException();
+            Rectangle rectangleForGP = MakeRectangleFromPointsList(pointsList); //Создаем ректангл из листа
+            GraphicsPath EllipseGP = new GraphicsPath(); // Создаем новый график пас
+            EllipseGP.AddEllipse(rectangleForGP); // Добавляем в график пас новую область видимости
+
+            if (EllipseGP.IsVisible(eLocation)) // Если точка входит в область видимости 
+            {
+                touchPoint = eLocation;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // Приватный метод, который принимает на вход массив поинтов и выплевывает ректангл
