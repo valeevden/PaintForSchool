@@ -305,18 +305,22 @@ namespace PaintForSchool
                     break;
 
                 case "MOVE":
-                    if ((e.Button != MouseButtons.Right) && (_figure.Reaction is FreeLineIRightClickReaction || _figure.Reaction is FreeFigureIRightClickReaction))
+                    if (_figure != null)
                     {
-                        figuresList.Add(_figure);
-                        pictureBox1.Image = canvas.Clear();
-                        DrawAll();
+
+                        if ((e.Button != MouseButtons.Right) && (_figure.Reaction is FreeLineIRightClickReaction || _figure.Reaction is FreeFigureIRightClickReaction))
+                        {
+                            figuresList.Add(_figure);
+                            pictureBox1.Image = canvas.Clear();
+                            DrawAll();
+                        }
+                        else
+                        {
+                            pictureBox1.Image = canvas.Clear();
+                            DrawAll();
+                        }
                     }
-                    else
-                    {
-                        pictureBox1.Image = canvas.Clear();
-                        DrawAll();
-                    }
-                    break;
+                        break;
 
                 case "ROTATE":
                     pictureBox1.Image = canvas.Clear();
