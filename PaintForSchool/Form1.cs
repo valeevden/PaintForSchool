@@ -57,10 +57,14 @@ namespace PaintForSchool
                         if (_figure.started == false)
                         {
                             startPoint = e.Location;
+                            _figure.startPoint = e.Location;
                             _figure.pointsList.Add(e.Location);
                             _figure.started = true;
                         }
-                        startPoint = _figure.secondPoint;
+                        else
+                        {
+                            _figure.startPoint = _figure.secondPoint;
+                        }
                     }
                     else
                     {
