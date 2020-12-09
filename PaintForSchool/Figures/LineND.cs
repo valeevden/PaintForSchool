@@ -46,8 +46,7 @@ namespace PaintForSchool.Figures
         {
             //if (started == true)
             //{
-                pointsList[_anglesNumber - 2] = currentList[0];
-                pointsList[_anglesNumber - 1] = currentList[1];
+                
             //}
             return pointsArray = pointsList.ToArray();
 
@@ -62,7 +61,8 @@ namespace PaintForSchool.Figures
         public void Update(Point startPoint, Point endPoint)
         {
             currentList = new List<Point> { startPoint, endPoint };
-
+            pointsList[_anglesNumber - 2] = currentList[0];
+            pointsList[_anglesNumber - 1] = currentList[1];
         }
 
         public void Move(Point delta)
