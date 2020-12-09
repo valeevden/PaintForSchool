@@ -52,7 +52,7 @@ namespace PaintForSchool
             switch (mode)
             {
                 case "PAINT":
-                    if (_figure.Reaction is FreeLineIRightClickReaction)
+                    if (_figure.Reaction is FreeLineIRightClickReaction || _figure.Reaction is FreeFigureIRightClickReaction)
                     {
                         //если фигура начинается то записать первую стартПоинт
                         if (_figure.started == false)
@@ -189,7 +189,7 @@ namespace PaintForSchool
                 {
                     case "PAINT":
                         
-                        if ((_figure.Reaction is FreeLineIRightClickReaction)&& (mouseMove == false))
+                        if ((_figure.Reaction is FreeLineIRightClickReaction || _figure.Reaction is FreeFigureIRightClickReaction) && (mouseMove == false))
                         {
                             _figure._anglesNumber++;
                             _figure.pointsList.Add(tmpPoint);
@@ -293,12 +293,12 @@ namespace PaintForSchool
                 case "PAINT":
                     if (e.Button == MouseButtons.Right)
                     {
-                        if (_figure.Reaction is FreeLineIRightClickReaction)
+                        if (_figure.Reaction is FreeLineIRightClickReaction || _figure.Reaction is FreeFigureIRightClickReaction)
                         {
                             _figure.Reaction.Do();
                             figuresList.Add(_figure);
+                            pictureBox1.Image = canvas.DrawIt(_figure, _pen);
                             _figure = fabrica.CreateFigure(_pen);
-                            //pictureBox1.Image = canvas.DrawIt(_figure, _pen);
                         }
                         else
                         {
@@ -392,7 +392,9 @@ namespace PaintForSchool
 
         private void FigureND_Click(object sender, EventArgs e)
         {
-            //_figure = new FigureND();
+            fabrica = new FigureNDIFabric();
+            _figure = fabrica.CreateFigure(_pen);
+            radioButtonPaintMode.Checked = true;
         }
 
         private void trackPenWidth_Scroll(object sender, EventArgs e)

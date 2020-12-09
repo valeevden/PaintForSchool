@@ -28,7 +28,7 @@ namespace PaintForSchool.Figures
 
         public bool IsFilled { get; set; }
 
-        public IPainter Painter { get; }
+        public IPainter Painter { get; set;  }
 
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }

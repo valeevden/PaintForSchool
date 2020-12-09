@@ -18,7 +18,7 @@ namespace PaintForSchool.Figures
         public Point secondPoint { get; set; }
         public Point tmpPoint { get; set; }
         public Point touchPoint { get; set; }
-        public IPainter Painter { get; }
+        public IPainter Painter { get; set; }
         public IFiller Filler {get; }
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }

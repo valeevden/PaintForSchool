@@ -21,7 +21,7 @@ namespace PaintForSchool.Figures
         GraphicsPath Path { get; set; }//точки кисти
         IRightClickReaction Reaction {get; set; }
         bool started { get; set; }
-        IPainter Painter { get; }//пейнтер фигуры
+        IPainter Painter { get; set; }//пейнтер фигуры
         IFiller Filler { get; }//способ заливки фигуры (либо polygon либо ellipse)
         Color Color { get; set; }//цвет фигуры
         int Width { get; set; }

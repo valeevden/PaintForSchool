@@ -49,6 +49,7 @@
     <Compile Include="Fabrics\EllipseIFabric.cs" />
     <Compile Include="Fabrics\IFabric.cs" />
     <Compile Include="Fabrics\Line2DIFabric.cs" />
+    <Compile Include="Fabrics\FigureNDIFabric.cs" />
     <Compile Include="Fabrics\LineNDIFabric.cs" />
     <Compile Include="Fabrics\NanglesIFabric.cs" />
     <Compile Include="Fabrics\IsoscelesIFabric.cs" />

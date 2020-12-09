@@ -26,7 +26,7 @@ namespace PaintForSchool.Figures
         public int _anglesNumber { get; set; }
         public int Width { get; set; }
         public bool IsFilled { get; set; }
-        public IPainter Painter { get; }
+        public IPainter Painter { get; set; }
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool started { get; set; }
@@ -59,25 +59,7 @@ namespace PaintForSchool.Figures
             //return pointsArray;
         }
 
-        //public void Set(Point point)
-        //{
-        //    if (started == false)
-        //    {
-        //        Path = new GraphicsPath();
-        //        Path.StartFigure();
-        //        started = true;
-        //        tmpPoint = point;
-        //    }
-        //    else
-        //    {
-        //        Path.AddLine(point, secondPoint); //точек в путь
-        //        //Painter = new PointPolygonIPainter(_path);
-        //        startPoint = secondPoint;
-        //        return;
-        //    }
-        //    startPoint = point;
-
-        //}
+      
         public void Set(Point pointFromForm)
         {
             startPoint = pointFromForm;
@@ -87,19 +69,6 @@ namespace PaintForSchool.Figures
         public void Update(Point startPoint, Point endPoint)
         {
             currentList = new List<Point> { startPoint, endPoint };
-
-            //pointsList[0] = startPoint;
-
-            //if (started == false)
-            //{
-            //    pointsList = new List<Point> { startPoint };
-            //    started = true;
-
-            //}
-            //else
-            //{
-            //    pointsList.Add(endPoint);
-            //}
 
         }
 

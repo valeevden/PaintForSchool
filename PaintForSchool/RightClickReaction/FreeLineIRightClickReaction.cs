@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PaintForSchool.RightClickReaction;
+using PaintForSchool.Painter;
 using PaintForSchool.Figures;
 using System.Drawing;
 using System.Drawing.Drawing2D;

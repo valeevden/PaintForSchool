@@ -25,7 +25,7 @@ namespace PaintForSchool.Figures
         public int _anglesNumber { get; set; }
         public int Width { get; set; }
         public bool IsFilled { get; set; }
-        public IPainter Painter { get; }
+        public IPainter Painter { get; set;  }
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool started { get; set; }
