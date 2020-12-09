@@ -238,7 +238,7 @@ namespace PaintForSchool.Figures
             for (int i = 0; i < _anglesNumber; i++)
             {
                 //по теореме пифагора
-                double radius = delta * 8 + (Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2)));
+                double radius = delta * 2 + (Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2)));
 
                 double rotatedX = center.X + radius * Math.Cos(startAngle[i]);
 
@@ -275,13 +275,118 @@ namespace PaintForSchool.Figures
             return false;
         }
         
-        public bool IsArea(Point delta)
+        public bool IsArea(Point touchPoint2)
         {
-            if((Math.Abs(pointsList[0].Y-pointsList[1].Y)> Math.Abs(pointsList[0].Y - delta.Y))
-               &&
-                (Math.Abs(pointsList[3].X-pointsList[2].X)> Math.Abs(pointsList[3].X - delta.X)))
+            float sumX = 0;
+            float sumY = 0;
+
+            foreach (Point bound in pointsList)
             {
-                return true;
+                sumX += bound.X;
+                sumY += bound.Y;
+            }
+            float count = pointsList.Count();
+            //находим центр
+            PointF center = new PointF((sumX / count), (sumY / count));
+            //нужно начать цикл изменения радиуса с шагом точности
+            double[] radArray = new double[pointsList.Count()];
+            //циклом заполняем массив ИСХОДНЫХ радиусов от центра до точек
+
+            for (int i = 0; i < pointsList.Count(); i++)
+            {
+                radArray[i] = (Math.Sqrt(Math.Pow(pointsList[i].X - center.X, 2) + Math.Pow(pointsList[i].Y - center.Y, 2)));
+
+            }
+            //лист для уменьшающихся треугольников
+            List<Point> copyList = new List<Point>(pointsList);
+
+            //углы для восстановления точек по радиусам
+            double[] startAngle = new double[_anglesNumber];
+            //рассчёт углов
+            for (int i = 0; i < pointsList.Count(); i++)
+            {
+                if (pointsList[i].Y < center.Y)
+                {
+                    if (pointsList[i].X < center.X)
+                    {
+                        startAngle[i] = 3.14159 - Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radArray[i]);
+                    }
+                    else
+                    {
+                        startAngle[i] = Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radArray[i]);
+                    }
+                }
+                else
+                {
+                    if (pointsList[i].X < center.X)
+                    {
+                        startAngle[i] = 3.14159 + Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radArray[i]);
+                    }
+                    else
+                    {
+                        startAngle[i] = 3.14159 * 2 - Math.Asin((Math.Abs(pointsList[i].Y - center.Y)) / radArray[i]);
+                    }
+                }
+            }
+
+            double MinRadius = radArray[0];
+            //находим минимальный радиус через сортировку
+            for (int i = 0; i < radArray.Length - 1; i++)
+            {
+                if (radArray[i] > radArray[i + 1])
+                {
+                    MinRadius = radArray[i + 1];
+                }
+            }
+
+            int accuracy = 10;
+
+            //количество точностей в минимальном радиусе
+            double counter = MinRadius / accuracy;
+
+            //массив шагов уменьшения для каждого из радиусов
+            double[] difference = new double[radArray.Length];
+            for (int i = 0; i < radArray.Length; i++)
+            {
+                difference[i] = radArray[i] / counter;
+            }
+            //цикл изменяющий радиусы для построения уменьшенных треугольников
+            for (int j = 0; j < (int)counter; j++)
+            {
+                for (int i = 0; i < radArray.Length; i++)
+                {
+                    radArray[i] = radArray[i] - difference[i];
+                    double rotatedX = center.X + radArray[i] * Math.Cos(startAngle[i]);
+
+                    double rotatedY = center.Y + radArray[i] * (-1 * (Math.Sin(startAngle[i]))); //-1*Sin для инверсии Y
+
+                    copyList[i] = new Point((int)Math.Round(rotatedX, 0), (int)Math.Round(rotatedY, 0));
+
+                }
+
+
+                //поиск попадания в грань треугольника с текущим радиусом
+                Point p1 = pointsList[pointsList.Count() - 1];
+                Point p2;
+
+
+                foreach (Point pi in copyList)
+                {
+                    p2 = pi;
+                    if (Math.Abs((touchPoint2.X - p1.X) * (p2.Y - p1.Y) - (touchPoint2.Y - p1.Y) * (p2.X - p1.X))
+                    <= Math.Abs(25 * ((p2.Y - p1.Y) + (p2.X - p1.X))))
+                    {
+                        if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - touchPoint2.X)) && ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p2.X - touchPoint2.X)))
+                            &&
+                            ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - touchPoint2.Y)) && ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p2.Y - touchPoint2.Y)))))
+                        {
+                            this.touchPoint = touchPoint2;
+                            return true;
+                        }
+                        p1 = p2;
+                    }
+
+                }
             }
             return false;
         }
