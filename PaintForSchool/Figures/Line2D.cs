@@ -41,7 +41,7 @@ namespace PaintForSchool.Figures
 
         public Point[] GetPoints()
         {
-            return pointsList.ToArray();
+            return pointsArray = pointsList.ToArray();
         }
 
         public void Set(Point pointFromForm)
