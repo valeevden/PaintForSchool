@@ -12,7 +12,7 @@ namespace PaintForSchool.Fabrics
     {
         public IFigure CreateFigure(Pen pen)
         {
-            return new SquareFigure (pen);
+            return new Triangle3D(pen);
         }
         
 

@@ -34,7 +34,7 @@ namespace PaintForSchool.Figures
         public LineND(Pen pen)
         {
             Painter = new PointPolygonIPainter();
-            Reaction = new FreeLineIRightClickReaction(this);
+            Reaction = new FreeLineIRightClickReaction();
             Color = pen.Color;
             Width = (int)pen.Width;
             pointsList = new List<Point> { new Point(0,0) };

@@ -14,12 +14,12 @@ namespace PaintForSchool.RightClickReaction
 {
     public class FreeLineIRightClickReaction : IRightClickReaction
     {
-        IFigure _figure;
+        //IFigure _figure;
         
-        public FreeLineIRightClickReaction(IFigure figureFromForm)
-        {
-            _figure = figureFromForm; 
-        }
+        //public FreeLineIRightClickReaction(IFigure figureFromForm)
+        //{
+        //    _figure = figureFromForm; 
+        //}
         public void Do()
         {
             

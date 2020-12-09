@@ -11,11 +11,11 @@ using System.Drawing.Drawing2D;
 
 namespace PaintForSchool.RightClickReaction
 {
-    public class FreeFigureIRightClickReaction : IRightClickReaction
+    public class TriangleIRightClickReaction : IRightClickReaction
     {
         IFigure _figure;
 
-        public FreeFigureIRightClickReaction(IFigure figureFromForm)
+        public TriangleIRightClickReaction(IFigure figureFromForm)
         {
             _figure = figureFromForm;
         }

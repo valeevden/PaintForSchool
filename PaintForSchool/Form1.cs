@@ -52,7 +52,9 @@ namespace PaintForSchool
             switch (mode)
             {
                 case "PAINT":
-                    if (_figure.Reaction is FreeLineIRightClickReaction || _figure.Reaction is FreeFigureIRightClickReaction)
+                    if (_figure.Reaction is FreeLineIRightClickReaction 
+                        || _figure.Reaction is FreeFigureIRightClickReaction 
+                        || _figure.Reaction is TriangleIRightClickReaction)
                     {
                         //если фигура начинается то записать первую стартПоинт
                         if (_figure.started == false)
@@ -186,13 +188,15 @@ namespace PaintForSchool
                 {
                     case "PAINT":
                         
-                        if ((_figure.Reaction is FreeLineIRightClickReaction || _figure.Reaction is FreeFigureIRightClickReaction) && (mouseMove == false))
+                        if ((_figure.Reaction is FreeLineIRightClickReaction 
+                            || _figure.Reaction is FreeFigureIRightClickReaction
+                            || _figure.Reaction is TriangleIRightClickReaction) && (mouseMove == false))
                         {
                             _figure._anglesNumber++;
-                            _figure.pointsList.Add(tmpPoint);
+                            _figure.pointsList.Add(tmpPoint); //точка добавляется в лист в начале движения мыши
                         }
                             _figure.Update(startPoint, e.Location);
-                        mouseMove = true;
+                        mouseMove = true; //после записи точки запись заканчивается
 
                         _figure.secondPoint = e.Location;
                         pictureBox1.Image = canvas.DrawIt(_figure, _pen);
@@ -281,9 +285,13 @@ namespace PaintForSchool
             {
                 figuresList.Add(_figure);
             }
-            else
+            else if (_figure.Reaction is TriangleIRightClickReaction && _figure._anglesNumber == 3)
             {
-
+                //ничего не происходит для фигур с FreeLineIRightClickReaction и FreeFigureIRightClickReaction
+                _figure.Reaction.Do();
+                figuresList.Add(_figure);
+                pictureBox1.Image = canvas.DrawIt(_figure, _pen);
+                _figure = fabrica.CreateFigure(_pen);
             }
             switch (mode)
             {
@@ -431,7 +439,9 @@ namespace PaintForSchool
 
         private void Triangle3D_Click(object sender, EventArgs e)
         {
-            // _figure = new Triangle3DFigure ();
+            fabrica = new Triangle3DIFabric();
+            _figure = fabrica.CreateFigure(_pen);
+            radioButtonPaintMode.Checked = true;
         }
 
         private void NanglesFigure_Click(object sender, EventArgs e)
