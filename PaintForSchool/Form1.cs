@@ -292,8 +292,6 @@ namespace PaintForSchool
                         {
                             //_figure.Reaction.Do();
                             figuresList.Add(_figure);
-                            _figure.Update(startPoint, e.Location);
-                            _figure.secondPoint = e.Location;
                             pictureBox1.Image = canvas.DrawIt(_figure, _pen);
                         }
                         else
