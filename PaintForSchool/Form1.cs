@@ -188,7 +188,8 @@ namespace PaintForSchool
                 switch (mode)
                 {
                     case "PAINT":
-                        if (mouseMove == false)
+                        
+                        if ((_figure.Reaction is FreeLineIRightClickReaction)&& (mouseMove == false))
                         {
                             _figure._anglesNumber++;
                             _figure.pointsList.Add(tmpPoint);
@@ -294,9 +295,10 @@ namespace PaintForSchool
                     {
                         if (_figure.Reaction is FreeLineIRightClickReaction)
                         {
-                            //_figure.Reaction.Do();
+                            _figure.Reaction.Do();
                             figuresList.Add(_figure);
-                            pictureBox1.Image = canvas.DrawIt(_figure, _pen);
+                            _figure = fabrica.CreateFigure(_pen);
+                            //pictureBox1.Image = canvas.DrawIt(_figure, _pen);
                         }
                         else
                         {
