@@ -44,10 +44,7 @@ namespace PaintForSchool.Figures
         
         public Point[] GetPoints()
         {
-            //if (started == true)
-            //{
-                
-            //}
+           
             return pointsArray = pointsList.ToArray();
 
         }
