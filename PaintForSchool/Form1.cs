@@ -30,8 +30,6 @@ namespace PaintForSchool
         string mode = "PAINT";
         Color pickedColor;
 
-
-
         public Form1()
         {
             InitializeComponent();
@@ -53,9 +51,33 @@ namespace PaintForSchool
             switch (mode)
             {
                 case "PAINT":
-                    startPoint = e.Location;
-                    _figure.Set(e.Location);
-                    _figure = fabrica.CreateFigure(_pen);
+                    if (_figure.Reaction is FreeLineIRightClickReaction)
+                    {
+                        //если фигура начинается то записать первую стартПоинт
+                        if (_figure.started == false)
+                        {
+                            startPoint = e.Location;
+                            //_figure.startPoint = e.Location;
+                            _figure.pointsList.Add(e.Location);
+                            _figure.started = true;
+                            _figure._anglesNumber++;
+                        }
+                        else
+                        {
+                            _figure.pointsList.Add(e.Location);
+                            startPoint = _figure.secondPoint;
+                            _figure._anglesNumber++;
+                        }
+                    }
+                    else
+                    {
+                        startPoint = e.Location;
+                        //_figure.Set(e.Location);
+                        //_figure.started = true;
+                        _figure = fabrica.CreateFigure(_pen);
+                    }
+
+                    
                     break;
 
                 case "MOVE":
@@ -253,18 +275,23 @@ namespace PaintForSchool
         {
             _mouseDown = false;
 
-            if (_figure != null)
+            if (_figure != null && _figure.Reaction is NoReactionIReaction)
             {
                 figuresList.Add(_figure);
+            }
+            else
+            {
+
             }
             switch (mode)
             {
                 case "PAINT":
                     if (e.Button == MouseButtons.Right)
                     {
-                        if (_figure.Reaction is FreeFigureIRightClickReaction)
+                        if (_figure.Reaction is FreeLineIRightClickReaction)
                         {
-                            _figure.Reaction.Do();
+                            //_figure.Reaction.Do();
+                            figuresList.Add(_figure);
                             pictureBox1.Image = canvas.DrawIt(_figure, _pen);
                         }
                         else
@@ -345,12 +372,16 @@ namespace PaintForSchool
 
         private void Line2D_Click(object sender, EventArgs e)
         {
-            //  _figure = new Line2D();
+            fabrica = new Line2DIFabric();
+            _figure = new Line2D(_pen);
+            radioButtonPaintMode.Checked = true;
         }
 
         private void LineND_Click(object sender, EventArgs e)
         {
-            // _figure = new LineND();
+            fabrica = new LineNDIFabric();
+            _figure = new LineND(_pen);
+            radioButtonPaintMode.Checked = true;
         }
 
         private void FigureND_Click(object sender, EventArgs e)
