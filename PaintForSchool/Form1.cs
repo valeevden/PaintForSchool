@@ -181,6 +181,7 @@ namespace PaintForSchool
                         if (checkFigure.IsEdge(e.Location))
                         {
                             _figure = checkFigure;
+                            movingFigure = checkFigure;
                             figuresList.Remove(_figure);
                             ((NanglesFigure)_figure).AddPeak();
                             fabrica = new FigureNDIFabric(_figure);
@@ -190,6 +191,9 @@ namespace PaintForSchool
                             //достаточно будет добавлять новые конструкторы для нужной фабрики
 
                             _figure = fabrica.CreateFigure(_pen);
+                            pictureBox1.Image = canvas.Clear();
+                            DrawAll();
+                            startPoint = checkFigure.touchPoint;
                             return;
                         }
                     }
@@ -295,6 +299,8 @@ namespace PaintForSchool
                             Point delta = new Point(e.X - startPoint.X, e.Y - startPoint.Y);
                             startPoint = e.Location;
                             ((FigureND)_figure).MovePeak(delta);
+                            pictureBox1.Image = canvas.DrawIt(_figure, new Pen(movingFigure.Color, movingFigure.Width));
+                            GC.Collect();
                         }
                         break;
 

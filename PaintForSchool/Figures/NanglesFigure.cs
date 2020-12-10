@@ -111,6 +111,7 @@ namespace PaintForSchool.Figures
         {
             if (edgeModifying.edgeNumber==1) pointsList.Add(touchPoint);
             pointsList.Insert(edgeModifying.edgeNumber-1,touchPoint);
+            _anglesNumber++;
         }
 
 

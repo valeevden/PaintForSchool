@@ -43,7 +43,7 @@ namespace PaintForSchool.Figures
         }
         public FigureND(Pen pen, IFigure figure)
         {
-            Painter = new PointPolygonIPainter();
+            Painter = new PolygonIPainter();
             Reaction = new FreeFigureIRightClickReaction(this);
 
             //забираем информацию из трансофрмируемой фигуры
