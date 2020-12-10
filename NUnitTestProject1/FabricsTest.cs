@@ -51,13 +51,13 @@ namespace NUnitFramework
             Assert.AreEqual(typeof(RectangleFigure), actual.GetType());
         }
 
-        [Test]
-        public void IsFCreateFigureTest()
-        {
-            IsoscelesIFabric isoscelesFabric = new IsoscelesIFabric();
-            IFigure actual = isoscelesFabric.CreateFigure(new Pen(Color.Black, 5));
-            Assert.AreEqual(typeof(IsoscelesTriangle), actual.GetType());
-        }
+        //[Test]
+        //public void IsFCreateFigureTest()
+        //{
+        //    IsoscelesIFabric isoscelesFabric = new IsoscelesIFabric();
+        //    IFigure actual = isoscelesFabric.CreateFigure(new Pen(Color.Black, 5));
+        //    Assert.AreEqual(typeof(IsoscelesTriangle), actual.GetType());
+        //}
 
         [Test]
         public void TriangleFCreateFigureTest()

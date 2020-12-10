@@ -29,15 +29,14 @@ namespace NUnitFramework
 
             Assert.AreEqual(exspected, actual);
         }
-        [Test, TestCaseSource(typeof(UpdateTestSource))]
-        public void IsAreaTest(Point startPoint, Point endPoint, Point delta, bool exspected)
+        [Test, TestCaseSource(typeof(IsAreaTestSource))]
+        public void IsAreaTest(Point startPoint, Point endPoint,Point delta, bool exspected)
         {
             squareFigure.Update(startPoint, endPoint);
             bool actual = squareFigure.IsArea(delta);
-
             Assert.AreEqual(exspected, actual);
         }
-        [Test, TestCaseSource(typeof(UpdateTestSource))]
+        [Test, TestCaseSource(typeof(MoveTestSource))]
         public void MoveTest(Point startPoint, Point endPoint, Point delta, List<Point> exspected)
         {
             squareFigure.Update(startPoint, endPoint);
@@ -46,7 +45,7 @@ namespace NUnitFramework
 
             Assert.AreEqual(exspected, actual);
         }
-        [Test, TestCaseSource(typeof(UpdateTestSource))]
+        [Test, TestCaseSource(typeof(IsEdgeTestSource))]
         public void IsEdgeTest(Point startPoint, Point endPoint, Point delta, bool exspected)
         {
             squareFigure.Update(startPoint, endPoint);
@@ -55,7 +54,7 @@ namespace NUnitFramework
             Assert.AreEqual(exspected, actual);
         }
        
-        [Test, TestCaseSource(typeof(UpdateTestSource))]
+        [Test, TestCaseSource(typeof(RotateTestSource))]
         public void RotateTest(Point startPoint, Point endPoint, Point point, List<Point> exspected)
         {
             squareFigure.Update(startPoint, endPoint);
@@ -65,7 +64,7 @@ namespace NUnitFramework
             Assert.AreEqual(exspected, actual);
         }
 
-        //[Test, TestCaseSource(typeof(UpdateTestSource))]
+        //[Test, TestCaseSource(typeof(ZoomTestSource))]
         //public void ZoomTest(Point startPoint, Point endPoint, Point point, Point eLocation, List<Point> exspected)
         //{
         //    squareFigure.Update(startPoint, endPoint);
@@ -88,7 +87,7 @@ namespace NUnitFramework
         public IEnumerator GetEnumerator()
         {
             yield return new object[] { new Point(0, 0), new Point(10, 10), points1 };
-            yield return new object[] { new Point(0, 10), new Point(20, 20), points2 };
+            yield return new object[] { new Point(0, 0), new Point(10, 10), points2 };
             yield return new object[] { new Point(5, 5), new Point(10, 10), points3 };
         }
     }
