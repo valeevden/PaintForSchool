@@ -289,6 +289,14 @@ namespace PaintForSchool
                         }
 
                         break;
+                    case "PEAK":
+                        if (_figure!=null)
+                        {
+                            Point delta = new Point(e.X - startPoint.X, e.Y - startPoint.Y);
+                            startPoint = e.Location;
+                            ((FigureND)_figure).MovePeak(delta);
+                        }
+                        break;
 
 
                     default:

@@ -29,6 +29,7 @@ namespace PaintForSchool.Figures
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool started { get; set; }
+        private int movingPeakIndex;
 
         public FigureND(Pen pen)
         {
@@ -82,6 +83,11 @@ namespace PaintForSchool.Figures
             }
         }
 
+        public void MovePeak(Point peakDelta)
+        {
+            pointsList[movingPeakIndex] = new Point(pointsList[movingPeakIndex].X + peakDelta.X, pointsList[movingPeakIndex].Y + peakDelta.Y);
+        }
+
         public void Rotate(Point point)
         {
 
@@ -97,6 +103,7 @@ namespace PaintForSchool.Figures
             Point p1 = pointsList[pointsList.Count - 1];
             Point p2;
             int accuracy = 20; // Точность захвата
+            movingPeakIndex = -1;
             foreach (Point pi in pointsList)
             {
                 p2 = pi;
@@ -108,6 +115,7 @@ namespace PaintForSchool.Figures
                             ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - touch.Y)) && ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p2.Y - touch.Y)))))
                     {
                         touchPoint = touch;
+                        movingPeakIndex++;
                         return true;
                     }
                 }
