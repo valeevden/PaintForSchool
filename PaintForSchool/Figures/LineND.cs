@@ -64,7 +64,18 @@ namespace PaintForSchool.Figures
             //    startPoint = secondPoint;
             //}
         }
+        //public override bool Equals(object obj)
+        //{
+        //    LineND lineND = (LineND) obj;
+        //    if (!Color.Equals(lineND.Color) || Width != lineND.Width || !pointsList.Equals(lineND.pointsList) || !pointsArray.Equals(lineND.pointsArray)
+        //            || !_anglesNumber.Equals(lineND._anglesNumber) || !Filler.Equals(lineND.Filler) || !Reaction.Equals(lineND.Reaction)
+        //            || !Painter.Equals(lineND.Painter))
+        //    {
+        //        return false;
+        //    }
+        //    return true; 
+        //}
 
-        
+
     }
 }

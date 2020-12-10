@@ -6,10 +6,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PaintForSchool.Filler;
 
 namespace PaintForSchool.Figures
 {
@@ -162,6 +158,17 @@ namespace PaintForSchool.Figures
             pointsListR[2] = secondPoint;
             pointsListR[3] = new Point(secondPoint.X, startPoint.Y);
 
+        }
+        public override bool Equals(object obj)
+        {
+            EllipseFigure ellipse = (EllipseFigure)obj;
+            if (!Color.Equals(ellipse.Color) || Width != ellipse.Width || !pointsList.Equals(ellipse.pointsList) || !pointsArray.Equals(ellipse.pointsArray)
+                    || !_anglesNumber.Equals(ellipse._anglesNumber) || !Filler.Equals(ellipse.Filler) || !Reaction.Equals(ellipse.Reaction)
+                    || !Painter.Equals(ellipse.Painter))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -126,5 +126,20 @@ namespace PaintForSchool.Figures
                 pointsList[i] = new Point(pointsList[i].X + delta.X, pointsList[i].Y + delta.Y);
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            CircleFigure circle = (CircleFigure)obj;
+            if (!Color.Equals(circle.Color) || Width != circle.Width || !pointsList.Equals(circle.pointsList) || !pointsArray.Equals(circle.pointsArray)
+                    || !_anglesNumber.Equals(circle._anglesNumber) || !Filler.Equals (circle.Filler) || !Reaction.Equals (circle.Reaction) 
+                    || !Painter.Equals (circle.Painter))
+
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
+
+

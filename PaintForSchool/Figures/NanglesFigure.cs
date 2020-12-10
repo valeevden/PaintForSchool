@@ -243,5 +243,17 @@ namespace PaintForSchool.Figures
         {
             throw new NotImplementedException();
         }
+
+        public override bool Equals(object obj)
+        {
+            NanglesFigure nanglesFigure = (NanglesFigure)obj;
+            if (!Color.Equals(nanglesFigure.Color) || Width != nanglesFigure.Width || !pointsList.Equals(nanglesFigure.pointsList) || !pointsArray.Equals(nanglesFigure.pointsArray)
+                     || !_anglesNumber.Equals(nanglesFigure._anglesNumber) || !Filler.Equals(nanglesFigure.Filler) || !Reaction.Equals(nanglesFigure.Reaction)
+                     || !Painter.Equals(nanglesFigure.Painter))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

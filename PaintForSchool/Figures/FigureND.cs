@@ -24,17 +24,17 @@ namespace PaintForSchool.Figures
         public FigureND()
         {
             Painter = new PolygonIPainter();
-          //  Reaction = new FreeFigureIRightClickReaction(this);
+            //  Reaction = new FreeFigureIRightClickReaction(this);
             started = false;
         }
 
         public Point[] GetPoints()
         {
             Point[] points = new Point[2];
-            
+
             points[0] = startPoint;
             points[1] = secondPoint;
-            
+
             return points;
         }
         public void Set(Point point)
@@ -76,6 +76,18 @@ namespace PaintForSchool.Figures
         //    //startPoint = tmpPoint;
         //    //secondPoint = point;
         //    //Painter = new PointPolygonIPainter();
+        //}
+
+        //public override bool Equals(object obj)
+        //{
+        //    FigureND figureND = (FigureND)obj;
+        //    if (!Color.Equals(figureND.Color) || Width != figureND.Width || !pointsList.Equals(figureND.pointsList) || !pointsArray.Equals(figureND.pointsArray)
+        //           || !_anglesNumber.Equals(figureND._anglesNumber) || !Filler.Equals(figureND.Filler) || !Reaction.Equals(figureND.Reaction)
+        //           || !Painter.Equals(figureND.Painter))
+        //    {
+        //        return false;
+        //    }
+        //    return true;
         //}
     }
 }

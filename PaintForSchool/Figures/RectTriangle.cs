@@ -48,5 +48,16 @@ namespace PaintForSchool.Figures
             startPoint = point;
         }
 
+        //public override bool Equals(object obj)
+        //{
+        //    RectTriangle rectTriangle = (RectTriangle)obj;
+        //    if (!Color.Equals(rectTriangle.Color) || Width != rectTriangle.Width || !pointsList.Equals(rectTriangle.pointsList) || !pointsArray.Equals(rectTriangle.pointsArray)
+        //             || !_anglesNumber.Equals(rectTriangle._anglesNumber) || !Filler.Equals(rectTriangle.Filler) || !Reaction.Equals(rectTriangle.Reaction)
+        //             || !Painter.Equals(rectTriangle.Painter))
+        //    {
+        //        return false;
+        //    }
+        //    return true;
+        //}
     }
 }

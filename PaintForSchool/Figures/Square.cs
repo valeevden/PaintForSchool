@@ -213,6 +213,18 @@ namespace PaintForSchool.Figures
         {
             throw new NotImplementedException();
         }
+
+        public override bool Equals (object  obj)
+        {
+            SquareFigure square = (SquareFigure)obj;
+            if (!Color.Equals(square.Color) || Width != square.Width || !pointsList.Equals(square.pointsList) || !pointsArray.Equals(square.pointsArray)
+                     || !_anglesNumber.Equals(square._anglesNumber) || !Filler.Equals(square.Filler) || !Reaction.Equals(square.Reaction)
+                     || !Painter.Equals(square.Painter))
+            {
+                return false;
+            }
+            return true; 
+        }
     }
 }
 

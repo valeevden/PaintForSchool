@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NUnitTestProject1
+namespace NUnitFramework
 {
     class FormTest
     {

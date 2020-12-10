@@ -285,5 +285,16 @@ namespace PaintForSchool.Figures
             }
             return false;
         }
+        public override bool Equals(object obj)
+        {
+            RectangleFigure rectangle = (RectangleFigure)obj;
+            if (!Color.Equals(rectangle.Color) || Width != rectangle.Width || !pointsList.Equals(rectangle.pointsList) || !pointsArray.Equals(rectangle.pointsArray)
+                     || !_anglesNumber.Equals(rectangle._anglesNumber) || !Filler.Equals(rectangle.Filler) || !Reaction.Equals(rectangle.Reaction)
+                     || !Painter.Equals(rectangle.Painter))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
