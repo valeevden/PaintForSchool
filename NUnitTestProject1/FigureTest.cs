@@ -88,8 +88,8 @@ namespace NUnitFramework
         public IEnumerator GetEnumerator()
         {
             yield return new object[] { new Point(0, 0), new Point(10, 10), points1 };
-            yield return new object[] { new Point(0, 0), new Point(10, 10), points2 };
-            yield return new object[] { new Point(0, 0), new Point(10, 10), points3 };
+            yield return new object[] { new Point(0, 10), new Point(20, 20), points2 };
+            yield return new object[] { new Point(5, 5), new Point(10, 10), points3 };
         }
     }
     public class IsAreaTestSource : IEnumerable
