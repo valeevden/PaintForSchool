@@ -83,8 +83,6 @@ namespace PaintForSchool
 
                     foreach (IFigure checkFigure in figuresList)
                     {
-                        canvas.SetGraphics(checkFigure);
-
                         if (checkFigure.IsEdge(e.Location)  || (checkFigure.IsArea(e.Location) && checkFigure.IsFilled) )
                         {
                             _figure = checkFigure;
@@ -109,8 +107,8 @@ namespace PaintForSchool
                             _figure = checkFigure;
                             figuresList.Remove(_figure);
                             pictureBox1.Image = canvas.Clear();
-                            DrawAll();
                             movingFigure = checkFigure;
+                            DrawAll();
                             startPoint = checkFigure.touchPoint;
                             break;
                         }

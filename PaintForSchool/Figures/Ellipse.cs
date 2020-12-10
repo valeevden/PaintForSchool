@@ -108,6 +108,7 @@ namespace PaintForSchool.Figures
             rectMatrix.RotateAt(_rotateAngle=_rotateAngle+point.Y/2, center);
             EllipseGP.Transform(rectMatrix);
             Painter = new PathIPainter(EllipseGP);
+            Filler = new PathFiller(EllipseGP);
         }
 
         public void Zoom(Point point, Point eLocation)
@@ -123,6 +124,11 @@ namespace PaintForSchool.Figures
             {
                 pointsList[i] = new Point(pointsList[i].X + delta.X, pointsList[i].Y + delta.Y);
             }
+            RectangleF rectangleForGP = MakeRectangleFromPointsList(pointsList); //Создаем ректангл из листа
+            EllipseGP = new GraphicsPath(); // Создаем новый график пас
+            EllipseGP.AddEllipse(rectangleForGP);
+            Painter = new PathIPainter(EllipseGP);
+            Filler = new PathFiller(EllipseGP);
         }
 
         public bool IsArea(Point eLocation)
