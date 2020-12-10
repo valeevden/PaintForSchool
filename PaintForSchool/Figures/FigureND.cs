@@ -148,9 +148,9 @@ namespace PaintForSchool.Figures
             foreach (Point point in pointsList)
             {
                 if (
-                    (point.X < peak.X + 10) && (point.X < peak.X + 10)
+                    (point.X-10 < peak.X) && (point.X+10 > peak.X)
                     &&
-                    (point.Y < peak.Y + 10) && (point.Y < peak.Y + 10)
+                    (point.Y-10 < peak.Y) && (point.Y+10 > peak.Y)
                     )
                 {
                     touchPoint = peak;
