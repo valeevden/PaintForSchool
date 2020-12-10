@@ -60,6 +60,7 @@
     <Compile Include="Filler\EllipseFiller.cs" />
     <Compile Include="Filler\CircleFiller.cs" />
     <Compile Include="Filler\IFiller.cs" />
+    <Compile Include="Filler\PathFiller.cs" />
     <Compile Include="Filler\PolygonFiller.cs" />
     <Compile Include="Painter\PathIPainter.cs" />
     <Compile Include="RightClickReaction\TriangleIRightClickReaction.cs" />

@@ -34,11 +34,13 @@ namespace PaintForSchool.Figures
 
         public Graphics graphica { get; set; }
 
+        GraphicsPath EllipseGP;
+
         public EllipseFigure(Pen pen)
         {
             Painter = new EllipseIPainter();
             Reaction = new NoReactionIReaction();
-            Filler = new EllipseFiller();
+            Filler = new PathFiller();
             started = false;
             Color = pen.Color;
             Width = (int)pen.Width;
@@ -70,15 +72,17 @@ namespace PaintForSchool.Figures
         public bool IsEdge(Point eLocation)
         {
             RectangleF rectangleForGP = MakeRectangleFromPointsList(pointsList); //Создаем ректангл из листа
-            GraphicsPath EllipseGP = new GraphicsPath(); // Создаем новый график пас
-            EllipseGP.AddEllipse(rectangleForGP); // Добавляем в график пас новую область видимости
-
-            Array[] PathArray = new Array[] { EllipseGP.PathPoints };
+            EllipseGP = new GraphicsPath(); // Создаем новый график пас
             
+            EllipseGP.AddEllipse(rectangleForGP); // Добавляем в график пас новую область видимости
+            Matrix rectMatrix = new Matrix();
+
+            rectMatrix.RotateAt(_rotateAngle, center);
             Pen penGP = new Pen(Color, Width);
 
             if (EllipseGP.IsOutlineVisible(eLocation, penGP)) // Если точка входит в область видимости 
             {
+                Filler = new PathFiller(this.EllipseGP);
                 touchPoint = eLocation;
                 return true;
             }
@@ -88,99 +92,20 @@ namespace PaintForSchool.Figures
             }
            
         }
-
+        private int _rotateAngle = 0;
+        PointF center;
         public void Rotate(Point point)
         {
             Rectangle rectangleForGP = MakeRectangleFromPointsList(pointsList); //Создаем ректангл из листа
-            GraphicsPath EllipseGP = new GraphicsPath(); // Создаем новый график пас
+            EllipseGP = new GraphicsPath(); // Создаем новый график пас
             EllipseGP.AddEllipse(rectangleForGP); // Добавляем в график пас новую область видимости
-            EllipseGP.Flatten();
-
+           
             Matrix rectMatrix = new Matrix();
-            rectMatrix.RotateAt(30++, pointsArray[0]);
+            
+            center = new PointF(Math.Abs((pointsArray[0].X + pointsArray[1].X) / 2), Math.Abs((pointsArray[0].Y + pointsArray[1].Y) / 2));
+            rectMatrix.RotateAt(_rotateAngle=_rotateAngle+point.Y/2, center);
             EllipseGP.Transform(rectMatrix);
             Painter = new PathIPainter(EllipseGP);
-
-
-            //Matrix rectMatrix = new Matrix(rectangleForGP, EllipseGP.PathPoints);
-            //rectMatrix.Rotate(30);
-            //RectangleF boundRectangle;
-            //boundRectangle = (EllipseGP.GetBounds());
-            //pointsArray[0] = new Point((int)boundRectangle.X, (int)boundRectangle.Y);
-            //pointsArray[1] = new Point((int)boundRectangle.Width + pointsArray[0].X, (int)boundRectangle.Height + pointsArray[0].Y);
-
-            //Array[] pathArray = new Array[] { EllipseGP.PathPoints };
-            //List<Point> pointListR = MakePointsForExtrenalRectangle(pointsList);
-
-
-
-            //double delta;
-            //if (point.Y < 0)
-            //{
-            //    delta = 0.017;//если вверх, то поворачиваем на один градус влево каждый MouseMove
-            //}
-            //else
-            //{
-            //    delta = -0.017;//если вниз, то поворачиваем на один градус влево каждый MouseMove
-            //}
-
-            //delta *= 1.5;//регулировка скорость вращения
-
-            //List<Point> pointListR = MakePointsForExtrenalRectangle(pointsList);
-
-            //float[] startAngle = new float[2];
-            //Point center = pointsArray[0];
-
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    float radius = (float)Math.Sqrt(Math.Pow(pointsArray[i].X - center.X, 2) + Math.Pow(pointsArray[i].Y - center.Y, 2));
-
-            //    //только поняв в какой четверти находит противолежщий катет можно
-            //    //правильно интерпретировать результат, т. к. например арксинусы для
-            //    //углов 10, 170, 190 и 350 градусов будет одинаковыми
-            //    if (pointsArray[i].Y < center.Y)
-            //    {
-            //        if (pointsArray[i].X < center.X)
-            //        {
-            //            startAngle[i] = (float)Math.PI - (float)Math.Asin((Math.Abs(pointsArray[i].Y - center.Y)) / radius);
-            //        }
-            //        else
-            //        {
-            //            startAngle[i] = (float)Math.Asin((Math.Abs(pointsArray[i].Y - center.Y)) / radius);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        if (pointsArray[i].X < center.X)
-            //        {
-            //            startAngle[i] = (float)Math.PI + (float)Math.Asin((Math.Abs(pointsArray[i].Y - center.Y)) / radius);
-            //        }
-            //        else
-            //        {
-            //            startAngle[i] = (float)Math.PI * 2 - (float)Math.Asin((Math.Abs(pointsArray[i].Y - center.Y)) / radius);
-            //        }
-            //    }
-            //}
-
-            ////поворот точек на delta радиан Против часовой
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    //может не надо радиус заново искать?
-            //    float radius = (float)Math.Sqrt(Math.Pow(pointsArray[i].X - center.X, 2) + Math.Pow(pointsArray[i].Y - center.Y, 2));
-
-            //    float rotatedX = center.X + radius * (float)Math.Cos(startAngle[i] + delta);
-
-            //    float rotatedY = center.Y + radius * (-1 * ((float)Math.Sin(startAngle[i] + delta)));//-1*Sin для инверсии Y
-
-            //    pointListR[i] = new Point((int)Math.Round(rotatedX, 0), (int)Math.Round(rotatedY, 0));
-            //    pointsList[i] = new Point(pointListR[i].X, pointListR[i].Y);
-            //}
-
-            //pointsList[0] = spointListR[1];
-            //pointsList[1] = pointListR[1];
-
-            ////return;
-
         }
 
         public void Zoom(Point point, Point eLocation)
@@ -203,14 +128,24 @@ namespace PaintForSchool.Figures
             //graphica.RotateTransform(graphicsAngle);
 
             RectangleF rectangleForGP = MakeRectangleFromPointsList(pointsList); //Создаем ректангл из листа
-            GraphicsPath EllipseGP = new GraphicsPath(); // Создаем новый график пас
+            EllipseGP = new GraphicsPath(); // Создаем новый график пас
             EllipseGP.AddEllipse(rectangleForGP); // Добавляем в график пас новую область видимости
+
+            EllipseGP.Flatten();
+
+            Matrix rectMatrix = new Matrix();
+
+            rectMatrix.RotateAt(_rotateAngle, center);
+            EllipseGP.Transform(rectMatrix);
+
+            
 
             Array[] PathArray = new Array[] { EllipseGP.PathPoints };
 
             if (EllipseGP.IsVisible(eLocation)) // Если точка входит в область видимости 
             {
                 touchPoint = eLocation;
+                Filler = new PathFiller(EllipseGP);
                 return true;
             }
             else
