@@ -123,7 +123,7 @@ namespace PaintForSchool.Figures
             Matrix rectMatrix = new Matrix();
 
             center = new PointF(Math.Abs((pointsArray[0].X + pointsArray[1].X) / 2), Math.Abs((pointsArray[0].Y + pointsArray[1].Y) / 2));
-            rectMatrix.Scale(2, 2);
+            rectMatrix.Scale(2, 1); // Починить Scale
             EllipseGP.Transform(rectMatrix);
             Painter = new PathIPainter(EllipseGP);
             Filler = new PathFiller(EllipseGP);
