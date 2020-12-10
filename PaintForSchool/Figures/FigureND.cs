@@ -40,6 +40,17 @@ namespace PaintForSchool.Figures
             started = false;
             _anglesNumber = 1;
         }
+        public FigureND(Pen pen, IFigure figure)
+        {
+            Painter = new PointPolygonIPainter();
+            Reaction = new FreeFigureIRightClickReaction(this);
+
+            //забираем информацию из трансофрмируемой фигуры
+            Color = figure.Color;
+            Width = figure.Width;
+            pointsList = figure.pointsList;
+            _anglesNumber = figure._anglesNumber;
+        }
 
         public Point[] GetPoints()
         {

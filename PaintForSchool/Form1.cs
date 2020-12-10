@@ -173,6 +173,27 @@ namespace PaintForSchool
                         colorPalete.BackColor = pictureBox1.BackColor;
                     }
                     break;
+                case "PEAK":
+                    
+
+                    foreach (IFigure checkFigure in figuresList)
+                    {
+                        if (checkFigure.IsEdge(e.Location))
+                        {
+                            _figure = checkFigure;
+                            figuresList.Remove(_figure);
+                            ((NanglesFigure)_figure).AddPeak();
+                            fabrica = new FigureNDIFabric(_figure);
+
+                            //переделать метод CreateFigure() так, чтобы у него не было параметров
+                            //это даст возможность собирать информацию о фигуре не переписывая интерфейс по 10 раз
+                            //достаточно будет добавлять новые конструкторы для нужной фабрики
+
+                            _figure = fabrica.CreateFigure(_pen);
+                            return;
+                        }
+                    }
+                            break;
 
                 default:
                     break;
@@ -340,12 +361,6 @@ namespace PaintForSchool
                     pictureBox1.Image = canvas.Clear();
                     DrawAll();
                     break;
-
-                case "PEAK":
-                    pictureBox1.Image = canvas.Clear();
-                    DrawAll();
-                    break;
-                
                 case "FILL":
                     pictureBox1.Image = canvas.Clear();
                     DrawAll();
@@ -354,6 +369,11 @@ namespace PaintForSchool
                     //mode = "PAINT";
                     radioButtonPaintMode.Checked = true;
                     colorPicker.Checked = false;
+                    break;
+                case "PEAK":
+                    figuresList.Add(_figure);
+                    pictureBox1.Image = canvas.Clear();
+                    DrawAll();
                     break;
                 default:
                     break;
