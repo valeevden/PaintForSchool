@@ -25,6 +25,8 @@ namespace PaintForSchool.Figures
         public Color Color { get; set; }
         public int Width { get; set; }
         public int _anglesNumber { get; set; }
+
+        public int _rotateAngle { get; set; }
         public List<Point> pointsList { get; set; }
         public Point[] pointsArray { get; set; }
 
@@ -36,7 +38,8 @@ namespace PaintForSchool.Figures
 
         GraphicsPath EllipseGP;
 
-        private int _rotateAngle = 0;
+       // private int _anglesNumber = 0;
+
         PointF center;
         public EllipseFigure(Pen pen)
         {
@@ -46,7 +49,7 @@ namespace PaintForSchool.Figures
             started = false;
             Color = pen.Color;
             Width = (int)pen.Width;
-            _anglesNumber = 0;
+           // _anglesNumber = 0;
             IsFilled = false;
         }
 
@@ -81,7 +84,7 @@ namespace PaintForSchool.Figures
             EllipseGP.AddEllipse(rectangleForGP); // Добавляем в график пас новую область видимости
             Matrix rectMatrix = new Matrix();
 
-            rectMatrix.RotateAt(_rotateAngle, center);
+            rectMatrix.RotateAt(_anglesNumber, center);
             Pen penGP = new Pen(Color, Width);
 
             if (EllipseGP.IsOutlineVisible(eLocation, penGP)) // Если точка входит в область видимости 
@@ -105,7 +108,7 @@ namespace PaintForSchool.Figures
             Matrix rectMatrix = new Matrix();
             
             center = new PointF(Math.Abs((pointsArray[0].X + pointsArray[1].X) / 2), Math.Abs((pointsArray[0].Y + pointsArray[1].Y) / 2));
-            rectMatrix.RotateAt(_rotateAngle=_rotateAngle+point.Y/2, center);
+            rectMatrix.RotateAt(_anglesNumber=_anglesNumber+point.Y/2, center);
             EllipseGP.Transform(rectMatrix);
             Painter = new PathIPainter(EllipseGP);
             Filler = new PathFiller(EllipseGP);
@@ -124,9 +127,16 @@ namespace PaintForSchool.Figures
             {
                 pointsList[i] = new Point(pointsList[i].X + delta.X, pointsList[i].Y + delta.Y);
             }
+
             RectangleF rectangleForGP = MakeRectangleFromPointsList(pointsList); //Создаем ректангл из листа
             EllipseGP = new GraphicsPath(); // Создаем новый график пас
             EllipseGP.AddEllipse(rectangleForGP);
+
+            Matrix rectMatrix = new Matrix();
+            center = new PointF(Math.Abs((pointsArray[0].X + pointsArray[1].X) / 2), Math.Abs((pointsArray[0].Y + pointsArray[1].Y) / 2));
+            rectMatrix.RotateAt(_anglesNumber, center);
+            EllipseGP.Transform(rectMatrix);
+
             Painter = new PathIPainter(EllipseGP);
             Filler = new PathFiller(EllipseGP);
         }
@@ -143,7 +153,7 @@ namespace PaintForSchool.Figures
 
             Matrix rectMatrix = new Matrix();
 
-            rectMatrix.RotateAt(_rotateAngle, center);
+            rectMatrix.RotateAt(_anglesNumber, center);
             EllipseGP.Transform(rectMatrix);
 
             
