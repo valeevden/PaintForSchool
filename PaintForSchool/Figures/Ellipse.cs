@@ -50,6 +50,8 @@ namespace PaintForSchool.Figures
 
         public Point[] GetPoints()
         {
+            
+
             pointsArray = pointsList.ToArray();
             return pointsArray;
         }
