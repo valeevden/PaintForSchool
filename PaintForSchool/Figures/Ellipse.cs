@@ -36,6 +36,8 @@ namespace PaintForSchool.Figures
 
         GraphicsPath EllipseGP;
 
+        private int _rotateAngle = 0;
+        PointF center;
         public EllipseFigure(Pen pen)
         {
             Painter = new EllipseIPainter();
@@ -94,8 +96,6 @@ namespace PaintForSchool.Figures
             }
            
         }
-        private int _rotateAngle = 0;
-        PointF center;
         public void Rotate(Point point)
         {
             Rectangle rectangleForGP = MakeRectangleFromPointsList(pointsList); //Создаем ректангл из листа
