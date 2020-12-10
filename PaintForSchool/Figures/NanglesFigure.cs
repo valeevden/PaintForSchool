@@ -109,8 +109,15 @@ namespace PaintForSchool.Figures
         //добавление новой вершины в список точек
         public void AddPeak()
         {
-            if (edgeModifying.edgeNumber==1) pointsList.Add(touchPoint);
-            pointsList.Insert(edgeModifying.edgeNumber-1,touchPoint);
+            if (edgeModifying.edgeNumber == 1)
+            {
+                pointsList.Add(touchPoint);
+            }
+            else
+            {
+                pointsList.Insert(edgeModifying.edgeNumber - 1, touchPoint);
+
+            }
             _anglesNumber++;
         }
 

@@ -85,7 +85,7 @@ namespace PaintForSchool.Figures
 
         public void MovePeak(Point peakDelta)
         {
-            pointsList[movingPeakIndex] = new Point(pointsList[movingPeakIndex].X + peakDelta.X, pointsList[movingPeakIndex].Y + peakDelta.Y);
+            pointsList[movingPeakIndex+3] = new Point(pointsList[movingPeakIndex+3].X + peakDelta.X, pointsList[movingPeakIndex+3].Y + peakDelta.Y);
         }
 
         public void Rotate(Point point)
