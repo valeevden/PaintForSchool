@@ -243,5 +243,22 @@ namespace PaintForSchool.Figures
         {
             throw new NotImplementedException();
         }
+
+        public bool IsPeak(Point peak)
+        {
+            foreach (Point point in pointsList)
+            {
+                if (
+                    (point.X < peak.X + 10) && (point.X < peak.X + 10)
+                    &&
+                    (point.Y < peak.Y + 10) && (point.Y < peak.Y + 10)
+                    )
+                {
+                    touchPoint = peak;
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

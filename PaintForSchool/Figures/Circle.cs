@@ -69,6 +69,7 @@ namespace PaintForSchool.Figures
             pointsList = pointsArray.ToList();
         }
 
+
         public bool IsEdge(Point eLocation)
         {
             Point centr = pointsList[1];
@@ -130,6 +131,11 @@ namespace PaintForSchool.Figures
             {
                 pointsList[i] = new Point(pointsList[i].X + delta.X, pointsList[i].Y + delta.Y);
             }
+        }
+
+        public bool IsPeak(Point peak)
+        {
+            throw new NotImplementedException();
         }
     }
 }

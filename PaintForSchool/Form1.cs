@@ -83,7 +83,18 @@ namespace PaintForSchool
 
                     foreach (IFigure checkFigure in figuresList)
                     {
-                        if (checkFigure.IsEdge(e.Location)  || (checkFigure.IsArea(e.Location) && checkFigure.IsFilled) )
+                        if (checkFigure.IsPeak(e.Location))
+                        {
+                            _figure = checkFigure;
+                            movingFigure = checkFigure;
+                            figuresList.Remove(_figure);
+                            pictureBox1.Image = canvas.Clear();
+                            DrawAll();
+                            startPoint = checkFigure.touchPoint;
+                            mode = "PEAK";
+                            break;
+                        }
+                        if (checkFigure.IsEdge(e.Location)||(checkFigure.IsArea(e.Location) && checkFigure.IsFilled) )
                         {
                             _figure = checkFigure;
                             movingFigure = checkFigure;

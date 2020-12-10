@@ -213,6 +213,11 @@ namespace PaintForSchool.Figures
         {
             throw new NotImplementedException();
         }
+
+        public bool IsPeak(Point peak)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

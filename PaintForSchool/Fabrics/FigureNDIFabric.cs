@@ -23,7 +23,6 @@ namespace PaintForSchool.Fabrics
 
         public IFigure CreateFigure(Pen pen)
         {
-
             if (_transformingFigure == null)
             {
                 return new FigureND(pen);

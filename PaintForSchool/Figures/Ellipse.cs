@@ -232,5 +232,10 @@ namespace PaintForSchool.Figures
             pointsListR[3] = new Point(secondPoint.X, startPoint.Y);
             return pointsListR;
         }
+
+        public bool IsPeak(Point peak)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

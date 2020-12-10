@@ -277,5 +277,10 @@ namespace PaintForSchool.Figures
             }
             return false;
         }
+
+        public bool IsPeak(Point peak)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
