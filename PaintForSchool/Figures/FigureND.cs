@@ -29,6 +29,8 @@ namespace PaintForSchool.Figures
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool started { get; set; }
+        public EdgeModifying edgeModifying { get; set; }
+        private int movingPeakIndex;
 
         public FigureND(Pen pen)
         {
@@ -39,6 +41,18 @@ namespace PaintForSchool.Figures
             pointsList = new List<Point> { new Point(0, 0) };
             started = false;
             _anglesNumber = 1;
+        }
+        public FigureND(Pen pen, IFigure figure)
+        {
+            Painter = new PolygonIPainter();
+            Reaction = new FreeFigureIRightClickReaction(this);
+
+            //забираем информацию из трансофрмируемой фигуры
+            Color = figure.Color;
+            Width = figure.Width;
+            pointsList = figure.pointsList;
+            _anglesNumber = figure._anglesNumber;
+            edgeModifying = new EdgeModifying(figure.edgeModifying);
         }
 
         public Point[] GetPoints()
@@ -71,6 +85,23 @@ namespace PaintForSchool.Figures
             }
         }
 
+        public void MovePeak(Point peakDelta)
+        {
+            if (edgeModifying.edgeNumber == 1)
+            {
+                pointsList[_anglesNumber - 1] = new Point(pointsList[_anglesNumber - 1].X + peakDelta.X,
+                    pointsList[_anglesNumber - 1].Y + peakDelta.Y);
+            }
+            else
+            {
+
+                pointsList[edgeModifying.edgeNumber - 1] =
+                new Point(
+                pointsList[edgeModifying.edgeNumber - 1].X + peakDelta.X,
+                pointsList[edgeModifying.edgeNumber - 1].Y + peakDelta.Y);
+            }
+        }
+
         public void Rotate(Point point)
         {
 
@@ -86,6 +117,7 @@ namespace PaintForSchool.Figures
             Point p1 = pointsList[pointsList.Count - 1];
             Point p2;
             int accuracy = 20; // Точность захвата
+            movingPeakIndex = -1;
             foreach (Point pi in pointsList)
             {
                 p2 = pi;
@@ -97,6 +129,7 @@ namespace PaintForSchool.Figures
                             ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - touch.Y)) && ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p2.Y - touch.Y)))))
                     {
                         touchPoint = touch;
+                        movingPeakIndex++;
                         return true;
                     }
                 }
@@ -110,5 +143,32 @@ namespace PaintForSchool.Figures
             return false;
         }
 
+        public bool IsPeak(Point peak)
+        {
+            foreach (Point point in pointsList)
+            {
+                if (
+                    (point.X-10 < peak.X) && (point.X+10 > peak.X)
+                    &&
+                    (point.Y-10 < peak.Y) && (point.Y+10 > peak.Y)
+                    )
+                {
+                    touchPoint = peak;
+                    return true;
+                }
+            }
+            return false;
+        }
+        //    FigureND figureND = (FigureND)obj;
+        //    if (!Color.Equals(figureND.Color) || Width != figureND.Width || !pointsList.Equals(figureND.pointsList) || !pointsArray.Equals(figureND.pointsArray)
+        //           || !_anglesNumber.Equals(figureND._anglesNumber) || !Filler.Equals(figureND.Filler) || !Reaction.Equals(figureND.Reaction)
+        //           || !Painter.Equals(figureND.Painter))
+        //    {
+        //        return false;
+        //    }
+        //    return true;
+        //}
+        //{
+        //public override bool Equals(object obj)
     }
 }

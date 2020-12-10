@@ -10,9 +10,27 @@ namespace PaintForSchool.Fabrics
 {
     public class FigureNDIFabric :IFabric
     {
+        IFigure _transformingFigure;
+        public FigureNDIFabric()
+        {
+
+        }
+
+        public FigureNDIFabric(IFigure figure)
+        {
+            _transformingFigure = figure;
+        }
+
         public IFigure CreateFigure(Pen pen)
         {
-            return new FigureND(pen);
+            if (_transformingFigure == null)
+            {
+                return new FigureND(pen);
+            }
+            else
+            {
+                return new FigureND(pen, _transformingFigure); 
+            }
         }
     }
 }

@@ -32,8 +32,8 @@ namespace PaintForSchool.Figures
         public IPainter Painter { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool IsFilled { get; set; }
+        public EdgeModifying edgeModifying { get; set; }
 
-        
         public Triangle3D (Pen pen)
         {
             Painter = new PointPolygonIPainter();
@@ -277,5 +277,20 @@ namespace PaintForSchool.Figures
             }
             return false;
         }
+
+        public bool IsPeak(Point peak)
+        {
+            throw new NotImplementedException();
+        }
+        //public override bool Equals(object obj)
+        //{
+        //    Triangle3DFigure triangle3D = (Triangle3DFigure)obj;
+        //    if (!Color.Equals(triangle3D.Color) || Width != triangle3D.Width || !pointsList.Equals(triangle3D.pointsList) || !pointsArray.Equals(triangle3D.pointsArray)
+        //             || !_anglesNumber.Equals(triangle3D._anglesNumber) || !Filler.Equals(triangle3D.Filler) || !Reaction.Equals(triangle3D.Reaction)
+        //             || !Painter.Equals(triangle3D.Painter))
+        //        return false;
+        //    }
+        //    return true;
+        //}
     }
 }

@@ -29,6 +29,7 @@ namespace PaintForSchool.Figures
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool started { get; set; }
+        public EdgeModifying edgeModifying { get; set; }
 
         public Line2D(Pen pen)
         {
@@ -48,6 +49,18 @@ namespace PaintForSchool.Figures
         {
             startPoint = pointFromForm;
         }
+
+        //public override bool Equals(object obj)
+        //{
+        //    Line2D line2D  = (Line2D) obj;
+        //    if (!Color.Equals(line2D.Color) || Width != line2D.Width || !pointsList.Equals(line2D.pointsList) || !pointsArray.Equals(line2D.pointsArray)
+        //            || !_anglesNumber.Equals(line2D._anglesNumber) || !Filler.Equals(line2D.Filler) || !Reaction.Equals(line2D.Reaction)
+        //            || !Painter.Equals(line2D.Painter))
+        //    {
+        //        return false;
+        //    }
+        //    return true;r
+        //}
 
         public void Update(Point startPoint, Point endPoint)
         {
@@ -100,6 +113,11 @@ namespace PaintForSchool.Figures
         public bool IsArea(Point delta)
         {
             return false;
+        }
+
+        public bool IsPeak(Point peak)
+        {
+            throw new NotImplementedException();
         }
     }
 }

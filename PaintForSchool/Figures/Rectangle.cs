@@ -33,6 +33,7 @@ namespace PaintForSchool.Figures
         public int Width { get; set ; }
 
         public int _anglesNumber { get; set; }
+        public EdgeModifying edgeModifying { get; set; }
 
         public RectangleFigure(Pen pen)
         {
@@ -389,6 +390,22 @@ namespace PaintForSchool.Figures
                 }
             }
             return false;
+        }
+
+        public bool IsPeak(Point peak)
+        {
+            throw new NotImplementedException();
+        }
+        public override bool Equals(object obj)
+        {
+            RectangleFigure rectangle = (RectangleFigure)obj;
+            if (!Color.Equals(rectangle.Color) || Width != rectangle.Width || !pointsList.Equals(rectangle.pointsList) || !pointsArray.Equals(rectangle.pointsArray)
+                     || !_anglesNumber.Equals(rectangle._anglesNumber) || !Filler.Equals(rectangle.Filler) || !Reaction.Equals(rectangle.Reaction)
+                     || !Painter.Equals(rectangle.Painter))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

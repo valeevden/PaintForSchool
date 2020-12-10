@@ -33,7 +33,7 @@ namespace PaintForSchool.Figures
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool started { get; set; }
-
+        public EdgeModifying edgeModifying { get; set; }
 
         public IsoscelesTriangle(Pen pen)
         {
@@ -388,6 +388,22 @@ namespace PaintForSchool.Figures
             }
                 return false;
 
+        }
+
+        public bool IsPeak(Point peak)
+        {
+            throw new NotImplementedException();
+        }
+        public override bool Equals(object obj)
+        {
+            IsoscelesTriangle IsoscelesTrianglee = (IsoscelesTriangle)obj;
+            if (!Color.Equals(IsoscelesTrianglee.Color) || Width != IsoscelesTrianglee.Width || !pointsList.Equals(IsoscelesTrianglee.pointsList) || !pointsArray.Equals(IsoscelesTrianglee.pointsArray)
+                    || !_anglesNumber.Equals(IsoscelesTrianglee._anglesNumber) || !Filler.Equals(IsoscelesTrianglee.Filler) || !Reaction.Equals(IsoscelesTrianglee.Reaction)
+                    || !Painter.Equals(IsoscelesTrianglee.Painter))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

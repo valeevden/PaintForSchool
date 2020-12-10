@@ -33,6 +33,7 @@ namespace PaintForSchool.Figures
         public IFiller Filler { get; set; }
 
         public bool IsFilled { get; set; }
+        public EdgeModifying edgeModifying { get; set; }
 
         public Graphics graphica { get; set; }
 
@@ -201,6 +202,22 @@ namespace PaintForSchool.Figures
             pointsListR[2] = secondPoint;
             pointsListR[3] = new Point(secondPoint.X, startPoint.Y);
             return pointsListR;
+        }
+
+        public bool IsPeak(Point peak)
+        {
+            throw new NotImplementedException();
+        }
+        public override bool Equals(object obj)
+        {
+            EllipseFigure ellipse = (EllipseFigure)obj;
+            if (!Color.Equals(ellipse.Color) || Width != ellipse.Width || !pointsList.Equals(ellipse.pointsList) || !pointsArray.Equals(ellipse.pointsArray)
+                    || !_anglesNumber.Equals(ellipse._anglesNumber) || !Filler.Equals(ellipse.Filler) || !Reaction.Equals(ellipse.Reaction)
+                    || !Painter.Equals(ellipse.Painter))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

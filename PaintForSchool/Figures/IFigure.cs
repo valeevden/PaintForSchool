@@ -26,7 +26,7 @@ namespace PaintForSchool.Figures
         Color Color { get; set; }//цвет фигуры
         int Width { get; set; }
         int _anglesNumber { get; set; }//количество углов
-
+        bool IsPeak(Point peak);
         bool IsEdge(Point touchPoint); //метод определяет попали или не попали в грань
         bool IsArea(Point touchPoint);//метод определяет попали или не попали в грань - ЕЩЁ НЕ ДОПИСАН
 
@@ -37,6 +37,8 @@ namespace PaintForSchool.Figures
 
 
         Point[] GetPoints();//перевод точек из листа в методы Grphics-а
+
+        EdgeModifying edgeModifying { get; set; }
 
         void Update(Point startPoint, Point endPoint);//получение точек для промежуточной прорисовки
 

@@ -30,7 +30,7 @@ namespace PaintForSchool.Figures
         public Color Color { get; set; }
         public int Width { get; set; }
         public int _anglesNumber { get; set; }
-
+        public EdgeModifying edgeModifying { get; set; }
 
 
         public SquareFigure(Pen pen)
@@ -212,6 +212,23 @@ namespace PaintForSchool.Figures
         public void Zoom(Point point, Point eLocation)
         {
             throw new NotImplementedException();
+        }
+
+        public bool IsPeak(Point peak)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool Equals (object  obj)
+        {
+            SquareFigure square = (SquareFigure)obj;
+            if (!Color.Equals(square.Color) || Width != square.Width || !pointsList.Equals(square.pointsList) || !pointsArray.Equals(square.pointsArray)
+                     || !_anglesNumber.Equals(square._anglesNumber) || !Filler.Equals(square.Filler) || !Reaction.Equals(square.Reaction)
+                     || !Painter.Equals(square.Painter))
+            {
+                return false;
+            }
+            return true; 
         }
     }
 }
