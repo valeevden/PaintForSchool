@@ -51,5 +51,11 @@ namespace PaintForSchool
             return _mainBitmap;
 
         }
+
+        public void SetGraphics(IFigure figure)
+        {
+            _graphics.RotateTransform(10);
+            ((EllipseFigure)figure).graphica = _graphics;
+        }
     }
 }

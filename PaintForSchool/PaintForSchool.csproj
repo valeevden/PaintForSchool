@@ -61,6 +61,7 @@
     <Compile Include="Filler\CircleFiller.cs" />
     <Compile Include="Filler\IFiller.cs" />
     <Compile Include="Filler\PolygonFiller.cs" />
+    <Compile Include="Painter\PathIPainter.cs" />
     <Compile Include="RightClickReaction\TriangleIRightClickReaction.cs" />
     <Compile Include="RightClickReaction\NoReactionIReaction.cs" />
     <Compile Include="RightClickReaction\FreeLineIRightClickReaction.cs" />

@@ -15,7 +15,9 @@ namespace PaintForSchool.Painter
             Rectangle rectangle = MakeRectangleFromPoints(points);
 
             // Методом DrawEllispe в графиксе рисуем эллипс вписанный в ректангл
+           // graphics.RotateTransform(10);
             graphics.DrawEllipse(pen, rectangle);
+           // graphics.ResetTransform();
 
 
         }
