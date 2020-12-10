@@ -30,7 +30,7 @@ namespace PaintForSchool.Figures
         public List<Point> pointsList { get; set ; }
         public Point[] pointsArray { get; set; }
 
-        
+        public EdgeModifying edgeModifying { get; set; }
 
         public CircleFigure(Pen pen)
         {

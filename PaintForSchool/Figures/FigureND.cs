@@ -29,6 +29,7 @@ namespace PaintForSchool.Figures
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool started { get; set; }
+        public EdgeModifying edgeModifying { get; set; }
         private int movingPeakIndex;
 
         public FigureND(Pen pen)
@@ -51,6 +52,7 @@ namespace PaintForSchool.Figures
             Width = figure.Width;
             pointsList = figure.pointsList;
             _anglesNumber = figure._anglesNumber;
+            edgeModifying = new EdgeModifying(figure.edgeModifying);
         }
 
         public Point[] GetPoints()
@@ -85,7 +87,19 @@ namespace PaintForSchool.Figures
 
         public void MovePeak(Point peakDelta)
         {
-            pointsList[movingPeakIndex+3] = new Point(pointsList[movingPeakIndex+3].X + peakDelta.X, pointsList[movingPeakIndex+3].Y + peakDelta.Y);
+            if (edgeModifying.edgeNumber == 1)
+            {
+                pointsList[_anglesNumber - 1] = new Point(pointsList[_anglesNumber - 1].X + peakDelta.X,
+                    pointsList[_anglesNumber - 1].Y + peakDelta.Y);
+            }
+            else
+            {
+
+                pointsList[edgeModifying.edgeNumber - 1] =
+                new Point(
+                pointsList[edgeModifying.edgeNumber - 1].X + peakDelta.X,
+                pointsList[edgeModifying.edgeNumber - 1].Y + peakDelta.Y);
+            }
         }
 
         public void Rotate(Point point)

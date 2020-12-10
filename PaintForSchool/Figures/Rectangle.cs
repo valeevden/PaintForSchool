@@ -33,6 +33,7 @@ namespace PaintForSchool.Figures
         public int Width { get; set ; }
 
         public int _anglesNumber { get; set; }
+        public EdgeModifying edgeModifying { get; set; }
 
         public RectangleFigure(Pen pen)
         {

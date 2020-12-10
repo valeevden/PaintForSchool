@@ -182,7 +182,7 @@ namespace PaintForSchool
                         {
                             _figure = checkFigure;
                             movingFigure = checkFigure;
-                            figuresList.Remove(_figure);
+                            figuresList.Remove(_figure);//это удаление первой по значению?
                             ((NanglesFigure)_figure).AddPeak();
                             fabrica = new FigureNDIFabric(_figure);
 

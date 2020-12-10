@@ -30,7 +30,7 @@ namespace PaintForSchool.Figures
         public Color Color { get; set; }
         public int Width { get; set; }
         public int _anglesNumber { get; set; }
-
+        public EdgeModifying edgeModifying { get; set; }
 
 
         public SquareFigure(Pen pen)

@@ -31,6 +31,7 @@ namespace PaintForSchool.Figures
         public IFiller Filler { get; set; }
 
         public bool IsFilled { get; set; }
+        public EdgeModifying edgeModifying { get; set; }
 
         public EllipseFigure(Pen pen)
         {

@@ -30,7 +30,7 @@ namespace PaintForSchool.Figures
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool started { get; set; }
-
+        public EdgeModifying edgeModifying { get; set; }
         public LineND(Pen pen)
         {
             Painter = new PointPolygonIPainter();

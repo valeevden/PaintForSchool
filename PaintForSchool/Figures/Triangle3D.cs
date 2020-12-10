@@ -32,8 +32,8 @@ namespace PaintForSchool.Figures
         public IPainter Painter { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool IsFilled { get; set; }
+        public EdgeModifying edgeModifying { get; set; }
 
-        
         public Triangle3D (Pen pen)
         {
             Painter = new PointPolygonIPainter();

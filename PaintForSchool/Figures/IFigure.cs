@@ -38,6 +38,8 @@ namespace PaintForSchool.Figures
 
         Point[] GetPoints();//перевод точек из листа в методы Grphics-а
 
+        EdgeModifying edgeModifying { get; set; }
+
         void Update(Point startPoint, Point endPoint);//получение точек для промежуточной прорисовки
 
         void Set(Point point);

@@ -57,6 +57,7 @@
     <Compile Include="Fabrics\CircleIFabric.cs" />
     <Compile Include="Fabrics\SquareIFabric.cs" />
     <Compile Include="Fabrics\Triangle3DIFabric.cs" />
+    <Compile Include="Figures\EdgeModifying.cs" />
     <Compile Include="Filler\EllipseFiller.cs" />
     <Compile Include="Filler\CircleFiller.cs" />
     <Compile Include="Filler\IFiller.cs" />
