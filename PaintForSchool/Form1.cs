@@ -24,13 +24,12 @@ namespace PaintForSchool
         IFabric fabrica;
         Point startPoint;
         IFigure movingFigure;
+        Point tmpPoint;
 
         IFigure _figure; // Объект интерфейса
         List<IFigure> figuresList;
         string mode = "PAINT";
         Color pickedColor;
-
-
 
         public Form1()
         {
@@ -53,9 +52,30 @@ namespace PaintForSchool
             switch (mode)
             {
                 case "PAINT":
-                    startPoint = e.Location;
-                    _figure.Set(e.Location);
-                    _figure = fabrica.CreateFigure(_pen);
+                    if (_figure.Reaction is FreeLineIRightClickReaction 
+                        || _figure.Reaction is FreeFigureIRightClickReaction 
+                        || _figure.Reaction is TriangleIRightClickReaction)
+                    {
+                        //если фигура начинается то записать первую стартПоинт
+                        if (_figure.started == false)
+                        {
+                            startPoint = e.Location;
+                            tmpPoint = e.Location;
+                            _figure.started = true;
+                        }
+                        else
+                        {
+                            tmpPoint = e.Location;
+                            startPoint = _figure.secondPoint;
+                        }
+                    }
+                    else
+                    {
+                        startPoint = e.Location;
+                        _figure = fabrica.CreateFigure(_pen);
+                    }
+
+                    
                     break;
 
                 case "MOVE":
@@ -63,7 +83,18 @@ namespace PaintForSchool
 
                     foreach (IFigure checkFigure in figuresList)
                     {
-                        if (checkFigure.IsEdge(e.Location) || checkFigure.IsArea(e.Location))
+                        if (checkFigure.IsPeak(e.Location))
+                        {
+                            _figure = checkFigure;
+                            movingFigure = checkFigure;
+                            figuresList.Remove(_figure);
+                            pictureBox1.Image = canvas.Clear();
+                            DrawAll();
+                            startPoint = checkFigure.touchPoint;
+                            mode = "PEAK";
+                            break;
+                        }
+                        if (checkFigure.IsEdge(e.Location)||(checkFigure.IsArea(e.Location) && checkFigure.IsFilled) )
                         {
                             _figure = checkFigure;
                             movingFigure = checkFigure;
@@ -81,7 +112,7 @@ namespace PaintForSchool
 
                     foreach (IFigure checkFigure in figuresList)
                     {
-                        if (checkFigure.IsEdge(e.Location))
+                        if (checkFigure.IsEdge(e.Location) || checkFigure.IsArea(e.Location))
                         {
                             _figure = checkFigure;
                             figuresList.Remove(_figure);
@@ -115,7 +146,7 @@ namespace PaintForSchool
                     _figure = null;
                     foreach (IFigure checkFigure in figuresList)
                     {
-                        if (checkFigure.IsEdge(e.Location))
+                        if (checkFigure.IsEdge(e.Location) || checkFigure.IsArea(e.Location))
                         {
                             _figure = checkFigure;
                             _figure.IsFilled = true;
@@ -153,6 +184,31 @@ namespace PaintForSchool
                         colorPalete.BackColor = pictureBox1.BackColor;
                     }
                     break;
+                case "PEAK":
+                    
+
+                    foreach (IFigure checkFigure in figuresList)
+                    {
+                        if (checkFigure.IsEdge(e.Location))
+                        {
+                            _figure = checkFigure;
+                            movingFigure = checkFigure;
+                            figuresList.Remove(_figure);//это удаление первой по значению?
+                            ((NanglesFigure)_figure).AddPeak();
+                            fabrica = new FigureNDIFabric(_figure);
+
+                            //переделать метод CreateFigure() так, чтобы у него не было параметров
+                            //это даст возможность собирать информацию о фигуре не переписывая интерфейс по 10 раз
+                            //достаточно будет добавлять новые конструкторы для нужной фабрики
+
+                            _figure = fabrica.CreateFigure(_pen);
+                            pictureBox1.Image = canvas.Clear();
+                            DrawAll();
+                            startPoint = checkFigure.touchPoint;
+                            return;
+                        }
+                    }
+                            break;
 
                 default:
                     break;
@@ -167,9 +223,16 @@ namespace PaintForSchool
                 switch (mode)
                 {
                     case "PAINT":
-
-                        _figure.Update(startPoint, e.Location);
-                        mouseMove = true;
+                        
+                        if ((_figure.Reaction is FreeLineIRightClickReaction 
+                            || _figure.Reaction is FreeFigureIRightClickReaction
+                            || _figure.Reaction is TriangleIRightClickReaction) && (mouseMove == false))
+                        {
+                            _figure._anglesNumber++;
+                            _figure.pointsList.Add(tmpPoint); //точка добавляется в лист в начале движения мыши
+                        }
+                            _figure.Update(startPoint, e.Location);
+                        mouseMove = true; //после записи точки запись заканчивается
 
                         _figure.secondPoint = e.Location;
                         pictureBox1.Image = canvas.DrawIt(_figure, _pen);
@@ -201,6 +264,7 @@ namespace PaintForSchool
                             _figure.Rotate(delta);
 
                             pictureBox1.Image = canvas.DrawIt(_figure, new Pen(movingFigure.Color, movingFigure.Width));
+                           // pictureBox1.Image = canvas.DrawIt(movingFigure, new Pen(movingFigure.Color, movingFigure.Width));
 
                             GC.Collect();
                         }
@@ -240,6 +304,16 @@ namespace PaintForSchool
                         }
 
                         break;
+                    case "PEAK":
+                        if (_figure!=null)
+                        {
+                            Point delta = new Point(e.X - startPoint.X, e.Y - startPoint.Y);
+                            startPoint = e.Location;
+                            ((FigureND)_figure).MovePeak(delta);
+                            pictureBox1.Image = canvas.DrawIt(_figure, new Pen(movingFigure.Color, movingFigure.Width));
+                            GC.Collect();
+                        }
+                        break;
 
 
                     default:
@@ -252,20 +326,31 @@ namespace PaintForSchool
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             _mouseDown = false;
+            mouseMove = false;
 
-            if (_figure != null)
+            if (_figure != null && _figure.Reaction is NoReactionIReaction)
             {
                 figuresList.Add(_figure);
+            }
+            else if (_figure != null && _figure.Reaction is TriangleIRightClickReaction && _figure._anglesNumber == 3)
+            {
+                //ничего не происходит для фигур с FreeLineIRightClickReaction и FreeFigureIRightClickReaction
+                _figure.Reaction.Do();
+                figuresList.Add(_figure);
+                pictureBox1.Image = canvas.DrawIt(_figure, _pen);
+                _figure = fabrica.CreateFigure(_pen);
             }
             switch (mode)
             {
                 case "PAINT":
                     if (e.Button == MouseButtons.Right)
                     {
-                        if (_figure.Reaction is FreeFigureIRightClickReaction)
+                        if (_figure.Reaction is FreeLineIRightClickReaction || _figure.Reaction is FreeFigureIRightClickReaction)
                         {
                             _figure.Reaction.Do();
+                            figuresList.Add(_figure);
                             pictureBox1.Image = canvas.DrawIt(_figure, _pen);
+                            _figure = fabrica.CreateFigure(_pen);
                         }
                         else
                         {
@@ -275,9 +360,22 @@ namespace PaintForSchool
                     break;
 
                 case "MOVE":
-                    pictureBox1.Image = canvas.Clear();
-                    DrawAll();
-                    break;
+                    if (_figure != null)
+                    {
+
+                        if ((e.Button != MouseButtons.Right) && (_figure.Reaction is FreeLineIRightClickReaction || _figure.Reaction is FreeFigureIRightClickReaction))
+                        {
+                            figuresList.Add(_figure);
+                            pictureBox1.Image = canvas.Clear();
+                            DrawAll();
+                        }
+                        else
+                        {
+                            pictureBox1.Image = canvas.Clear();
+                            DrawAll();
+                        }
+                    }
+                        break;
 
                 case "ROTATE":
                     pictureBox1.Image = canvas.Clear();
@@ -288,12 +386,6 @@ namespace PaintForSchool
                     pictureBox1.Image = canvas.Clear();
                     DrawAll();
                     break;
-
-                case "PEAK":
-                    pictureBox1.Image = canvas.Clear();
-                    DrawAll();
-                    break;
-                
                 case "FILL":
                     pictureBox1.Image = canvas.Clear();
                     DrawAll();
@@ -302,6 +394,11 @@ namespace PaintForSchool
                     //mode = "PAINT";
                     radioButtonPaintMode.Checked = true;
                     colorPicker.Checked = false;
+                    break;
+                case "PEAK":
+                    figuresList.Add(_figure);
+                    pictureBox1.Image = canvas.Clear();
+                    DrawAll();
                     break;
                 default:
                     break;
@@ -345,17 +442,23 @@ namespace PaintForSchool
 
         private void Line2D_Click(object sender, EventArgs e)
         {
-            //  _figure = new Line2D();
+            fabrica = new Line2DIFabric();
+            _figure = fabrica.CreateFigure(_pen);
+            radioButtonPaintMode.Checked = true;
         }
 
         private void LineND_Click(object sender, EventArgs e)
         {
-            // _figure = new LineND();
+            fabrica = new LineNDIFabric();
+            _figure = fabrica.CreateFigure(_pen);
+            radioButtonPaintMode.Checked = true;
         }
 
         private void FigureND_Click(object sender, EventArgs e)
         {
-            //_figure = new FigureND();
+            fabrica = new FigureNDIFabric();
+            _figure = fabrica.CreateFigure(_pen);
+            radioButtonPaintMode.Checked = true;
         }
 
         private void trackPenWidth_Scroll(object sender, EventArgs e)
@@ -386,7 +489,9 @@ namespace PaintForSchool
 
         private void Triangle3D_Click(object sender, EventArgs e)
         {
-            // _figure = new Triangle3DFigure ();
+            fabrica = new Triangle3DIFabric();
+            _figure = fabrica.CreateFigure(_pen);
+            radioButtonPaintMode.Checked = true;
         }
 
         private void NanglesFigure_Click(object sender, EventArgs e)

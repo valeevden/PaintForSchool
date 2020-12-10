@@ -18,7 +18,7 @@ namespace PaintForSchool.Figures
         public Point secondPoint { get; set; }
         public Point tmpPoint { get; set; }
         public Point touchPoint { get; set; }
-        public IPainter Painter { get; }
+        public IPainter Painter { get; set;  }
         public IFiller Filler { get; }
         public GraphicsPath Path { get; set; }
         public IRightClickReaction Reaction { get; set; }
@@ -30,7 +30,7 @@ namespace PaintForSchool.Figures
         public Color Color { get; set; }
         public int Width { get; set; }
         public int _anglesNumber { get; set; }
-
+        public EdgeModifying edgeModifying { get; set; }
 
 
         public SquareFigure(Pen pen)
@@ -210,6 +210,11 @@ namespace PaintForSchool.Figures
         }
 
         public void Zoom(Point point, Point eLocation)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsPeak(Point peak)
         {
             throw new NotImplementedException();
         }

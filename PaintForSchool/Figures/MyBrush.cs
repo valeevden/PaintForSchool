@@ -32,7 +32,7 @@ namespace PaintForSchool.Figures
         public IRightClickReaction Reaction { get; set; }
         public bool started { get; set; }
         public Point tmpPoint { get; set; }
-
+        public EdgeModifying edgeModifying { get; set; }
 
         //передаём в BrushIPainter текущую точку
         public Point[] GetPoints()

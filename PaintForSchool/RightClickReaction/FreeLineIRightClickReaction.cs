@@ -4,27 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PaintForSchool.RightClickReaction;
+using PaintForSchool.Painter;
 using PaintForSchool.Figures;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using PaintForSchool.Fabrics;
 
 namespace PaintForSchool.RightClickReaction
 {
     public class FreeLineIRightClickReaction : IRightClickReaction
     {
-        IFigure _figure;
+        //IFigure _figure;
         
-        public FreeLineIRightClickReaction(IFigure figureFromForm)
-        {
-            _figure = figureFromForm; 
-        }
+        //public FreeLineIRightClickReaction(IFigure figureFromForm)
+        //{
+        //    _figure = figureFromForm; 
+        //}
         public void Do()
         {
-            _figure.started = false;
-            //_figure.secondPoint = new Point((int)_figure.Path.PathPoints[2].X, (int)_figure.Path.PathPoints[2].Y);
-            _figure.startPoint = _figure.secondPoint;
-            _figure.Path.CloseFigure();
-            _figure.Path.Dispose();
+            
         }
     }
 }

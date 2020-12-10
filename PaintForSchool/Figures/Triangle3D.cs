@@ -12,7 +12,7 @@ using PaintForSchool.Figures;
 
 namespace PaintForSchool.Figures
 {
-    public class Triangle3DFigure// : IFigure
+    public class Triangle3D : IFigure
     {
         public Point startPoint { get; set; }
 
@@ -20,7 +20,7 @@ namespace PaintForSchool.Figures
         public Point tmpPoint { get; set; }
         public Point touchPoint { get; set; }
         public Point[] pointsArray { get; set; }
-       
+        public List<Point> currentList { get; set; }
         public GraphicsPath Path { get; set; }
        
         public List<Point> pointsList { get; set; }
@@ -32,59 +32,36 @@ namespace PaintForSchool.Figures
         public IPainter Painter { get; set; }
         public IRightClickReaction Reaction { get; set; }
         public bool IsFilled { get; set; }
+        public EdgeModifying edgeModifying { get; set; }
 
-        
-        public Triangle3DFigure (Pen pen)
+        public Triangle3D (Pen pen)
         {
-            Painter = new PolygonIPainter();
-            Reaction = new NoReactionIReaction();
-            Filler = new PolygonFiller();
+            Painter = new PointPolygonIPainter();
+            Reaction = new TriangleIRightClickReaction(this);
             Color = pen.Color;
             Width = (int)pen.Width;
-            _anglesNumber = 3;
-            IsFilled = false;
-            Painter = new PolygonIPainter();
+            pointsList = new List<Point> { new Point(0, 0) };
+            started = false;
+            _anglesNumber = 1;
         }
 
         public Point[] GetPoints()
         {
-            pointsArray = pointsList.ToArray();
-            return pointsArray;
-            
+            return pointsArray = pointsList.ToArray();
+
         }
 
         public void Set(Point point)
         {
-            if (started == false)
-            {
-                Path = new GraphicsPath();
-                Path.StartFigure();
-                started = true;
-                tmpPoint = point;
-            }
-            else
-            {
-                Path.AddLine(point, secondPoint); 
-                startPoint = secondPoint;
-                return;
-            }
-            startPoint = point;
+           
         }
 
         public void Update (Point startPoint, Point endPoint)
         {
-            Point[] pointsArray = new Point[3];
-            Point[] points = new Point[3];
-            for (int i = 0; i == 3; i++)
-            {
-                points[0] = startPoint;
-                points[1] = secondPoint;
-                points[2] = new Point();
+            currentList = new List<Point> { startPoint, endPoint };
+            pointsList[_anglesNumber - 2] = currentList[0];
+            pointsList[_anglesNumber - 1] = currentList[1];
 
-                pointsList = new List<Point> { };
-                pointsList = pointsArray.ToList();
-            }
-           
         }
 
         public void Move(Point delta)
@@ -268,16 +245,18 @@ namespace PaintForSchool.Figures
 
         public bool IsEdge(Point touch)
         {
-            Point p1 = pointsList[pointsList.Count() - 1];
+            Point p1 = pointsList[pointsList.Count - 1];
             Point p2;
             int accuracy = 20; // Точность захвата
             foreach (Point pi in pointsList)
             {
                 p2 = pi;
                 if (Math.Abs((touch.X - p1.X) * (p2.Y - p1.Y) - (touch.Y - p1.Y) * (p2.X - p1.X))
-                    <= Math.Abs(((p2.Y - p1.Y) + (p2.X - p1.X))))
+                    <= Math.Abs(25 * ((p2.Y - p1.Y) + (p2.X - p1.X))))
                 {
-                    if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - touch.X)) && (Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - touch.Y)))
+                    if ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p1.X - touch.X)) && ((Math.Abs(p1.X - p2.X) + accuracy >= Math.Abs(p2.X - touch.X)))
+                            &&
+                            ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p1.Y - touch.Y)) && ((Math.Abs(p1.Y - p2.Y) + accuracy >= Math.Abs(p2.Y - touch.Y)))))
                     {
                         touchPoint = touch;
                         return true;
@@ -297,6 +276,11 @@ namespace PaintForSchool.Figures
                 return true;
             }
             return false;
+        }
+
+        public bool IsPeak(Point peak)
+        {
+            throw new NotImplementedException();
         }
         //public override bool Equals(object obj)
         //{

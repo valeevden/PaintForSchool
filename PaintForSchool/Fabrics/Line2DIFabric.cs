@@ -8,13 +8,11 @@ using System.Drawing;
 
 namespace PaintForSchool.Fabrics
 {
-    public class Triangle3DIFabric : IFabric
+    public class Line2DIFabric : IFabric
     {
         public IFigure CreateFigure(Pen pen)
         {
-            return new Triangle3D(pen);
+            return new Line2D(pen);
         }
-        
-
     }
 }

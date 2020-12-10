@@ -10,36 +10,46 @@ namespace PaintForSchool.Painter
 {
     public class PointPolygonIPainter : IPainter
     {
-        GraphicsPath _path;
-
-        public PointPolygonIPainter()
-        {
-
-        }
-        public PointPolygonIPainter(GraphicsPath path)
-        {
-            _path = path;
-        }
         public void DrawFigure(Pen pen, Graphics graphics, Point[] points)
         {
-            graphics.DrawPath(pen, _path);
+            if (points.Length > 1)
+            {
+                graphics.DrawLines(pen, points);
 
-            //_path.AddLine(startPoint, points[1]);
-
-            //graphics.DrawPath(pen, path);
-
-            //if (points[0] != new Point(-1, -1))
-            //{
-            //    points[0] = startPoint;
-            //    points[1] = secondPoint;
-            //    graphics.DrawPolygon(pen, points);
-
-            //}
-            //else
-            //{
-            //points[0] = startPoint;
-            //points[1] = secondPoint;
-            //}
+            }
         }
+
+
+        //GraphicsPath _path;
+
+        //public PointPolygonIPainter()
+        //{
+
+        //}
+        //public PointPolygonIPainter(GraphicsPath path)
+        //{
+        //    _path = path;
+        //}
+        //public void DrawFigure(Pen pen, Graphics graphics, Point[] points)
+        //{
+        //    graphics.DrawPath(pen, _path);
+
+        //    //_path.AddLine(startPoint, points[1]);
+
+        //    //graphics.DrawPath(pen, path);
+
+        //    //if (points[0] != new Point(-1, -1))
+        //    //{
+        //    //    points[0] = startPoint;
+        //    //    points[1] = secondPoint;
+        //    //    graphics.DrawPolygon(pen, points);
+
+        //    //}
+        //    //else
+        //    //{
+        //    //points[0] = startPoint;
+        //    //points[1] = secondPoint;
+        //    //}
+        //}
     }
 }

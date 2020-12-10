@@ -48,16 +48,21 @@
   <ItemGroup>
     <Compile Include="Fabrics\EllipseIFabric.cs" />
     <Compile Include="Fabrics\IFabric.cs" />
+    <Compile Include="Fabrics\Line2DIFabric.cs" />
+    <Compile Include="Fabrics\FigureNDIFabric.cs" />
+    <Compile Include="Fabrics\LineNDIFabric.cs" />
     <Compile Include="Fabrics\NanglesIFabric.cs" />
     <Compile Include="Fabrics\IsoscelesIFabric.cs" />
     <Compile Include="Fabrics\RectangleIFabric.cs" />
     <Compile Include="Fabrics\CircleIFabric.cs" />
     <Compile Include="Fabrics\SquareIFabric.cs" />
     <Compile Include="Fabrics\Triangle3DIFabric.cs" />
+    <Compile Include="Figures\EdgeModifying.cs" />
     <Compile Include="Filler\EllipseFiller.cs" />
     <Compile Include="Filler\CircleFiller.cs" />
     <Compile Include="Filler\IFiller.cs" />
     <Compile Include="Filler\PolygonFiller.cs" />
+    <Compile Include="RightClickReaction\TriangleIRightClickReaction.cs" />
     <Compile Include="RightClickReaction\NoReactionIReaction.cs" />
     <Compile Include="RightClickReaction\FreeLineIRightClickReaction.cs" />
     <Compile Include="RightClickReaction\FreeFigureIRightClickReaction.cs" />

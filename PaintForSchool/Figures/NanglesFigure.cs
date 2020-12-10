@@ -32,15 +32,8 @@ namespace PaintForSchool.Figures
         public Point[] pointsArray { get; set; }
         public List<Point> pointsList { get; set; }
 
-        //структура для хранения грани, которая перемещается или в которую добавляется вершина
-        struct EdgeModifying
-        {
-            public Point point1;
-            public Point point2;
-            public int edgeNumber;
-        }
 
-        EdgeModifying edgeModifying;
+        public EdgeModifying edgeModifying { get; set; }
 
         public NanglesFigure(Pen pen, int N)
         {
@@ -50,6 +43,7 @@ namespace PaintForSchool.Figures
             _anglesNumber = N;
             Color = pen.Color;
             Width = (int)pen.Width;
+            
         }
 
         public Point[] GetPoints()
@@ -91,9 +85,7 @@ namespace PaintForSchool.Figures
                         //{
 
                         //запоминание координат и номера грани для AddPeak или MoveEdge, точки записываются по часовй стрелке
-                        edgeModifying.point1 = p1;
-                        edgeModifying.point2 = p2;
-                        edgeModifying.edgeNumber = edgeCounter;
+                        edgeModifying = new EdgeModifying(p1, p2, edgeCounter);
                         //запомнили
 
                         this.touchPoint = touchPoint2;
@@ -107,10 +99,18 @@ namespace PaintForSchool.Figures
         }
 
         //добавление новой вершины в список точек
-        public void AddPeak(Point touchPoint)
+        public void AddPeak()
         {
-            if (edgeModifying.edgeNumber==1) pointsList.Add(touchPoint);
-            pointsList.Insert(edgeModifying.edgeNumber-1,touchPoint);
+            if (edgeModifying.edgeNumber == 1)
+            {
+                pointsList.Add(touchPoint);
+            }
+            else
+            {
+                pointsList.Insert(edgeModifying.edgeNumber - 1, touchPoint);
+
+            }
+            _anglesNumber++;
         }
 
 
@@ -242,6 +242,23 @@ namespace PaintForSchool.Figures
         public void Zoom(Point point, Point eLocation)
         {
             throw new NotImplementedException();
+        }
+
+        public bool IsPeak(Point peak)
+        {
+            foreach (Point point in pointsList)
+            {
+                if (
+                    (point.X - 10 < peak.X) && (point.X + 10 > peak.X)
+                    &&
+                    (point.Y - 10 < peak.Y) && (point.Y + 10 > peak.Y)
+                    )
+                {
+                    touchPoint = peak;
+                    return true;
+                }
+            }
+            return false;
         }
 
         public override bool Equals(object obj)
