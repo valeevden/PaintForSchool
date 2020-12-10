@@ -116,8 +116,17 @@ namespace PaintForSchool.Figures
 
         public void Zoom(Point point, Point eLocation)
         {
-            startPoint = this.pointsList[1];
-            this.Update(pointsList[1], eLocation);
+            Rectangle rectangleForGP = MakeRectangleFromPointsList(pointsList); //Создаем ректангл из листа
+            EllipseGP = new GraphicsPath(); // Создаем новый график пас
+            EllipseGP.AddEllipse(rectangleForGP); // Добавляем в график пас новую область видимости
+
+            Matrix rectMatrix = new Matrix();
+
+            center = new PointF(Math.Abs((pointsArray[0].X + pointsArray[1].X) / 2), Math.Abs((pointsArray[0].Y + pointsArray[1].Y) / 2));
+            rectMatrix.Scale(2, 2);
+            EllipseGP.Transform(rectMatrix);
+            Painter = new PathIPainter(EllipseGP);
+            Filler = new PathFiller(EllipseGP);
         }
 
 

@@ -136,7 +136,6 @@ namespace PaintForSchool
                     _figure = null;
                     foreach (IFigure checkFigure in figuresList)
                     {
-                        canvas.SetGraphics(checkFigure);
                         if (checkFigure.IsEdge(e.Location) || checkFigure.IsArea(e.Location))
                         {
                             _figure = checkFigure;
