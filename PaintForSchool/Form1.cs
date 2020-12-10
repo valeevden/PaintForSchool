@@ -83,7 +83,7 @@ namespace PaintForSchool
 
                     foreach (IFigure checkFigure in figuresList)
                     {
-                        if (checkFigure.IsEdge(e.Location) || checkFigure.IsArea(e.Location))
+                        if (checkFigure.IsEdge(e.Location)  || (checkFigure.IsArea(e.Location) && checkFigure.IsFilled) )
                         {
                             _figure = checkFigure;
                             movingFigure = checkFigure;
@@ -228,6 +228,7 @@ namespace PaintForSchool
                             _figure.Rotate(delta);
 
                             pictureBox1.Image = canvas.DrawIt(_figure, new Pen(movingFigure.Color, movingFigure.Width));
+                           // pictureBox1.Image = canvas.DrawIt(movingFigure, new Pen(movingFigure.Color, movingFigure.Width));
 
                             GC.Collect();
                         }
@@ -285,7 +286,7 @@ namespace PaintForSchool
             {
                 figuresList.Add(_figure);
             }
-            else if (_figure.Reaction is TriangleIRightClickReaction && _figure._anglesNumber == 3)
+            else if (_figure != null && _figure.Reaction is TriangleIRightClickReaction && _figure._anglesNumber == 3)
             {
                 //ничего не происходит для фигур с FreeLineIRightClickReaction и FreeFigureIRightClickReaction
                 _figure.Reaction.Do();
