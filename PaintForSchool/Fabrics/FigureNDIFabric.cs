@@ -11,6 +11,7 @@ namespace PaintForSchool.Fabrics
     public class FigureNDIFabric :IFabric
     {
         IFigure _transformingFigure;
+
         public FigureNDIFabric()
         {
 

@@ -120,11 +120,11 @@ namespace PaintForSchool.Figures
             Rectangle rectangleForGP = MakeRectangleFromPointsList(pointsList); //Создаем ректангл из листа
             EllipseGP = new GraphicsPath(); // Создаем новый график пас
             EllipseGP.AddEllipse(rectangleForGP); // Добавляем в график пас новую область видимости
-
-            Matrix rectMatrix = new Matrix();
+            Point[] prgls = new Point[] { new Point(15, 10), new Point(80, 10), new Point(15, 40) };
+            Matrix rectMatrix = new Matrix(rectangleForGP, prgls);
 
             center = new PointF(Math.Abs((pointsArray[0].X + pointsArray[1].X) / 2), Math.Abs((pointsArray[0].Y + pointsArray[1].Y) / 2));
-            rectMatrix.Scale(2, 1); // Починить Scale
+            //rectMatrix.Scale(2, 1); // Починить Scale
             EllipseGP.Transform(rectMatrix);
             Painter = new PathIPainter(EllipseGP);
             Filler = new PathFiller(EllipseGP);
@@ -206,7 +206,7 @@ namespace PaintForSchool.Figures
 
         public bool IsPeak(Point peak)
         {
-            throw new NotImplementedException();
+            return false;
         }
         public override bool Equals(object obj)
         {
