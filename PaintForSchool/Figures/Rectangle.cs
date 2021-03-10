@@ -15,6 +15,7 @@ namespace PaintForSchool.Figures
     {
 
         public Point startPoint { get; set; }
+        public Point prefPoint { get; set }
         public Point secondPoint { get; set; }
         public Point tmpPoint { get; set; }
         public Point touchPoint { get; set; }
