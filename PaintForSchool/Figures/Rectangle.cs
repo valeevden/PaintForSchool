@@ -13,7 +13,7 @@ namespace PaintForSchool.Figures
 {
     public class RectangleFigure : IFigure
     {
-
+        public Point1 startPoint { get; set; }
         public Point startPoint { get; set; }
         public Point prefPoint { get; set }
         public Point secondPoint { get; set; }
